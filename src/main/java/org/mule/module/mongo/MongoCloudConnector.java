@@ -18,6 +18,7 @@ import org.mule.api.lifecycle.InitialisationException;
 import org.mule.module.mongo.api.MongoClient;
 import org.mule.module.mongo.api.WriteConcern;
 import org.mule.tools.cloudconnect.annotations.Connector;
+import org.mule.tools.cloudconnect.annotations.Operation;
 import org.mule.tools.cloudconnect.annotations.Parameter;
 import org.mule.tools.cloudconnect.annotations.Property;
 
@@ -29,18 +30,19 @@ import java.util.List;
  * A Mongo Connector Facade
  * @author flbulgarelli
  */
-@Connector(namespacePrefix="mongo")
+@Connector(namespacePrefix = "mongo")
 public class MongoCloudConnector implements Initialisable
 {
     @Property(name = "client-ref", optional = true)
-    public MongoClient client;
+    private MongoClient client;
     
     /**
      * Lists names of collections available at this database
-     * Example:
+     * 
      * {@code <list-collections/>}
      * @return the list of names of collections available at this database
      */
+    @Operation
     public List<String> listCollections()
     {
         return client.listCollections();
@@ -48,42 +50,45 @@ public class MongoCloudConnector implements Initialisable
 
     /**
      * Answers if a collection exists given its name
-     * Example:
+     * 
      * {@code <exists-collection name="aColllection"/>}
-     * @param name the name of the colleciton
+     * @param collection the name of the collection
      * @return if the collection exists 
      */
-    public boolean existsCollection(@Parameter String name)
+    @Operation
+    public boolean existsCollection(@Parameter String collection)
     {
-        return client.existsCollection(name);
+        return client.existsCollection(collection);
     }
 
     /**
      * Deletes a collection and all the objects it contains. 
      * Example:
      * {@code <drop-collection name="aCollection"/>}
-     * @param name the name of the collection to drop
+     * @param collection the name of the collection to drop
      */
-    public void dropCollection(@Parameter String name)
+    @Operation
+    public void dropCollection(@Parameter String collection)
     {
-        client.dropCollection(name);
+        client.dropCollection(collection);
     }
 
     /**
      * Example: {@code <create-collection name="aCollection" capped="true"/>}
      * 
-     * @param name the name of the collection to create
+     * @param collection the name of the collection to create
      * @param capped if the collection will be capped TODO document its meaning
      * @param maxObject the maximum number of documents the new collection is able to
      *            contain
      * @param size the maximum size of the new collection TODO maximum?
      */
-    public void createCollecton(@Parameter String name,
-                                @Parameter(optional = true, defaultValue = "false") boolean capped,
-                                @Parameter/* TODO optional */Integer maxObjects,
-                                @Parameter/* TODO optional */Integer size)
+    @Operation
+    public void createCollection(@Parameter String collection,
+                                 @Parameter(optional = true, defaultValue = "false") boolean capped,
+                                 @Parameter(optional = true)/* TODO optional */Integer maxObjects,
+                                 @Parameter(optional = true)/* TODO optional */Integer size)
     {
-        client.createCollection(name, capped, maxObjects, size);
+        client.createCollection(collection, capped, maxObjects, size);
     }
     
     /**
@@ -91,14 +96,15 @@ public class MongoCloudConnector implements Initialisable
      * Example:
      * {@code <insert-object collection="Employees" object="#[header:aBsonEmployee]" writeConcern="SAFE"/>}
      * @param collection the name of the collection where to insert the given object
-     * @param object the object to insert
+     * @param dbObject the object to insert
      * @param writeConcern the optional write concern of insertion
      */
+    @Operation
     public void insertObject(@Parameter String collection,
-                             @Parameter DBObject object,
+                             @Parameter(name = "object") DBObject dbObject,
                              @Parameter(optional = true, defaultValue = "NORMAL") WriteConcern writeConcern)
     {
-        client.insertObject(collection, object, writeConcern);
+        client.insertObject(collection, dbObject, writeConcern);
     }
 
     /**
@@ -108,16 +114,17 @@ public class MongoCloudConnector implements Initialisable
      *         query="#[variable:aBsonQuery]" object="#[variable:aBsonObject]" upsert="true"/>} 
      * @param collection the name of the collection to update
      * @param query the query object used to detect the element to update
-     * @param object the object that will replace that one which matches the query
+     * @param dbObject the object that will replace that one which matches the query
      * @param upsert TODO
      */
+    @Operation
     public void updateObject(@Parameter String collection,
                              @Parameter DBObject query,
-                             @Parameter DBObject object,
+                             @Parameter(name = "object") DBObject dbObject,
                              @Parameter(optional = true, defaultValue = "false") boolean upsert,
                              @Parameter(optional = true, defaultValue = "NORMAL") WriteConcern writeConcern)
     {
-        client.updateObject(collection, query, object, upsert, writeConcern);
+        client.updateObject(collection, query, dbObject, upsert, writeConcern);
     }
 
     /**
@@ -127,12 +134,14 @@ public class MongoCloudConnector implements Initialisable
      *          collection="#[map-payload:aCollectionName]"
      *          object="#[header:aBsonObject]"/>} 
      * @param collection
-     * @param object
+     * @param dbObject
      */
-    public void saveObject(@Parameter String collection, DBObject object,
+    @Operation
+    public void saveObject(@Parameter String collection,
+                           @Parameter(name = "object") DBObject dbObject,
                            @Parameter(optional = true, defaultValue = "NORMAL") WriteConcern writeConcern)
     {
-        client.saveObject(collection, object, writeConcern);
+        client.saveObject(collection, dbObject, writeConcern);
     }
 
     /**
@@ -145,6 +154,7 @@ public class MongoCloudConnector implements Initialisable
      * @param collection the collection whose elements will be removed 
      * @param query the query object. Objects that match it will be removed
      */
+    @Operation
     public void removeObjects(@Parameter String collection, @Parameter(optional = true) DBObject query)
     {
         client.removeObject(collection, query);
@@ -162,9 +172,10 @@ public class MongoCloudConnector implements Initialisable
      * @param mapFunction a JavaScript encoded mapping function
      * @param reduceFunction a JavaScript encoded folding function 
      */
+    @Operation
     public DBObject mapReduceObjects(@Parameter String collection,
-                                 @Parameter String mapFunction,
-                                 @Parameter String reduceFunction)
+                                     @Parameter String mapFunction,
+                                     @Parameter String reduceFunction)
     {
         return client.mapReduceObjects(collection, mapFunction, reduceFunction);
     }
@@ -177,6 +188,7 @@ public class MongoCloudConnector implements Initialisable
      *      collection="#[variable:aCollectionName]"
      *      query="#[variable:aBsonQuery]"/>}
      */
+    @Operation
     public long countObjects(@Parameter String collection, @Parameter DBObject query)
     {
         return client.countObjects(collection, query);
@@ -191,6 +203,7 @@ public class MongoCloudConnector implements Initialisable
      * @param query
      * @param fields
      */
+    @Operation
     public Iterable<DBObject> findObjects(@Parameter String collection,
                                           @Parameter(optional = true) DBObject query,
                                           @Parameter DBObject fields)
@@ -208,6 +221,7 @@ public class MongoCloudConnector implements Initialisable
      * @param query
      * @param fields
      */
+    @Operation
     public Iterable<DBObject> findOneObject(@Parameter String collection,
                                             @Parameter DBObject query,
                                             @Parameter DBObject fields)
@@ -222,6 +236,7 @@ public class MongoCloudConnector implements Initialisable
      * @param the name of the collection where the index will be created
      * @param keys
      */
+    @Operation
     public void createIndex(@Parameter String collection, @Parameter DBObject keys)
     {
         client.createIndex(collection, keys);
@@ -234,6 +249,7 @@ public class MongoCloudConnector implements Initialisable
      * @param the name of the collection where the index is
      * @param name the name of the index to drop
      */
+    @Operation
     public void dropIndex(@Parameter String collection, @Parameter String name)
     {
         client.dropIndex(collection, name);
@@ -241,7 +257,10 @@ public class MongoCloudConnector implements Initialisable
 
     public void initialise() throws InitialisationException
     {
-        // TODO Auto-generated method stub
+        if (client == null)
+        {
+            // TODO Auto-generated method stub
+        }
     }
     
 }

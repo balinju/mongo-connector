@@ -31,7 +31,7 @@ public class MongoTestDriver
     @Before
     public void setup()
     {
-        connector.createCollecton(MAIN_COLLECTION, false, 100, 1000);
+        connector.createCollection(MAIN_COLLECTION, false, 100, 1000);
     }
 
     /**
@@ -51,7 +51,7 @@ public class MongoTestDriver
     @Test
     public void createCollection() throws Exception
     {
-        connector.createCollecton(ANOTHER_COLLECTION, false, 100, 1000);
+        connector.createCollection(ANOTHER_COLLECTION, false, 100, 1000);
         assertTrue(connector.existsCollection(ANOTHER_COLLECTION));
         assertTrue(connector.listCollections().contains(ANOTHER_COLLECTION));
         assertEquals(2, connector.listCollections().size());
@@ -65,7 +65,7 @@ public class MongoTestDriver
     @Test
     public void dropCollection() throws Exception
     {
-        connector.createCollecton(ANOTHER_COLLECTION, false, 100, 1000);
+        connector.createCollection(ANOTHER_COLLECTION, false, 100, 1000);
         connector.dropCollection(ANOTHER_COLLECTION);
         assertFalse(connector.existsCollection(ANOTHER_COLLECTION));
         assertFalse(connector.listCollections().contains(ANOTHER_COLLECTION));

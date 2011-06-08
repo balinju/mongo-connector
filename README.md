@@ -55,31 +55,265 @@ Here is detailed list of all the configuration attributes:
 |name|Give a name to this configuration so it can be later referenced by config-ref.|yes||
 
 
+List Collections
+----------------
+
+Lists names of collections available at this database
 
 
 
+     <list-collections/>
+
+| attribute | description | optional | default value | possible values |
+|:-----------|:-----------|:---------|:--------------|:----------------|
+|config-ref|Specify which configuration to use for this invocation|yes||
+
+Returns list of names of collections available at this database
 
 
 
+Exists Collection
+-----------------
+
+Answers if a collection exists given its name
 
 
 
+     <exists-collection name="aColllection"/>
+
+| attribute | description | optional | default value | possible values |
+|:-----------|:-----------|:---------|:--------------|:----------------|
+|config-ref|Specify which configuration to use for this invocation|yes||
+|collection|the name of the collection|no||
+
+Returns the collection exists
 
 
 
+Drop Collection
+---------------
+
+Deletes a collection and all the objects it contains. 
+Example:
+
+
+     <drop-collection name="aCollection"/>
+
+| attribute | description | optional | default value | possible values |
+|:-----------|:-----------|:---------|:--------------|:----------------|
+|config-ref|Specify which configuration to use for this invocation|yes||
+|collection|the name of the collection to drop|no||
 
 
 
+Create Collection
+-----------------
+
+Example: 
+
+     <create-collection name="aCollection" capped="true"/>
+
+| attribute | description | optional | default value | possible values |
+|:-----------|:-----------|:---------|:--------------|:----------------|
+|config-ref|Specify which configuration to use for this invocation|yes||
+|collection|the name of the collection to create|no||
+|capped|if the collection will be capped TODO document its meaning|yes|false|
+|maxObjects||yes||
+|size|the maximum size of the new collection TODO maximum?|yes||
 
 
 
+Insert Object
+-------------
+
+Inserts an object in a collection, setting its id if necessary.
+Example:
+
+
+     <insert-object collection="Employees" object="#[header:aBsonEmployee]" writeConcern="SAFE"/>
+
+| attribute | description | optional | default value | possible values |
+|:-----------|:-----------|:---------|:--------------|:----------------|
+|config-ref|Specify which configuration to use for this invocation|yes||
+|collection|the name of the collection where to insert the given object|no||
+|object|the object to insert|no||
+|writeConcern|the optional write concern of insertion|yes|NORMAL|*NONE*, *NORMAL*, *SAFE*, *FSYNC_SAFE*, *REPLICAS_SAFE*, *mongoWriteConcern*
 
 
 
+Update Object
+-------------
+
+Updates the first object that matches the given query
+Example:
+
+
+     <update-object collection="#[map-payload:aCollectionName]" 
+            query="#[variable:aBsonQuery]" object="#[variable:aBsonObject]" upsert="true"/>
+
+| attribute | description | optional | default value | possible values |
+|:-----------|:-----------|:---------|:--------------|:----------------|
+|config-ref|Specify which configuration to use for this invocation|yes||
+|collection|the name of the collection to update|no||
+|query|the query object used to detect the element to update|no||
+|object|the object that will replace that one which matches the query|no||
+|upsert|TODO|yes|false|
+|writeConcern||yes|NORMAL|*NONE*, *NORMAL*, *SAFE*, *FSYNC_SAFE*, *REPLICAS_SAFE*, *mongoWriteConcern*
 
 
 
+Save Object
+-----------
 
+Inserts or updates an object based on its object _id.
+Example: 
+
+
+     <save-object 
+             collection="#[map-payload:aCollectionName]"
+             object="#[header:aBsonObject]"/>
+
+| attribute | description | optional | default value | possible values |
+|:-----------|:-----------|:---------|:--------------|:----------------|
+|config-ref|Specify which configuration to use for this invocation|yes||
+|collection||no||
+|object||no||
+|writeConcern||yes|NORMAL|*NONE*, *NORMAL*, *SAFE*, *FSYNC_SAFE*, *REPLICAS_SAFE*, *mongoWriteConcern*
+
+
+
+Remove Objects
+--------------
+
+Removes all the objects that match the a given optional query. 
+If query is not specified, all objects are removed. However, please notice that this is normally
+less performant that dropping the collection and creating it and its indices again
+
+Example:
+
+
+     <remove-objects collection="#[map-payload:aCollectionName]" query="#[map-payload:aBsonQuery]"/>
+
+| attribute | description | optional | default value | possible values |
+|:-----------|:-----------|:---------|:--------------|:----------------|
+|config-ref|Specify which configuration to use for this invocation|yes||
+|collection|the collection whose elements will be removed|no||
+|query|the query object. Objects that match it will be removed|yes||
+
+
+
+Map Reduce Objects
+------------------
+
+Maps and folds objects in a collection by applying a mapping function and then a folding function 
+Example:
+
+
+
+      <map-reduce-objects 
+         collection="myCollection"
+         mapFunction="#[header:aJSMapFunction]"
+         reduceFunction="#[header:aJSFoldFunction]"/>
+
+| attribute | description | optional | default value | possible values |
+|:-----------|:-----------|:---------|:--------------|:----------------|
+|config-ref|Specify which configuration to use for this invocation|yes||
+|collection|the name of the collection to map and reduce|no||
+|mapFunction|a JavaScript encoded mapping function|no||
+|reduceFunction|a JavaScript encoded folding function|no||
+
+
+
+Count Objects
+-------------
+
+Counts the number of objects that match the given query.
+Example:
+
+
+
+     <count-objects 
+         collection="#[variable:aCollectionName]"
+         query="#[variable:aBsonQuery]"/>
+
+| attribute | description | optional | default value | possible values |
+|:-----------|:-----------|:---------|:--------------|:----------------|
+|config-ref|Specify which configuration to use for this invocation|yes||
+|collection||no||
+|query||no||
+
+
+
+Find Objects
+------------
+
+Finds all objects that match a given query. If no query is specified, all objects of the 
+collection are retrieved
+
+
+
+     <find-objects query="#[map-payload:aBsonQuery]" fields="#[header:aBsonFieldsSet]"/>
+
+| attribute | description | optional | default value | possible values |
+|:-----------|:-----------|:---------|:--------------|:----------------|
+|config-ref|Specify which configuration to use for this invocation|yes||
+|collection||no||
+|query||yes||
+|fields||no||
+
+
+
+Find One Object
+---------------
+
+Finds the first object that matches a given query
+
+
+
+     <find-one-object 
+         query="#[variable:aBsonQuery]" 
+         fields="#[map-payload:aBsonFieldsSet]"/>
+
+| attribute | description | optional | default value | possible values |
+|:-----------|:-----------|:---------|:--------------|:----------------|
+|config-ref|Specify which configuration to use for this invocation|yes||
+|collection||no||
+|query||no||
+|fields||no||
+
+
+
+Create Index
+------------
+
+Creates a new index
+
+
+
+     <create-index collection="myCollection" keys="#[header:aBsonFieldsSet]"/>
+
+| attribute | description | optional | default value | possible values |
+|:-----------|:-----------|:---------|:--------------|:----------------|
+|config-ref|Specify which configuration to use for this invocation|yes||
+|collection||no||
+|keys||no||
+
+
+
+Drop Index
+----------
+
+Drops an existing index
+Example:
+
+
+     <drop-index collection="myCollection" name="#[map-payload:anIndexName]"/>
+
+| attribute | description | optional | default value | possible values |
+|:-----------|:-----------|:---------|:--------------|:----------------|
+|config-ref|Specify which configuration to use for this invocation|yes||
+|collection||no||
+|name|the name of the index to drop|no||
 
 
 
