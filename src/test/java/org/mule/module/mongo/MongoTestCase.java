@@ -17,8 +17,12 @@ import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 
 import org.mule.module.mongo.api.MongoClient;
+import org.mule.module.mongo.api.WriteConcern;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBObject;
 import com.mongodb.Mongo;
 
 import org.junit.Before;
@@ -28,6 +32,7 @@ public class MongoTestCase
     private static final String A_COLLECTION = "myCollection";
     private MongoClient client;
     private Mongo mongoMock;
+    private DBCollection collectionMock;
     private DB dbMock;
     
     @Before
@@ -68,5 +73,50 @@ public class MongoTestCase
     {
         client.dropCollection(A_COLLECTION);
         fail("Not yet implemented");
+    }
+    
+    /**Test {@link MongoClient#insertObject(String, com.mongodb.DBObject, org.mule.module.mongo.api.WriteConcern)}*/
+    @Test
+    public void insertObject() throws Exception
+    {
+        BasicDBObject dbObject = new BasicDBObject();
+        client.insertObject(A_COLLECTION, dbObject, WriteConcern.NONE);
+        verify(collectionMock).insert(dbObject, com.mongodb.WriteConcern.NONE);
+    }
+
+    /**Test {@link MongoClient#countObjects(String, com.mongodb.DBObject)}*/
+    @Test
+    public void countObjectsWithQuery() throws Exception
+    {
+        BasicDBObject o = new BasicDBObject();
+        client.countObjects(A_COLLECTION, o);
+        verify(collectionMock).count(o);
+    }
+    
+    /**Test {@link MongoClient#countObjects(String, com.mongodb.DBObject)}*/
+    @Test
+    public void countObjects() throws Exception
+    {
+        client.countObjects(A_COLLECTION, null);
+        verify(collectionMock).count();
+    }
+
+    /**Test {@link MongoClient#updateObject(String, com.mongodb.DBObject, com.mongodb.DBObject, boolean, org.mule.module.mongo.api.WriteConcern)}*/
+    @Test
+    public void updateObject() throws Exception
+    {
+        DBObject query = new BasicDBObject();
+        DBObject dbObject = new BasicDBObject();
+        client.updateObject(A_COLLECTION, query , dbObject, false, WriteConcern.SAFE);
+        verify(collectionMock).update(query, dbObject, false, false /*TODO*/, com.mongodb.WriteConcern.SAFE);
+    }
+
+    /**Test {@link MongoClient#createIndex(String, com.mongodb.DBObject)}*/
+    @Test
+    public void createIndex() throws Exception
+    {
+        BasicDBObject keys = new BasicDBObject();
+        client.createIndex(A_COLLECTION, keys);
+        verify(collectionMock).createIndex(keys);
     }
 }

@@ -181,15 +181,15 @@ public class MongoCloudConnector implements Initialisable
     }
     
     /**
-     * Counts the number of objects that match the given query.
-     * Example:
+     * Counts the number of objects that match the given query. If no query
+     * is passed, returns the number of elements in the collection
      * 
      * {@code <count-objects 
      *      collection="#[variable:aCollectionName]"
      *      query="#[variable:aBsonQuery]"/>}
      */
     @Operation
-    public long countObjects(@Parameter String collection, @Parameter DBObject query)
+    public long countObjects(@Parameter String collection, @Parameter(optional = true) DBObject query)
     {
         return client.countObjects(collection, query);
     }
@@ -212,7 +212,7 @@ public class MongoCloudConnector implements Initialisable
     }
 
     /**
-     * Finds the first object that matches a given query
+     * Finds the first object that matches a given query. TODO if not exists?
      * 
      * {@code <find-one-object 
      *      query="#[variable:aBsonQuery]" 

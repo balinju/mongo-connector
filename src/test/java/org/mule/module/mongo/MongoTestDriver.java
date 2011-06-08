@@ -13,6 +13,11 @@ package org.mule.module.mongo;
 import static org.junit.Assert.*;
 
 import org.mule.module.mongo.api.MongoClient;
+import org.mule.module.mongo.api.WriteConcern;
+
+import com.mongodb.BasicDBObject;
+
+import java.sql.ClientInfoStatus;
 
 import org.junit.After;
 import org.junit.Before;
@@ -80,7 +85,82 @@ public class MongoTestDriver
     @Test
     public void dropCollectionWithElements() throws Exception
     {
-        fail("Not yet implemented");
+        BasicDBObject o = new BasicDBObject();
+        connector.createCollection(ANOTHER_COLLECTION, false, 100, 150);
+        connector.insertObject(ANOTHER_COLLECTION, o, WriteConcern.NORMAL);
+        connector.dropCollection(ANOTHER_COLLECTION);
+        assertFalse(connector.existsCollection(ANOTHER_COLLECTION));
+    }
+
+    /**
+     * Tests that an object can be created, impacting in the number of objects in the
+     * database
+     */
+    @Test
+    public void createObject() throws Exception
+    {
+        connector.insertObject(MAIN_COLLECTION, acmeEmployee(), WriteConcern.NORMAL);
+
+        assertEquals(1, connector.countObjects(MAIN_COLLECTION, acmeQuery()));
+        assertNotNull(connector.findOneObject(MAIN_COLLECTION, acmeQuery(),/* TODO */null));
+    }
+
+    /**
+     * Tests that an object can be removed, impacting in the number of objects in the
+     * database
+     */
+    @Test
+    public void removeObject() throws Exception
+    {
+        connector.insertObject(MAIN_COLLECTION, acmeEmployee(), WriteConcern.NORMAL);
+
+        BasicDBObject query = acmeQuery();
+        connector.removeObjects(MAIN_COLLECTION, query);
+        assertEquals(0, connector.countObjects(MAIN_COLLECTION, query));
+    }
+
+    /**
+     * Tests that objects in a collection can be properly counted with or without
+     * filters
+     */
+    @Test
+    public void countObjects() throws Exception
+    {
+        connector.insertObject(MAIN_COLLECTION, new BasicDBObject("x", 59), WriteConcern.NORMAL);
+        connector.insertObject(MAIN_COLLECTION, new BasicDBObject("x", 60), WriteConcern.NORMAL);
+        connector.insertObject(MAIN_COLLECTION, new BasicDBObject("x", 60), WriteConcern.NORMAL);
+        connector.insertObject(MAIN_COLLECTION, new BasicDBObject("x", 70), WriteConcern.NORMAL);
+        assertEquals(4, connector.countObjects(MAIN_COLLECTION, null));
+        assertEquals(2, connector.countObjects(MAIN_COLLECTION, new BasicDBObject("x", 60)));
+        assertEquals(0, connector.countObjects(MAIN_COLLECTION, new BasicDBObject("x", 36)));
+    }
+
+    @Test
+    public void mapReduce() throws Exception
+    {
+        fail("Not Yet implemented");
+    }
+
+    @Test
+    public void createIndex() throws Exception
+    {
+        fail("Not Yet implemented");
+    }
+
+    private BasicDBObject acmeQuery()
+    {
+        BasicDBObject query = new BasicDBObject();
+        query.put("company", "ACME");
+        return query;
+    }
+
+    private BasicDBObject acmeEmployee()
+    {
+        BasicDBObject employee = new BasicDBObject();
+        employee.put("name", "John");
+        employee.put("surname", "Doe");
+        employee.put("company", "ACME");
+        return employee;
     }
 
 }
