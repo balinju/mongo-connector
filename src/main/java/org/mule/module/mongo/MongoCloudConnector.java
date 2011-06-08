@@ -37,6 +37,15 @@ public class MongoCloudConnector implements Initialisable
 {
     @Property(name = "client-ref", optional = true)
     private MongoClient client;
+    @Property(optional = true, defaultValue = "localhost")
+    private String host;
+    @Property(optional = true, defaultValue = "27017")
+    private int port;
+    @Property(optional = true, defaultValue = "test")
+    private String database;
+
+    // TODO auth
+    // TODO document
     
     /**
      * Lists names of collections available at this database
@@ -257,13 +266,62 @@ public class MongoCloudConnector implements Initialisable
         client.dropIndex(collection, name);
     }
 
+
     public void initialise() throws InitialisationException
     {
         if (client == null)
         {
-            //TODO get from a weak hashmasp
-            client = new MongoClientImpl();
+            // FIXME get from a weak hashmasp and use Holder
+            try
+            {
+                Mongo m = new Mongo(host, port);
+                client = new MongoClientImpl(m.getDB(database));
+            }
+            catch (Exception e)
+            {
+                throw new InitialisationException(e, this);
+            }
         }
+    }
+
+    public MongoClient getClient()
+    {
+        return client;
+    }
+
+    public void setClient(MongoClient client)
+    {
+        this.client = client;
+    }
+
+    public String getDatabase()
+    {
+        return database;
+    }
+
+    public void setDatabase(String database)
+    {
+        this.database = database;
+    }
+
+    public String getHost()
+    {
+        return host;
+    }
+
+    public void setHost(String host)
+    {
+        this.host = host;
+    }
+
+    public int getPort()
+    {
+        return port;
+    }
+
+    public void setPort(int port)
+    {
+        this.port = port;
     }
     
 }

@@ -1,6 +1,6 @@
-/*
- * $Id$
- * --------------------------------------------------------------------------------------
+/**
+ * Mule MongoDB Cloud Connector
+ *
  * Copyright (c) MuleSoft, Inc.  All rights reserved.  http://www.mulesoft.com
  *
  * The software in this package is published under the terms of the CPAL v1.0
@@ -10,6 +10,7 @@
 
 package org.mule.module.mongo.api;
 
+import com.mongodb.DB;
 import com.mongodb.DBObject;
 import com.mongodb.Mongo;
 
@@ -19,18 +20,21 @@ import org.apache.commons.lang.Validate;
 
 public class MongoClientImpl implements MongoClient
 {
-//    private final Mongo mongo;
-//
-//    private MongoClientImpl(Mongo mongo)
-//    {
-//        Validate.notNull(mongo);
-//        this.mongo = mongo;
-//    }
+    private final DB db;
+
+    public MongoClientImpl(DB db)
+    {
+        Validate.notNull(db);
+        this.db = db;
+    }
 
     public long countObjects(String collection, DBObject query)
     {
-        // TODO Auto-generated method stub
-        return 0;
+        if (query == null)
+        {
+            return db.getCollection(collection).count();
+        }
+        return db.getCollection(collection).count(query);
     }
 
     public void createCollection(String name, boolean capped, Integer maxObjects, Integer size)
