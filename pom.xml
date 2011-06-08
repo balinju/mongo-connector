@@ -18,6 +18,7 @@
     <jdk.name>J2SE-1.5</jdk.name>
     <jdk.version>1.5</jdk.version>
     <mongo.version>2.5</mongo.version>
+    <cloudconnect.version>2.0.15</cloudconnect.version>
   </properties>
 
   <build>
@@ -64,10 +65,12 @@
       <plugin>
         <groupId>org.mule.tools</groupId>
         <artifactId>mule-cloud-connector-maven-plugin</artifactId>
-        <version>2.0.15</version>
+        <version>${cloudconnect.version}</version>
         <extensions>true</extensions>
+        <configuration>
+          <schemaVersion>1.0</schemaVersion>
+        </configuration>
       </plugin>
-
       <plugin>
         <groupId>com.mycila.maven-license-plugin</groupId>
         <artifactId>maven-license-plugin</artifactId>
@@ -287,18 +290,18 @@
       </snapshots>
     </pluginRepository>
   </pluginRepositories>
-  
-    <distributionManagement>
-        <repository>
-            <id>muleforge-releases</id>
-            <name>MuleForge Snapshot Repository</name>
-            <url>dav:https://repository.muleforge.org/release/</url>
-        </repository>
-        <snapshotRepository>
-            <id>muleforge-snapshots</id>
-            <name>MuleForge Repository</name>
-            <url>dav:https://repository.muleforge.org/snapshot/</url>
-            <uniqueVersion>false</uniqueVersion>
-        </snapshotRepository>
-    </distributionManagement>
+
+  <distributionManagement>
+    <repository>
+      <id>muleforge-releases</id>
+      <name>MuleForge Snapshot Repository</name>
+      <url>dav:https://repository.muleforge.org/release/</url>
+    </repository>
+    <snapshotRepository>
+      <id>muleforge-snapshots</id>
+      <name>MuleForge Repository</name>
+      <url>dav:https://repository.muleforge.org/snapshot/</url>
+      <uniqueVersion>false</uniqueVersion>
+    </snapshotRepository>
+  </distributionManagement>
 </project>
