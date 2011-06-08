@@ -16,6 +16,7 @@ package org.mule.module.mongo;
 import org.mule.api.lifecycle.Initialisable;
 import org.mule.api.lifecycle.InitialisationException;
 import org.mule.module.mongo.api.MongoClient;
+import org.mule.module.mongo.api.MongoClientImpl;
 import org.mule.module.mongo.api.WriteConcern;
 import org.mule.tools.cloudconnect.annotations.Connector;
 import org.mule.tools.cloudconnect.annotations.Operation;
@@ -23,6 +24,7 @@ import org.mule.tools.cloudconnect.annotations.Parameter;
 import org.mule.tools.cloudconnect.annotations.Property;
 
 import com.mongodb.DBObject;
+import com.mongodb.Mongo;
 
 import java.util.List;
 
@@ -259,7 +261,8 @@ public class MongoCloudConnector implements Initialisable
     {
         if (client == null)
         {
-            // TODO Auto-generated method stub
+            //TODO get from a weak hashmasp
+            client = new MongoClientImpl();
         }
     }
     

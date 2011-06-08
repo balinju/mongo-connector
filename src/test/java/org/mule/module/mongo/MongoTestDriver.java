@@ -12,6 +12,7 @@ package org.mule.module.mongo;
 
 import static org.junit.Assert.*;
 
+import org.mule.api.lifecycle.InitialisationException;
 import org.mule.module.mongo.api.MongoClient;
 import org.mule.module.mongo.api.WriteConcern;
 
@@ -32,10 +33,13 @@ public class MongoTestDriver
     /**
      * Tests methods in this test class assume that there is always a collection
      * {@link #MAIN_COLLECTION} available
+     * @throws InitialisationException 
      */
     @Before
-    public void setup()
+    public void setup() throws InitialisationException
     {
+        connector = new MongoCloudConnector();
+        connector.initialise();
         connector.createCollection(MAIN_COLLECTION, false, 100, 1000);
     }
 

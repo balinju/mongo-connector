@@ -13,10 +13,13 @@
  */
 package org.mule.module.mongo;
 
-import static org.mockito.Mockito.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import org.mule.module.mongo.api.MongoClient;
+import org.mule.module.mongo.api.MongoClientImpl;
 import org.mule.module.mongo.api.WriteConcern;
 
 import com.mongodb.BasicDBObject;
@@ -39,7 +42,10 @@ public class MongoTestCase
     public void setup()
     {
         //TODO remember that Mongo objects should be cached
+        client = new MongoClientImpl();
         mongoMock = mock(Mongo.class);
+        dbMock = mock(DB.class);
+        collectionMock = mock(DBCollection.class);
         when(mongoMock.getDB("myDatabase")).thenReturn(dbMock);
     }
     
