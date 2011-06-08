@@ -13,25 +13,60 @@
  */
 package org.mule.module.mongo;
 
+import static org.mockito.Mockito.*;
+import static org.junit.Assert.*;
+
+import org.mule.module.mongo.api.MongoClient;
+
+import com.mongodb.DB;
+import com.mongodb.Mongo;
+
+import org.junit.Before;
 import org.junit.Test;
-
-import org.mule.module.mongo.MongoCloudConnector;
-
 public class MongoTestCase
 {
-    @Test
-    public void invokeSomeMethodOnTheCloudConnector()
+    private static final String A_COLLECTION = "myCollection";
+    private MongoClient client;
+    private Mongo mongoMock;
+    private DB dbMock;
+    
+    @Before
+    public void setup()
     {
-    /*
-        Add code that tests the cloud connector at the API level. This means that you'll
-        instantiate your cloud connector directly, invoke one of its methods and assert
-        you get the correct result.
-
-        Example:
-
-        mongoCloudConnector connector = new mongoCloudConnector();
-        Object result = connector.someMethod("sample input");
-        assertEquals("expected output", result);
-     */
+        //TODO remember that Mongo objects should be cached
+        mongoMock = mock(Mongo.class);
+        when(mongoMock.getDB("myDatabase")).thenReturn(dbMock);
+    }
+    
+    /**Test {@link MongoClient#createCollection(String, boolean, Integer, Integer)}*/
+    @Test
+    public void createCollection()
+    {
+        client.createCollection(A_COLLECTION, false, 100, 45);
+        verify(dbMock).getCollection(A_COLLECTION);
+    }
+    
+    /**Test {@link MongoClient#listCollections()}*/
+    @Test
+    public void listCollections()
+    {
+        client.listCollections();
+        verify(dbMock).getCollectionNames();
+    }
+    
+    /**Test {@link MongoClient#existsCollection(String)}*/
+    @Test
+    public void existsCollection()
+    {
+        client.existsCollection(A_COLLECTION);
+        verify(dbMock).collectionExists(A_COLLECTION);
+    }
+    
+    /**Test {@link MongoClient#dropCollection(String)}*/
+    @Test
+    public void dropCollection()
+    {
+        client.dropCollection(A_COLLECTION);
+        fail("Not yet implemented");
     }
 }
