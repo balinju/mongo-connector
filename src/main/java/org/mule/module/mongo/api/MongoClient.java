@@ -10,6 +10,9 @@
 
 package org.mule.module.mongo.api;
 
+
+import com.mongodb.DBObject;
+
 import java.util.List;
 
 /**
@@ -25,5 +28,29 @@ public interface MongoClient
     void dropCollection(String name);
 
     void createCollection(String name, boolean capped, Integer maxObjects, Integer size);
+
+    void insertObject(String collection, DBObject object, WriteConcern writeConcern);
+
+    void updateObject(String collection,
+                      DBObject query,
+                      DBObject object,
+                      boolean upsert,
+                      WriteConcern writeConcern);
+
+    void saveObject(String collection, DBObject object, WriteConcern writeConcern);
+
+    void removeObject(String collection, DBObject query);
+
+    DBObject mapReduceObjects(String collection, String mapFunction, String reduceFunction);
+
+    long countObjects(String collection, DBObject query);
+
+    Iterable<DBObject> findObjects(String collection, DBObject query, DBObject fields);
+
+    Iterable<DBObject> findOneObject(String collection, DBObject query, DBObject fields);
+
+    void createIndex(String collection, DBObject keys);
+
+    void dropIndex(String collection, String name);
 
 }

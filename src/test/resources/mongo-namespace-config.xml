@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
+  <!--
 
-    Mule MongoDB Cloud Connector
-
-    Copyright (c) MuleSoft, Inc.  All rights reserved.  http://www.mulesoft.com
-
-    The software in this package is published under the terms of the CPAL v1.0
-    license, a copy of which has been included with this distribution in the
-    LICENSE.txt file.
-
--->
+    Mule MongoDB Cloud Connector Copyright (c) MuleSoft, Inc. All rights
+    reserved. http://www.mulesoft.com The software in this package is
+    published under the terms of the CPAL v1.0 license, a copy of which
+    has been included with this distribution in the LICENSE.txt file.
+  -->
 
   <!--
 
@@ -49,4 +45,74 @@
     <mongo:drop-collection name="aCollection" />
   </flow>
 
+  <flow name="InsertObject">
+    <inbound-endpoint address="vm://InsertElement"
+      exchange-pattern="request-response" />
+    <mongo:insert-element collection="Employees"
+      element="#[header:aBsonEmployee]" writeConcern="SAFE" />
+  </flow>
+
+
+  <flow name="UpdateObject">
+    <inbound-endpoint address="vm://UpdateObject"
+      exchange-pattern="request-response" />
+    <mongo:update-element collection="#[map-payload:aCollectionName]"
+      query="#[variable:aBsonQuery]" element="#[variable:aBsonElement]"
+      upsert="true" />
+  </flow>
+
+
+  <flow name="SaveElement">
+    <inbound-endpoint address="vm://SaveElement"
+      exchange-pattern="request-response" />
+    <mongo:save-element collection="#[map-payload:aCollectionName]"
+      element="#[header:aBsonElement]" />
+  </flow>
+
+  <flow name="RemoveElements">
+    <inbound-endpoint address="vm://RemoveElements"
+      exchange-pattern="request-response" />
+    <mongo:remove-elements collection="#[map-payload:aCollectionName]"
+      query="#[map-payload:aBsonQuery]" />
+  </flow>
+
+  <flow name="MapReduceElements">
+    <inbound-endpoint address="vm://MapReduceElements"
+      exchange-pattern="request-response" />
+    <mongo:map-reduce-elements collection="myCollection"
+      mapFunction="#[header:aJSMapFunction]" reduceFunction="#[header:aJSFoldFunction]" />
+  </flow>
+
+  <flow name="CountElements">
+    <inbound-endpoint address="vm://CountElements"
+      exchange-pattern="request-response" />
+    <mongo:count-elements collection="#[variable:aCollectionName]"
+      query="#[variable:aBsonQuery]" />
+  </flow>
+
+  <flow name="FindElements">
+    <inbound-endpoint address="vm://FindElements"
+      exchange-pattern="request-response" />
+    <mongo:find-elements query="#[map-payload:aBsonQuery]"
+      fields="#[header:aBsonFieldsSet]" />
+  </flow>
+
+  <flow name="FindOneElement">
+    <inbound-endpoint address="vm://FindOneElement"
+      exchange-pattern="request-response" />
+    <mongo:find-one-element query="#[variable:aBsonQuery]"
+      fields="#[map-payload:aBsonFieldsSet]" />
+  </flow>
+
+  <flow name="CreateIndex">
+    <inbound-endpoint address="vm://CreateIndex"
+      exchange-pattern="request-response" />
+    <mongo:create-index keys="#[header:aBsonFieldsSet]" />
+  </flow>
+
+  <flow name="DropIndex">
+    <inbound-endpoint address="vm://DropIndex"
+      exchange-pattern="request-response" />
+    <mongo:drop-index name="#[map-payload:anIndexName]" />
+  </flow>
 </mule>

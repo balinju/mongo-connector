@@ -16,10 +16,12 @@ package org.mule.module.mongo;
 import org.mule.api.lifecycle.Initialisable;
 import org.mule.api.lifecycle.InitialisationException;
 import org.mule.module.mongo.api.MongoClient;
+import org.mule.module.mongo.api.WriteConcern;
 import org.mule.tools.cloudconnect.annotations.Connector;
-import org.mule.tools.cloudconnect.annotations.Operation;
 import org.mule.tools.cloudconnect.annotations.Parameter;
 import org.mule.tools.cloudconnect.annotations.Property;
+
+import com.mongodb.DBObject;
 
 import java.util.List;
 
@@ -31,7 +33,7 @@ import java.util.List;
 public class MongoCloudConnector implements Initialisable
 {
     @Property(name = "client-ref", optional = true)
-    private MongoClient client;
+    public MongoClient client;
     
     /**
      * Lists names of collections available at this database
@@ -82,6 +84,159 @@ public class MongoCloudConnector implements Initialisable
                                 @Parameter/* TODO optional */Integer size)
     {
         client.createCollection(name, capped, maxObjects, size);
+    }
+    
+    /**
+     * Inserts an object in a collection, setting its id if necessary.
+     * Example:
+     * {@code <insert-object collection="Employees" object="#[header:aBsonEmployee]" writeConcern="SAFE"/>}
+     * @param collection the name of the collection where to insert the given object
+     * @param object the object to insert
+     * @param writeConcern the optional write concern of insertion
+     */
+    public void insertObject(@Parameter String collection,
+                             @Parameter DBObject object,
+                             @Parameter(optional = true, defaultValue = "NORMAL") WriteConcern writeConcern)
+    {
+        client.insertObject(collection, object, writeConcern);
+    }
+
+    /**
+     * Updates the first object that matches the given query
+     * Example:
+     * {@code <update-object collection="#[map-payload:aCollectionName]" 
+     *         query="#[variable:aBsonQuery]" object="#[variable:aBsonObject]" upsert="true"/>} 
+     * @param collection the name of the collection to update
+     * @param query the query object used to detect the element to update
+     * @param object the object that will replace that one which matches the query
+     * @param upsert TODO
+     */
+    public void updateObject(@Parameter String collection,
+                             @Parameter DBObject query,
+                             @Parameter DBObject object,
+                             @Parameter(optional = true, defaultValue = "false") boolean upsert,
+                             @Parameter(optional = true, defaultValue = "NORMAL") WriteConcern writeConcern)
+    {
+        client.updateObject(collection, query, object, upsert, writeConcern);
+    }
+
+    /**
+     * Inserts or updates an object based on its object _id.
+     * Example: 
+     * {@code <save-object 
+     *          collection="#[map-payload:aCollectionName]"
+     *          object="#[header:aBsonObject]"/>} 
+     * @param collection
+     * @param object
+     */
+    public void saveObject(@Parameter String collection, DBObject object,
+                           @Parameter(optional = true, defaultValue = "NORMAL") WriteConcern writeConcern)
+    {
+        client.saveObject(collection, object, writeConcern);
+    }
+
+    /**
+     * Removes all the objects that match the a given optional query. 
+     * If query is not specified, all objects are removed. However, please notice that this is normally
+     * less performant that dropping the collection and creating it and its indices again
+     * 
+     * Example:
+     * {@code <remove-objects collection="#[map-payload:aCollectionName]" query="#[map-payload:aBsonQuery]"/>}
+     * @param collection the collection whose elements will be removed 
+     * @param query the query object. Objects that match it will be removed
+     */
+    public void removeObjects(@Parameter String collection, @Parameter(optional = true) DBObject query)
+    {
+        client.removeObject(collection, query);
+    }
+    
+    /**
+     * Maps and folds objects in a collection by applying a mapping function and then a folding function 
+     * Example:
+     * 
+     * {@code  <map-reduce-objects 
+     *      collection="myCollection"
+     *      mapFunction="#[header:aJSMapFunction]"
+     *      reduceFunction="#[header:aJSFoldFunction]"/>} 
+     * @param collection the name of the collection to map and reduce
+     * @param mapFunction a JavaScript encoded mapping function
+     * @param reduceFunction a JavaScript encoded folding function 
+     */
+    public DBObject mapReduceObjects(@Parameter String collection,
+                                 @Parameter String mapFunction,
+                                 @Parameter String reduceFunction)
+    {
+        return client.mapReduceObjects(collection, mapFunction, reduceFunction);
+    }
+    
+    /**
+     * Counts the number of objects that match the given query.
+     * Example:
+     * 
+     * {@code <count-objects 
+     *      collection="#[variable:aCollectionName]"
+     *      query="#[variable:aBsonQuery]"/>}
+     */
+    public long countObjects(@Parameter String collection, @Parameter DBObject query)
+    {
+        return client.countObjects(collection, query);
+    }
+
+    /**
+     * Finds all objects that match a given query. If no query is specified, all objects of the 
+     * collection are retrieved
+     * 
+     * {@code <find-objects query="#[map-payload:aBsonQuery]" fields="#[header:aBsonFieldsSet]"/>}
+     * @param collection
+     * @param query
+     * @param fields
+     */
+    public Iterable<DBObject> findObjects(@Parameter String collection,
+                                          @Parameter(optional = true) DBObject query,
+                                          @Parameter DBObject fields)
+    {
+        return client.findObjects(collection, query, fields);
+    }
+
+    /**
+     * Finds the first object that matches a given query
+     * 
+     * {@code <find-one-object 
+     *      query="#[variable:aBsonQuery]" 
+     *      fields="#[map-payload:aBsonFieldsSet]"/>}   
+     * @param collection
+     * @param query
+     * @param fields
+     */
+    public Iterable<DBObject> findOneObject(@Parameter String collection,
+                                            @Parameter DBObject query,
+                                            @Parameter DBObject fields)
+    {
+        return client.findOneObject(collection, query, fields);
+    }
+    
+    /**
+     * Creates a new index
+     * 
+     * {@code <create-index collection="myCollection" keys="#[header:aBsonFieldsSet]"/>}
+     * @param the name of the collection where the index will be created
+     * @param keys
+     */
+    public void createIndex(@Parameter String collection, @Parameter DBObject keys)
+    {
+        client.createIndex(collection, keys);
+    }
+    
+    /**
+     * Drops an existing index
+     * Example:
+     * {@code <drop-index collection="myCollection" name="#[map-payload:anIndexName]"/>}
+     * @param the name of the collection where the index is
+     * @param name the name of the index to drop
+     */
+    public void dropIndex(@Parameter String collection, @Parameter String name)
+    {
+        client.dropIndex(collection, name);
     }
 
     public void initialise() throws InitialisationException
