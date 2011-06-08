@@ -68,6 +68,29 @@
         <extensions>true</extensions>
       </plugin>
 
+      <plugin>
+        <groupId>com.mycila.maven-license-plugin</groupId>
+        <artifactId>maven-license-plugin</artifactId>
+        <version>1.8.0</version>
+        <configuration>
+          <header>LICENSE_HEADER.txt</header>
+          <excludes>
+            <exclude>target/**</exclude>
+            <exclude>.gitignore</exclude>
+            <exclude>**/*.txt</exclude>
+            <exclude>**/*.ftl</exclude>
+            <exclude>**/build-number.txt</exclude> <!-- bamboo -->
+          </excludes>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
       <!-- The release distribution for this project -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
