@@ -36,7 +36,7 @@ public interface MongoClient
                       DBObject query,
                       DBObject object,
                       boolean upsert,
-                      WriteConcern writeConcern);
+                      boolean multi, WriteConcern writeConcern);
 
     void saveObject(@NotNull String collection, @NotNull DBObject object, @NotNull WriteConcern writeConcern);
 

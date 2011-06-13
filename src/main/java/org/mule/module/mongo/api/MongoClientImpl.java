@@ -119,10 +119,11 @@ public class MongoClientImpl implements MongoClient
                              DBObject query,
                              DBObject object,
                              boolean upsert,
+                             boolean multi, 
                              WriteConcern writeConcern)
     {
         Validate.notNull(collection);
-        db.getCollection(collection).update(query, object, upsert, false /* TODO */,
+        db.getCollection(collection).update(query, object, upsert, multi,
             writeConcern.toMongoWriteConcern(db));
 
     }

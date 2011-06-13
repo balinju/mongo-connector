@@ -26,6 +26,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Integration test for the Connector
+ * 
+ * @author flbulgarelli
+ */
 public class MongoTestDriver
 {
     private static final String MAIN_COLLECTION = "aCollection";
@@ -134,7 +139,7 @@ public class MongoTestDriver
         connector.insertObject(MAIN_COLLECTION, acmeEmployee(), WriteConcern.NORMAL);
 
         assertEquals(1, connector.countObjects(MAIN_COLLECTION, acmeQuery()));
-        assertNotNull(connector.findOneObject(MAIN_COLLECTION, acmeQuery(),/* TODO */null));
+        assertNotNull(connector.findOneObject(MAIN_COLLECTION, acmeQuery(), /* TODO */null));
     }
 
     /**

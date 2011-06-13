@@ -17,6 +17,11 @@ package org.mule.module.mongo.config;
 import org.mule.construct.SimpleFlowConstruct;
 import org.mule.tck.FunctionalTestCase;
 
+/**
+ * Namespace configuration test for the Connector
+ * 
+ * @author flbulgarelli
+ */
 public class MongoNamespaceHandlerTestCase extends FunctionalTestCase
 {
     @Override

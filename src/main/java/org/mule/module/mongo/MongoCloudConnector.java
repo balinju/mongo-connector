@@ -125,7 +125,9 @@ public class MongoCloudConnector implements Initialisable
     }
 
     /**
-     * Updates the first object that matches the given query
+     * Updates objects that matches the given query. If parameter multi is set to true,
+     * all the documents matching it will be updated. Otherwise, only the first document matching 
+     * it will be updated 
      * 
      * {@code <update-object collection="#[map-payload:aCollectionName]" 
      *         query="#[variable:aBsonQuery]" object="#[variable:aBsonObject]" upsert="true"/>} 
@@ -133,15 +135,18 @@ public class MongoCloudConnector implements Initialisable
      * @param query the query object used to detect the element to update
      * @param dbObject the object that will replace that one which matches the query
      * @param upsert TODO
+     * @param multi if all or just the first object matching the query will be updated
+     * @param writeConcern the write concern used to update 
      */
     @Operation
     public void updateObject(@Parameter String collection,
                              @Parameter DBObject query,
                              @Parameter(name = "object") DBObject dbObject,
                              @Parameter(optional = true, defaultValue = "false") boolean upsert,
+                             @Parameter(optional = true, defaultValue = "false") boolean multi,
                              @Parameter(optional = true, defaultValue = "DATABASE_DEFAULT") WriteConcern writeConcern)
     {
-        client.updateObject(collection, query, dbObject, upsert, writeConcern);
+        client.updateObject(collection, query, dbObject, upsert, multi, writeConcern);
     }
 
     /**

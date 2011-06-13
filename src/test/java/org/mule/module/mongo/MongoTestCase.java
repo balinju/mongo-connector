@@ -34,6 +34,11 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+/**
+ * Unit test for the {@link MongoClientImpl}
+ * 
+ * @author flbulgarelli
+ */
 public class MongoTestCase
 {
     private static final String A_COLLECTION = "myCollection";
@@ -118,14 +123,14 @@ public class MongoTestCase
         verify(collectionMock).count();
     }
 
-    /**Test {@link MongoClient#updateObject(String, com.mongodb.DBObject, com.mongodb.DBObject, boolean, org.mule.module.mongo.api.WriteConcern)}*/
+    /**Test {@link MongoClient#updateObject(String, com.mongodb.DBObject, com.mongodb.DBObject, boolean, boolean, org.mule.module.mongo.api.WriteConcern)}*/
     @Test
     public void updateObject() throws Exception
     {
         DBObject query = new BasicDBObject();
         DBObject dbObject = new BasicDBObject();
-        client.updateObject(A_COLLECTION, query , dbObject, false, WriteConcern.SAFE);
-        verify(collectionMock).update(query, dbObject, false, false /*TODO*/, com.mongodb.WriteConcern.SAFE);
+        client.updateObject(A_COLLECTION, query , dbObject, false, true, WriteConcern.SAFE);
+        verify(collectionMock).update(query, dbObject, false, true, com.mongodb.WriteConcern.SAFE);
     }
 
     /**Test {@link MongoClient#createIndex(String, com.mongodb.DBObject)}*/
