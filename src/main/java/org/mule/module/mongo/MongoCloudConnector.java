@@ -119,7 +119,7 @@ public class MongoCloudConnector implements Initialisable
     @Operation
     public void insertObject(@Parameter String collection,
                              @Parameter(name = "object") DBObject dbObject,
-                             @Parameter(optional = true, defaultValue = "NORMAL") WriteConcern writeConcern)
+                             @Parameter(optional = true, defaultValue = "DATABASE_DEFAULT") WriteConcern writeConcern)
     {
         client.insertObject(collection, dbObject, writeConcern);
     }
@@ -139,7 +139,7 @@ public class MongoCloudConnector implements Initialisable
                              @Parameter DBObject query,
                              @Parameter(name = "object") DBObject dbObject,
                              @Parameter(optional = true, defaultValue = "false") boolean upsert,
-                             @Parameter(optional = true, defaultValue = "NORMAL") WriteConcern writeConcern)
+                             @Parameter(optional = true, defaultValue = "DATABASE_DEFAULT") WriteConcern writeConcern)
     {
         client.updateObject(collection, query, dbObject, upsert, writeConcern);
     }
@@ -156,7 +156,7 @@ public class MongoCloudConnector implements Initialisable
     @Operation
     public void saveObject(@Parameter String collection,
                            @Parameter(name = "object") DBObject dbObject,
-                           @Parameter(optional = true, defaultValue = "NORMAL") WriteConcern writeConcern)
+                           @Parameter(optional = true, defaultValue = "DATABASE_DEFAULT") WriteConcern writeConcern)
     {
         client.saveObject(collection, dbObject, writeConcern);
     }

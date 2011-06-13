@@ -10,6 +10,8 @@
 
 package org.mule.module.mongo.api;
 
+import com.mongodb.DB;
+
 /**
  * An enum wrapper of {@link com.mongodb.WriteConcern}
  */
@@ -33,7 +35,17 @@ public enum WriteConcern
      * Exceptions are raised for network issues, and server errors, waits for at
      * least 2 servers for the write operation
      */
-    REPLICAS_SAFE(com.mongodb.WriteConcern.REPLICAS_SAFE);
+    REPLICAS_SAFE(com.mongodb.WriteConcern.REPLICAS_SAFE),
+
+    /** Database default write access */
+    DATABASE_DEFAULT(null)
+    {
+        @Override
+        public com.mongodb.WriteConcern getMongoWriteConcern(DB db)
+        {
+            return db.getWriteConcern();
+        }
+    };
 
     private final com.mongodb.WriteConcern mongoWriteConcern;
 
@@ -42,7 +54,7 @@ public enum WriteConcern
         this.mongoWriteConcern = mongoWriteConcern;
     }
 
-    public com.mongodb.WriteConcern getMongoWriteConcern()
+    public com.mongodb.WriteConcern getMongoWriteConcern(DB db)
     {
         return mongoWriteConcern;
     }
