@@ -58,7 +58,7 @@ public class MongoTestDriver
         connector.dropCollection(MAIN_COLLECTION);
         connector.dropCollection(ANOTHER_COLLECTION);
     }
-    
+
     /**
      * Tests that a collection can be created, having side effects on
      * {@link MongoCloudConnector#existsCollection(String)} and
@@ -67,10 +67,11 @@ public class MongoTestDriver
     @Test
     public void createCollection() throws Exception
     {
+        int originalSize = connector.listCollections().size();
         connector.createCollection(ANOTHER_COLLECTION, false, 100, 1000);
         assertTrue(connector.existsCollection(ANOTHER_COLLECTION));
         assertTrue(connector.listCollections().contains(ANOTHER_COLLECTION));
-        assertEquals(2, connector.listCollections().size());
+        assertEquals(originalSize + 1, connector.listCollections().size());
     }
 
     /**
@@ -79,8 +80,7 @@ public class MongoTestDriver
     @Test(expected = MongoException.class)
     public void createCollectionAlreadyExists() throws Exception
     {
-        connector.createCollection(ANOTHER_COLLECTION, false, 100, 1000);
-        connector.createCollection(ANOTHER_COLLECTION, false, 100, 1000);
+        connector.createCollection(MAIN_COLLECTION, false, 100, 1000);
     }
 
     /**
@@ -91,20 +91,22 @@ public class MongoTestDriver
     @Test
     public void dropCollection() throws Exception
     {
-        connector.createCollection(ANOTHER_COLLECTION, false, 100, 1000);
-        connector.dropCollection(ANOTHER_COLLECTION);
-        assertFalse(connector.existsCollection(ANOTHER_COLLECTION));
-        assertFalse(connector.listCollections().contains(ANOTHER_COLLECTION));
-        assertEquals(1, connector.listCollections().size());
+        int originalSize = connector.listCollections().size();
+
+        connector.dropCollection(MAIN_COLLECTION);
+
+        assertFalse(connector.existsCollection(MAIN_COLLECTION));
+        assertFalse(connector.listCollections().contains(MAIN_COLLECTION));
+
+        assertEquals(originalSize - 1, connector.listCollections().size());
     }
-    
+
     /**
      * Tests that a collection can be dropped even if it does not exists
      */
     @Test
     public void dropCollectionInexistent() throws Exception
     {
-        connector.dropCollection(ANOTHER_COLLECTION);
         connector.dropCollection(ANOTHER_COLLECTION);
     }
 
@@ -117,10 +119,9 @@ public class MongoTestDriver
     public void dropCollectionWithElements() throws Exception
     {
         BasicDBObject o = new BasicDBObject();
-        connector.createCollection(ANOTHER_COLLECTION, false, 100, 150);
-        connector.insertObject(ANOTHER_COLLECTION, o, WriteConcern.NORMAL);
-        connector.dropCollection(ANOTHER_COLLECTION);
-        assertFalse(connector.existsCollection(ANOTHER_COLLECTION));
+        connector.insertObject(MAIN_COLLECTION, o, WriteConcern.NORMAL);
+        connector.dropCollection(MAIN_COLLECTION);
+        assertFalse(connector.existsCollection(MAIN_COLLECTION));
     }
 
     /**
@@ -165,7 +166,7 @@ public class MongoTestDriver
         assertEquals(2, connector.countObjects(MAIN_COLLECTION, new BasicDBObject("x", 60)));
         assertEquals(0, connector.countObjects(MAIN_COLLECTION, new BasicDBObject("x", 36)));
     }
-    
+
     @Test
     public void mapReduce() throws Exception
     {
