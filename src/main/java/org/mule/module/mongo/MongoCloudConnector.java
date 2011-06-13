@@ -15,6 +15,7 @@ package org.mule.module.mongo;
 
 import org.mule.api.lifecycle.Initialisable;
 import org.mule.api.lifecycle.InitialisationException;
+import org.mule.module.mongo.api.IndexOrder;
 import org.mule.module.mongo.api.MongoClient;
 import org.mule.module.mongo.api.MongoClientImpl;
 import org.mule.module.mongo.api.WriteConcern;
@@ -25,8 +26,9 @@ import org.mule.tools.cloudconnect.annotations.Property;
 
 import com.mongodb.DBObject;
 import com.mongodb.Mongo;
+import com.mongodb.MongoException;
 
-import java.util.List;
+import java.util.Collection;
 
 /**
  * A Mongo Connector Facade
@@ -54,7 +56,7 @@ public class MongoCloudConnector implements Initialisable
      * @return the list of names of collections available at this database
      */
     @Operation
-    public List<String> listCollections()
+    public Collection<String> listCollections()
     {
         return client.listCollections();
     }
@@ -73,8 +75,9 @@ public class MongoCloudConnector implements Initialisable
     }
 
     /**
-     * Deletes a collection and all the objects it contains. 
-     * Example:
+     * Deletes a collection and all the objects it contains.  
+     * If the collection does not exist, does nothing.
+     * 
      * {@code <drop-collection name="aCollection"/>}
      * @param collection the name of the collection to drop
      */
@@ -85,7 +88,10 @@ public class MongoCloudConnector implements Initialisable
     }
 
     /**
-     * Example: {@code <create-collection name="aCollection" capped="true"/>}
+     * Creates a new collection. 
+     * If the collection already exists, a MongoException will be thrown.
+     * 
+     * {@code <create-collection name="aCollection" capped="true"/>}
      * 
      * @param collection the name of the collection to create
      * @param capped if the collection will be capped TODO document its meaning
@@ -104,7 +110,7 @@ public class MongoCloudConnector implements Initialisable
     
     /**
      * Inserts an object in a collection, setting its id if necessary.
-     * Example:
+     * 
      * {@code <insert-object collection="Employees" object="#[header:aBsonEmployee]" writeConcern="SAFE"/>}
      * @param collection the name of the collection where to insert the given object
      * @param dbObject the object to insert
@@ -120,7 +126,7 @@ public class MongoCloudConnector implements Initialisable
 
     /**
      * Updates the first object that matches the given query
-     * Example:
+     * 
      * {@code <update-object collection="#[map-payload:aCollectionName]" 
      *         query="#[variable:aBsonQuery]" object="#[variable:aBsonObject]" upsert="true"/>} 
      * @param collection the name of the collection to update
@@ -140,7 +146,7 @@ public class MongoCloudConnector implements Initialisable
 
     /**
      * Inserts or updates an object based on its object _id.
-     * Example: 
+     *  
      * {@code <save-object 
      *          collection="#[map-payload:aCollectionName]"
      *          object="#[header:aBsonObject]"/>} 
@@ -160,7 +166,7 @@ public class MongoCloudConnector implements Initialisable
      * If query is not specified, all objects are removed. However, please notice that this is normally
      * less performant that dropping the collection and creating it and its indices again
      * 
-     * Example:
+     * 
      * {@code <remove-objects collection="#[map-payload:aCollectionName]" query="#[map-payload:aBsonQuery]"/>}
      * @param collection the collection whose elements will be removed 
      * @param query the query object. Objects that match it will be removed
@@ -168,12 +174,12 @@ public class MongoCloudConnector implements Initialisable
     @Operation
     public void removeObjects(@Parameter String collection, @Parameter(optional = true) DBObject query)
     {
-        client.removeObject(collection, query);
+        client.removeObjects(collection, query);
     }
     
     /**
      * Maps and folds objects in a collection by applying a mapping function and then a folding function 
-     * Example:
+     * 
      * 
      * {@code  <map-reduce-objects 
      *      collection="myCollection"
@@ -207,17 +213,17 @@ public class MongoCloudConnector implements Initialisable
 
     /**
      * Finds all objects that match a given query. If no query is specified, all objects of the 
-     * collection are retrieved
+     * collection are retrieved. If no fields object is specified, all fields are retrieved. 
      * 
      * {@code <find-objects query="#[map-payload:aBsonQuery]" fields="#[header:aBsonFieldsSet]"/>}
      * @param collection
-     * @param query
-     * @param fields
+     * @param query the query object. If unspecified, all documents are returned
+     * @param fields the fields to return. If unspecified, all fields are returned
      */
     @Operation
     public Iterable<DBObject> findObjects(@Parameter String collection,
                                           @Parameter(optional = true) DBObject query,
-                                          @Parameter DBObject fields)
+                                          @Parameter(optional = true) DBObject fields)
     {
         return client.findObjects(collection, query, fields);
     }
@@ -233,9 +239,9 @@ public class MongoCloudConnector implements Initialisable
      * @param fields
      */
     @Operation
-    public Iterable<DBObject> findOneObject(@Parameter String collection,
-                                            @Parameter DBObject query,
-                                            @Parameter DBObject fields)
+    public DBObject findOneObject(@Parameter String collection,
+                                  @Parameter DBObject query,
+                                  @Parameter DBObject fields)
     {
         return client.findOneObject(collection, query, fields);
     }
@@ -245,27 +251,41 @@ public class MongoCloudConnector implements Initialisable
      * 
      * {@code <create-index collection="myCollection" keys="#[header:aBsonFieldsSet]"/>}
      * @param the name of the collection where the index will be created
-     * @param keys
+     * @param field the name of the field which will be indexed 
+     * @param order the indexing order
      */
     @Operation
-    public void createIndex(@Parameter String collection, @Parameter DBObject keys)
+    public void createIndex(@Parameter String collection,
+                            @Parameter String field,
+                            @Parameter(optional = true, defaultValue = "ASC") IndexOrder order)
     {
-        client.createIndex(collection, keys);
+        client.createIndex(collection, field, order);
     }
     
     /**
      * Drops an existing index
-     * Example:
+     * 
      * {@code <drop-index collection="myCollection" name="#[map-payload:anIndexName]"/>}
      * @param the name of the collection where the index is
-     * @param name the name of the index to drop
+     * @param index the name of the index to drop
      */
     @Operation
-    public void dropIndex(@Parameter String collection, @Parameter String name)
+    public void dropIndex(@Parameter String collection, @Parameter String index)
     {
-        client.dropIndex(collection, name);
+        client.dropIndex(collection, index);
     }
-
+    
+    /**
+     * List existent indices in a collection
+     * 
+     * {@code <drop-index collection="myCollection" name="#[map-payload:anIndexName]"/>}
+     * @param the name of the collection 
+     */
+    @Operation
+    public Collection<DBObject> listIndices(@Parameter String collection)
+    {
+        return client.listIndices(collection);
+    }
 
     public void initialise() throws InitialisationException
     {

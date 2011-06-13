@@ -10,10 +10,11 @@
 
 package org.mule.module.mongo.api;
 
-
 import com.mongodb.DBObject;
 
-import java.util.List;
+import java.util.Collection;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * @author flbulgarelli
@@ -21,17 +22,17 @@ import java.util.List;
 public interface MongoClient
 {
 
-    List<String> listCollections();
+    Collection<String> listCollections();
 
-    boolean existsCollection(String name);
+    boolean existsCollection(@NotNull String name);
 
-    void dropCollection(String name);
+    void dropCollection(@NotNull String name);
 
-    void createCollection(String name, boolean capped, Integer maxObjects, Integer size);
+    void createCollection(@NotNull String name, Boolean capped, Integer maxObjects, Integer size);
 
-    void insertObject(String collection, DBObject object, WriteConcern writeConcern);
+    void insertObject(@NotNull String collection, @NotNull DBObject object, @NotNull WriteConcern writeConcern);
 
-    void updateObject(String collection,
+    void updateObject(@NotNull String collection,
                       DBObject query,
                       DBObject object,
                       boolean upsert,
@@ -39,18 +40,20 @@ public interface MongoClient
 
     void saveObject(String collection, DBObject object, WriteConcern writeConcern);
 
-    void removeObject(String collection, DBObject query);
+    void removeObjects(@NotNull String collection, DBObject query);
 
     DBObject mapReduceObjects(String collection, String mapFunction, String reduceFunction);
 
-    long countObjects(String collection, DBObject query);
+    long countObjects(@NotNull String collection, DBObject query);
 
-    Iterable<DBObject> findObjects(String collection, DBObject query, DBObject fields);
+    Iterable<DBObject> findObjects(@NotNull String collection, DBObject query, DBObject fields);
 
-    Iterable<DBObject> findOneObject(String collection, DBObject query, DBObject fields);
+    DBObject findOneObject(@NotNull String collection, DBObject query, DBObject fields);
 
-    void createIndex(String collection, DBObject keys);
+    void createIndex(String collection, String field, IndexOrder order);
 
     void dropIndex(String collection, String name);
+
+    Collection<DBObject> listIndices(String collection);
 
 }

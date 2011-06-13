@@ -10,11 +10,13 @@
 
 package org.mule.module.mongo.api;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBObject;
-import com.mongodb.Mongo;
 
-import java.util.List;
+import java.util.Collection;
+
+import javax.validation.constraints.NotNull;
 
 import org.apache.commons.lang.Validate;
 
@@ -28,8 +30,9 @@ public class MongoClientImpl implements MongoClient
         this.db = db;
     }
 
-    public long countObjects(String collection, DBObject query)
+    public long countObjects(@NotNull String collection, DBObject query)
     {
+        Validate.notNull(collection);
         if (query == null)
         {
             return db.getCollection(collection).count();
@@ -37,58 +40,60 @@ public class MongoClientImpl implements MongoClient
         return db.getCollection(collection).count(query);
     }
 
-    public void createCollection(String name, boolean capped, Integer maxObjects, Integer size)
+    public void createCollection(@NotNull String collection, Boolean capped, Integer maxObjects, Integer size)
     {
-        // TODO Auto-generated method stub
-
+        Validate.notNull(collection);
+        BasicDBObject options = new BasicDBObject();
+        if (capped != null)
+        {
+            options.put("capped", capped);
+        }
+        if (maxObjects != null)
+        {
+            options.put("maxObject", maxObjects);
+        }
+        if (size != null)
+        {
+            options.put("size", size);
+        }
+        db.createCollection(collection, options);
     }
 
-    public void createIndex(String collection, DBObject keys)
+    public void dropCollection(@NotNull  String collection)
     {
-        // TODO Auto-generated method stub
-
+        Validate.notNull(collection);
+        db.getCollection(collection).drop();
     }
 
-    public void dropCollection(String name)
+    public boolean existsCollection(@NotNull String collection)
     {
-        // TODO Auto-generated method stub
-
+        Validate.notNull(collection);
+        return db.collectionExists(collection);
     }
 
-    public void dropIndex(String collection, String name)
+    public Iterable<DBObject> findObjects(@NotNull String collection, DBObject query, DBObject fields)
     {
-        // TODO Auto-generated method stub
-
+        Validate.notNull(collection);
+        return db.getCollection(collection).find(query, fields);
     }
 
-    public boolean existsCollection(String name)
+    public DBObject findOneObject(@NotNull String collection, DBObject query, DBObject fields)
     {
-        // TODO Auto-generated method stub
-        return false;
+        Validate.notNull(collection);
+        return db.getCollection(collection).findOne(query, fields);
     }
 
-    public Iterable<DBObject> findObjects(String collection, DBObject query, DBObject fields)
+    public void insertObject(@NotNull String collection, @NotNull DBObject object, @NotNull  WriteConcern writeConcern)
     {
-        // TODO Auto-generated method stub
-        return null;
+        Validate.notNull(collection);
+        Validate.notNull(object);
+        Validate.notNull(writeConcern);
+        db.getCollection(collection).insert(object, writeConcern.getMongoWriteConcern());
     }
 
-    public Iterable<DBObject> findOneObject(String collection, DBObject query, DBObject fields)
+    public Collection<String> listCollections()
     {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    public void insertObject(String collection, DBObject object, WriteConcern writeConcern)
-    {
-        // TODO Auto-generated method stub
-
-    }
-
-    public List<String> listCollections()
-    {
-        // TODO Auto-generated method stub
-        return null;
+        return db.getCollectionNames();
     }
 
     public DBObject mapReduceObjects(String collection, String mapFunction, String reduceFunction)
@@ -97,10 +102,11 @@ public class MongoClientImpl implements MongoClient
         return null;
     }
 
-    public void removeObject(String collection, DBObject query)
+    public void removeObjects(@NotNull String collection, DBObject query)
     {
-        // TODO Auto-generated method stub
-
+        //TODO pass WC
+        Validate.notNull(collection);
+        db.getCollection(collection).remove(query != null ? query : new BasicDBObject());
     }
 
     public void saveObject(String collection, DBObject object, WriteConcern writeConcern)
@@ -109,14 +115,31 @@ public class MongoClientImpl implements MongoClient
 
     }
 
-    public void updateObject(String collection,
+    public void updateObject(@NotNull String collection,
                              DBObject query,
                              DBObject object,
                              boolean upsert,
                              WriteConcern writeConcern)
     {
-        // TODO Auto-generated method stub
+        Validate.notNull(collection);
+        db.getCollection(collection).update(query, object, upsert, false /* TODO */,
+            writeConcern.getMongoWriteConcern());
 
+    }
+
+    public void createIndex(String collection, String field, IndexOrder order)
+    {
+        db.getCollection(collection).createIndex(new BasicDBObject(field, order.getValue()));
+    }
+
+    public void dropIndex(String collection, String name)
+    {
+        db.getCollection(collection).dropIndex(name);
+    }
+
+    public Collection<DBObject> listIndices(String collection)
+    {
+        return db.getCollection(collection).getIndexInfo();
     }
 
 }

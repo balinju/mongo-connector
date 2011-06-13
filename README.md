@@ -1,4 +1,4 @@
-Mule mongo Cloud Connector
+Mule Mongo Cloud Connector
 ==========================
 
 Mule Cloud connector to mongo
@@ -46,13 +46,17 @@ Configuration
 
 You can configure the connector as follows:
 
-    <mongo:config/>
+    <mongo:config client="value" database="value" host="value" port="value"/>
 
 Here is detailed list of all the configuration attributes:
 
 | attribute | description | optional | default value |
 |:-----------|:-----------|:---------|:--------------|
 |name|Give a name to this configuration so it can be later referenced by config-ref.|yes||
+|client||yes|
+|database||yes|test
+|host||yes|localhost
+|port||yes|27017
 
 
 List Collections
@@ -93,8 +97,9 @@ Returns the collection exists
 Drop Collection
 ---------------
 
-Deletes a collection and all the objects it contains. 
-Example:
+Deletes a collection and all the objects it contains.  
+If the collection does not exist, does nothing.
+
 
 
      <drop-collection name="aCollection"/>
@@ -109,7 +114,10 @@ Example:
 Create Collection
 -----------------
 
-Example: 
+Creates a new collection. 
+If the collection already exists, a MongoException will be thrown.
+
+
 
      <create-collection name="aCollection" capped="true"/>
 
@@ -127,7 +135,7 @@ Insert Object
 -------------
 
 Inserts an object in a collection, setting its id if necessary.
-Example:
+
 
 
      <insert-object collection="Employees" object="#[header:aBsonEmployee]" writeConcern="SAFE"/>
@@ -145,7 +153,7 @@ Update Object
 -------------
 
 Updates the first object that matches the given query
-Example:
+
 
 
      <update-object collection="#[map-payload:aCollectionName]" 
@@ -166,7 +174,7 @@ Save Object
 -----------
 
 Inserts or updates an object based on its object _id.
-Example: 
+ 
 
 
      <save-object 
@@ -189,7 +197,7 @@ Removes all the objects that match the a given optional query.
 If query is not specified, all objects are removed. However, please notice that this is normally
 less performant that dropping the collection and creating it and its indices again
 
-Example:
+
 
 
      <remove-objects collection="#[map-payload:aCollectionName]" query="#[map-payload:aBsonQuery]"/>
@@ -206,7 +214,7 @@ Map Reduce Objects
 ------------------
 
 Maps and folds objects in a collection by applying a mapping function and then a folding function 
-Example:
+
 
 
 
@@ -227,8 +235,8 @@ Example:
 Count Objects
 -------------
 
-Counts the number of objects that match the given query.
-Example:
+Counts the number of objects that match the given query. If no query
+is passed, returns the number of elements in the collection
 
 
 
@@ -240,7 +248,7 @@ Example:
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |collection||no||
-|query||no||
+|query||yes||
 
 
 
@@ -248,7 +256,7 @@ Find Objects
 ------------
 
 Finds all objects that match a given query. If no query is specified, all objects of the 
-collection are retrieved
+collection are retrieved. If no fields object is specified, all fields are retrieved. 
 
 
 
@@ -258,15 +266,15 @@ collection are retrieved
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |collection||no||
-|query||yes||
-|fields||no||
+|query|the query object. If unspecified, all documents are returned|yes||
+|fields|the fields to return. If unspecified, all fields are returned|yes||
 
 
 
 Find One Object
 ---------------
 
-Finds the first object that matches a given query
+Finds the first object that matches a given query. TODO if not exists?
 
 
 
@@ -296,7 +304,8 @@ Creates a new index
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |collection||no||
-|keys||no||
+|field|the name of the field which will be indexed|no||
+|order|the indexing order|yes|ASC|*ASC*, *DESC*
 
 
 
@@ -304,7 +313,7 @@ Drop Index
 ----------
 
 Drops an existing index
-Example:
+
 
 
      <drop-index collection="myCollection" name="#[map-payload:anIndexName]"/>
@@ -313,7 +322,39 @@ Example:
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |collection||no||
-|name|the name of the index to drop|no||
+|index|the name of the index to drop|no||
+
+
+
+List Indices
+------------
+
+List existent indices in a collection
+
+
+
+     <drop-index collection="myCollection" name="#[map-payload:anIndexName]"/>
+
+| attribute | description | optional | default value | possible values |
+|:-----------|:-----------|:---------|:--------------|:----------------|
+|config-ref|Specify which configuration to use for this invocation|yes||
+|collection||no||
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

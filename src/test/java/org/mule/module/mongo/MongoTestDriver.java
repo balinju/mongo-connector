@@ -13,10 +13,12 @@ package org.mule.module.mongo;
 import static org.junit.Assert.*;
 
 import org.mule.api.lifecycle.InitialisationException;
+import org.mule.module.mongo.api.IndexOrder;
 import org.mule.module.mongo.api.MongoClient;
 import org.mule.module.mongo.api.WriteConcern;
 
 import com.mongodb.BasicDBObject;
+import com.mongodb.MongoException;
 
 import java.sql.ClientInfoStatus;
 
@@ -33,12 +35,16 @@ public class MongoTestDriver
     /**
      * Tests methods in this test class assume that there is always a collection
      * {@link #MAIN_COLLECTION} available
-     * @throws InitialisationException 
+     * 
+     * @throws InitialisationException
      */
     @Before
     public void setup() throws InitialisationException
     {
         connector = new MongoCloudConnector();
+        connector.setDatabase("mongo-connector-test");
+        connector.setHost("127.0.0.1");
+        connector.setPort(27017);
         connector.initialise();
         connector.createCollection(MAIN_COLLECTION, false, 100, 1000);
     }
@@ -50,8 +56,9 @@ public class MongoTestDriver
     public void tearDown()
     {
         connector.dropCollection(MAIN_COLLECTION);
+        connector.dropCollection(ANOTHER_COLLECTION);
     }
-
+    
     /**
      * Tests that a collection can be created, having side effects on
      * {@link MongoCloudConnector#existsCollection(String)} and
@@ -67,6 +74,16 @@ public class MongoTestDriver
     }
 
     /**
+     * Tests that a collection can not be created if it already exists
+     */
+    @Test(expected = MongoException.class)
+    public void createCollectionAlreadyExists() throws Exception
+    {
+        connector.createCollection(ANOTHER_COLLECTION, false, 100, 1000);
+        connector.createCollection(ANOTHER_COLLECTION, false, 100, 1000);
+    }
+
+    /**
      * Tests that a collection can be dropped, having side effects on
      * {@link MongoCloudConnector#existsCollection(String)} and
      * {@link MongoClient#listCollections()}
@@ -79,6 +96,16 @@ public class MongoTestDriver
         assertFalse(connector.existsCollection(ANOTHER_COLLECTION));
         assertFalse(connector.listCollections().contains(ANOTHER_COLLECTION));
         assertEquals(1, connector.listCollections().size());
+    }
+    
+    /**
+     * Tests that a collection can be dropped even if it does not exists
+     */
+    @Test
+    public void dropCollectionInexistent() throws Exception
+    {
+        connector.dropCollection(ANOTHER_COLLECTION);
+        connector.dropCollection(ANOTHER_COLLECTION);
     }
 
     /**
@@ -148,7 +175,9 @@ public class MongoTestDriver
     @Test
     public void createIndex() throws Exception
     {
-        fail("Not Yet implemented");
+        assertEquals(1, connector.listIndices(MAIN_COLLECTION).size());
+        connector.createIndex(MAIN_COLLECTION, "aField", IndexOrder.DESC);
+        assertEquals(2, connector.listIndices(MAIN_COLLECTION).size());
     }
 
     private BasicDBObject acmeQuery()

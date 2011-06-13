@@ -110,13 +110,19 @@
     <inbound-endpoint address="vm://CreateIndex"
       exchange-pattern="request-response" />
     <mongo:create-index collection="myCollection"
-      keys="#[header:aBsonFieldsSet]" />
+      field="myField" order="DESC" />
   </flow>
 
   <flow name="DropIndex">
     <inbound-endpoint address="vm://DropIndex"
       exchange-pattern="request-response" />
     <mongo:drop-index collection="myCollection"
-      name="#[map-payload:anIndexName]" />
+      index="#[map-payload:anIndexName]" />
+  </flow>
+  
+  <flow name="ListIndices">
+    <inbound-endpoint address="vm://ListIndices"
+      exchange-pattern="request-response" />
+    <mongo:list-indices collection="myCollection" />
   </flow>
 </mule>
