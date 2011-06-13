@@ -41,7 +41,7 @@ public enum WriteConcern
     DATABASE_DEFAULT(null)
     {
         @Override
-        public com.mongodb.WriteConcern getMongoWriteConcern(DB db)
+        public com.mongodb.WriteConcern toMongoWriteConcern(DB db)
         {
             return db.getWriteConcern();
         }
@@ -54,7 +54,7 @@ public enum WriteConcern
         this.mongoWriteConcern = mongoWriteConcern;
     }
 
-    public com.mongodb.WriteConcern getMongoWriteConcern(DB db)
+    public com.mongodb.WriteConcern toMongoWriteConcern(DB db)
     {
         return mongoWriteConcern;
     }

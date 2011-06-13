@@ -40,7 +40,7 @@ public interface MongoClient
 
     void saveObject(String collection, DBObject object, WriteConcern writeConcern);
 
-    void removeObjects(@NotNull String collection, DBObject query);
+    void removeObjects(@NotNull String collection, DBObject query, @NotNull WriteConcern writeConcern);
 
     DBObject mapReduceObjects(String collection, String mapFunction, String reduceFunction);
 

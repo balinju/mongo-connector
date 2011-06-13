@@ -170,11 +170,14 @@ public class MongoCloudConnector implements Initialisable
      * {@code <remove-objects collection="#[map-payload:aCollectionName]" query="#[map-payload:aBsonQuery]"/>}
      * @param collection the collection whose elements will be removed 
      * @param query the query object. Objects that match it will be removed
+     * @param writeConcern 
      */
     @Operation
-    public void removeObjects(@Parameter String collection, @Parameter(optional = true) DBObject query)
+    public void removeObjects(@Parameter String collection,
+                              @Parameter(optional = true) DBObject query,
+                              @Parameter(optional = true, defaultValue = "DATABASE_DEFAULT") WriteConcern writeConcern)
     {
-        client.removeObjects(collection, query);
+        client.removeObjects(collection, query, writeConcern);
     }
     
     /**

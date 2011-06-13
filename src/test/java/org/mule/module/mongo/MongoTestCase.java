@@ -87,8 +87,9 @@ public class MongoTestCase
     @Test
     public void removeObjects() throws Exception
     {
-        client.removeObjects(A_COLLECTION, null);
-        verify(collectionMock).remove(refEq(new BasicDBObject()));
+        when(dbMock.getWriteConcern()).thenReturn(com.mongodb.WriteConcern.FSYNC_SAFE);
+        client.removeObjects(A_COLLECTION, null, WriteConcern.DATABASE_DEFAULT);
+        verify(collectionMock).remove(refEq(new BasicDBObject()), eq(com.mongodb.WriteConcern.FSYNC_SAFE));
     }
 
     /**Test {@link MongoClient#countObjects(String, com.mongodb.DBObject)}*/

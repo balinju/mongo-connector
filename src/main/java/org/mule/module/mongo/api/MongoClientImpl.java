@@ -88,7 +88,7 @@ public class MongoClientImpl implements MongoClient
         Validate.notNull(collection);
         Validate.notNull(object);
         Validate.notNull(writeConcern);
-        db.getCollection(collection).insert(object, writeConcern.getMongoWriteConcern(db));
+        db.getCollection(collection).insert(object, writeConcern.toMongoWriteConcern(db));
     }
 
     public Collection<String> listCollections()
@@ -102,11 +102,11 @@ public class MongoClientImpl implements MongoClient
         return null;
     }
 
-    public void removeObjects(@NotNull String collection, DBObject query)
+    public void removeObjects(@NotNull String collection, DBObject query, @NotNull WriteConcern writeConcern)
     {
-        /*FIXME pass WC*/
         Validate.notNull(collection);
-        db.getCollection(collection).remove(query != null ? query : new BasicDBObject());
+        Validate.notNull(writeConcern);
+        db.getCollection(collection).remove(query != null ? query : new BasicDBObject(), writeConcern.toMongoWriteConcern(db));
     }
 
     public void saveObject(String collection, DBObject object, WriteConcern writeConcern)
@@ -123,7 +123,7 @@ public class MongoClientImpl implements MongoClient
     {
         Validate.notNull(collection);
         db.getCollection(collection).update(query, object, upsert, false /* TODO */,
-            writeConcern.getMongoWriteConcern(db));
+            writeConcern.toMongoWriteConcern(db));
 
     }
 

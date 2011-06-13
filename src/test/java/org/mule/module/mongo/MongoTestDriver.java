@@ -146,7 +146,7 @@ public class MongoTestDriver
         connector.insertObject(MAIN_COLLECTION, acmeEmployee(), WriteConcern.NORMAL);
 
         BasicDBObject query = acmeQuery();
-        connector.removeObjects(MAIN_COLLECTION, query);
+        connector.removeObjects(MAIN_COLLECTION, query, WriteConcern.DATABASE_DEFAULT);
         assertEquals(0, connector.countObjects(MAIN_COLLECTION, query));
     }
 
