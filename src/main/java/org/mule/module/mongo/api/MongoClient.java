@@ -28,7 +28,7 @@ public interface MongoClient
 
     void dropCollection(@NotNull String name);
 
-    void createCollection(@NotNull String name, Boolean capped, Integer maxObjects, Integer size);
+    void createCollection(@NotNull String name, boolean capped, Integer maxObjects, Integer size);
 
     void insertObject(@NotNull String collection, @NotNull DBObject object, @NotNull WriteConcern writeConcern);
 

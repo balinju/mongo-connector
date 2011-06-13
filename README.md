@@ -125,9 +125,9 @@ If the collection already exists, a MongoException will be thrown.
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |collection|the name of the collection to create|no||
-|capped|if the collection will be capped TODO document its meaning|yes|false|
+|capped|if the collection will be capped|yes|false|
 |maxObjects||yes||
-|size|the maximum size of the new collection TODO maximum?|yes||
+|size|the maximum size of the new collection|yes||
 
 
 
@@ -145,7 +145,7 @@ Inserts an object in a collection, setting its id if necessary.
 |config-ref|Specify which configuration to use for this invocation|yes||
 |collection|the name of the collection where to insert the given object|no||
 |object|the object to insert|no||
-|writeConcern|the optional write concern of insertion|yes|NORMAL|*NONE*, *NORMAL*, *SAFE*, *FSYNC_SAFE*, *REPLICAS_SAFE*, *DATABASE_DEFAULT*, *mongoWriteConcern*
+|writeConcern|the optional write concern of insertion|yes|DATABASE_DEFAULT|*NONE*, *NORMAL*, *SAFE*, *FSYNC_SAFE*, *REPLICAS_SAFE*, *DATABASE_DEFAULT*, *mongoWriteConcern*
 
 
 
@@ -166,7 +166,7 @@ Updates the first object that matches the given query
 |query|the query object used to detect the element to update|no||
 |object|the object that will replace that one which matches the query|no||
 |upsert|TODO|yes|false|
-|writeConcern||yes|NORMAL|*NONE*, *NORMAL*, *SAFE*, *FSYNC_SAFE*, *REPLICAS_SAFE*, *DATABASE_DEFAULT*, *mongoWriteConcern*
+|writeConcern||yes|DATABASE_DEFAULT|*NONE*, *NORMAL*, *SAFE*, *FSYNC_SAFE*, *REPLICAS_SAFE*, *DATABASE_DEFAULT*, *mongoWriteConcern*
 
 
 
@@ -186,7 +186,7 @@ Inserts or updates an object based on its object _id.
 |config-ref|Specify which configuration to use for this invocation|yes||
 |collection||no||
 |object||no||
-|writeConcern||yes|NORMAL|*NONE*, *NORMAL*, *SAFE*, *FSYNC_SAFE*, *REPLICAS_SAFE*, *DATABASE_DEFAULT*, *mongoWriteConcern*
+|writeConcern||yes|DATABASE_DEFAULT|*NONE*, *NORMAL*, *SAFE*, *FSYNC_SAFE*, *REPLICAS_SAFE*, *DATABASE_DEFAULT*, *mongoWriteConcern*
 
 
 
@@ -207,6 +207,7 @@ less performant that dropping the collection and creating it and its indices aga
 |config-ref|Specify which configuration to use for this invocation|yes||
 |collection|the collection whose elements will be removed|no||
 |query|the query object. Objects that match it will be removed|yes||
+|writeConcern||yes|DATABASE_DEFAULT|*NONE*, *NORMAL*, *SAFE*, *FSYNC_SAFE*, *REPLICAS_SAFE*, *DATABASE_DEFAULT*, *mongoWriteConcern*
 
 
 

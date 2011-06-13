@@ -94,16 +94,16 @@ public class MongoCloudConnector implements Initialisable
      * {@code <create-collection name="aCollection" capped="true"/>}
      * 
      * @param collection the name of the collection to create
-     * @param capped if the collection will be capped TODO document its meaning
+     * @param capped if the collection will be capped 
      * @param maxObject the maximum number of documents the new collection is able to
      *            contain
-     * @param size the maximum size of the new collection TODO maximum?
+     * @param size the maximum size of the new collection 
      */
     @Operation
     public void createCollection(@Parameter String collection,
                                  @Parameter(optional = true, defaultValue = "false") boolean capped,
-                                 @Parameter(optional = true)/* TODO optional */Integer maxObjects,
-                                 @Parameter(optional = true)/* TODO optional */Integer size)
+                                 @Parameter(optional = true) Integer maxObjects,
+                                 @Parameter(optional = true) Integer size)
     {
         client.createCollection(collection, capped, maxObjects, size);
     }

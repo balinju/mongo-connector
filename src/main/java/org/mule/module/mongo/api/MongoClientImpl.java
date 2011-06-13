@@ -40,14 +40,10 @@ public class MongoClientImpl implements MongoClient
         return db.getCollection(collection).count(query);
     }
 
-    public void createCollection(@NotNull String collection, Boolean capped, Integer maxObjects, Integer size)
+    public void createCollection(@NotNull String collection, boolean capped, Integer maxObjects, Integer size)
     {
         Validate.notNull(collection);
-        BasicDBObject options = new BasicDBObject();
-        if (capped != null)
-        {
-            options.put("capped", capped);
-        }
+        BasicDBObject options = new BasicDBObject("capped", capped);
         if (maxObjects != null)
         {
             options.put("maxObject", maxObjects);
