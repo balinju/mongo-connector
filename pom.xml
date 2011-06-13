@@ -5,7 +5,7 @@
   <groupId>org.mule.modules</groupId>
   <artifactId>mule-module-mongo</artifactId>
   <packaging>cloud-connector</packaging>
-  <name>Mule mongo Cloud Connector</name>
+  <name>Mule Mongo Cloud Connector</name>
   <version>1.0-SNAPSHOT</version>
   <description>Mule Cloud connector to mongo</description>
   <url>http://www.muleforge.org/projects/mule-module-mongo</url>
@@ -243,6 +243,14 @@
       <version>${mule.version}</version>
       <scope>test</scope>
     </dependency>
+    
+    <!-- Validation -->
+    <dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+      <version>1.0.0.GA</version>
+    </dependency>
+    
   </dependencies>
 
   <repositories>
