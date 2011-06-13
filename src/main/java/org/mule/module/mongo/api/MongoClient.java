@@ -38,7 +38,7 @@ public interface MongoClient
                       boolean upsert,
                       WriteConcern writeConcern);
 
-    void saveObject(String collection, DBObject object, WriteConcern writeConcern);
+    void saveObject(@NotNull String collection, @NotNull DBObject object, @NotNull WriteConcern writeConcern);
 
     void removeObjects(@NotNull String collection, DBObject query, @NotNull WriteConcern writeConcern);
 

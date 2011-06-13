@@ -105,10 +105,14 @@ public class MongoClientImpl implements MongoClient
         db.getCollection(collection).remove(query != null ? query : new BasicDBObject(), writeConcern.toMongoWriteConcern(db));
     }
 
-    public void saveObject(String collection, DBObject object, WriteConcern writeConcern)
+    public void saveObject(@NotNull String collection,
+                           @NotNull DBObject object,
+                           @NotNull WriteConcern writeConcern)
     {
-        // TODO Auto-generated method stub
-
+        Validate.notNull(collection);
+        Validate.notNull(object);
+        Validate.notNull(writeConcern);
+        db.getCollection(collection).save(object, writeConcern.toMongoWriteConcern(db));
     }
 
     public void updateObject(@NotNull String collection,

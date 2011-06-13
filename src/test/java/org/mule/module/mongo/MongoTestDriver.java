@@ -165,7 +165,7 @@ public class MongoTestDriver
         assertEquals(2, connector.countObjects(MAIN_COLLECTION, new BasicDBObject("x", 60)));
         assertEquals(0, connector.countObjects(MAIN_COLLECTION, new BasicDBObject("x", 36)));
     }
-
+    
     @Test
     public void mapReduce() throws Exception
     {

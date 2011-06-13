@@ -75,6 +75,15 @@ public class MongoTestCase
         verify(collectionMock).drop();
     }
     
+    /** Test {@link MongoClient#saveObject(String, DBObject, WriteConcern)} */
+    @Test
+    public void saveObject() throws Exception
+    {
+        BasicDBObject dbObject = new BasicDBObject();
+        client.saveObject(A_COLLECTION, dbObject, WriteConcern.NONE);
+        verify(collectionMock).save(dbObject, com.mongodb.WriteConcern.NONE);
+    }
+    
     /**Test {@link MongoClient#insertObject(String, com.mongodb.DBObject, org.mule.module.mongo.api.WriteConcern)}*/
     @Test
     public void insertObject() throws Exception
