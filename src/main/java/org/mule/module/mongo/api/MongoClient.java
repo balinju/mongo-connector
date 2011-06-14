@@ -32,7 +32,7 @@ public interface MongoClient
 
     void insertObject(@NotNull String collection, @NotNull DBObject object, @NotNull WriteConcern writeConcern);
 
-    void updateObject(@NotNull String collection,
+    void updateObjects(@NotNull String collection,
                       DBObject query,
                       DBObject object,
                       boolean upsert,

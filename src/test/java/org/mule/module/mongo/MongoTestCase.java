@@ -122,13 +122,13 @@ public class MongoTestCase
         verify(collectionMock).count();
     }
 
-    /**Test {@link MongoClient#updateObject(String, com.mongodb.DBObject, com.mongodb.DBObject, boolean, boolean, org.mule.module.mongo.api.WriteConcern)}*/
+    /**Test {@link MongoClient#updateObjects(String, com.mongodb.DBObject, com.mongodb.DBObject, boolean, boolean, org.mule.module.mongo.api.WriteConcern)}*/
     @Test
     public void updateObject() throws Exception
     {
         DBObject query = new BasicDBObject();
         DBObject dbObject = new BasicDBObject();
-        client.updateObject(A_COLLECTION, query , dbObject, false, true, WriteConcern.SAFE);
+        client.updateObjects(A_COLLECTION, query , dbObject, false, true, WriteConcern.SAFE);
         verify(collectionMock).update(query, dbObject, false, true, com.mongodb.WriteConcern.SAFE);
     }
 

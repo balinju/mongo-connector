@@ -134,7 +134,7 @@ public class MongoClientImpl implements MongoClient
         db.getCollection(collection).save(object, writeConcern.toMongoWriteConcern(db));
     }
 
-    public void updateObject(@NotNull String collection,
+    public void updateObjects(@NotNull String collection,
                              DBObject query,
                              DBObject object,
                              boolean upsert,

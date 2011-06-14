@@ -58,7 +58,7 @@
   <flow name="UpdateObject">
     <inbound-endpoint address="vm://UpdateObject"
       exchange-pattern="request-response" />
-    <mongo:update-object collection="#[map-payload:aCollectionName]"
+    <mongo:update-objects collection="#[map-payload:aCollectionName]"
       query="#[variable:aBsonQuery]" object="#[variable:aBsonObject]"
       upsert="true" />
   </flow>

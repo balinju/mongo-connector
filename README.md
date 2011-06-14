@@ -151,16 +151,16 @@ Inserts an object in a collection, setting its id if necessary.
 
 
 
-Update Object
--------------
+Update Objects
+--------------
 
-Updates objects that matches the given query. If parameter multi is set to true,
-all the documents matching it will be updated. Otherwise, only the first document matching 
-it will be updated 
+Updates objects that matches the given query. If parameter multi is set to false,
+only the first document matching it will be updated. 
+Otherwise, all the documents matching it will be updated.   
 
 
 
-     <update-object collection="#[map-payload:aCollectionName]" 
+     <update-objects collection="#[map-payload:aCollectionName]" 
             query="#[variable:aBsonQuery]" object="#[variable:aBsonObject]" upsert="true"/>
 
 | attribute | description | optional | default value | possible values |
@@ -169,8 +169,8 @@ it will be updated
 |collection|the name of the collection to update|no||
 |query|the query object used to detect the element to update|no||
 |object|the object that will replace that one which matches the query|no||
-|upsert|TODO|yes|false|
-|multi|if all or just the first object matching the query will be updated|yes|false|
+|upsert|if the database should create the element if it does not exist|yes|false|
+|multi|if all or just the first object matching the query will be updated|yes|true|
 |writeConcern|the write concern used to update|yes|DATABASE_DEFAULT|*NONE*, *NORMAL*, *SAFE*, *FSYNC_SAFE*, *REPLICAS_SAFE*, *DATABASE_DEFAULT*, *mongoWriteConcern*
 
 
@@ -356,6 +356,8 @@ List existent indices in a collection
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |collection||no||
+
+
 
 
 

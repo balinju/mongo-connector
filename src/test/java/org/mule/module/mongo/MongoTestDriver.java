@@ -150,7 +150,10 @@ public class MongoTestDriver
         connector.insertObject(MAIN_COLLECTION, acmeEmployee(), WriteConcern.NORMAL);
 
         assertEquals(1, connector.countObjects(MAIN_COLLECTION, acmeQuery()));
-        assertNotNull(connector.findOneObject(MAIN_COLLECTION, acmeQuery(), /* TODO */null));
+        DBObject employee = connector.findOneObject(MAIN_COLLECTION, acmeQuery(), new BasicDBObject("name", 1));
+        assertNotNull(employee);
+        assertEquals("John", employee.get("name"));
+        assertNull(employee.get("company"));
     }
     
     /**
@@ -161,6 +164,7 @@ public class MongoTestDriver
     {
         connector.findOneObject(MAIN_COLLECTION, acmeQuery(), null);
     }
+    
 
     /**
      * Tests that an object can be removed, impacting in the number of objects in the
@@ -268,9 +272,35 @@ public class MongoTestDriver
     }
     
     @Test
-    public void update() throws Exception
+    public void updateMulti() throws Exception
     {
-        fail("Not Yet implemented");
+        insertInTestDb(new BasicDBObject("x", 50));
+        insertInTestDb(new BasicDBObject("x", 60));
+        insertInTestDb(new BasicDBObject("x", 60));
+        insertInTestDb(new BasicDBObject("x", 70));
+        connector.updateObjects(MAIN_COLLECTION, new BasicDBObject("x", new BasicDBObject("$gt", 55)),
+            new BasicDBObject("$inc", new BasicDBObject("x", 2)), false, true, WriteConcern.DATABASE_DEFAULT);
+        
+        Iterator<DBObject> iter = connector.findObjects(MAIN_COLLECTION, null, null).iterator();
+        assertEquals(50, iter.next().get("x"));
+        assertEquals(62, iter.next().get("x"));
+        assertEquals(62, iter.next().get("x"));
+        assertEquals(72, iter.next().get("x"));
+    }
+    
+    @Test
+    public void updateSingle() throws Exception
+    {
+        insertInTestDb(new BasicDBObject("x", 50));
+        insertInTestDb(new BasicDBObject("x", 60));
+        insertInTestDb(new BasicDBObject("x", 60));
+        connector.updateObjects(MAIN_COLLECTION, new BasicDBObject("x", new BasicDBObject("$gt", 55)),
+            new BasicDBObject("$inc", new BasicDBObject("x", 2)), false, false, WriteConcern.DATABASE_DEFAULT);
+        
+        Iterator<DBObject> iter = connector.findObjects(MAIN_COLLECTION, null, null).iterator();
+        assertEquals(50, iter.next().get("x"));
+        assertEquals(62, iter.next().get("x"));
+        assertEquals(60, iter.next().get("x"));
     }
 
     @Test

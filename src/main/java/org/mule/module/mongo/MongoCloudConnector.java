@@ -31,7 +31,6 @@ import com.mongodb.MongoException;
 
 import java.net.UnknownHostException;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Map;
 import java.util.WeakHashMap;
 
@@ -157,28 +156,28 @@ public class MongoCloudConnector implements Initialisable
     }
 
     /**
-     * Updates objects that matches the given query. If parameter multi is set to true,
-     * all the documents matching it will be updated. Otherwise, only the first document matching 
-     * it will be updated 
+     * Updates objects that matches the given query. If parameter multi is set to false,
+     * only the first document matching it will be updated. 
+     * Otherwise, all the documents matching it will be updated.   
      * 
-     * {@code <update-object collection="#[map-payload:aCollectionName]" 
+     * {@code <update-objects collection="#[map-payload:aCollectionName]" 
      *         query="#[variable:aBsonQuery]" object="#[variable:aBsonObject]" upsert="true"/>} 
      * @param collection the name of the collection to update
      * @param query the query object used to detect the element to update
      * @param dbObject the object that will replace that one which matches the query
-     * @param upsert TODO
+     * @param upsert if the database should create the element if it does not exist
      * @param multi if all or just the first object matching the query will be updated
      * @param writeConcern the write concern used to update 
      */
     @Operation
-    public void updateObject(@Parameter String collection,
+    public void updateObjects(@Parameter String collection,
                              @Parameter DBObject query,
                              @Parameter(name = "object") DBObject dbObject,
                              @Parameter(optional = true, defaultValue = "false") boolean upsert,
-                             @Parameter(optional = true, defaultValue = "false") boolean multi,
+                             @Parameter(optional = true, defaultValue = "true") boolean multi,
                              @Parameter(optional = true, defaultValue = "DATABASE_DEFAULT") WriteConcern writeConcern)
     {
-        client.updateObject(collection, query, dbObject, upsert, multi, writeConcern);
+        client.updateObjects(collection, query, dbObject, upsert, multi, writeConcern);
     }
 
     /**
