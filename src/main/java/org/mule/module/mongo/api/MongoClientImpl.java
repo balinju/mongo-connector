@@ -38,9 +38,9 @@ public class MongoClientImpl implements MongoClient
         Validate.notNull(collection);
         if (query == null)
         {
-            return db.getCollection(collection).count();
+            return openSession().getCollection(collection).count();
         }
-        return db.getCollection(collection).count(query);
+        return openSession().getCollection(collection).count(query);
     }
 
     public void createCollection(@NotNull String collection, boolean capped, Integer maxObjects, Integer size)
@@ -55,31 +55,31 @@ public class MongoClientImpl implements MongoClient
         {
             options.put("size", size);
         }
-        db.createCollection(collection, options);
+        openSession().createCollection(collection, options);
     }
 
-    public void dropCollection(@NotNull  String collection)
+    public void dropCollection(@NotNull String collection)
     {
         Validate.notNull(collection);
-        db.getCollection(collection).drop();
+        openSession().getCollection(collection).drop();
     }
 
     public boolean existsCollection(@NotNull String collection)
     {
         Validate.notNull(collection);
-        return db.collectionExists(collection);
+        return openSession().collectionExists(collection);
     }
 
     public Iterable<DBObject> findObjects(@NotNull String collection, DBObject query, DBObject fields)
     {
         Validate.notNull(collection);
-        return db.getCollection(collection).find(query, fields);
+        return openSession().getCollection(collection).find(query, fields);
     }
 
     public DBObject findOneObject(@NotNull String collection, DBObject query, DBObject fields)
     {
         Validate.notNull(collection);
-        DBObject element = db.getCollection(collection).findOne(query, fields);
+        DBObject element = openSession().getCollection(collection).findOne(query, fields);
         if (element == null)
         {
             throw new MongoException("No object found for query " + query);
@@ -87,17 +87,20 @@ public class MongoClientImpl implements MongoClient
         return element;
     }
 
-    public void insertObject(@NotNull String collection, @NotNull DBObject object, @NotNull  WriteConcern writeConcern)
+    public void insertObject(@NotNull String collection,
+                             @NotNull DBObject object,
+                             @NotNull WriteConcern writeConcern)
     {
         Validate.notNull(collection);
         Validate.notNull(object);
         Validate.notNull(writeConcern);
-        db.getCollection(collection).insert(object, writeConcern.toMongoWriteConcern(db));
+        openSession().getCollection(collection).insert(object,
+            writeConcern.toMongoWriteConcern(openSession()));
     }
 
     public Collection<String> listCollections()
     {
-        return db.getCollectionNames();
+        return openSession().getCollectionNames();
     }
 
     public Iterable<DBObject> mapReduceObjects(@NotNull String collection,
@@ -108,8 +111,8 @@ public class MongoClientImpl implements MongoClient
         Validate.notNull(collection);
         Validate.notEmpty(mapFunction);
         Validate.notEmpty(reduceFunction);
-        return db.getCollection(collection).mapReduce(mapFunction, reduceFunction, outputCollection,
-            outputTypeFor(outputCollection), null).results();
+        return openSession().getCollection(collection).mapReduce(mapFunction, reduceFunction,
+            outputCollection, outputTypeFor(outputCollection), null).results();
     }
 
     private OutputType outputTypeFor(String outputCollection)
@@ -121,7 +124,8 @@ public class MongoClientImpl implements MongoClient
     {
         Validate.notNull(collection);
         Validate.notNull(writeConcern);
-        db.getCollection(collection).remove(query != null ? query : new BasicDBObject(), writeConcern.toMongoWriteConcern(db));
+        openSession().getCollection(collection).remove(query != null ? query : new BasicDBObject(),
+            writeConcern.toMongoWriteConcern(openSession()));
     }
 
     public void saveObject(@NotNull String collection,
@@ -131,38 +135,49 @@ public class MongoClientImpl implements MongoClient
         Validate.notNull(collection);
         Validate.notNull(object);
         Validate.notNull(writeConcern);
-        db.getCollection(collection).save(object, writeConcern.toMongoWriteConcern(db));
+        openSession().getCollection(collection).save(object, writeConcern.toMongoWriteConcern(openSession()));
     }
 
     public void updateObjects(@NotNull String collection,
-                             DBObject query,
-                             DBObject object,
-                             boolean upsert,
-                             boolean multi, 
-                             WriteConcern writeConcern)
+                              DBObject query,
+                              DBObject object,
+                              boolean upsert,
+                              boolean multi,
+                              WriteConcern writeConcern)
     {
         Validate.notNull(collection);
         Validate.notNull(writeConcern);
-        db.getCollection(collection).update(query, object, upsert, multi,
-            writeConcern.toMongoWriteConcern(db));
+        openSession().getCollection(collection).update(query, object, upsert, multi,
+            writeConcern.toMongoWriteConcern(openSession()));
 
     }
 
     public void createIndex(String collection, String field, IndexOrder order)
     {
-        db.getCollection(collection).createIndex(new BasicDBObject(field, order.getValue()));
+        openSession().getCollection(collection).createIndex(new BasicDBObject(field, order.getValue()));
     }
 
     public void dropIndex(String collection, String name)
     {
-        db.getCollection(collection).dropIndex(name);
+        openSession().getCollection(collection).dropIndex(name);
     }
 
     public Collection<DBObject> listIndices(String collection)
     {
-        return db.getCollection(collection).getIndexInfo();
+        return openSession().getCollection(collection).getIndexInfo();
     }
-    
+
+    /**
+     * Gets the DB objects, ensuring that a consistent request is in progress.
+     * Consistent requests are never ended, they end when the current thread finishes
+     */
+    private DB openSession()
+    {
+        db.requestStart();
+        db.requestEnsureConnection();
+        return db;
+    }
+
     public DB getDb()
     {
         return db;
