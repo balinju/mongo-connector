@@ -37,7 +37,7 @@ import java.util.WeakHashMap;
 import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-
+import static org.mule.module.mongo.api.DBObjects.*;
 /**
  * A Mongo Connector Facade
  * @author flbulgarelli
@@ -149,10 +149,10 @@ public class MongoCloudConnector implements Initialisable
      */
     @Operation
     public void insertObject(@Parameter String collection,
-                             @Parameter(name = "object") DBObject dbObject,
+                             @Parameter(name = "object") Object dbObject,
                              @Parameter(optional = true, defaultValue = "DATABASE_DEFAULT") WriteConcern writeConcern)
     {
-        client.insertObject(collection, dbObject, writeConcern);
+        client.insertObject(collection, from(dbObject), writeConcern);
     }
 
     /**
@@ -171,13 +171,13 @@ public class MongoCloudConnector implements Initialisable
      */
     @Operation
     public void updateObjects(@Parameter String collection,
-                             @Parameter DBObject query,
-                             @Parameter(name = "object") DBObject dbObject,
-                             @Parameter(optional = true, defaultValue = "false") boolean upsert,
-                             @Parameter(optional = true, defaultValue = "true") boolean multi,
-                             @Parameter(optional = true, defaultValue = "DATABASE_DEFAULT") WriteConcern writeConcern)
+                              @Parameter Object query,
+                              @Parameter(name = "object") Object dbObject,
+                              @Parameter(optional = true, defaultValue = "false") boolean upsert,
+                              @Parameter(optional = true, defaultValue = "true") boolean multi,
+                              @Parameter(optional = true, defaultValue = "DATABASE_DEFAULT") WriteConcern writeConcern)
     {
-        client.updateObjects(collection, query, dbObject, upsert, multi, writeConcern);
+        client.updateObjects(collection, from(query), from(dbObject), upsert, multi, writeConcern);
     }
 
     /**
@@ -191,10 +191,10 @@ public class MongoCloudConnector implements Initialisable
      */
     @Operation
     public void saveObject(@Parameter String collection,
-                           @Parameter(name = "object") DBObject dbObject,
+                           @Parameter(name = "object") Object dbObject,
                            @Parameter(optional = true, defaultValue = "DATABASE_DEFAULT") WriteConcern writeConcern)
     {
-        client.saveObject(collection, dbObject, writeConcern);
+        client.saveObject(collection, from(dbObject), writeConcern);
     }
 
     /**
@@ -210,10 +210,10 @@ public class MongoCloudConnector implements Initialisable
      */
     @Operation
     public void removeObjects(@Parameter String collection,
-                              @Parameter(optional = true) DBObject query,
+                              @Parameter(optional = true) Object query,
                               @Parameter(optional = true, defaultValue = "DATABASE_DEFAULT") WriteConcern writeConcern)
     {
-        client.removeObjects(collection, query, writeConcern);
+        client.removeObjects(collection, from(query), writeConcern);
     }
     
     /**
@@ -256,9 +256,9 @@ public class MongoCloudConnector implements Initialisable
      *      query="#[variable:aBsonQuery]"/>}
      */
     @Operation
-    public long countObjects(@Parameter String collection, @Parameter(optional = true) DBObject query)
+    public long countObjects(@Parameter String collection, @Parameter(optional = true) Object query)
     {
-        return client.countObjects(collection, query);
+        return client.countObjects(collection, from(query));
     }
 
     /**
@@ -272,10 +272,10 @@ public class MongoCloudConnector implements Initialisable
      */
     @Operation
     public Iterable<DBObject> findObjects(@Parameter String collection,
-                                          @Parameter(optional = true) DBObject query,
-                                          @Parameter(optional = true) DBObject fields)
+                                          @Parameter(optional = true) Object query,
+                                          @Parameter(optional = true) Object fields)
     {
-        return client.findObjects(collection, query, fields);
+        return client.findObjects(collection, from(query), from(fields));
     }
 
     /**
@@ -292,10 +292,10 @@ public class MongoCloudConnector implements Initialisable
      */
     @Operation
     public DBObject findOneObject(@Parameter String collection,
-                                  @Parameter DBObject query,
-                                  @Parameter DBObject fields)
+                                  @Parameter Object query,
+                                  @Parameter Object fields)
     {
-        return client.findOneObject(collection, query, fields);
+        return client.findOneObject(collection, from(query), from(fields));
     }
     
     /**
