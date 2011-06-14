@@ -94,9 +94,21 @@ public class MongoClientImpl implements MongoClient
         return db.getCollectionNames();
     }
 
-    public MapReduceOutput mapReduceObjects(String collection, String mapFunction, String reduceFunction)
+    public Iterable<DBObject> mapReduceObjects(@NotNull String collection,
+                                               @NotNull String mapFunction,
+                                               @NotNull String reduceFunction,
+                                               String outputCollection)
     {
-        return db.getCollection(collection).mapReduce(mapFunction, reduceFunction, null, OutputType.INLINE /*TODO*/, null);
+        Validate.notNull(collection);
+        Validate.notEmpty(mapFunction);
+        Validate.notEmpty(reduceFunction);
+        return db.getCollection(collection).mapReduce(mapFunction, reduceFunction, outputCollection,
+            outputTypeFor(outputCollection), null).results();
+    }
+
+    private OutputType outputTypeFor(String outputCollection)
+    {
+        return outputCollection != null ? OutputType.REPLACE : OutputType.INLINE;
     }
 
     public void removeObjects(@NotNull String collection, DBObject query, @NotNull WriteConcern writeConcern)
@@ -124,6 +136,7 @@ public class MongoClientImpl implements MongoClient
                              WriteConcern writeConcern)
     {
         Validate.notNull(collection);
+        Validate.notNull(writeConcern);
         db.getCollection(collection).update(query, object, upsert, multi,
             writeConcern.toMongoWriteConcern(db));
 

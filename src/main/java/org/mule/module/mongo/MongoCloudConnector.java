@@ -195,8 +195,8 @@ public class MongoCloudConnector implements Initialisable
      * Each supplied function is coded in JavaScript.
      * 
      * Note that the correct way of writing those functions may not be obvious; please 
-     * consult MongoDB documentation for writing them.  
-     * 
+     * consult MongoDB documentation for writing them.
+     *  
      * {@code  <map-reduce-objects 
      *      collection="myCollection"
      *      mapFunction="#[header:aJSMapFunction]"
@@ -204,13 +204,17 @@ public class MongoCloudConnector implements Initialisable
      * @param collection the name of the collection to map and reduce
      * @param mapFunction a JavaScript encoded mapping function
      * @param reduceFunction a JavaScript encoded reducing function 
+     * @param outputCollection the name of the output collection to write the results, replacing previous collection if existed,
+     *          mandatory when results may be larger than 16MB. 
+     *          If outputCollection is unspecified, the computation is performed in-memory and not persisted.  
      */
     @Operation
-    public MapReduceOutput mapReduceObjects(@Parameter String collection,
-                                            @Parameter String mapFunction,
-                                            @Parameter String reduceFunction)
+    public Iterable<DBObject> mapReduceObjects(@Parameter String collection,
+                                               @Parameter String mapFunction,
+                                               @Parameter String reduceFunction,
+                                               @Parameter(optional = true) String outputCollection)
     {
-        return client.mapReduceObjects(collection, mapFunction, reduceFunction);
+        return client.mapReduceObjects(collection, mapFunction, reduceFunction, outputCollection);
     }
     
     /**

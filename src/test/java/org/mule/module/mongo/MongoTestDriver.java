@@ -27,14 +27,21 @@ import java.sql.ClientInfoStatus;
 import java.util.Iterator;
 
 import org.junit.After;
+import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.theories.DataPoint;
+import org.junit.experimental.theories.DataPoints;
+import org.junit.experimental.theories.Theories;
+import org.junit.experimental.theories.Theory;
+import org.junit.runner.RunWith;
 
 /**
  * Integration test for the Connector
  * 
  * @author flbulgarelli
  */
+@RunWith(Theories.class)
 public class MongoTestDriver
 {
     private static final String MAIN_COLLECTION = "aCollection";
@@ -179,15 +186,23 @@ public class MongoTestDriver
     private void insertInTestDb(DBObject o){
         connector.insertObject(MAIN_COLLECTION, o, WriteConcern.DATABASE_DEFAULT);
     }
-
+    
     /**
-     * Tests that objects can be map-reduced in an inline manner.
+     * Some output collection names
+     */
+    @DataPoint
+    public static final String OUTPUT_COLLECTION_NAME = "anOutputCollection";
+    @DataPoint
+    public static final String INLINE_COLLECTION_NAME = "null";
+    
+    /**
+     * Tests that objects can be map-reduced either in memory or in a persistent way.
      * In this test, a collection of elections results is grouped by candidate name and 
      * reduced by votes  
      */
-    @Test
+    @Theory
     @SuppressWarnings("serial")
-    public void mapReduce() throws Exception
+    public void mapReduce(String outputCollection) throws Exception
     {
         insertInTestDb(new BasicDBObject()
         {
@@ -221,26 +236,26 @@ public class MongoTestDriver
                 put("votes", 60);
             }
         });
-        MapReduceOutput result = connector.mapReduceObjects(MAIN_COLLECTION,
+        Iterable<DBObject> results = connector.mapReduceObjects(MAIN_COLLECTION,
             "function() { emit(this.candidate, this.votes) }", 
-            "function(key, values) {  var sum = 0;  values.forEach(function(x){ sum += x }); return sum; } ");
-        assertNotNull(result);
-        Iterator<DBObject> results = result.results().iterator();
+            "function(key, values) {  var sum = 0;  values.forEach(function(x){ sum += x }); return sum; } ", outputCollection);
+        assertNotNull(results);
+        Iterator<DBObject> iter = results.iterator();
         assertEquals(new BasicDBObject()
         {
             {
                 put("_id", "John");
                 put("value", 120);
             }
-        }, results.next());
+        }, iter.next());
         assertEquals(new BasicDBObject()
         {
             {
                 put("_id", "Mary");
                 put("value", 210);
             }
-        }, results.next());
-        assertFalse(results.hasNext());
+        }, iter.next());
+        assertFalse(iter.hasNext());
     }
     
     @Test

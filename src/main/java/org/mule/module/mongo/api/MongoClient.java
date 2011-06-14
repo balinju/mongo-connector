@@ -11,7 +11,6 @@
 package org.mule.module.mongo.api;
 
 import com.mongodb.DBObject;
-import com.mongodb.MapReduceOutput;
 
 import java.util.Collection;
 
@@ -37,13 +36,17 @@ public interface MongoClient
                       DBObject query,
                       DBObject object,
                       boolean upsert,
-                      boolean multi, WriteConcern writeConcern);
+                      boolean multi,
+                      @NotNull WriteConcern writeConcern);
 
     void saveObject(@NotNull String collection, @NotNull DBObject object, @NotNull WriteConcern writeConcern);
 
     void removeObjects(@NotNull String collection, DBObject query, @NotNull WriteConcern writeConcern);
 
-    MapReduceOutput mapReduceObjects(String collection, String mapFunction, String reduceFunction);
+    Iterable<DBObject> mapReduceObjects(@NotNull String collection,
+                                        @NotNull String mapFunction,
+                                        @NotNull String reduceFunction,
+                                        String outputCollection);
 
     long countObjects(@NotNull String collection, DBObject query);
 

@@ -225,8 +225,8 @@ reducing values in each group applying a suppling 'reduce' function.
 Each supplied function is coded in JavaScript.
 
 Note that the correct way of writing those functions may not be obvious; please 
-consult MongoDB documentation for writing them.  
-
+consult MongoDB documentation for writing them.
+ 
 
 
       <map-reduce-objects 
@@ -240,6 +240,7 @@ consult MongoDB documentation for writing them.
 |collection|the name of the collection to map and reduce|no||
 |mapFunction|a JavaScript encoded mapping function|no||
 |reduceFunction|a JavaScript encoded reducing function|no||
+|outputCollection|the name of the output collection to write the results, replacing previous collection if existed, mandatory when results may be larger than 16MB. If outputCollection is unspecified, the computation is performed in-memory and not persisted.|yes||
 
 
 
