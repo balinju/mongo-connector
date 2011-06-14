@@ -193,6 +193,12 @@
       <version>${mule.version}</version>
       <optional>true</optional>
     </dependency>
+    <dependency>
+      <groupId>org.mule.modules</groupId>
+      <artifactId>mule-module-json</artifactId>
+      <version>${mule.version}</version>
+      <scope>provided</scope>
+    </dependency>
     <!-- for testing -->
     <dependency>
       <groupId>junit</groupId>
@@ -243,14 +249,14 @@
       <version>${mule.version}</version>
       <scope>test</scope>
     </dependency>
-    
+
     <!-- Validation -->
     <dependency>
       <groupId>javax.validation</groupId>
       <artifactId>validation-api</artifactId>
       <version>1.0.0.GA</version>
     </dependency>
-    
+
   </dependencies>
 
   <repositories>
