@@ -24,12 +24,14 @@ import org.mule.tools.cloudconnect.annotations.Operation;
 import org.mule.tools.cloudconnect.annotations.Parameter;
 import org.mule.tools.cloudconnect.annotations.Property;
 
+import com.mongodb.DB;
 import com.mongodb.DBObject;
-import com.mongodb.MapReduceOutput;
 import com.mongodb.Mongo;
 import com.mongodb.MongoException;
 
 import java.util.Collection;
+
+import org.apache.commons.lang.Validate;
 
 /**
  * A Mongo Connector Facade
@@ -40,15 +42,32 @@ public class MongoCloudConnector implements Initialisable
 {
     @Property(name = "client-ref", optional = true)
     private MongoClient client;
+    /**
+     * The host of the Mongo server
+     */
     @Property(optional = true, defaultValue = "localhost")
     private String host;
+    /**
+     * The port of the Mongo server
+     */
     @Property(optional = true, defaultValue = "27017")
     private int port;
+    /**
+     * The database name of the Mongo server
+     */
     @Property(optional = true, defaultValue = "test")
     private String database;
+    /**
+     * The user password. Only required for collections that require authentication
+     */
+    @Property(optional = true)
+    private String password;
+    /**
+     * The user name. Only required for collections that require authentication
+     */
+    @Property(optional = true)
+    private String username;
 
-    // TODO auth
-    // TODO document
     
     /**
      * Lists names of collections available at this database
@@ -317,13 +336,24 @@ public class MongoCloudConnector implements Initialisable
             try
             {
                 Mongo m = new Mongo(host, port);
-                client = new MongoClientImpl(m.getDB(database));
+                client = new MongoClientImpl(getDatabase(m));
             }
             catch (Exception e)
             {
                 throw new InitialisationException(e, this);
             }
         }
+    }
+
+    private DB getDatabase(Mongo m)
+    {
+        DB db = m.getDB(database);
+        if (password != null)
+        {
+            Validate.notNull(username, "Username must not be null if password is set");
+            db.authenticate(username, password.toCharArray());
+        }
+        return db;
     }
 
     public MongoClient getClient()
@@ -365,5 +395,27 @@ public class MongoCloudConnector implements Initialisable
     {
         this.port = port;
     }
+
+    public String getPassword()
+    {
+        return password;
+    }
+
+    public void setPassword(String password)
+    {
+        this.password = password;
+    }
+
+    public String getUsername()
+    {
+        return username;
+    }
+
+    public void setUsername(String username)
+    {
+        this.username = username;
+    }
+    
+    
     
 }

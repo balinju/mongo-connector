@@ -46,7 +46,7 @@ Configuration
 
 You can configure the connector as follows:
 
-    <mongo:config client="value" database="value" host="value" port="value"/>
+    <mongo:config client="value" database="value" host="value" port="value" password="value" username="value"/>
 
 Here is detailed list of all the configuration attributes:
 
@@ -54,9 +54,11 @@ Here is detailed list of all the configuration attributes:
 |:-----------|:-----------|:---------|:--------------|
 |name|Give a name to this configuration so it can be later referenced by config-ref.|yes||
 |client||yes|
-|database||yes|test
-|host||yes|localhost
-|port||yes|27017
+|database|The database name of the Mongo server|yes|test
+|host|The host of the Mongo server|yes|localhost
+|port|The port of the Mongo server|yes|27017
+|password|The user password. Only required for collections that require authentication|yes|
+|username|The user name. Only required for collections that require authentication|yes|
 
 
 List Collections
@@ -354,6 +356,14 @@ List existent indices in a collection
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |collection||no||
+
+
+
+
+
+
+
+
 
 
 
