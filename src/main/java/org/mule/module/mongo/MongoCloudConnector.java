@@ -249,7 +249,8 @@ public class MongoCloudConnector implements Initialisable
     }
 
     /**
-     * Finds the first object that matches a given query. TODO if not exists?
+     * Finds the first object that matches a given query. 
+     * Throws a {@link MongoException} if no one matches the given query 
      * 
      * {@code <find-one-object 
      *      query="#[variable:aBsonQuery]" 
@@ -257,6 +258,7 @@ public class MongoCloudConnector implements Initialisable
      * @param collection
      * @param query
      * @param fields
+     * @return a non-null DBObject that matches the query. 
      */
     @Operation
     public DBObject findOneObject(@Parameter String collection,

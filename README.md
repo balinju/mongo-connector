@@ -286,7 +286,8 @@ collection are retrieved. If no fields object is specified, all fields are retri
 Find One Object
 ---------------
 
-Finds the first object that matches a given query. TODO if not exists?
+Finds the first object that matches a given query. 
+Throws a {@link MongoException} if no one matches the given query 
 
 
 
@@ -300,6 +301,8 @@ Finds the first object that matches a given query. TODO if not exists?
 |collection||no||
 |query||no||
 |fields||no||
+
+Returns non-null DBObject that matches the query.
 
 
 

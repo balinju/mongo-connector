@@ -152,6 +152,15 @@ public class MongoTestDriver
         assertEquals(1, connector.countObjects(MAIN_COLLECTION, acmeQuery()));
         assertNotNull(connector.findOneObject(MAIN_COLLECTION, acmeQuery(), /* TODO */null));
     }
+    
+    /**
+     *  Tests that an exception is thrown if no object that matches a query is found
+     */
+    @Test(expected = MongoException.class)
+    public void findOneObjectNotExists() throws Exception
+    {
+        connector.findOneObject(MAIN_COLLECTION, acmeQuery(), null);
+    }
 
     /**
      * Tests that an object can be removed, impacting in the number of objects in the

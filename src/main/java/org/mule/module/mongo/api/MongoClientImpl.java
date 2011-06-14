@@ -14,6 +14,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBObject;
 import com.mongodb.MapReduceOutput;
+import com.mongodb.MongoException;
 import com.mongodb.MapReduceCommand.OutputType;
 
 import java.util.Collection;
@@ -78,7 +79,12 @@ public class MongoClientImpl implements MongoClient
     public DBObject findOneObject(@NotNull String collection, DBObject query, DBObject fields)
     {
         Validate.notNull(collection);
-        return db.getCollection(collection).findOne(query, fields);
+        DBObject element = db.getCollection(collection).findOne(query, fields);
+        if (element == null)
+        {
+            throw new MongoException("No object found for query " + query);
+        }
+        return element;
     }
 
     public void insertObject(@NotNull String collection, @NotNull DBObject object, @NotNull  WriteConcern writeConcern)
