@@ -25,6 +25,7 @@ import org.mule.tools.cloudconnect.annotations.Parameter;
 import org.mule.tools.cloudconnect.annotations.Property;
 
 import com.mongodb.DBObject;
+import com.mongodb.MapReduceOutput;
 import com.mongodb.Mongo;
 import com.mongodb.MongoException;
 
@@ -186,21 +187,28 @@ public class MongoCloudConnector implements Initialisable
     }
     
     /**
-     * Maps and folds objects in a collection by applying a mapping function and then a folding function 
+     * Transforms a collection into a collection of aggregated groups, by
+     * applying a supplied element-mapping function to each element, that transforms each one
+     * into a key-value pair, grouping the resulting pairs by key, and finally 
+     * reducing values in each group applying a suppling 'reduce' function.   
      * 
+     * Each supplied function is coded in JavaScript.
+     * 
+     * Note that the correct way of writing those functions may not be obvious; please 
+     * consult MongoDB documentation for writing them.  
      * 
      * {@code  <map-reduce-objects 
      *      collection="myCollection"
      *      mapFunction="#[header:aJSMapFunction]"
-     *      reduceFunction="#[header:aJSFoldFunction]"/>} 
+     *      reduceFunction="#[header:aJSReduceFunction]"/>} 
      * @param collection the name of the collection to map and reduce
      * @param mapFunction a JavaScript encoded mapping function
-     * @param reduceFunction a JavaScript encoded folding function 
+     * @param reduceFunction a JavaScript encoded reducing function 
      */
     @Operation
-    public DBObject mapReduceObjects(@Parameter String collection,
-                                     @Parameter String mapFunction,
-                                     @Parameter String reduceFunction)
+    public MapReduceOutput mapReduceObjects(@Parameter String collection,
+                                            @Parameter String mapFunction,
+                                            @Parameter String reduceFunction)
     {
         return client.mapReduceObjects(collection, mapFunction, reduceFunction);
     }

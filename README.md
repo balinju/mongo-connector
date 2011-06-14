@@ -217,22 +217,29 @@ less performant that dropping the collection and creating it and its indices aga
 Map Reduce Objects
 ------------------
 
-Maps and folds objects in a collection by applying a mapping function and then a folding function 
+Transforms a collection into a collection of aggregated groups, by
+applying a supplied element-mapping function to each element, that transforms each one
+into a key-value pair, grouping the resulting pairs by key, and finally 
+reducing values in each group applying a suppling 'reduce' function.   
 
+Each supplied function is coded in JavaScript.
+
+Note that the correct way of writing those functions may not be obvious; please 
+consult MongoDB documentation for writing them.  
 
 
 
       <map-reduce-objects 
          collection="myCollection"
          mapFunction="#[header:aJSMapFunction]"
-         reduceFunction="#[header:aJSFoldFunction]"/>
+         reduceFunction="#[header:aJSReduceFunction]"/>
 
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |collection|the name of the collection to map and reduce|no||
 |mapFunction|a JavaScript encoded mapping function|no||
-|reduceFunction|a JavaScript encoded folding function|no||
+|reduceFunction|a JavaScript encoded reducing function|no||
 
 
 

@@ -11,6 +11,7 @@
 package org.mule.module.mongo.api;
 
 import com.mongodb.DBObject;
+import com.mongodb.MapReduceOutput;
 
 import java.util.Collection;
 
@@ -42,7 +43,7 @@ public interface MongoClient
 
     void removeObjects(@NotNull String collection, DBObject query, @NotNull WriteConcern writeConcern);
 
-    DBObject mapReduceObjects(String collection, String mapFunction, String reduceFunction);
+    MapReduceOutput mapReduceObjects(String collection, String mapFunction, String reduceFunction);
 
     long countObjects(@NotNull String collection, DBObject query);
 

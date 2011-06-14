@@ -18,9 +18,13 @@ import org.mule.module.mongo.api.MongoClient;
 import org.mule.module.mongo.api.WriteConcern;
 
 import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+import com.mongodb.MapReduceCommand;
+import com.mongodb.MapReduceOutput;
 import com.mongodb.MongoException;
 
 import java.sql.ClientInfoStatus;
+import java.util.Iterator;
 
 import org.junit.After;
 import org.junit.Before;
@@ -163,17 +167,84 @@ public class MongoTestDriver
     @Test
     public void countObjects() throws Exception
     {
-        connector.insertObject(MAIN_COLLECTION, new BasicDBObject("x", 59), WriteConcern.NORMAL);
-        connector.insertObject(MAIN_COLLECTION, new BasicDBObject("x", 60), WriteConcern.NORMAL);
-        connector.insertObject(MAIN_COLLECTION, new BasicDBObject("x", 60), WriteConcern.NORMAL);
-        connector.insertObject(MAIN_COLLECTION, new BasicDBObject("x", 70), WriteConcern.NORMAL);
+        insertInTestDb(new BasicDBObject("x", 59));
+        insertInTestDb(new BasicDBObject("x", 60));
+        insertInTestDb(new BasicDBObject("x", 60));
+        insertInTestDb(new BasicDBObject("x", 70));
         assertEquals(4, connector.countObjects(MAIN_COLLECTION, null));
         assertEquals(2, connector.countObjects(MAIN_COLLECTION, new BasicDBObject("x", 60)));
         assertEquals(0, connector.countObjects(MAIN_COLLECTION, new BasicDBObject("x", 36)));
     }
+    
+    private void insertInTestDb(DBObject o){
+        connector.insertObject(MAIN_COLLECTION, o, WriteConcern.DATABASE_DEFAULT);
+    }
 
+    /**
+     * Tests that objects can be map-reduced in an inline manner.
+     * In this test, a collection of elections results is grouped by candidate name and 
+     * reduced by votes  
+     */
     @Test
+    @SuppressWarnings("serial")
     public void mapReduce() throws Exception
+    {
+        insertInTestDb(new BasicDBObject()
+        {
+            {
+                put("city", "City1");
+                put("candidate", "John");
+                put("votes", 100);
+            }
+        });
+        insertInTestDb(new BasicDBObject()
+        {
+            {
+                put("city", "City2");
+                put("candidate", "John");
+                put("votes", 20);
+            }
+        });
+        insertInTestDb(new BasicDBObject()
+        {
+            {
+                put("city", "City3");
+                put("candidate", "Mary");
+                put("votes", 150);
+            }
+        });
+        insertInTestDb(new BasicDBObject()
+        {
+            {
+                put("city", "City2");
+                put("candidate", "Mary");
+                put("votes", 60);
+            }
+        });
+        MapReduceOutput result = connector.mapReduceObjects(MAIN_COLLECTION,
+            "function() { emit(this.candidate, this.votes) }", 
+            "function(key, values) {  var sum = 0;  values.forEach(function(x){ sum += x }); return sum; } ");
+        assertNotNull(result);
+        Iterator<DBObject> results = result.results().iterator();
+        assertEquals(new BasicDBObject()
+        {
+            {
+                put("_id", "John");
+                put("value", 120);
+            }
+        }, results.next());
+        assertEquals(new BasicDBObject()
+        {
+            {
+                put("_id", "Mary");
+                put("value", 210);
+            }
+        }, results.next());
+        assertFalse(results.hasNext());
+    }
+    
+    @Test
+    public void update() throws Exception
     {
         fail("Not Yet implemented");
     }
@@ -201,5 +272,6 @@ public class MongoTestDriver
         employee.put("company", "ACME");
         return employee;
     }
+    
 
 }

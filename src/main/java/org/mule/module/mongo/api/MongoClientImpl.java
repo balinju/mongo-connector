@@ -13,6 +13,8 @@ package org.mule.module.mongo.api;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBObject;
+import com.mongodb.MapReduceOutput;
+import com.mongodb.MapReduceCommand.OutputType;
 
 import java.util.Collection;
 
@@ -92,10 +94,9 @@ public class MongoClientImpl implements MongoClient
         return db.getCollectionNames();
     }
 
-    public DBObject mapReduceObjects(String collection, String mapFunction, String reduceFunction)
+    public MapReduceOutput mapReduceObjects(String collection, String mapFunction, String reduceFunction)
     {
-        // TODO Auto-generated method stub
-        return null;
+        return db.getCollection(collection).mapReduce(mapFunction, reduceFunction, null, OutputType.INLINE /*TODO*/, null);
     }
 
     public void removeObjects(@NotNull String collection, DBObject query, @NotNull WriteConcern writeConcern)
