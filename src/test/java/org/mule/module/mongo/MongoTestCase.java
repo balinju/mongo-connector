@@ -49,7 +49,6 @@ public class MongoTestCase
     @Before
     public void setup()
     {
-        //TODO remember that Mongo objects should be cached
         dbMock = mock(DB.class);
         client = new MongoClientImpl(dbMock);
         collectionMock = mock(DBCollection.class);

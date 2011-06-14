@@ -162,5 +162,10 @@ public class MongoClientImpl implements MongoClient
     {
         return db.getCollection(collection).getIndexInfo();
     }
+    
+    public DB getDb()
+    {
+        return db;
+    }
 
 }

@@ -29,9 +29,15 @@ import com.mongodb.DBObject;
 import com.mongodb.Mongo;
 import com.mongodb.MongoException;
 
+import java.net.UnknownHostException;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Map;
+import java.util.WeakHashMap;
 
 import org.apache.commons.lang.Validate;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * A Mongo Connector Facade
@@ -67,7 +73,13 @@ public class MongoCloudConnector implements Initialisable
      */
     @Property(optional = true)
     private String username;
-
+    
+    /**Hack to prevent if from being garbage-collected
+     * as long as a connector exists*/
+    private MongoRef ref;
+    
+    private static Map<MongoRef, Mongo> refs = new WeakHashMap<MongoRef, Mongo>();
+    
     
     /**
      * Lists names of collections available at this database
@@ -332,17 +344,32 @@ public class MongoCloudConnector implements Initialisable
     {
         if (client == null)
         {
-            // FIXME get from a weak hashmasp and use Holder
             try
             {
-                Mongo m = new Mongo(host, port);
-                client = new MongoClientImpl(getDatabase(m));
+                ref = new MongoRef(host, port);
+                client = new MongoClientImpl(getDatabase(getMongo()));
             }
             catch (Exception e)
             {
                 throw new InitialisationException(e, this);
             }
         }
+    }
+    
+    private synchronized Mongo getMongo() throws Exception
+    {
+        Mongo m = refs.get(ref);
+        if (m == null)
+        {
+            m = newMongo();
+            refs.put(ref, m);
+        }
+        return m;
+    }
+
+    protected Mongo newMongo() throws UnknownHostException
+    {
+        return new Mongo(host, port);
     }
 
     private DB getDatabase(Mongo m)
@@ -415,7 +442,31 @@ public class MongoCloudConnector implements Initialisable
     {
         this.username = username;
     }
-    
+
+    @SuppressWarnings("unused")
+    protected static final class MongoRef
+    {
+        private final String host;
+        private final int port;
+
+        public MongoRef(String host, int port)
+        {
+            this.host = host;
+            this.port = port;
+        }
+
+        @Override
+        public int hashCode()
+        {
+            return HashCodeBuilder.reflectionHashCode(this);
+        }
+
+        @Override
+        public boolean equals(Object obj)
+        {
+            return EqualsBuilder.reflectionEquals(this, obj);
+        }
+    }
     
     
 }
