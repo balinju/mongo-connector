@@ -126,8 +126,7 @@ public class MongoCloudConnector implements Initialisable
      * 
      * @param collection the name of the collection to create
      * @param capped if the collection will be capped 
-     * @param maxObject the maximum number of documents the new collection is able to
-     *            contain
+     * @param maxObject the maximum number of documents the new collection is able to contain
      * @param size the maximum size of the new collection 
      */
     @Operation
@@ -186,8 +185,9 @@ public class MongoCloudConnector implements Initialisable
      * {@code <save-object 
      *          collection="#[map-payload:aCollectionName]"
      *          object="#[header:aBsonObject]"/>} 
-     * @param collection
-     * @param dbObject
+     * @param collection the collection where to insert the object
+     * @param dbObject the object to insert
+     * @param writeConcern the write concern used to persist the object
      */
     @Operation
     public void saveObject(@Parameter String collection,
@@ -206,7 +206,7 @@ public class MongoCloudConnector implements Initialisable
      * {@code <remove-objects collection="#[map-payload:aCollectionName]" query="#[map-payload:aBsonQuery]"/>}
      * @param collection the collection whose elements will be removed 
      * @param query the query object. Objects that match it will be removed
-     * @param writeConcern 
+     * @param writeConcern the write concern used to remove the object
      */
     @Operation
     public void removeObjects(@Parameter String collection,
@@ -254,6 +254,10 @@ public class MongoCloudConnector implements Initialisable
      * {@code <count-objects 
      *      collection="#[variable:aCollectionName]"
      *      query="#[variable:aBsonQuery]"/>}
+     *      
+     * @param collection the target collection  
+     * @param query the query for counting objects. Only objects matching it will be counted. 
+     *          If unspecified, all objects are counted.
      */
     @Operation
     public long countObjects(@Parameter String collection, @Parameter(optional = true) Object query)
@@ -266,7 +270,7 @@ public class MongoCloudConnector implements Initialisable
      * collection are retrieved. If no fields object is specified, all fields are retrieved. 
      * 
      * {@code <find-objects query="#[map-payload:aBsonQuery]" fields="#[header:aBsonFieldsSet]"/>}
-     * @param collection
+     * @param collection the target collection
      * @param query the query object. If unspecified, all documents are returned
      * @param fields the fields to return. If unspecified, all fields are returned
      */
@@ -285,15 +289,15 @@ public class MongoCloudConnector implements Initialisable
      * {@code <find-one-object 
      *      query="#[variable:aBsonQuery]" 
      *      fields="#[map-payload:aBsonFieldsSet]"/>}   
-     * @param collection
-     * @param query
-     * @param fields
+     * @param collection the target collection
+     * @param query the query object that the returned object matches.
+     * @param fields the set of fields to return. If unspecified, all fields are returned.  
      * @return a non-null DBObject that matches the query. 
      */
     @Operation
     public DBObject findOneObject(@Parameter String collection,
                                   @Parameter Object query,
-                                  @Parameter Object fields)
+                                  @Parameter(optional = true) Object fields)
     {
         return client.findOneObject(collection, from(query), from(fields));
     }
@@ -302,7 +306,7 @@ public class MongoCloudConnector implements Initialisable
      * Creates a new index
      * 
      * {@code <create-index collection="myCollection" keys="#[header:aBsonFieldsSet]"/>}
-     * @param the name of the collection where the index will be created
+     * @param collection the name of the collection where the index will be created
      * @param field the name of the field which will be indexed 
      * @param order the indexing order
      */
@@ -318,7 +322,7 @@ public class MongoCloudConnector implements Initialisable
      * Drops an existing index
      * 
      * {@code <drop-index collection="myCollection" name="#[map-payload:anIndexName]"/>}
-     * @param the name of the collection where the index is
+     * @param collection the name of the collection where the index is
      * @param index the name of the index to drop
      */
     @Operation
@@ -331,7 +335,7 @@ public class MongoCloudConnector implements Initialisable
      * List existent indices in a collection
      * 
      * {@code <drop-index collection="myCollection" name="#[map-payload:anIndexName]"/>}
-     * @param the name of the collection 
+     * @param collection the name of the collection 
      */
     @Operation
     public Collection<DBObject> listIndices(@Parameter String collection)

@@ -189,9 +189,9 @@ Inserts or updates an object based on its object _id.
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|collection||no||
-|object||no||
-|writeConcern||yes|DATABASE_DEFAULT|*NONE*, *NORMAL*, *SAFE*, *FSYNC_SAFE*, *REPLICAS_SAFE*, *DATABASE_DEFAULT*, *mongoWriteConcern*
+|collection|the collection where to insert the object|no||
+|object|the object to insert|no||
+|writeConcern|the write concern used to persist the object|yes|DATABASE_DEFAULT|*NONE*, *NORMAL*, *SAFE*, *FSYNC_SAFE*, *REPLICAS_SAFE*, *DATABASE_DEFAULT*, *mongoWriteConcern*
 
 
 
@@ -212,7 +212,7 @@ less performant that dropping the collection and creating it and its indices aga
 |config-ref|Specify which configuration to use for this invocation|yes||
 |collection|the collection whose elements will be removed|no||
 |query|the query object. Objects that match it will be removed|yes||
-|writeConcern||yes|DATABASE_DEFAULT|*NONE*, *NORMAL*, *SAFE*, *FSYNC_SAFE*, *REPLICAS_SAFE*, *DATABASE_DEFAULT*, *mongoWriteConcern*
+|writeConcern|the write concern used to remove the object|yes|DATABASE_DEFAULT|*NONE*, *NORMAL*, *SAFE*, *FSYNC_SAFE*, *REPLICAS_SAFE*, *DATABASE_DEFAULT*, *mongoWriteConcern*
 
 
 
@@ -261,8 +261,8 @@ is passed, returns the number of elements in the collection
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|collection||no||
-|query||yes||
+|collection|the target collection|no||
+|query|the query for counting objects. Only objects matching it will be counted. If unspecified, all objects are counted.|yes||
 
 
 
@@ -279,7 +279,7 @@ collection are retrieved. If no fields object is specified, all fields are retri
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|collection||no||
+|collection|the target collection|no||
 |query|the query object. If unspecified, all documents are returned|yes||
 |fields|the fields to return. If unspecified, all fields are returned|yes||
 
@@ -300,9 +300,9 @@ Throws a {@link MongoException} if no one matches the given query
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|collection||no||
-|query||no||
-|fields||no||
+|collection|the target collection|no||
+|query|the query object that the returned object matches.|no||
+|fields|the set of fields to return. If unspecified, all fields are returned.|yes||
 
 Returns non-null DBObject that matches the query.
 
@@ -320,7 +320,7 @@ Creates a new index
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|collection||no||
+|collection|the name of the collection where the index will be created|no||
 |field|the name of the field which will be indexed|no||
 |order|the indexing order|yes|ASC|*ASC*, *DESC*
 
@@ -338,7 +338,7 @@ Drops an existing index
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|collection||no||
+|collection|the name of the collection where the index is|no||
 |index|the name of the index to drop|no||
 
 
@@ -355,7 +355,7 @@ List existent indices in a collection
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|collection||no||
+|collection|the name of the collection|no||
 
 
 
