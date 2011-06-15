@@ -34,12 +34,12 @@
     </description>
     <http:inbound-endpoint host="localhost" port="9090" path="mongo-demo-insert-product" />
     <mongo:insert-object collection="products">
-       <mongo:objectAttributes>
-        <mongo:objectAttribute key="sku" value="#[header:inbound:sku]"/>
-        <mongo:objectAttribute key="description" value="#[header:inbound:description]"/>
-        <mongo:objectAttribute key="price" value="#[groovy:Double.valueOf(message.getInboundProperty('price'))]"/>
-        <mongo:objectAttribute key="available" value="#[groovy:Boolean.valueOf(message.getInboundProperty('available'))]"/>
-       </mongo:objectAttributes>
+       <mongo:elementAttributes>
+        <mongo:elementAttribute key="sku" value="#[header:inbound:sku]"/>
+        <mongo:elementAttribute key="description" value="#[header:inbound:description]"/>
+        <mongo:elementAttribute key="price" value="#[groovy:Double.valueOf(message.getInboundProperty('price'))]"/>
+        <mongo:elementAttribute key="available" value="#[groovy:Boolean.valueOf(message.getInboundProperty('available'))]"/>
+       </mongo:elementAttributes>
     </mongo:insert-object>
   </flow>
 
@@ -49,7 +49,7 @@
     <http:inbound-endpoint host="localhost" port="9090"
       path="mongo-demo-insert-product-json" />
       <logger level="ERROR" message="#[payload]" />
-    <mongo:insert-object object="#[payload]" collection="products" />
+    <mongo:insert-object element="#[payload]" collection="products" />
   </flow>
   
   

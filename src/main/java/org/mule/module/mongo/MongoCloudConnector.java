@@ -150,17 +150,17 @@ public class MongoCloudConnector implements Initialisable
      * 
      * {@code <insert-object collection="Employees" object="#[header:aBsonEmployee]" writeConcern="SAFE"/>}
      * @param collection the name of the collection where to insert the given object
-     * @param dbObject the object to insert. Maps, JSon Strings and DBObjects are supported.
-     * @param objectAttributes alternative way of specifying the dbObject as a literal Map inside a Mule Flow
+     * @param element the object to insert. Maps, JSon Strings and DBObjects are supported.
+     * @param elementAttributes alternative way of specifying the element as a literal Map inside a Mule Flow
      * @param writeConcern the optional write concern of insertion
      */
     @Operation
     public void insertObject(@Parameter String collection,
-                             @Parameter(name = "object", optional = true) Object dbObject,
-                             @Parameter(optional = true) Map<String, Object> objectAttributes,
+                             @Parameter(optional = true) Object element,
+                             @Parameter(optional = true) Map<String, Object> elementAttributes,
                              @Parameter(optional = true, defaultValue = "DATABASE_DEFAULT") WriteConcern writeConcern)
     {
-        client.insertObject(collection, from(single(objectAttributes, dbObject)), writeConcern);
+        client.insertObject(collection, from(single(elementAttributes, element)), writeConcern);
     }
 
     /**
@@ -173,23 +173,23 @@ public class MongoCloudConnector implements Initialisable
      * @param collection the name of the collection to update
      * @param query the query object used to detect the element to update. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.
      * @param queryAttributes alternative way of passing query as a literal Map inside a Mule flow
-     * @param dbObject the mandatory object that will replace that one which matches the query. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.
-     * @param objectAttributes alternative way of specifying the dbObject as a literal Map inside a Mule Flow 
+     * @param element the mandatory object that will replace that one which matches the query. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.
+     * @param elementAttributes alternative way of specifying the element as a literal Map inside a Mule Flow 
      * @param upsert if the database should create the element if it does not exist
      * @param multi if all or just the first object matching the query will be updated
      * @param writeConcern the write concern used to update 
      */
     @Operation
     public void updateObjects(@Parameter String collection,
-                              @Parameter(name = "query", optional = true) Object query,
+                              @Parameter( optional = true) Object query,
                               @Parameter(optional = true) Map<String, Object> queryAttributes,
-                              @Parameter(name = "object", optional = true) Object dbObject,
-                              @Parameter(optional = true) Map<String, Object> objectAttributes,
+                              @Parameter(optional = true) Object element,
+                              @Parameter(optional = true) Map<String, Object> elementAttributes,
                               @Parameter(optional = true, defaultValue = "false") boolean upsert,
                               @Parameter(optional = true, defaultValue = "true") boolean multi,
                               @Parameter(optional = true, defaultValue = "DATABASE_DEFAULT") WriteConcern writeConcern)
     {
-        client.updateObjects(collection, from(single(queryAttributes, query)), from(single(objectAttributes, dbObject)),
+        client.updateObjects(collection, from(single(queryAttributes, query)), from(single(elementAttributes, element)),
             upsert, multi, writeConcern);
     }
 
@@ -200,17 +200,17 @@ public class MongoCloudConnector implements Initialisable
      *          collection="#[map-payload:aCollectionName]"
      *          object="#[header:aBsonObject]"/>} 
      * @param collection the collection where to insert the object
-     * @param dbObject the mandatory object to insert. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.
-     * @param objectAttributes an alternative way of passing the dbObject as a literal Map inside a Mule Flow
+     * @param element the mandatory object to insert. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.
+     * @param elementAttributes an alternative way of passing the element as a literal Map inside a Mule Flow
      * @param writeConcern the write concern used to persist the object
      */
     @Operation
     public void saveObject(@Parameter String collection,
-                           @Parameter(name = "object", optional = true) Object dbObject,
-                           @Parameter(optional = true) Map<String, Object> objectAttributes,
+                           @Parameter(optional = true) Object element,
+                           @Parameter(optional = true) Map<String, Object> elementAttributes,
                            @Parameter(optional = true, defaultValue = "DATABASE_DEFAULT") WriteConcern writeConcern)
     {
-        client.saveObject(collection, from(single(objectAttributes, dbObject)), writeConcern);
+        client.saveObject(collection, from(single(elementAttributes, element)), writeConcern);
     }
 
     /**
@@ -226,7 +226,7 @@ public class MongoCloudConnector implements Initialisable
      */
     @Operation
     public void removeObjects(@Parameter String collection,
-                              @Parameter(name = "query", optional = true) Object query,
+                              @Parameter( optional = true) Object query,
                               @Parameter(optional = true) Map<String, Object> queryAttributes,
                               @Parameter(optional = true, defaultValue = "DATABASE_DEFAULT") WriteConcern writeConcern)
     {
@@ -281,7 +281,7 @@ public class MongoCloudConnector implements Initialisable
      */
     @Operation
     public long countObjects(@Parameter String collection,
-                             @Parameter(name = "query", optional = true) Object query,
+                             @Parameter( optional = true) Object query,
                              @Parameter(optional = true) Map<String, Object> queryAttributes)
     {
         return client.countObjects(collection, from(single(queryAttributes, query)));
@@ -301,9 +301,9 @@ public class MongoCloudConnector implements Initialisable
      */
     @Operation
     public Iterable<DBObject> findObjects(@Parameter String collection,
-                                          @Parameter(name = "query", optional = true) Object query,
+                                          @Parameter( optional = true) Object query,
                                           @Parameter(optional = true) Map<String, Object> queryAttributes,
-                                          @Parameter(name = "fields-ref", optional = true) Object fieldsRef,
+                                          @Parameter(optional = true) Object fieldsRef,
                                           @Parameter(optional = true) List<String> fields)
     {
         return client.findObjects(collection, from(single(queryAttributes, query)), single(fieldsRef, fields));
@@ -313,13 +313,12 @@ public class MongoCloudConnector implements Initialisable
      * Finds the first object that matches a given query. 
      * Throws a {@link MongoException} if no one matches the given query 
      * 
-     * {@code <find-one-object 
-     *      query="#[variable:aBsonQuery]" >
-     *          <fields>
-     *              <field>Field1</field>
-     *              <field>Field2</field>
-     *          </fields>
-     *      </find-one-object>}   
+     * {@code <find-one-object  query="#[variable:aBsonQuery]" >
+     *         <fields>
+     *           <field>Field1</field>
+     *           <field>Field2</field>
+     *         </fields>
+     *   </find-one-object>}   
      * @param collection the target collection
      * @param query the mandatory query object that the returned object matches. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.
      * @param queryAttributes alternative way of passing the query object, as a literal Map inside a Mule Flow
@@ -329,10 +328,10 @@ public class MongoCloudConnector implements Initialisable
      */
     @Operation
     public DBObject findOneObject(@Parameter String collection,
-                                  @Parameter(name = "query", optional = true) Object query,
+                                  @Parameter(optional = true) Object query,
                                   @Parameter(optional = true) Map<String, Object> queryAttributes,
-                                  @Parameter(name = "fields-ref", optional = true) Object fieldsRef, 
-                                  @Parameter(name = "fields", optional = true) List<String> fields) 
+                                  @Parameter(optional = true) Object fieldsRef, 
+                                  @Parameter(optional = true) List<String> fields) 
     {
         return client.findOneObject(collection, from(single(queryAttributes, query)), single(fieldsRef, fields));
 

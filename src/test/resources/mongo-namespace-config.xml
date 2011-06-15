@@ -51,7 +51,7 @@
     <inbound-endpoint address="vm://InsertObject"
       exchange-pattern="request-response" />
     <mongo:insert-object collection="Employees"
-      object="#[header:aBsonEmployee]" writeConcern="SAFE" />
+      element="#[header:aBsonEmployee]" writeConcern="SAFE" />
   </flow>
 
 
@@ -79,7 +79,7 @@
     <inbound-endpoint address="vm://UpdateObject"
       exchange-pattern="request-response" />
     <mongo:update-objects collection="#[map-payload:aCollectionName]"
-      query="#[variable:aBsonQuery]" object="#[variable:aBsonObject]"
+      query="#[variable:aBsonQuery]" element="#[variable:aBsonObject]"
       upsert="true" />
   </flow>
 
@@ -87,7 +87,7 @@
     <inbound-endpoint address="vm://SaveObject"
       exchange-pattern="request-response" />
     <mongo:save-object collection="#[map-payload:aCollectionName]"
-      object="#[header:aBsonObject]" />
+      element="#[header:aBsonObject]" />
   </flow>
 
   <flow name="RemoveObjects">
@@ -115,14 +115,14 @@
     <inbound-endpoint address="vm://FindObjects"
       exchange-pattern="request-response" />
     <mongo:find-objects collection="myCollection"
-      query="#[map-payload:aBsonQuery]" fields-ref="#[header:aBsonFieldsSet]" />
+      query="#[map-payload:aBsonQuery]" fieldsRef="#[header:aBsonFieldsSet]" />
   </flow>
 
   <flow name="FindOneObject">
     <inbound-endpoint address="vm://FindOneObject"
       exchange-pattern="request-response" />
     <mongo:find-one-object collection="myCollection"
-      query="#[variable:aBsonQuery]" fields-ref="#[map-payload:aBsonFieldsSet]" />
+      query="#[variable:aBsonQuery]" fieldsRef="#[map-payload:aBsonFieldsSet]" />
   </flow>
 
 
@@ -148,11 +148,11 @@
         <mongo:queryAttribute key="foo" value="foobaz" />
         <mongo:queryAttribute key="foobar" value="foobaz" />
       </mongo:queryAttributes>
-      <mongo:objectAttributes>
-        <mongo:objectAttribute key="foo" value="bar" />
-        <mongo:objectAttribute key="foobar"
+      <mongo:elementAttributes>
+        <mongo:elementAttribute key="foo" value="bar" />
+        <mongo:elementAttribute key="foobar"
           value="baz" />
-      </mongo:objectAttributes>
+      </mongo:elementAttributes>
     </mongo:update-objects>
   </flow>
 
@@ -162,11 +162,11 @@
       exchange-pattern="request-response" />
     <mongo:insert-object collection="Employees"
       writeConcern="SAFE">
-      <mongo:objectAttributes>
-        <mongo:objectAttribute key="foo" value="bar" />
-        <mongo:objectAttribute key="foobar"
+      <mongo:elementAttributes>
+        <mongo:elementAttribute key="foo" value="bar" />
+        <mongo:elementAttribute key="foobar"
           value="baz" />
-      </mongo:objectAttributes>
+      </mongo:elementAttributes>
     </mongo:insert-object>
   </flow>
 
