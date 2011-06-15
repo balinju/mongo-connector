@@ -138,6 +138,11 @@ Insert Object
 
 Inserts an object in a collection, setting its id if necessary.
 
+Object can either be a raw DBObject, a String-Object Map or a JSon String.
+If it is passed as Map, a shallow conversion into DBObject is performed - that is, no conversion is performed to its values.
+If it is passed as JSon String, _ids of type ObjectId's must be passed as a String, for example: 
+{ "_id": "ObjectId(4df7b8e8663b85b105725d34)", "foo" : 5, "bar": [ 1 , 2 ] }
+
 
 
      <insert-object collection="Employees" object="#[header:aBsonEmployee]" writeConcern="SAFE"/>
@@ -156,7 +161,7 @@ Update Objects
 
 Updates objects that matches the given query. If parameter multi is set to false,
 only the first document matching it will be updated. 
-Otherwise, all the documents matching it will be updated.   
+Otherwise, all the documents matching it will be updated.  
 
 
 
@@ -167,8 +172,8 @@ Otherwise, all the documents matching it will be updated.
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |collection|the name of the collection to update|no||
-|query|the query object used to detect the element to update|no||
-|object|the object that will replace that one which matches the query|no||
+|query|the query object used to detect the element to update. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.|no||
+|object|the object that will replace that one which matches the query. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.|no||
 |upsert|if the database should create the element if it does not exist|yes|false|
 |multi|if all or just the first object matching the query will be updated|yes|true|
 |writeConcern|the write concern used to update|yes|DATABASE_DEFAULT|*NONE*, *NORMAL*, *SAFE*, *FSYNC_SAFE*, *REPLICAS_SAFE*, *DATABASE_DEFAULT*, *mongoWriteConcern*
@@ -190,7 +195,7 @@ Inserts or updates an object based on its object _id.
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |collection|the collection where to insert the object|no||
-|object|the object to insert|no||
+|object|the object to insert. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.|no||
 |writeConcern|the write concern used to persist the object|yes|DATABASE_DEFAULT|*NONE*, *NORMAL*, *SAFE*, *FSYNC_SAFE*, *REPLICAS_SAFE*, *DATABASE_DEFAULT*, *mongoWriteConcern*
 
 
@@ -204,14 +209,13 @@ less performant that dropping the collection and creating it and its indices aga
 
 
 
-
      <remove-objects collection="#[map-payload:aCollectionName]" query="#[map-payload:aBsonQuery]"/>
 
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |collection|the collection whose elements will be removed|no||
-|query|the query object. Objects that match it will be removed|yes||
+|query|the query object. Objects that match it will be removed. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.|yes||
 |writeConcern|the write concern used to remove the object|yes|DATABASE_DEFAULT|*NONE*, *NORMAL*, *SAFE*, *FSYNC_SAFE*, *REPLICAS_SAFE*, *DATABASE_DEFAULT*, *mongoWriteConcern*
 
 
@@ -262,7 +266,7 @@ is passed, returns the number of elements in the collection
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |collection|the target collection|no||
-|query|the query for counting objects. Only objects matching it will be counted. If unspecified, all objects are counted.|yes||
+|query|the query for counting objects. Only objects matching it will be counted. If unspecified, all objects are counted. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.|yes||
 
 
 
@@ -280,8 +284,8 @@ collection are retrieved. If no fields object is specified, all fields are retri
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |collection|the target collection|no||
-|query|the query object. If unspecified, all documents are returned|yes||
-|fields|the fields to return. If unspecified, all fields are returned|yes||
+|query|the query object. If unspecified, all documents are returned. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.|yes||
+|fields|the fields to return. If unspecified, all fields are returned. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.|yes||
 
 
 
@@ -301,8 +305,8 @@ Throws a {@link MongoException} if no one matches the given query
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |collection|the target collection|no||
-|query|the query object that the returned object matches.|no||
-|fields|the set of fields to return. If unspecified, all fields are returned.|yes||
+|query|the query object that the returned object matches. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.|no||
+|fields|the set of fields to return. If unspecified, all fields are returned.  Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.|yes||
 
 Returns non-null DBObject that matches the query.
 

@@ -141,6 +141,11 @@ public class MongoCloudConnector implements Initialisable
     /**
      * Inserts an object in a collection, setting its id if necessary.
      * 
+     * Object can either be a raw DBObject, a String-Object Map or a JSon String.
+     * If it is passed as Map, a shallow conversion into DBObject is performed - that is, no conversion is performed to its values.
+     * If it is passed as JSon String, _ids of type ObjectId's must be passed as a String, for example: 
+     * { "_id": "ObjectId(4df7b8e8663b85b105725d34)", "foo" : 5, "bar": [ 1 , 2 ] }
+     * 
      * {@code <insert-object collection="Employees" object="#[header:aBsonEmployee]" writeConcern="SAFE"/>}
      * @param collection the name of the collection where to insert the given object
      * @param dbObject the object to insert
@@ -157,13 +162,13 @@ public class MongoCloudConnector implements Initialisable
     /**
      * Updates objects that matches the given query. If parameter multi is set to false,
      * only the first document matching it will be updated. 
-     * Otherwise, all the documents matching it will be updated.   
+     * Otherwise, all the documents matching it will be updated.  
      * 
      * {@code <update-objects collection="#[map-payload:aCollectionName]" 
      *         query="#[variable:aBsonQuery]" object="#[variable:aBsonObject]" upsert="true"/>} 
      * @param collection the name of the collection to update
-     * @param query the query object used to detect the element to update
-     * @param dbObject the object that will replace that one which matches the query
+     * @param query the query object used to detect the element to update. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.
+     * @param dbObject the object that will replace that one which matches the query. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.
      * @param upsert if the database should create the element if it does not exist
      * @param multi if all or just the first object matching the query will be updated
      * @param writeConcern the write concern used to update 
@@ -186,7 +191,7 @@ public class MongoCloudConnector implements Initialisable
      *          collection="#[map-payload:aCollectionName]"
      *          object="#[header:aBsonObject]"/>} 
      * @param collection the collection where to insert the object
-     * @param dbObject the object to insert
+     * @param dbObject the object to insert. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.
      * @param writeConcern the write concern used to persist the object
      */
     @Operation
@@ -202,10 +207,9 @@ public class MongoCloudConnector implements Initialisable
      * If query is not specified, all objects are removed. However, please notice that this is normally
      * less performant that dropping the collection and creating it and its indices again
      * 
-     * 
      * {@code <remove-objects collection="#[map-payload:aCollectionName]" query="#[map-payload:aBsonQuery]"/>}
      * @param collection the collection whose elements will be removed 
-     * @param query the query object. Objects that match it will be removed
+     * @param query the query object. Objects that match it will be removed. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.
      * @param writeConcern the write concern used to remove the object
      */
     @Operation
@@ -257,7 +261,7 @@ public class MongoCloudConnector implements Initialisable
      *      
      * @param collection the target collection  
      * @param query the query for counting objects. Only objects matching it will be counted. 
-     *          If unspecified, all objects are counted.
+     *          If unspecified, all objects are counted. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.
      */
     @Operation
     public long countObjects(@Parameter String collection, @Parameter(optional = true) Object query)
@@ -271,8 +275,8 @@ public class MongoCloudConnector implements Initialisable
      * 
      * {@code <find-objects query="#[map-payload:aBsonQuery]" fields="#[header:aBsonFieldsSet]"/>}
      * @param collection the target collection
-     * @param query the query object. If unspecified, all documents are returned
-     * @param fields the fields to return. If unspecified, all fields are returned
+     * @param query the query object. If unspecified, all documents are returned. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.
+     * @param fields the fields to return. If unspecified, all fields are returned. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.
      */
     @Operation
     public Iterable<DBObject> findObjects(@Parameter String collection,
@@ -290,8 +294,8 @@ public class MongoCloudConnector implements Initialisable
      *      query="#[variable:aBsonQuery]" 
      *      fields="#[map-payload:aBsonFieldsSet]"/>}   
      * @param collection the target collection
-     * @param query the query object that the returned object matches.
-     * @param fields the set of fields to return. If unspecified, all fields are returned.  
+     * @param query the query object that the returned object matches. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.
+     * @param fields the set of fields to return. If unspecified, all fields are returned.  Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.
      * @return a non-null DBObject that matches the query. 
      */
     @Operation
