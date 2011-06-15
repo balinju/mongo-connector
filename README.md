@@ -128,7 +128,7 @@ If the collection already exists, a MongoException will be thrown.
 |config-ref|Specify which configuration to use for this invocation|yes||
 |collection|the name of the collection to create|no||
 |capped|if the collection will be capped|yes|false|
-|maxObjects||yes||
+|maxObjects|the maximum number of documents the new collection is able to contain|yes||
 |size|the maximum size of the new collection|yes||
 
 
@@ -140,7 +140,7 @@ Inserts an object in a collection, setting its id if necessary.
 
 Object can either be a raw DBObject, a String-Object Map or a JSon String.
 If it is passed as Map, a shallow conversion into DBObject is performed - that is, no conversion is performed to its values.
-If it is passed as JSon String, _ids of type ObjectId's must be passed as a String, for example: 
+If it is passed as JSon String, _ids of type ObjectId must be passed as a String, for example: 
 { "_id": "ObjectId(4df7b8e8663b85b105725d34)", "foo" : 5, "bar": [ 1 , 2 ] }
 
 
@@ -151,7 +151,8 @@ If it is passed as JSon String, _ids of type ObjectId's must be passed as a Stri
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |collection|the name of the collection where to insert the given object|no||
-|object|the object to insert|no||
+|object|the object to insert. Maps, JSon Strings and DBObjects are supported.|yes||
+|objectAttributes|alternative way of specifying the dbObject as a literal Map inside a Mule Flow|yes||
 |writeConcern|the optional write concern of insertion|yes|DATABASE_DEFAULT|*NONE*, *NORMAL*, *SAFE*, *FSYNC_SAFE*, *REPLICAS_SAFE*, *DATABASE_DEFAULT*, *mongoWriteConcern*
 
 
@@ -172,8 +173,10 @@ Otherwise, all the documents matching it will be updated.
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |collection|the name of the collection to update|no||
-|query|the query object used to detect the element to update. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.|no||
-|object|the object that will replace that one which matches the query. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.|no||
+|query|the query object used to detect the element to update. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.|yes||
+|queryAttributes|alternative way of passing query as a literal Map inside a Mule flow|yes||
+|object|the mandatory object that will replace that one which matches the query. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.|yes||
+|objectAttributes|alternative way of specifying the dbObject as a literal Map inside a Mule Flow|yes||
 |upsert|if the database should create the element if it does not exist|yes|false|
 |multi|if all or just the first object matching the query will be updated|yes|true|
 |writeConcern|the write concern used to update|yes|DATABASE_DEFAULT|*NONE*, *NORMAL*, *SAFE*, *FSYNC_SAFE*, *REPLICAS_SAFE*, *DATABASE_DEFAULT*, *mongoWriteConcern*
@@ -195,7 +198,8 @@ Inserts or updates an object based on its object _id.
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |collection|the collection where to insert the object|no||
-|object|the object to insert. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.|no||
+|object|the mandatory object to insert. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.|yes||
+|objectAttributes|an alternative way of passing the dbObject as a literal Map inside a Mule Flow|yes||
 |writeConcern|the write concern used to persist the object|yes|DATABASE_DEFAULT|*NONE*, *NORMAL*, *SAFE*, *FSYNC_SAFE*, *REPLICAS_SAFE*, *DATABASE_DEFAULT*, *mongoWriteConcern*
 
 
@@ -215,7 +219,8 @@ less performant that dropping the collection and creating it and its indices aga
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |collection|the collection whose elements will be removed|no||
-|query|the query object. Objects that match it will be removed. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.|yes||
+|query|the optional query object. Objects that match it will be removed. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.|yes||
+|queryAttributes|an alternative way of passing the query as a literal Map inside a Mule Flow|yes||
 |writeConcern|the write concern used to remove the object|yes|DATABASE_DEFAULT|*NONE*, *NORMAL*, *SAFE*, *FSYNC_SAFE*, *REPLICAS_SAFE*, *DATABASE_DEFAULT*, *mongoWriteConcern*
 
 
@@ -248,6 +253,8 @@ consult MongoDB documentation for writing them.
 |reduceFunction|a JavaScript encoded reducing function|no||
 |outputCollection|the name of the output collection to write the results, replacing previous collection if existed, mandatory when results may be larger than 16MB. If outputCollection is unspecified, the computation is performed in-memory and not persisted.|yes||
 
+Returns iterable that retrieves the resulting collection DBObjects
+
 
 
 Count Objects
@@ -266,7 +273,10 @@ is passed, returns the number of elements in the collection
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |collection|the target collection|no||
-|query|the query for counting objects. Only objects matching it will be counted. If unspecified, all objects are counted. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.|yes||
+|query|the optional query for counting objects. Only objects matching it will be counted. If unspecified, all objects are counted. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.|yes||
+|queryAttributes|an alternative way of passing the query as a literal Map inside a Mule Flow|yes||
+
+Returns amount of objects that matches the query
 
 
 
@@ -278,14 +288,18 @@ collection are retrieved. If no fields object is specified, all fields are retri
 
 
 
-     <find-objects query="#[map-payload:aBsonQuery]" fields="#[header:aBsonFieldsSet]"/>
+     <find-objects query="#[map-payload:aBsonQuery]" fields-ref="#[header:aBsonFieldsSet]"/>
 
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |collection|the target collection|no||
-|query|the query object. If unspecified, all documents are returned. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.|yes||
-|fields|the fields to return. If unspecified, all fields are returned. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.|yes||
+|query|the optional query object. If unspecified, all documents are returned. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.|yes||
+|queryAttributes|alternative way of passing the query object, as a literal Map inside a Mule Flow|yes||
+|fields-ref|an optional list of fields to return. If unspecified, all fields are returned.|yes||
+|fields|alternative way of passing fields as a literal List|yes||
+
+Returns iterable of DBObjects
 
 
 
@@ -298,15 +312,21 @@ Throws a {@link MongoException} if no one matches the given query
 
 
      <find-one-object 
-         query="#[variable:aBsonQuery]" 
-         fields="#[map-payload:aBsonFieldsSet]"/>
+         query="#[variable:aBsonQuery]" >
+             <fields>
+                 <field>Field1</field>
+                 <field>Field2</field>
+             </fields>
+         </find-one-object>
 
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |collection|the target collection|no||
-|query|the query object that the returned object matches. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.|no||
-|fields|the set of fields to return. If unspecified, all fields are returned.  Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.|yes||
+|query|the mandatory query object that the returned object matches. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.|yes||
+|queryAttributes|alternative way of passing the query object, as a literal Map inside a Mule Flow|yes||
+|fields-ref|an optional list of fields to return. If unspecified, all fields are returned.|yes||
+|fields|alternative way of passing fields as a literal List|yes||
 
 Returns non-null DBObject that matches the query.
 
@@ -334,7 +354,7 @@ Drop Index
 ----------
 
 Drops an existing index
-
+ 
 
 
      <drop-index collection="myCollection" name="#[map-payload:anIndexName]"/>
@@ -360,6 +380,8 @@ List existent indices in a collection
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |collection|the name of the collection|no||
+
+Returns collection of DBObjects with indices information
 
 
 

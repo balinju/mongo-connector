@@ -30,6 +30,8 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 import com.mongodb.Mongo;
 
+import java.util.Arrays;
+
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -154,29 +156,5 @@ public class MongoTestCase
     {
         client.listIndices(A_COLLECTION);
         verify(collectionMock).getIndexInfo();
-    }
-    
-    @Test
-    public void findObjectsWithQueryAndFields() throws Exception
-    {
-        BasicDBObject field = new BasicDBObject();
-        BasicDBObject query = new BasicDBObject();
-        client.findObjects(A_COLLECTION, query, field);
-        verify(collectionMock).find(query, field);
-    }
-    
-    @Test
-    public void findObjectsWithQueryWithoutFields() throws Exception
-    {
-        BasicDBObject query = new BasicDBObject();
-        client.findObjects(A_COLLECTION, query, null);
-        verify(collectionMock).find(query, null);
-    }
-    
-    @Test
-    public void findObjectsWithoutWithoutFields() throws Exception
-    {
-        client.findObjects(A_COLLECTION, null, null);
-        verify(collectionMock).find(new BasicDBObject(), null);
     }
 }

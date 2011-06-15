@@ -55,6 +55,26 @@
   </flow>
 
 
+  <flow name="CreateIndex">
+    <inbound-endpoint address="vm://CreateIndex"
+      exchange-pattern="request-response" />
+    <mongo:create-index collection="myCollection"
+      field="myField" order="DESC" />
+  </flow>
+
+  <flow name="DropIndex">
+    <inbound-endpoint address="vm://DropIndex"
+      exchange-pattern="request-response" />
+    <mongo:drop-index collection="myCollection"
+      index="#[map-payload:anIndexName]" />
+  </flow>
+
+  <flow name="ListIndices">
+    <inbound-endpoint address="vm://ListIndices"
+      exchange-pattern="request-response" />
+    <mongo:list-indices collection="myCollection" />
+  </flow>
+
   <flow name="UpdateObject">
     <inbound-endpoint address="vm://UpdateObject"
       exchange-pattern="request-response" />
@@ -62,7 +82,6 @@
       query="#[variable:aBsonQuery]" object="#[variable:aBsonObject]"
       upsert="true" />
   </flow>
-
 
   <flow name="SaveObject">
     <inbound-endpoint address="vm://SaveObject"
@@ -96,33 +115,59 @@
     <inbound-endpoint address="vm://FindObjects"
       exchange-pattern="request-response" />
     <mongo:find-objects collection="myCollection"
-      query="#[map-payload:aBsonQuery]" fields="#[header:aBsonFieldsSet]" />
+      query="#[map-payload:aBsonQuery]" fields-ref="#[header:aBsonFieldsSet]" />
   </flow>
 
   <flow name="FindOneObject">
     <inbound-endpoint address="vm://FindOneObject"
       exchange-pattern="request-response" />
     <mongo:find-one-object collection="myCollection"
-      query="#[variable:aBsonQuery]" fields="#[map-payload:aBsonFieldsSet]" />
+      query="#[variable:aBsonQuery]" fields-ref="#[map-payload:aBsonFieldsSet]" />
   </flow>
 
-  <flow name="CreateIndex">
-    <inbound-endpoint address="vm://CreateIndex"
+
+  <flow name="FindOneObjectFieldsList">
+    <inbound-endpoint address="vm://FindOneObjectList"
       exchange-pattern="request-response" />
-    <mongo:create-index collection="myCollection"
-      field="myField" order="DESC" />
+    <mongo:find-one-object collection="myCollection"
+      query="#[variable:aBsonQuery]">
+      <mongo:fields>
+        <mongo:field>aField</mongo:field>
+        <mongo:field>anotherField</mongo:field>
+      </mongo:fields>
+    </mongo:find-one-object>
   </flow>
 
-  <flow name="DropIndex">
-    <inbound-endpoint address="vm://DropIndex"
+
+ <flow name="UpdateObjectAsMap">
+    <inbound-endpoint address="vm://UpdateObjectAsMap"
       exchange-pattern="request-response" />
-    <mongo:drop-index collection="myCollection"
-      index="#[map-payload:anIndexName]" />
+    <mongo:update-objects collection="#[map-payload:aCollectionName]"
+      query="#[variable:aBsonQuery]" upsert="true">
+      <mongo:queryAttributes>
+        <mongo:queryAttribute key="foo" value="foobaz" />
+        <mongo:queryAttribute key="foobar" value="foobaz" />
+      </mongo:queryAttributes>
+      <mongo:objectAttributes>
+        <mongo:objectAttribute key="foo" value="bar" />
+        <mongo:objectAttribute key="foobar"
+          value="baz" />
+      </mongo:objectAttributes>
+    </mongo:update-objects>
   </flow>
-  
-  <flow name="ListIndices">
-    <inbound-endpoint address="vm://ListIndices"
+
+
+  <flow name="InsertObjectAsMap">
+    <inbound-endpoint address="vm://InsertObjectAsMap"
       exchange-pattern="request-response" />
-    <mongo:list-indices collection="myCollection" />
+    <mongo:insert-object collection="Employees"
+      writeConcern="SAFE">
+      <mongo:objectAttributes>
+        <mongo:objectAttribute key="foo" value="bar" />
+        <mongo:objectAttribute key="foobar"
+          value="baz" />
+      </mongo:objectAttributes>
+    </mongo:insert-object>
   </flow>
+
 </mule>

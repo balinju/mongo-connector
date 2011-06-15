@@ -13,6 +13,7 @@ package org.mule.module.mongo.api;
 import com.mongodb.DBObject;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
@@ -50,9 +51,9 @@ public interface MongoClient
 
     long countObjects(@NotNull String collection, DBObject query);
 
-    Iterable<DBObject> findObjects(@NotNull String collection, DBObject query, DBObject fields);
+    Iterable<DBObject> findObjects(@NotNull String collection, DBObject query, List<String> fields);
 
-    DBObject findOneObject(@NotNull String collection, DBObject query, DBObject fields);
+    DBObject findOneObject(@NotNull String collection, DBObject query, List<String> fields);
 
     void createIndex(String collection, String field, IndexOrder order);
 

@@ -13,11 +13,11 @@ package org.mule.module.mongo.api;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBObject;
-import com.mongodb.MapReduceOutput;
 import com.mongodb.MongoException;
 import com.mongodb.MapReduceCommand.OutputType;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
@@ -70,16 +70,16 @@ public class MongoClientImpl implements MongoClient
         return openSession().collectionExists(collection);
     }
 
-    public Iterable<DBObject> findObjects(@NotNull String collection, DBObject query, DBObject fields)
+    public Iterable<DBObject> findObjects(@NotNull String collection, DBObject query, List<String> fields)
     {
         Validate.notNull(collection);
-        return openSession().getCollection(collection).find(query, fields);
+        return openSession().getCollection(collection).find(query, FieldsSet.from(fields));
     }
 
-    public DBObject findOneObject(@NotNull String collection, DBObject query, DBObject fields)
+    public DBObject findOneObject(@NotNull String collection, DBObject query, List<String> fields)
     {
         Validate.notNull(collection);
-        DBObject element = openSession().getCollection(collection).findOne(query, fields);
+        DBObject element = openSession().getCollection(collection).findOne(query, FieldsSet.from(fields));
         if (element == null)
         {
             throw new MongoException("No object found for query " + query);
@@ -166,6 +166,8 @@ public class MongoClientImpl implements MongoClient
     {
         return openSession().getCollection(collection).getIndexInfo();
     }
+    
+   
 
     /**
      * Gets the DB objects, ensuring that a consistent request is in progress.
