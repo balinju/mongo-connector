@@ -10,6 +10,9 @@
 
 package org.mulesoft.demo.mongo;
 
+import org.mule.api.MuleEvent;
+import org.mule.api.MuleMessage;
+import org.mule.api.transport.PropertyScope;
 import org.mule.construct.SimpleFlowConstruct;
 import org.mule.tck.FunctionalTestCase;
 
@@ -22,19 +25,26 @@ public class MongoFunctionalTestDriver extends FunctionalTestCase
         return "mule-config.xml";
     }
 
-    public void testCreateProductsFlow() throws Exception
+    public void testInsertProductJson() throws Exception
     {
-        lookupFlowConstruct("InsertProducts").process(getTestEvent(""));
+        MuleEvent event = getTestEvent("");
+        MuleMessage message = event.getMessage();
+        message.setProperty("sku", "FX48960", PropertyScope.INBOUND);
+        message.setProperty("description", "A product", PropertyScope.INBOUND);
+        message.setProperty("price", "56.50", PropertyScope.INBOUND);
+        message.setProperty("available", "false", PropertyScope.INBOUND);
+        lookupFlowConstruct("InsertProduct").process(event);
     }
 
-    public void ignoretestSetupFlow() throws Exception
+    public void testInsertProductJsonFlow() throws Exception
     {
-        lookupFlowConstruct("InsertProductsJson").process(getTestEvent(""));
+        lookupFlowConstruct("InsertProductJson").process(
+            getTestEvent("{ \"sku\" : \"AF459\", \"description\" : \"Another Product\", \"price\" : 459.05, \"available\" : true }"));
     }
 
     private SimpleFlowConstruct lookupFlowConstruct(final String name)
     {
         return (SimpleFlowConstruct) muleContext.getRegistry().lookupFlowConstruct(name);
     }
-
 }
+

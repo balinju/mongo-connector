@@ -3,9 +3,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.mule.demos</groupId>
-	<artifactId>mule-mongo-demo-setup</artifactId>
+	<artifactId>mule-mongo-demo-insert</artifactId>
 	<packaging>mule</packaging>
-	<name>Mule Mongo Demo Setup</name>
+	<name>Mule Mongo Insert Demo</name>
 	<version>1.0</version>
 
 	<properties>

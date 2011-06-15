@@ -13,41 +13,44 @@
 
 <mule xmlns="http://www.mulesoft.org/schema/mule/core" 
   xmlns:mongo="http://www.mulesoft.org/schema/mule/mongo"
-  xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:spring="http://www.springframework.org/schema/beans"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+  xmlns:json="http://www.mulesoft.org/schema/mule/json" 
+  xmlns:spring="http://www.springframework.org/schema/beans"
+  xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting"
+  xmlns:http="http://www.mulesoft.org/schema/mule/http"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
   xsi:schemaLocation="
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
        http://www.mulesoft.org/schema/mule/mongo http://www.mulesoft.org/schema/mule/mongo/1.0/mule-mongo.xsd
        http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
        http://www.mulesoft.org/schema/mule/json    http://www.mulesoft.org/schema/mule/json/3.1/mule-json.xsd
-       http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/3.0/mule-http.xsd">
+       http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/3.0/mule-http.xsd
+       http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/3.1/mule-scripting.xsd">
 
-  <mongo:config name="mongo" database="${mongoDatabase}"
-    hostname="${mongoHostname}" />
+  <mongo:config name="mongo" />
+
+  <flow name="InsertProduct">
+    <description>Inserts a product into a collection specifying its
+      fields
+    </description>
+    <http:inbound-endpoint host="localhost" port="9090" path="mongo-demo-insert-product" />
+    <mongo:insert-object collection="products">
+       <mongo:objectAttributes>
+        <mongo:objectAttribute key="sku" value="#[header:inbound:sku]"/>
+        <mongo:objectAttribute key="description" value="#[header:inbound:description]"/>
+        <mongo:objectAttribute key="price" value="#[groovy:Double.valueOf(message.getInboundProperty('price'))]"/>
+        <mongo:objectAttribute key="available" value="#[groovy:Boolean.valueOf(message.getInboundProperty('available'))]"/>
+       </mongo:objectAttributes>
+    </mongo:insert-object>
+  </flow>
 
   <flow name="InsertProductJson">
     <description>Inserts a product into a collection specifying its JSon
     </description>
     <http:inbound-endpoint host="localhost" port="9090"
       path="mongo-demo-insert-product-json" />
-    <mongo:insert-object object="#[header:productJson]"
-      collection="products" />
+      <logger level="ERROR" message="#[payload]" />
+    <mongo:insert-object object="#[payload]" collection="products" />
   </flow>
   
-  <flow name="InsertProduct">
-    <description>Inserts a product into a collection specifying its
-      fields
-    </description>
-    <http:inbound-endpoint host="localhost" port="9090"
-      path="mongo-demo-insert-product" />
-      <!-- Type conversions -->
-    <mongo:insert-object collection="products">
-       <mongo:object-attributes>
-        <mongo:object-attribute key="sku" value="#[header:sku]"/>
-        <mongo:object-attribute key="description" value="#[header:description]"/>
-        <mongo:object-attribute key="price" value="#[header:price]"/>
-        <mongo:object-attribute key="availability" value="#[header:availability]"/>
-       </mongo:object-attributes>
-    </mongo:insert-object>
-  </flow>
+  
 </mule>
