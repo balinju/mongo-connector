@@ -21,6 +21,7 @@
        http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
        http://www.mulesoft.org/schema/mule/json    http://www.mulesoft.org/schema/mule/json/3.1/mule-json.xsd
        http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/3.0/mule-http.xsd">
+       
 
   <mongo:config name="mongo" />
   
@@ -59,5 +60,8 @@
           <mongo:queryAttribute key="_id" value="#[header:session:cityIcao]"/>
         </mongo:queryAttributes>
       </mongo:find-one-object>
+      <expression-transformer>
+      <return-argument expression="payload.get('value').toString()" evaluator="groovy"/>
+    </expression-transformer>
   </flow>
 </mule>

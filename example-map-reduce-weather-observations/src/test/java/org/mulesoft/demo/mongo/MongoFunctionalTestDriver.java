@@ -30,7 +30,7 @@ public class MongoFunctionalTestDriver extends FunctionalTestCase
         System.out.println(lookupFlowConstruct("AddWeatherObservation").process(testEvent).getMessageAsString());
     }
     
-    public void testtestGetAverageTemperature() throws Exception
+    public void testGetAverageTemperature() throws Exception
     {
         MuleEvent testEvent = getTestEvent("");
         testEvent.getMessage().setProperty("cityIcao", "KMCO", PropertyScope.INBOUND);

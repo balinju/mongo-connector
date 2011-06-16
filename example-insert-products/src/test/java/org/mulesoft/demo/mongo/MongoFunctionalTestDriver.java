@@ -44,12 +44,5 @@ public class MongoFunctionalTestDriver extends FunctionalTestCase
         return (SimpleFlowConstruct) muleContext.getRegistry().lookupFlowConstruct(name);
     }
     
-    @Override
-    public void handleTimeout(long timeout, TimeUnit unit)
-    {
-     
-    }
-    
-    
 }
 

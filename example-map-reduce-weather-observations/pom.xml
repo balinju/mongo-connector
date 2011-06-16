@@ -14,7 +14,7 @@
 		<mule.mongo.version>1.0-SNAPSHOT</mule.mongo.version>
 	</properties>
 
-	<description>Example that map-reduces a collection of weather obeservations</description>
+	<description>Example that map-reduces a collection of weather observations</description>
 	
 	<build>
 		<defaultGoal>install</defaultGoal>

@@ -41,6 +41,9 @@
         <mongo:elementAttribute key="available" value="#[groovy:Boolean.valueOf(message.getInboundProperty('available'))]"/>
        </mongo:elementAttributes>
     </mongo:insert-object>
+     <expression-transformer>
+      <return-argument expression="Successfully added a product" evaluator="string"/>
+    </expression-transformer>
   </flow>
 
 </mule>
