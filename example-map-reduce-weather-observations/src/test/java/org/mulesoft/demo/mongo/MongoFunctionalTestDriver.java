@@ -23,13 +23,19 @@ public class MongoFunctionalTestDriver extends FunctionalTestCase
         return "mule-config.xml";
     }
 
-    public void testCreateProductsFlow() throws Exception
+    public void testAddWeatherObservation() throws Exception
     {
         MuleEvent testEvent = getTestEvent("");
         testEvent.getMessage().setProperty("cityIcao", "KMCO", PropertyScope.INBOUND);
-        lookupFlowConstruct("AddWeatherObservationAndComputeStats").process(testEvent);
+        System.out.println(lookupFlowConstruct("AddWeatherObservation").process(testEvent).getMessageAsString());
     }
-
+    
+    public void testtestGetAverageTemperature() throws Exception
+    {
+        MuleEvent testEvent = getTestEvent("");
+        testEvent.getMessage().setProperty("cityIcao", "KMCO", PropertyScope.INBOUND);
+        System.out.println(lookupFlowConstruct("GetAverageTemperature").process(testEvent).getMessageAsString());
+    }
     private SimpleFlowConstruct lookupFlowConstruct(final String name)
     {
         return (SimpleFlowConstruct) muleContext.getRegistry().lookupFlowConstruct(name);

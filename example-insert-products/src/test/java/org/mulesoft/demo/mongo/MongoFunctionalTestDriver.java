@@ -27,7 +27,7 @@ public class MongoFunctionalTestDriver extends FunctionalTestCase
         return "mule-config.xml";
     }
 
-    public void testInsertProductJson() throws Exception
+    public void testInsertProduct() throws Exception
     {
         MuleEvent event = getTestEvent("");
         MuleMessage message = event.getMessage();
@@ -38,7 +38,7 @@ public class MongoFunctionalTestDriver extends FunctionalTestCase
         lookupFlowConstruct("InsertProduct").process(event);
     }
 
-    public void testInsertProductJsonFlow() throws Exception
+    public void testInsertProductJson() throws Exception
     {
         lookupFlowConstruct("InsertProductJson").process(
             getTestEvent("{ \"sku\" : \"AF459\", \"description\" : \"Another Product\", \"price\" : 459.05, \"available\" : true }"));

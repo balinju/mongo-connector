@@ -48,7 +48,6 @@
     </description>
     <http:inbound-endpoint host="localhost" port="9090"
       path="mongo-demo-insert-product-json" />
-      <logger level="ERROR" message="#[payload]" />
     <mongo:insert-object element="#[payload]" collection="products" />
   </flow>
   

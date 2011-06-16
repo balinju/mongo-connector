@@ -3,9 +3,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.mule.demos</groupId>
-	<artifactId>mule-mongo-demo-insert</artifactId>
+	<artifactId>mule-mongo-demo-insert-products</artifactId>
 	<packaging>mule</packaging>
-	<name>Mule Mongo Insert Demo</name>
+	<name>Mule Mongo Insert Products Demo</name>
 	<version>1.0</version>
 
 	<properties>
@@ -14,7 +14,7 @@
 		<mule.mongo.version>1.0-SNAPSHOT</mule.mongo.version>
 	</properties>
 
-	<description>Example that inserts objects into a Mongo Collection</description>
+	<description>Example that inserts products into a Mongo Collection</description>
 	
 	<build>
 		<defaultGoal>install</defaultGoal>

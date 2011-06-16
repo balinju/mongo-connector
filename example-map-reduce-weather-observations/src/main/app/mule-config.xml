@@ -23,27 +23,30 @@
        http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/3.0/mule-http.xsd">
 
   <mongo:config name="mongo" />
-
-  <flow name="AddObservation">
-    <description>Given a weather observation, it adds it to a collection</description>
-    <logger message="Populating collection with the following weather information: #[payload]" />
-    <mongo:insert-object collection="weatherObservations" element="#[json:weatherObservation]"/>
-  </flow>
-
-  <flow name="AddWeatherObservationAndComputeStats">
-    <http:inbound-endpoint host="localhost" port="9090"
-      path="mongo-demo-map-reduce-add-weather-observation-and-compute-stats" />
+  
+  <flow name="AddIcaoToSession">
     <message-properties-transformer scope="session">
       <add-message-property key="cityIcao"
         value="#[header:inbound:cityIcao]" />
     </message-properties-transformer>
+  </flow>
+
+  <flow name="AddWeatherObservation">
+    <http:inbound-endpoint host="localhost" port="9090"
+      path="mongo-demo-add-weater-observation" />
+    <flow-ref name="AddIcaoToSession"/>
     <http:outbound-endpoint host="ws.geonames.org"
       port="80" path="weatherIcaoJSON?ICAO=#[header:session:cityIcao]" />
-    <flow-ref name="AddObservation" />
-    <flow-ref name="ComputeStats"/>
+    <mongo:insert-object collection="weatherObservations" element="#[json:weatherObservation]"/>
+    <expression-transformer>
+      <return-argument expression="Successfully added a weather observation" evaluator="string"/>
+    </expression-transformer>
   </flow>
   
-  <flow name="ComputeStats">
+  <flow name="GetAverageTemperature">
+    <http:inbound-endpoint host="localhost" port="9090"
+      path="mongo-demo-get-average-temperature" />
+    <flow-ref name="AddIcaoToSession"/>
     <mongo:map-reduce-objects
       collection="weatherObservations"  
       mapFunction='function(){ emit(this.ICAO, parseFloat(this.temperature) ); }' 
