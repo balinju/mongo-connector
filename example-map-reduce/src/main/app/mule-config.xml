@@ -22,32 +22,39 @@
        http://www.mulesoft.org/schema/mule/json    http://www.mulesoft.org/schema/mule/json/3.1/mule-json.xsd
        http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/3.0/mule-http.xsd">
 
-  <mongo:config name="mongo" database="${mongoDatabase}"
-    hostname="${mongoHostname}" />
+  <mongo:config name="mongo" />
 
-  <flow name="InsertProductJson">
-    <description>Inserts a product into a collection specifying its JSon
-    </description>
+  <flow name="AddObservation">
+    <description>Given a weather observation, it adds it to a collection</description>
+    <logger message="Populating collection with the following weather information: #[payload]" />
+    <mongo:insert-object collection="weatherObservations" element="#[json:weatherObservation]"/>
+  </flow>
+
+  <flow name="AddWeatherObservationAndComputeStats">
     <http:inbound-endpoint host="localhost" port="9090"
-      path="mongo-demo-insert-product-json" />
-    <mongo:insert-object object="#[header:productJson]"
-      collection="products" />
+      path="mongo-demo-map-reduce-add-weather-observation-and-compute-stats" />
+    <message-properties-transformer scope="session">
+      <add-message-property key="cityIcao"
+        value="#[header:inbound:cityIcao]" />
+    </message-properties-transformer>
+    <http:outbound-endpoint host="ws.geonames.org"
+      port="80" path="weatherIcaoJSON?ICAO=#[header:session:cityIcao]" />
+    <flow-ref name="AddObservation" />
+    <flow-ref name="ComputeStats"/>
   </flow>
   
-  <flow name="InsertProduct">
-    <description>Inserts a product into a collection specifying its
-      fields
-    </description>
-    <http:inbound-endpoint host="localhost" port="9090"
-      path="mongo-demo-insert-product" />
-      <!-- Type conversions -->
-    <mongo:insert-object collection="products">
-       <mongo:object-attributes>
-        <mongo:object-attribute key="sku" value="#[header:sku]"/>
-        <mongo:object-attribute key="description" value="#[header:description]"/>
-        <mongo:object-attribute key="price" value="#[header:price]"/>
-        <mongo:object-attribute key="availability" value="#[header:availability]"/>
-       </mongo:object-attributes>
-    </mongo:insert-object>
+  <flow name="ComputeStats">
+    <mongo:map-reduce-objects
+      collection="weatherObservations"  
+      mapFunction='function(){ emit(this.ICAO, parseFloat(this.temperature) ); }' 
+      reduceFunction='function(key, values) {          
+            return values.reduce(function(a,e) { return a + e }) / values.length;    
+          }'
+          outputCollection="weatherStats" />
+      <mongo:find-one-object collection="weatherStats">
+        <mongo:queryAttributes>
+          <mongo:queryAttribute key="_id" value="#[header:session:cityIcao]"/>
+        </mongo:queryAttributes>
+      </mongo:find-one-object>
   </flow>
 </mule>

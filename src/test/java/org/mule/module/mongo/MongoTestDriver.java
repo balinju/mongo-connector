@@ -252,7 +252,7 @@ public class MongoTestDriver
         });
         Iterable<DBObject> results = connector.mapReduceObjects(MAIN_COLLECTION,
             "function() { emit(this.candidate, this.votes) }",
-            "function(key, values) {  var sum = 0;  values.forEach(function(x){ sum += x }); return sum; } ",
+            "function(key, values) { return values.reduce(function(a, e){ return a + e });  } ",
             outputCollection);
         assertNotNull(results);
         Iterator<DBObject> iter = results.iterator();

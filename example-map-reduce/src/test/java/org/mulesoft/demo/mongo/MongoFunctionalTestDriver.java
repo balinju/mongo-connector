@@ -10,12 +10,13 @@
 
 package org.mulesoft.demo.mongo;
 
+import org.mule.api.MuleEvent;
+import org.mule.api.transport.PropertyScope;
 import org.mule.construct.SimpleFlowConstruct;
 import org.mule.tck.FunctionalTestCase;
 
 public class MongoFunctionalTestDriver extends FunctionalTestCase
 {
-
     @Override
     protected String getConfigResources()
     {
@@ -24,12 +25,9 @@ public class MongoFunctionalTestDriver extends FunctionalTestCase
 
     public void testCreateProductsFlow() throws Exception
     {
-        lookupFlowConstruct("InsertProducts").process(getTestEvent(""));
-    }
-
-    public void ignoretestSetupFlow() throws Exception
-    {
-        lookupFlowConstruct("InsertProductsJson").process(getTestEvent(""));
+        MuleEvent testEvent = getTestEvent("");
+        testEvent.getMessage().setProperty("cityIcao", "KMCO", PropertyScope.INBOUND);
+        lookupFlowConstruct("AddWeatherObservationAndComputeStats").process(testEvent);
     }
 
     private SimpleFlowConstruct lookupFlowConstruct(final String name)
