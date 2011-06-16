@@ -2,7 +2,7 @@ Mongo Map Reduce Weather Observations Demo
 ===========================================
 
 INTRODUCTION
-   This demo shows how to use the map-reduce operation, 
+   This demo shows how to use the map-reduce operation, and add objects passing its Json
    by getting weather observations from an HTTP service,
    adding them to a Mongo collection, and map-reducing it in order to get average temperatures for each city    
 
@@ -13,11 +13,12 @@ HOW TO DEMO:
   		Run the testAddWeatherObservation  test or alternatively hit 
   		http://localhost:9091/mongo-demo-add-weater-observations,
   		passing an ICAO code - http://en.wikipedia.org/wiki/List_of_airports_by_ICAO_code. 
-  	Example: 
+  	Example: http://localhost:9091/mongo-demo-add-weater-observations?cityIcao=KMCO
   2. Consult the average temperature of any previously added airport: 
   		Run the testGetAverageTemperature test or alternatively hit
   		http://localhost:9091/mongo-demo-get-average-temperature. This will return the average of 
   		temperatures for each observation for the given airport
+  		Example: http://localhost:9091/mongo-demo-get-average-temperature?cityIcao=KMCO
  	
 HOW IT WORKS:
   * The AddWeatherObservation flow queries and HTTP service that has a JSon output, and adds the result 
