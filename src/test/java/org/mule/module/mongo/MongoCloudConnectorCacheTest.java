@@ -16,6 +16,7 @@ import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import org.mule.module.mongo.api.MongoClient;
 import org.mule.module.mongo.api.MongoClientImpl;
 
 import com.mongodb.DB;
@@ -68,6 +69,13 @@ public class MongoCloudConnectorCacheTest
             when(db.getMongo()).thenReturn(mongo);
             return mongo;
         }
+        
+        @Override
+        protected MongoClient adaptClient(MongoClient client)
+        {
+            return client;
+        }
+        
     }
 
 }

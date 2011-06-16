@@ -19,6 +19,7 @@ import org.mule.api.lifecycle.Initialisable;
 import org.mule.api.lifecycle.InitialisationException;
 import org.mule.module.mongo.api.IndexOrder;
 import org.mule.module.mongo.api.MongoClient;
+import org.mule.module.mongo.api.MongoClientAdaptor;
 import org.mule.module.mongo.api.MongoClientImpl;
 import org.mule.module.mongo.api.WriteConcern;
 import org.mule.tools.cloudconnect.annotations.Connector;
@@ -382,7 +383,7 @@ public class MongoCloudConnector implements Initialisable
         {
             try
             {
-                client = new MongoClientImpl(getDatabase(getMongo()));
+                setClient(new MongoClientImpl(getDatabase(getMongo())));
             }
             catch (Exception e)
             {
@@ -426,7 +427,12 @@ public class MongoCloudConnector implements Initialisable
 
     public void setClient(MongoClient client)
     {
-        this.client = client;
+        this.client = adaptClient(client);
+    }
+
+    protected MongoClient adaptClient(MongoClient client)
+    {
+        return MongoClientAdaptor.adapt(client);
     }
 
     public String getDatabase()

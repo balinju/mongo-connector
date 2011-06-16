@@ -151,8 +151,8 @@ If it is passed as JSon String, _ids of type ObjectId must be passed as a String
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |collection|the name of the collection where to insert the given object|no||
-|object|the object to insert. Maps, JSon Strings and DBObjects are supported.|yes||
-|objectAttributes|alternative way of specifying the dbObject as a literal Map inside a Mule Flow|yes||
+|element|the object to insert. Maps, JSon Strings and DBObjects are supported.|yes||
+|elementAttributes|alternative way of specifying the element as a literal Map inside a Mule Flow|yes||
 |writeConcern|the optional write concern of insertion|yes|DATABASE_DEFAULT|*NONE*, *NORMAL*, *SAFE*, *FSYNC_SAFE*, *REPLICAS_SAFE*, *DATABASE_DEFAULT*, *mongoWriteConcern*
 
 
@@ -175,8 +175,8 @@ Otherwise, all the documents matching it will be updated.
 |collection|the name of the collection to update|no||
 |query|the query object used to detect the element to update. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.|yes||
 |queryAttributes|alternative way of passing query as a literal Map inside a Mule flow|yes||
-|object|the mandatory object that will replace that one which matches the query. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.|yes||
-|objectAttributes|alternative way of specifying the dbObject as a literal Map inside a Mule Flow|yes||
+|element|the mandatory object that will replace that one which matches the query. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.|yes||
+|elementAttributes|alternative way of specifying the element as a literal Map inside a Mule Flow|yes||
 |upsert|if the database should create the element if it does not exist|yes|false|
 |multi|if all or just the first object matching the query will be updated|yes|true|
 |writeConcern|the write concern used to update|yes|DATABASE_DEFAULT|*NONE*, *NORMAL*, *SAFE*, *FSYNC_SAFE*, *REPLICAS_SAFE*, *DATABASE_DEFAULT*, *mongoWriteConcern*
@@ -198,8 +198,8 @@ Inserts or updates an object based on its object _id.
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |collection|the collection where to insert the object|no||
-|object|the mandatory object to insert. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.|yes||
-|objectAttributes|an alternative way of passing the dbObject as a literal Map inside a Mule Flow|yes||
+|element|the mandatory object to insert. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.|yes||
+|elementAttributes|an alternative way of passing the element as a literal Map inside a Mule Flow|yes||
 |writeConcern|the write concern used to persist the object|yes|DATABASE_DEFAULT|*NONE*, *NORMAL*, *SAFE*, *FSYNC_SAFE*, *REPLICAS_SAFE*, *DATABASE_DEFAULT*, *mongoWriteConcern*
 
 
@@ -296,7 +296,7 @@ collection are retrieved. If no fields object is specified, all fields are retri
 |collection|the target collection|no||
 |query|the optional query object. If unspecified, all documents are returned. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.|yes||
 |queryAttributes|alternative way of passing the query object, as a literal Map inside a Mule Flow|yes||
-|fields-ref|an optional list of fields to return. If unspecified, all fields are returned.|yes||
+|fieldsRef|an optional list of fields to return. If unspecified, all fields are returned.|yes||
 |fields|alternative way of passing fields as a literal List|yes||
 
 Returns iterable of DBObjects
@@ -311,13 +311,12 @@ Throws a {@link MongoException} if no one matches the given query
 
 
 
-     <find-one-object 
-         query="#[variable:aBsonQuery]" >
-             <fields>
-                 <field>Field1</field>
-                 <field>Field2</field>
-             </fields>
-         </find-one-object>
+     <find-one-object  query="#[variable:aBsonQuery]" >
+            <fields>
+              <field>Field1</field>
+              <field>Field2</field>
+            </fields>
+      </find-one-object>
 
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
@@ -325,7 +324,7 @@ Throws a {@link MongoException} if no one matches the given query
 |collection|the target collection|no||
 |query|the mandatory query object that the returned object matches. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.|yes||
 |queryAttributes|alternative way of passing the query object, as a literal Map inside a Mule Flow|yes||
-|fields-ref|an optional list of fields to return. If unspecified, all fields are returned.|yes||
+|fieldsRef|an optional list of fields to return. If unspecified, all fields are returned.|yes||
 |fields|alternative way of passing fields as a literal List|yes||
 
 Returns non-null DBObject that matches the query.
