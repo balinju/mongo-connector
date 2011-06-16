@@ -38,11 +38,6 @@ public class MongoFunctionalTestDriver extends FunctionalTestCase
         lookupFlowConstruct("InsertProduct").process(event);
     }
 
-    public void testInsertProductJson() throws Exception
-    {
-        lookupFlowConstruct("InsertProductJson").process(
-            getTestEvent("{ \"sku\" : \"AF459\", \"description\" : \"Another Product\", \"price\" : 459.05, \"available\" : true }"));
-    }
 
     private SimpleFlowConstruct lookupFlowConstruct(final String name)
     {

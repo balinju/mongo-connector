@@ -43,13 +43,4 @@
     </mongo:insert-object>
   </flow>
 
-  <flow name="InsertProductJson">
-    <description>Inserts a product into a collection specifying its JSon
-    </description>
-    <http:inbound-endpoint host="localhost" port="9090"
-      path="mongo-demo-insert-product-json" />
-    <mongo:insert-object element="#[payload]" collection="products" />
-  </flow>
-  
-  
 </mule>

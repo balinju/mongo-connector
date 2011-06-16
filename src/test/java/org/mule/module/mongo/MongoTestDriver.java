@@ -25,6 +25,7 @@ import com.mongodb.MongoException;
 
 import java.sql.ClientInfoStatus;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 
 import org.junit.After;
@@ -311,6 +312,16 @@ public class MongoTestDriver
         assertEquals(1, connector.listIndices(MAIN_COLLECTION).size());
         connector.createIndex(MAIN_COLLECTION, "aField", IndexOrder.DESC);
         assertEquals(2, connector.listIndices(MAIN_COLLECTION).size());
+    }
+    
+    @Test
+    public void addObjectFromJson() throws Exception
+    {
+        connector.insertObject(
+            MAIN_COLLECTION,
+            "{ \"sku\" : \"AF459\", \"description\" : \"Another Product\", \"price\" : 459.05, \"available\" : true }",
+            null, WriteConcern.DATABASE_DEFAULT);
+        assertEquals(1, connector.countObjects(MAIN_COLLECTION, Collections.singletonMap("sku", "AF459"), null));
     }
 
     private BasicDBObject acmeQuery()
