@@ -310,6 +310,14 @@
       </snapshots>
     </pluginRepository>
   </pluginRepositories>
+  
+  <scm>
+    <connection>scm:git:git://github.com:mulesoft/mongo-connector.git</connection>
+    <developerConnection>
+            scm:git:git@github.com:mulesoft/mongo-connector.git
+        </developerConnection>
+    <url>http://github.com/mulesoft/mongo-connector</url>
+  </scm>
 
   <distributionManagement>
     <repository>
