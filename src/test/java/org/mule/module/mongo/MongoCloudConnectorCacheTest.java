@@ -48,34 +48,10 @@ public class MongoCloudConnectorCacheTest
         connector3.setDatabase("another-database");
         connector3.initialise();
 
-
         assertSame(getUnderlyingMongo(connector2), getUnderlyingMongo(connector1));
         assertNotSame(getUnderlyingMongo(connector3), getUnderlyingMongo(connector1));
     }
     
-    @Test
-    public void shareMongoAfterGC() throws Exception
-    {
-        MongoCloudConnector connector1 = new DisconnectedMongoCloudConnector();
-        connector1.setHost("127.0.0.1");
-        connector1.setPort(15000);
-        connector1.setDatabase("mongo-connector-test");
-        connector1.initialise();
-        
-        Mongo mongo1 = getUnderlyingMongo(connector1);
-        
-        connector1 = null;
-        System.gc();
-        
-        MongoCloudConnector connector2 = new DisconnectedMongoCloudConnector();
-        connector2.setHost("127.0.0.1");
-        connector2.setPort(15000);
-        connector2.setDatabase("another-database");
-        connector2.initialise();
-        
-        assertNotSame(getUnderlyingMongo(connector2), mongo1);
-    }
-
     private Mongo getUnderlyingMongo(MongoCloudConnector c)
     {
         return ((MongoClientImpl) c.getClient()).getDb().getMongo();

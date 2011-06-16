@@ -33,6 +33,7 @@ import com.mongodb.MongoException;
 
 import java.net.UnknownHostException;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.WeakHashMap;
@@ -75,11 +76,7 @@ public class MongoCloudConnector implements Initialisable
     @Property(optional = true)
     private String username;
     
-    /**Hack to prevent if from being garbage-collected
-     * as long as a connector exists*/
-    private MongoRef ref;
-    
-    private static Map<MongoRef, Mongo> refs = new WeakHashMap<MongoRef, Mongo>();
+    private static final Map<MongoRef, Mongo> MONGOS = new HashMap<MongoRef, Mongo>();
     
     
     /**
@@ -385,7 +382,6 @@ public class MongoCloudConnector implements Initialisable
         {
             try
             {
-                ref = new MongoRef(host, port);
                 client = new MongoClientImpl(getDatabase(getMongo()));
             }
             catch (Exception e)
@@ -397,15 +393,16 @@ public class MongoCloudConnector implements Initialisable
     
     private synchronized Mongo getMongo() throws Exception
     {
-        Mongo m = refs.get(ref);
-        if (m == null)
+        MongoRef ref = new MongoRef(host, port);
+        Mongo mongo = MONGOS.get(ref);
+        if (mongo == null)
         {
-            m = newMongo();
-            refs.put(ref, m);
+            mongo = newMongo();
+            MONGOS.put(ref, mongo);
         }
-        return m;
+        return mongo;
     }
-
+    
     protected Mongo newMongo() throws UnknownHostException
     {
         return new Mongo(host, port);
