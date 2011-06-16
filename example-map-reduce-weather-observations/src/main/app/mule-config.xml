@@ -32,7 +32,7 @@
   </flow>
 
   <flow name="AddWeatherObservation">
-    <http:inbound-endpoint host="localhost" port="9090"
+    <http:inbound-endpoint host="localhost" port="9091"
       path="mongo-demo-add-weater-observation" />
     <flow-ref name="AddIcaoToSession"/>
     <http:outbound-endpoint host="ws.geonames.org"
@@ -44,7 +44,7 @@
   </flow>
   
   <flow name="GetAverageTemperature">
-    <http:inbound-endpoint host="localhost" port="9090"
+    <http:inbound-endpoint host="localhost" port="9091"
       path="mongo-demo-get-average-temperature" />
     <flow-ref name="AddIcaoToSession"/>
     <mongo:map-reduce-objects

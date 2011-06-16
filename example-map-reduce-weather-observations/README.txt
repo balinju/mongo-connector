@@ -11,12 +11,12 @@ HOW TO DEMO:
   1. Run the MongoFunctionalTestDriver, or deploy this demo an a Mule Container. 
   	a. Add one or more a weather observations for one or more airports: 
   		Run the testAddWeatherObservation  test or alternatively hit 
-  		http://localhost:9090/mongo-demo-add-weater-observations,
+  		http://localhost:9091/mongo-demo-add-weater-observations,
   		passing an ICAO code - http://en.wikipedia.org/wiki/List_of_airports_by_ICAO_code. 
   	Example: 
   2. Consult the average temperature of any previously added airport: 
   		Run the testGetAverageTemperature test or alternatively hit
-  		http://localhost:9090/mongo-demo-get-average-temperature. This will return the average of 
+  		http://localhost:9091/mongo-demo-get-average-temperature. This will return the average of 
   		temperatures for each observation for the given airport
  	
 HOW IT WORKS:
