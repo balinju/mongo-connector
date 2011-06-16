@@ -16,16 +16,22 @@ import com.mongodb.DBObject;
 import com.mongodb.MongoException;
 import com.mongodb.MapReduceCommand.OutputType;
 
+import java.util.AbstractCollection;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
 import org.apache.commons.lang.Validate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MongoClientImpl implements MongoClient
 {
     private final DB db;
+    private static Logger logger = LoggerFactory.getLogger(MongoClientImpl.class);
 
     public MongoClientImpl(DB db)
     {
@@ -73,7 +79,7 @@ public class MongoClientImpl implements MongoClient
     public Iterable<DBObject> findObjects(@NotNull String collection, DBObject query, List<String> fields)
     {
         Validate.notNull(collection);
-        return openSession().getCollection(collection).find(query, FieldsSet.from(fields));
+        return bug5588Workaournd(openSession().getCollection(collection).find(query, FieldsSet.from(fields)));
     }
 
     public DBObject findOneObject(@NotNull String collection, DBObject query, List<String> fields)
@@ -111,8 +117,8 @@ public class MongoClientImpl implements MongoClient
         Validate.notNull(collection);
         Validate.notEmpty(mapFunction);
         Validate.notEmpty(reduceFunction);
-        return openSession().getCollection(collection).mapReduce(mapFunction, reduceFunction,
-            outputCollection, outputTypeFor(outputCollection), null).results();
+        return bug5588Workaournd(openSession().getCollection(collection).mapReduce(mapFunction,
+            reduceFunction, outputCollection, outputTypeFor(outputCollection), null).results());
     }
 
     private OutputType outputTypeFor(String outputCollection)
@@ -166,8 +172,78 @@ public class MongoClientImpl implements MongoClient
     {
         return openSession().getCollection(collection).getIndexInfo();
     }
-    
-   
+
+    /*
+     * see http://www.mulesoft.org/jira/browse/MULE-5588
+     */
+    private Iterable<DBObject> bug5588Workaournd(final Iterable<DBObject> o)
+    {
+        if (o instanceof Collection<?>)
+        {
+            return o;
+        }
+        return new AbstractCollection<DBObject>()
+        {
+
+            @Override
+            public Iterator<DBObject> iterator()
+            {
+                return o.iterator();
+            }
+
+            @Override
+            public Object[] toArray()
+            {
+                warnEagerMessage("toArray");
+                LinkedList<Object> l = new LinkedList<Object>();
+                for (Object o : this)
+                {
+                    l.add(o);
+                }
+                return l.toArray();
+            }
+
+            @Override
+            public int size()
+            {
+                warnEagerMessage("size");
+                int i = 0;
+                for (@SuppressWarnings("unused")
+                Object o : this)
+                {
+                    i++;
+                }
+                return i;
+            }
+
+            /**
+             * Same impl that those found in Object, in order to avoid eager elements
+             * consumption
+             */
+            @Override
+            public String toString()
+            {
+                return getClass().getName() + "@" + Integer.toHexString(hashCode());
+            }
+
+            /**
+             * Warns that sending the given message implied processing all the
+             * elements, which is not efficient at all, and most times is a bad idea,
+             * as lazy iterables should be traversed only once and in a lazy manner.
+             * 
+             * @param message
+             */
+            private void warnEagerMessage(String message)
+            {
+                if (logger.isWarnEnabled())
+                {
+                    logger.warn(
+                        "Method {} needs to consume all the element. It is inefficient and thus should be used with care",
+                        message);
+                }
+            }
+        };
+    }
 
     /**
      * Gets the DB objects, ensuring that a consistent request is in progress.
