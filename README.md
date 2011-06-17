@@ -26,7 +26,7 @@ Add the connector's maven repo to your pom.xml:
         <repository>
             <id>muleforge-releases</id>
             <name>MuleForge Snapshot Repository</name>
-            <url>https://repository.muleforge.org/release/</url>
+            <url>http://repository.mulesoft.org/releases/</url>
             <layout>default</layout>
         </repsitory>
     </repositories>
@@ -38,7 +38,7 @@ application:
     <dependency>
         <groupId>org.mule.modules</groupId>
         <artifactId>mule-module-mongo</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0</version>
     </dependency>
 
 Configuration
@@ -381,6 +381,8 @@ List existent indices in a collection
 |collection|the name of the collection|no||
 
 Returns collection of DBObjects with indices information
+
+
 
 
 
