@@ -1,5 +1,5 @@
 /**
- * Mule MongoDB Cloud Connector
+fi * Mule MongoDB Cloud Connector
  *
  * Copyright (c) MuleSoft, Inc.  All rights reserved.  http://www.mulesoft.com
  *
@@ -32,12 +32,12 @@ import com.mongodb.DBObject;
 import com.mongodb.Mongo;
 import com.mongodb.MongoException;
 
+import java.io.InputStream;
 import java.net.UnknownHostException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.WeakHashMap;
 
 import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -375,6 +375,79 @@ public class MongoCloudConnector implements Initialisable
     public Collection<DBObject> listIndices(@Parameter String collection)
     {
         return client.listIndices(collection);
+    }
+
+    /**
+     * Creates a new GridFSFile in the database, saving the given content, filename,
+     * contentType, and extraData, and answers it. 
+     * 
+     * @param content the mandatory content of the new gridfs file. It may be a java.io.File, a byte[] or an InputStream.  
+     * @param filename the mandatory name of new file. 
+     * @param contentType
+     * @param extraData
+     * @return the new GridFSFile
+     */
+    @Operation
+    public DBObject createFile(@Parameter Object content,
+                                 @Parameter String filename,
+                                 @Parameter(optional = true) String contentType,
+                                 @Parameter(optional = true) DBObject extraData)
+    {
+        throw new UnsupportedOperationException();
+    }
+    
+    @Operation
+    public Iterable<DBObject> findFiles(@Parameter DBObject query)
+    {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Answers the first file that matches the given query
+     * @param query
+     * @return a DBObject
+     */
+    @Operation
+    public DBObject findOneFile(@Parameter DBObject query)
+    {
+        throw new UnsupportedOperationException();
+    }
+    
+    /**
+     * Answers an inputstream to the contents of the first file that matches the given query.
+     * If not object matches it, a MongoException is thrown.  
+     *  
+     * @param query
+     * @return an InputStream to the file contents
+     */
+    @Operation
+    public InputStream getFileContent(@Parameter DBObject query)
+    {
+        throw new UnsupportedOperationException();
+    }
+    
+    /**
+     * Lazily lists all the files that match the given query. If no query is
+     * specified, all files are listed
+     * 
+     * @param query
+     * @return an iterable of DBObjects
+     */
+    @Operation
+    public Iterable<DBObject> listFiles(@Parameter(optional = true) DBObject query)
+    {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Removes all the files that match que given query 
+     * 
+     * @param query
+     */
+    @Operation
+    public void removeFiles(@Parameter DBObject query)
+    {
+        throw new UnsupportedOperationException();
     }
 
     public void initialise() throws InitialisationException

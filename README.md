@@ -38,7 +38,7 @@ application:
     <dependency>
         <groupId>org.mule.modules</groupId>
         <artifactId>mule-module-mongo</artifactId>
-        <version>1.0</version>
+        <version>1.1-SNAPSHOT</version>
     </dependency>
 
 Configuration
@@ -381,6 +381,90 @@ List existent indices in a collection
 |collection|the name of the collection|no||
 
 Returns collection of DBObjects with indices information
+
+
+
+Create File
+-----------
+
+Creates a new GridFSFile in the database, saving the given content, filename,
+contentType, and extraData, and answers it.
+
+| attribute | description | optional | default value | possible values |
+|:-----------|:-----------|:---------|:--------------|:----------------|
+|config-ref|Specify which configuration to use for this invocation|yes||
+|content|the mandatory content of the new gridfs file. It may be a java.io.File, a byte[] or an InputStream.|no||
+|filename|the mandatory name of new file.|no||
+|contentType||yes||
+|extraData||yes||
+
+Returns new GridFSFile
+
+
+
+Find Files
+----------
+
+| attribute | description | optional | default value | possible values |
+|:-----------|:-----------|:---------|:--------------|:----------------|
+|config-ref|Specify which configuration to use for this invocation|yes||
+|query||no||
+
+
+
+Find One File
+-------------
+
+Answers the first file that matches the given query
+
+| attribute | description | optional | default value | possible values |
+|:-----------|:-----------|:---------|:--------------|:----------------|
+|config-ref|Specify which configuration to use for this invocation|yes||
+|query||no||
+
+Returns DBObject
+
+
+
+Get File Content
+----------------
+
+Answers an inputstream to the contents of the first file that matches the given query.
+If not object matches it, a MongoException is thrown.
+
+| attribute | description | optional | default value | possible values |
+|:-----------|:-----------|:---------|:--------------|:----------------|
+|config-ref|Specify which configuration to use for this invocation|yes||
+|query||no||
+
+Returns InputStream to the file contents
+
+
+
+List Files
+----------
+
+Lazily lists all the files that match the given query. If no query is
+specified, all files are listed
+
+| attribute | description | optional | default value | possible values |
+|:-----------|:-----------|:---------|:--------------|:----------------|
+|config-ref|Specify which configuration to use for this invocation|yes||
+|query||yes||
+
+Returns iterable of DBObjects
+
+
+
+Remove Files
+------------
+
+Removes all the files that match que given query
+
+| attribute | description | optional | default value | possible values |
+|:-----------|:-----------|:---------|:--------------|:----------------|
+|config-ref|Specify which configuration to use for this invocation|yes||
+|query||no||
 
 
 
