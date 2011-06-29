@@ -32,6 +32,11 @@ import com.mongodb.DBObject;
 import com.mongodb.Mongo;
 import com.mongodb.MongoException;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.UnknownHostException;
 import java.util.Collection;
@@ -42,6 +47,7 @@ import java.util.Map;
 import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.codehaus.jackson.util.ByteArrayBuilder;
 /**
  * A Mongo Connector Facade
  * @author flbulgarelli
@@ -383,39 +389,72 @@ public class MongoCloudConnector implements Initialisable
      * 
      * @param content the mandatory content of the new gridfs file. It may be a java.io.File, a byte[] or an InputStream.  
      * @param filename the mandatory name of new file. 
-     * @param contentType
-     * @param extraData
+     * @param contentType the optional content type of the new file
+     * @param metadata the optional metadata of the new content type
      * @return the new GridFSFile
      */
     @Operation
     public DBObject createFile(@Parameter Object content,
-                                 @Parameter String filename,
-                                 @Parameter(optional = true) String contentType,
-                                 @Parameter(optional = true) DBObject extraData)
+                               @Parameter String filename,
+                               @Parameter(optional = true) String contentType,
+                               @Parameter(optional = true) DBObject metadata) throws IOException
     {
-        throw new UnsupportedOperationException();
+        InputStream stream = toStream(content);
+        try
+        {
+            return client.createFile(stream, filename, contentType, metadata);
+        }
+        finally
+        {
+            stream.close();
+        }
     }
     
-    @Operation
-    public Iterable<DBObject> findFiles(@Parameter DBObject query)
+    private InputStream toStream(Object content) throws FileNotFoundException
     {
-        throw new UnsupportedOperationException();
+        if (content instanceof InputStream)
+        {
+            return (InputStream) content;
+        }
+        if (content instanceof byte[])
+        {
+            return new ByteArrayInputStream((byte[]) content);
+        }
+        if (content instanceof File)
+        {
+            return new FileInputStream((File) content);
+        }
+        throw new IllegalArgumentException("Content "  + content + " is not supported");
     }
 
     /**
-     * Answers the first file that matches the given query
+     * Lists all the files that match the given query
+     *  
+     * @param query
+     * @return a files iterable
+     */
+    @Operation
+    public Iterable<DBObject> findFiles(@Parameter(optional = true) DBObject query)
+    {
+        return client.findFiles(query);
+    }
+
+    /**
+     * Answers the first file that matches the given query. If no object matches it,
+     * a MongoException is thrown.
+     * 
      * @param query
      * @return a DBObject
      */
     @Operation
     public DBObject findOneFile(@Parameter DBObject query)
     {
-        throw new UnsupportedOperationException();
+        return client.findOneFile(query);
     }
     
     /**
      * Answers an inputstream to the contents of the first file that matches the given query.
-     * If not object matches it, a MongoException is thrown.  
+     * If no object matches it, a MongoException is thrown.  
      *  
      * @param query
      * @return an InputStream to the file contents
@@ -423,31 +462,32 @@ public class MongoCloudConnector implements Initialisable
     @Operation
     public InputStream getFileContent(@Parameter DBObject query)
     {
-        throw new UnsupportedOperationException();
+        return client.getFileContent(query);
     }
     
     /**
-     * Lazily lists all the files that match the given query. If no query is
-     * specified, all files are listed
+     * Lists all the files that match the given query, sorting them by filename. If no query is
+     * specified, all files are listed. 
      * 
-     * @param query
+     * @param query the optional query
      * @return an iterable of DBObjects
      */
     @Operation
     public Iterable<DBObject> listFiles(@Parameter(optional = true) DBObject query)
     {
-        throw new UnsupportedOperationException();
+        return client.listFiles(query);
     }
 
     /**
-     * Removes all the files that match que given query 
+     * Removes all the files that match the given query. If no query is specified,
+     * all files are removed
      * 
-     * @param query
+     * @param query the optional query
      */
     @Operation
-    public void removeFiles(@Parameter DBObject query)
+    public void removeFiles(@Parameter(optional = true) DBObject query)
     {
-        throw new UnsupportedOperationException();
+        client.removeFiles(query);
     }
 
     public void initialise() throws InitialisationException

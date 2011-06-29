@@ -15,7 +15,11 @@ import com.mongodb.DB;
 import com.mongodb.DBObject;
 import com.mongodb.MongoException;
 import com.mongodb.MapReduceCommand.OutputType;
+import com.mongodb.gridfs.GridFS;
+import com.mongodb.gridfs.GridFSDBFile;
+import com.mongodb.gridfs.GridFSInputFile;
 
+import java.io.InputStream;
 import java.util.AbstractCollection;
 import java.util.Collection;
 import java.util.Iterator;
@@ -172,15 +176,67 @@ public class MongoClientImpl implements MongoClient
     {
         return openSession().getCollection(collection).getIndexInfo();
     }
+    
+    public DBObject createFile(InputStream content, String filename, String contentType, DBObject metadata)
+    {
+        Validate.notNull(filename);
+        Validate.notNull(content);
+        GridFSInputFile file = getGridFs().createFile(content);
+        file.setFilename(filename);
+        file.setContentType(contentType);
+        if (metadata != null)
+        {
+            file.setMetaData(metadata);
+        }
+        file.save();
+        return file;
+    }
 
+    public Iterable<DBObject> findFiles(DBObject query)
+    {
+        return bug5588Workaournd(getGridFs().find(query));
+    }
+
+    public DBObject findOneFile(DBObject query)
+    {
+        Validate.notNull(query);
+        GridFSDBFile file = getGridFs().findOne(query);
+        if (file == null)
+        {
+            throw new MongoException("No file found for query " + query);
+        }
+        return file;
+    }
+
+    public InputStream getFileContent(DBObject query)
+    {
+        Validate.notNull(query);
+        return ((GridFSDBFile) findOneFile(query)).getInputStream();
+    }
+    
+    public Iterable<DBObject> listFiles(DBObject query)
+    {
+        return bug5588Workaournd(getGridFs().getFileList(query));
+    }
+    
+    public void removeFiles(DBObject query)
+    {
+        getGridFs().remove(query);
+    }   
+    
+    private GridFS getGridFs()
+    {
+        return new GridFS(openSession());
+    }
     /*
      * see http://www.mulesoft.org/jira/browse/MULE-5588
      */
-    private Iterable<DBObject> bug5588Workaournd(final Iterable<DBObject> o)
+    @SuppressWarnings("unchecked")
+    private Iterable<DBObject> bug5588Workaournd(final Iterable<? extends DBObject> o)
     {
         if (o instanceof Collection<?>)
         {
-            return o;
+            return (Iterable<DBObject>) o;
         }
         return new AbstractCollection<DBObject>()
         {
@@ -188,7 +244,7 @@ public class MongoClientImpl implements MongoClient
             @Override
             public Iterator<DBObject> iterator()
             {
-                return o.iterator();
+                return (Iterator<DBObject>) o.iterator();
             }
 
             @Override

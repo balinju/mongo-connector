@@ -12,6 +12,7 @@ package org.mule.module.mongo.api;
 
 import com.mongodb.DBObject;
 
+import java.io.InputStream;
 import java.util.Collection;
 import java.util.List;
 
@@ -60,5 +61,17 @@ public interface MongoClient
     void dropIndex(String collection, String name);
 
     Collection<DBObject> listIndices(String collection);
+
+    DBObject createFile(InputStream content, String filename, String contentType, DBObject metadata);
+
+    Iterable<DBObject> findFiles(DBObject query);
+
+    DBObject findOneFile(DBObject query);
+
+    InputStream getFileContent(DBObject query);
+
+    Iterable<DBObject> listFiles(DBObject query);
+
+    void removeFiles(DBObject query);
 
 }

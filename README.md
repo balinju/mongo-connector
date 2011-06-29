@@ -395,8 +395,8 @@ contentType, and extraData, and answers it.
 |config-ref|Specify which configuration to use for this invocation|yes||
 |content|the mandatory content of the new gridfs file. It may be a java.io.File, a byte[] or an InputStream.|no||
 |filename|the mandatory name of new file.|no||
-|contentType||yes||
-|extraData||yes||
+|contentType|the optional content type of the new file|yes||
+|metadata|the optional metadata of the new content type|yes||
 
 Returns new GridFSFile
 
@@ -405,17 +405,22 @@ Returns new GridFSFile
 Find Files
 ----------
 
+Lists all the files that match the given query
+
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|query||no||
+|query||yes||
+
+Returns files iterable
 
 
 
 Find One File
 -------------
 
-Answers the first file that matches the given query
+Answers the first file that matches the given query. If no object matches it,
+a MongoException is thrown.
 
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
@@ -430,12 +435,12 @@ Get File Content
 ----------------
 
 Answers an inputstream to the contents of the first file that matches the given query.
-If not object matches it, a MongoException is thrown.
+If no object matches it, a MongoException is thrown.
 
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|query||no||
+|query||yes||
 
 Returns InputStream to the file contents
 
@@ -444,13 +449,13 @@ Returns InputStream to the file contents
 List Files
 ----------
 
-Lazily lists all the files that match the given query. If no query is
-specified, all files are listed
+Lists all the files that match the given query, sorting them by filename. If no query is
+specified, all files are listed.
 
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|query||yes||
+|query|the optional query|yes||
 
 Returns iterable of DBObjects
 
@@ -459,12 +464,13 @@ Returns iterable of DBObjects
 Remove Files
 ------------
 
-Removes all the files that match que given query
+Removes all the files that match the given query. If no query is specified,
+all files are removed
 
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|query||no||
+|query|the optional query|yes||
 
 
 
