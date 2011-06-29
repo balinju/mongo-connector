@@ -224,7 +224,7 @@ public class MongoClientImpl implements MongoClient
         getGridFs().remove(query);
     }   
     
-    private GridFS getGridFs()
+    protected GridFS getGridFs()
     {
         return new GridFS(openSession());
     }

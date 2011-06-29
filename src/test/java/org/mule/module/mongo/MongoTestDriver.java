@@ -23,10 +23,13 @@ import com.mongodb.MapReduceCommand;
 import com.mongodb.MapReduceOutput;
 import com.mongodb.MongoException;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.sql.ClientInfoStatus;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.Scanner;
 
 import org.junit.After;
 import org.junit.Assume;
@@ -323,6 +326,54 @@ public class MongoTestDriver
             null, WriteConcern.DATABASE_DEFAULT);
         assertEquals(1, connector.countObjects(MAIN_COLLECTION, Collections.singletonMap("sku", "AF459"), null));
     }
+    
+    @Test
+    public void testCreateAndGetFile() throws Exception
+    {
+        DBObject file = connector.createFile(new ByteArrayInputStream("hello world".getBytes()),
+            "testFile.txt", "text/plain", new BasicDBObject("foo", "bar"));
+        try
+        {
+            assertEquals("testFile.txt", file.get("filename"));
+            assertEquals("text/plain", file.get("contentType"));
+            assertEquals("bar", ((DBObject) file.get("metadata")).get("foo"));
+            
+            InputStream in = connector.getFileContent(filenameQuery("testFile.txt"));
+            assertEquals("hello world", new Scanner(in).nextLine());
+        }
+        finally
+        {
+            connector.removeFiles(filenameQuery("testFile.txt"));
+        }
+    }
+    
+    @Test
+    public void testCreateAndListFile() throws Exception
+    {
+        connector.createFile("hello world".getBytes(), "testFile.txt", null,
+            null);
+        try
+        {
+            Iterator<DBObject> iter = connector.listFiles(filenameQuery("testFile.txt")).iterator();
+            assertTrue(iter.hasNext());
+            iter.next();
+            assertFalse(iter.hasNext());
+            
+            iter = connector.findFiles(filenameQuery("testFile.txt")).iterator();
+            assertTrue(iter.hasNext());
+            iter.next();
+            assertFalse(iter.hasNext());
+        }
+        finally
+        {
+            connector.removeFiles(filenameQuery("testFile.txt"));
+        }
+    }
+
+    private BasicDBObject filenameQuery(String filename)
+    {
+        return new BasicDBObject("filename", filename);
+    }
 
     private BasicDBObject acmeQuery()
     {
@@ -339,5 +390,7 @@ public class MongoTestDriver
         employee.put("company", "ACME");
         return employee;
     }
+    
+    
 
 }

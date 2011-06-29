@@ -29,9 +29,14 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 import com.mongodb.Mongo;
+import com.mongodb.MongoException;
+import com.mongodb.gridfs.GridFS;
+import com.mongodb.gridfs.GridFSDBFile;
+import com.mongodb.gridfs.GridFSInputFile;
 
 import java.util.Arrays;
 
+import org.apache.commons.io.input.NullInputStream;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -47,12 +52,20 @@ public class MongoTestCase
     private MongoClient client;
     private DBCollection collectionMock;
     private DB dbMock;
+    private GridFS gridFsMock; 
     
     @Before
     public void setup()
     {
         dbMock = mock(DB.class);
-        client = new MongoClientImpl(dbMock);
+        gridFsMock = mock(GridFS.class);
+        client = new MongoClientImpl(dbMock) {
+            @Override
+            protected GridFS getGridFs()
+            {
+                return gridFsMock;
+            }
+        };
         collectionMock = mock(DBCollection.class);
         when(dbMock.getCollection(A_COLLECTION)).thenReturn(collectionMock);
     }
@@ -156,5 +169,50 @@ public class MongoTestCase
     {
         client.listIndices(A_COLLECTION);
         verify(collectionMock).getIndexInfo();
+    }
+    
+    /**
+     * Test for {@link MongoClient#removeFiles(DBObject)}
+     * @throws Exception
+     */
+    @Test
+    public void removeFiles() throws Exception
+    {
+        client.removeFiles(null);
+        verify(gridFsMock).remove((DBObject) null);
+    }
+
+    /**
+     * Test for {@link MongoClient#findFiles(DBObject)}
+     * @throws Exception
+     */
+    @Test
+    public void findFiles() throws Exception
+    {
+        client.findFiles(null);
+        verify(gridFsMock).find((DBObject) null);
+    }
+    
+    /**
+     * Test for {@link MongoClient#getFileContent(DBObject)} when no object matches the query
+     * @throws Exception
+     */
+    @Test(expected = MongoException.class)
+    public void getFileContentNoFile() throws Exception
+    {
+        BasicDBObject q = new BasicDBObject("foo", "bar");
+        client.getFileContent(q);
+    }
+    
+    /**
+     * Test for {@link MongoClient#getFileContent(DBObject)}
+     * @throws Exception
+     */
+    @Test
+    public void getFileContent() throws Exception
+    {
+        BasicDBObject q = new BasicDBObject("foo", "bar");
+        when(gridFsMock.findOne(eq(q))).thenReturn(new GridFSDBFile());
+        client.getFileContent(q);
     }
 }
