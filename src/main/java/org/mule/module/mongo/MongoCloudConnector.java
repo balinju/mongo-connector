@@ -386,7 +386,7 @@ public class MongoCloudConnector implements Initialisable
     /**
      * Creates a new GridFSFile in the database, saving the given content, filename,
      * contentType, and extraData, and answers it. 
-     * 
+     * {@code <mongo:create-file content="#[payload]" filename="#[variable:filename]" metadata="#[variable:metadata]" />}
      * @param content the mandatory content of the new gridfs file. It may be a java.io.File, a byte[] or an InputStream.  
      * @param filename the mandatory name of new file. 
      * @param contentType the optional content type of the new file
@@ -429,8 +429,9 @@ public class MongoCloudConnector implements Initialisable
 
     /**
      * Lists all the files that match the given query
-     *  
-     * @param query
+     * 
+     * {@code <mongo:find-files query="#[header:query]"/>}
+     * @param query the optional query
      * @return a files iterable
      */
     @Operation
@@ -443,7 +444,8 @@ public class MongoCloudConnector implements Initialisable
      * Answers the first file that matches the given query. If no object matches it,
      * a MongoException is thrown.
      * 
-     * @param query
+     * {@code <mongo:find-one-file query="#[header:query]" />}
+     * @param query the mandatory query
      * @return a DBObject
      */
     @Operation
@@ -456,7 +458,9 @@ public class MongoCloudConnector implements Initialisable
      * Answers an inputstream to the contents of the first file that matches the given query.
      * If no object matches it, a MongoException is thrown.  
      *  
-     * @param query
+     * {@code <mongo:get-file-content query="#[header:query]" />}
+     *  
+     * @param query the mandatory query
      * @return an InputStream to the file contents
      */
     @Operation
@@ -469,6 +473,7 @@ public class MongoCloudConnector implements Initialisable
      * Lists all the files that match the given query, sorting them by filename. If no query is
      * specified, all files are listed. 
      * 
+     * {@code <mongo:list-files />}
      * @param query the optional query
      * @return an iterable of DBObjects
      */
@@ -482,6 +487,8 @@ public class MongoCloudConnector implements Initialisable
      * Removes all the files that match the given query. If no query is specified,
      * all files are removed
      * 
+     * {@code  <mongo:remove-files query="#[payload]" />}        
+     * 
      * @param query the optional query
      */
     @Operation
@@ -489,6 +496,7 @@ public class MongoCloudConnector implements Initialisable
     {
         client.removeFiles(query);
     }
+
 
     public void initialise() throws InitialisationException
     {

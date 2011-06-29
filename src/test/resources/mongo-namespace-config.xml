@@ -169,5 +169,41 @@
       </mongo:elementAttributes>
     </mongo:insert-object>
   </flow>
+  
+ 	<flow name="CreateFile">
+		<inbound-endpoint address="vm://CreateFile"
+			exchange-pattern="request-response" />
+		<mongo:create-file content="#[payload]" filename="#[variable:filename]" metadata="#[variable:metadata]" />
+	</flow>
 
+	<flow name="FindFiles">
+		<inbound-endpoint address="vm://FindFiles"
+			exchange-pattern="request-response" />
+		<mongo:find-files query="#[header:query]"/>
+	</flow>
+
+
+	<flow name="FindOneFile">
+		<inbound-endpoint address="vm://FindOneFile"
+			exchange-pattern="request-response" />
+		<mongo:find-one-file query="#[header:query]" />
+	</flow>
+  
+  	<flow name="GetFileContent">
+		<inbound-endpoint address="vm://GetFileContent"
+			exchange-pattern="request-response" />
+		<mongo:get-file-content query="#[header:query]" />
+	</flow>
+
+	<flow name="ListFiles">
+		<inbound-endpoint address="vm://ListFiles"
+			exchange-pattern="request-response" />
+		<mongo:list-files />
+	</flow>
+
+  	<flow name="RemoveFiles">
+		<inbound-endpoint address="vm://RemoveFiles"
+			exchange-pattern="request-response" />
+		<mongo:remove-files query="#[payload]" />
+	</flow>
 </mule>

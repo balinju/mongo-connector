@@ -388,7 +388,10 @@ Create File
 -----------
 
 Creates a new GridFSFile in the database, saving the given content, filename,
-contentType, and extraData, and answers it.
+contentType, and extraData, and answers it. 
+
+
+     <mongo:create-file content="#[payload]" filename="#[variable:filename]" metadata="#[variable:metadata]" />
 
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
@@ -407,10 +410,14 @@ Find Files
 
 Lists all the files that match the given query
 
+
+
+     <mongo:find-files query="#[header:query]"/>
+
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|query||yes||
+|query|the optional query|yes||
 
 Returns files iterable
 
@@ -422,10 +429,14 @@ Find One File
 Answers the first file that matches the given query. If no object matches it,
 a MongoException is thrown.
 
+
+
+     <mongo:find-one-file query="#[header:query]" />
+
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|query||no||
+|query|the mandatory query|no||
 
 Returns DBObject
 
@@ -435,12 +446,16 @@ Get File Content
 ----------------
 
 Answers an inputstream to the contents of the first file that matches the given query.
-If no object matches it, a MongoException is thrown.
+If no object matches it, a MongoException is thrown.  
+ 
+
+
+     <mongo:get-file-content query="#[header:query]" />
 
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|query||yes||
+|query|the mandatory query|no||
 
 Returns InputStream to the file contents
 
@@ -450,7 +465,11 @@ List Files
 ----------
 
 Lists all the files that match the given query, sorting them by filename. If no query is
-specified, all files are listed.
+specified, all files are listed. 
+
+
+
+     <mongo:list-files />
 
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
@@ -466,6 +485,10 @@ Remove Files
 
 Removes all the files that match the given query. If no query is specified,
 all files are removed
+
+
+
+      <mongo:remove-files query="#[payload]" />
 
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
