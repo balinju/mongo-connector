@@ -435,9 +435,9 @@ public class MongoCloudConnector implements Initialisable
      * @return a files iterable
      */
     @Operation
-    public Iterable<DBObject> findFiles(@Parameter(optional = true) DBObject query)
+    public Iterable<DBObject> findFiles(@Parameter(optional = true) Object query)
     {
-        return client.findFiles(query);
+        return client.findFiles(from(query));
     }
 
     /**
@@ -449,9 +449,9 @@ public class MongoCloudConnector implements Initialisable
      * @return a DBObject
      */
     @Operation
-    public DBObject findOneFile(@Parameter DBObject query)
+    public DBObject findOneFile(@Parameter Object query)
     {
-        return client.findOneFile(query);
+        return client.findOneFile(from(query));
     }
     
     /**
@@ -464,9 +464,9 @@ public class MongoCloudConnector implements Initialisable
      * @return an InputStream to the file contents
      */
     @Operation
-    public InputStream getFileContent(@Parameter DBObject query)
+    public InputStream getFileContent(@Parameter Object query)
     {
-        return client.getFileContent(query);
+        return client.getFileContent(from(query));
     }
     
     /**
@@ -478,9 +478,9 @@ public class MongoCloudConnector implements Initialisable
      * @return an iterable of DBObjects
      */
     @Operation
-    public Iterable<DBObject> listFiles(@Parameter(optional = true) DBObject query)
+    public Iterable<DBObject> listFiles(@Parameter(optional = true) Object query)
     {
-        return client.listFiles(query);
+        return client.listFiles(from(query));
     }
 
     /**
@@ -492,9 +492,9 @@ public class MongoCloudConnector implements Initialisable
      * @param query the optional query
      */
     @Operation
-    public void removeFiles(@Parameter(optional = true) DBObject query)
+    public void removeFiles(@Parameter(optional = true) Object query)
     {
-        client.removeFiles(query);
+        client.removeFiles(from(query));
     }
 
 
