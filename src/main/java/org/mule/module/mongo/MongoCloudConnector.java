@@ -15,6 +15,8 @@ package org.mule.module.mongo;
 
 import static org.mule.module.mongo.api.DBObjects.from;
 
+import com.mongodb.util.JSON;
+import org.mule.api.annotations.Transformer;
 import org.mule.api.lifecycle.Initialisable;
 import org.mule.api.lifecycle.InitialisationException;
 import org.mule.module.mongo.api.IndexOrder;
@@ -157,14 +159,15 @@ public class MongoCloudConnector implements Initialisable
      * @param element the object to insert. Maps, JSon Strings and DBObjects are supported.
      * @param elementAttributes alternative way of specifying the element as a literal Map inside a Mule Flow
      * @param writeConcern the optional write concern of insertion
+     * @return The id of the inserted document
      */
     @Operation
-    public void insertObject(@Parameter String collection,
+    public String insertObject(@Parameter String collection,
                              @Parameter(optional = true) Object element,
                              @Parameter(optional = true) Map<String, Object> elementAttributes,
                              @Parameter(optional = true, defaultValue = "DATABASE_DEFAULT") WriteConcern writeConcern)
     {
-        client.insertObject(collection, from(single(elementAttributes, element)), writeConcern);
+        return client.insertObject(collection, from(single(elementAttributes, element)), writeConcern);
     }
 
     /**
@@ -497,6 +500,16 @@ public class MongoCloudConnector implements Initialisable
         client.removeFiles(from(query));
     }
 
+    /**
+     * Convert JSON to DBObject
+     *
+     * @throws InitialisationException
+     */
+    @Transformer(sourceTypes={String.class})
+    public DBObject jsonToDBObject(Object input)
+    {
+        return (DBObject) JSON.parse((String)input);
+    }
 
     public void initialise() throws InitialisationException
     {

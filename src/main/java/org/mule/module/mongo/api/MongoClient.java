@@ -32,7 +32,7 @@ public interface MongoClient
 
     void createCollection(@NotNull String name, boolean capped, Integer maxObjects, Integer size);
 
-    void insertObject(@NotNull String collection, @NotNull DBObject object, @NotNull WriteConcern writeConcern);
+    String insertObject(@NotNull String collection, @NotNull DBObject object, @NotNull WriteConcern writeConcern);
 
     void updateObjects(@NotNull String collection,
                       DBObject query,

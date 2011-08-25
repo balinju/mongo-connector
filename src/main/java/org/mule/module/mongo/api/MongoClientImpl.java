@@ -15,6 +15,7 @@ import com.mongodb.DB;
 import com.mongodb.DBObject;
 import com.mongodb.MongoException;
 import com.mongodb.MapReduceCommand.OutputType;
+import com.mongodb.WriteResult;
 import com.mongodb.gridfs.GridFS;
 import com.mongodb.gridfs.GridFSDBFile;
 import com.mongodb.gridfs.GridFSInputFile;
@@ -29,6 +30,7 @@ import java.util.List;
 import javax.validation.constraints.NotNull;
 
 import org.apache.commons.lang.Validate;
+import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -97,15 +99,17 @@ public class MongoClientImpl implements MongoClient
         return element;
     }
 
-    public void insertObject(@NotNull String collection,
+    public String insertObject(@NotNull String collection,
                              @NotNull DBObject object,
                              @NotNull WriteConcern writeConcern)
     {
         Validate.notNull(collection);
         Validate.notNull(object);
         Validate.notNull(writeConcern);
-        openSession().getCollection(collection).insert(object,
+        WriteResult writeResult = openSession().getCollection(collection).insert(object,
             writeConcern.toMongoWriteConcern(openSession()));
+        ObjectId id = (ObjectId)object.get( "_id" );
+        return id.toStringMongod();
     }
 
     public Collection<String> listCollections()
