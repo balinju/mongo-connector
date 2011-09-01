@@ -109,6 +109,9 @@ public class MongoClientImpl implements MongoClient
         WriteResult writeResult = openSession().getCollection(collection).insert(object,
             writeConcern.toMongoWriteConcern(openSession()));
         ObjectId id = (ObjectId)object.get( "_id" );
+        if( id == null )
+            return null;
+
         return id.toStringMongod();
     }
 
