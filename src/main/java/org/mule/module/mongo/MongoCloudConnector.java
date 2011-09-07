@@ -502,13 +502,20 @@ public class MongoCloudConnector implements Initialisable
 
     /**
      * Convert JSON to DBObject
-     *
-     * @throws InitialisationException
      */
     @Transformer(sourceTypes={String.class})
     public DBObject jsonToDBObject(Object input)
     {
         return (DBObject) JSON.parse((String)input);
+    }
+
+    /**
+     * Convert DBObject to Json
+     */
+    @Transformer(sourceTypes={DBObject.class})
+    public String dbobjectToJson(Object input)
+    {
+        return JSON.serialize((DBObject)input);
     }
 
     public void initialise() throws InitialisationException
