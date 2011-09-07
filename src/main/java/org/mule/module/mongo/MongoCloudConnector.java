@@ -16,6 +16,7 @@ package org.mule.module.mongo;
 import static org.mule.module.mongo.api.DBObjects.from;
 
 import com.mongodb.util.JSON;
+import org.bson.types.BasicBSONList;
 import org.mule.api.annotations.Transformer;
 import org.mule.api.lifecycle.Initialisable;
 import org.mule.api.lifecycle.InitialisationException;
@@ -23,6 +24,7 @@ import org.mule.module.mongo.api.IndexOrder;
 import org.mule.module.mongo.api.MongoClient;
 import org.mule.module.mongo.api.MongoClientAdaptor;
 import org.mule.module.mongo.api.MongoClientImpl;
+import org.mule.module.mongo.api.MongoCollection;
 import org.mule.module.mongo.api.WriteConcern;
 import org.mule.tools.cloudconnect.annotations.Connector;
 import org.mule.tools.cloudconnect.annotations.Operation;
@@ -516,6 +518,24 @@ public class MongoCloudConnector implements Initialisable
     public String dbobjectToJson(Object input)
     {
         return JSON.serialize((DBObject)input);
+    }
+
+    /**
+     * Convert a BasicBSONList into Json
+     */
+    @Transformer(sourceTypes={BasicBSONList.class})
+    public String bsonListToJson(Object input)
+    {
+        return JSON.serialize((BasicBSONList)input);
+    }
+
+    /**
+     * Convert a BasicBSONList into Json
+     */
+    @Transformer(sourceTypes={MongoCollection.class})
+    public String mongoCollectionToJson(Object input)
+    {
+        return JSON.serialize((MongoCollection)input);
     }
 
     public void initialise() throws InitialisationException
