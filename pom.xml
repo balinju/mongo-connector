@@ -5,7 +5,7 @@
   <artifactId>mule-module-mongo</artifactId>
   <packaging>cloud-connector</packaging>
   <name>Mule Mongo Cloud Connector</name>
-  <version>1.4-SNAPSHOT</version>
+  <version>1.4</version>
   <description>Mule Cloud connector to mongo</description>
   <url>http://www.muleforge.org/projects/mule-module-mongo</url>
 
