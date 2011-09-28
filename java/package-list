@@ -1,0 +1,7 @@
+org.mule.module.mongo
+org.mule.module.mongo.api
+org.mule.module.mongo.config
+org.mule.module.mongo.config.spring
+org.mule.module.mongo.dsl
+org.mule.module.mongo.dsl.internal
+

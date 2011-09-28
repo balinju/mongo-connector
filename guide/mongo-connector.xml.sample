@@ -1,0 +1,206 @@
+<!-- BEGIN_INCLUDE(mongo:create-collection) -->
+        <mongo:create-collection collection="aCollection" capped="true"/>
+<!-- END_INCLUDE(mongo:create-collection) -->
+
+<!-- BEGIN_INCLUDE(mongo:list-collections) -->
+        <mongo:list-collections/>
+<!-- END_INCLUDE(mongo:list-collections) -->
+
+<!-- BEGIN_INCLUDE(mongo:exists-collection) -->
+        <mongo:exists-collection collection="aColllection"/>
+<!-- END_INCLUDE(mongo:exists-collection) -->
+
+<!-- BEGIN_INCLUDE(mongo:drop-collection) -->
+        <mongo:drop-collection collection="aCollection"/>
+<!-- END_INCLUDE(mongo:drop-collection) -->
+
+<!-- BEGIN_INCLUDE(mongo:insert-object) -->
+        <mongo:insert-object collection="Employees" dbObject-ref="dbObject" writeConcern="SAFE"/>
+<!-- END_INCLUDE(mongo:insert-object) -->
+
+<!-- BEGIN_INCLUDE(mongo:insert-object-from-map) -->
+        <mongo:insert-object-from-map collection="Employees" writeConcern="SAFE">
+            <mongo:element-attributes>
+                <mongo:elementAttribute key="foo" value="bar"/>
+                <mongo:elementAttribute key="foobar"
+                                        value="baz"/>
+            </mongo:element-attributes>
+        </mongo:insert-object-from-map>
+<!-- END_INCLUDE(mongo:insert-object-from-map) -->
+
+<!-- BEGIN_INCLUDE(mongo:create-index) -->
+        <mongo:create-index collection="myCollection" field="myField" order="DESC"/>
+<!-- END_INCLUDE(mongo:create-index) -->
+
+<!-- BEGIN_INCLUDE(mongo:drop-index) -->
+        <mongo:drop-index collection="myCollection" index="myIndex"/>
+<!-- END_INCLUDE(mongo:drop-index) -->
+
+<!-- BEGIN_INCLUDE(mongo:list-indices) -->
+        <mongo:list-indices collection="myCollection"/>
+<!-- END_INCLUDE(mongo:list-indices) -->
+
+<!-- BEGIN_INCLUDE(mongo:update-objects) -->
+        <mongo:update-objects collection="myCollection" query-ref="dbObject" element-ref="dbObject" upsert="true"/>
+<!-- END_INCLUDE(mongo:update-objects) -->
+
+<!-- BEGIN_INCLUDE(mongo:save-object) -->
+        <mongo:save-object collection="myCollection" element-ref="dbObject"/>
+<!-- END_INCLUDE(mongo:save-object) -->
+
+<!-- BEGIN_INCLUDE(mongo:save-object-from-map) -->
+        <mongo:save-object-from-map collection="myCollection">
+            <mongo:element-attributes>
+                <mongo:elementAttribute key="foo" value="bar"/>
+                <mongo:elementAttribute key="foobar" value="baz"/>
+            </mongo:element-attributes>
+        </mongo:save-object-from-map>
+<!-- END_INCLUDE(mongo:save-object-from-map) -->
+
+<!-- BEGIN_INCLUDE(mongo:remove-objects) -->
+        <mongo:remove-objects collection="myCollection" query-ref="dbObject"/>
+<!-- END_INCLUDE(mongo:remove-objects) -->
+
+<!-- BEGIN_INCLUDE(mongo:remove-using-map-query) -->
+        <mongo:remove-using-map-query collection="myCollection">
+            <mongo:query-attributes>
+                <mongo:queryAttribute key="foo" value="foobaz"/>
+                <mongo:queryAttribute key="foobar" value="foobaz"/>
+            </mongo:query-attributes>
+        </mongo:remove-using-map-query>
+<!-- END_INCLUDE(mongo:remove-using-map-query) -->
+
+<!-- BEGIN_INCLUDE(mongo:map-reduce-objects) -->
+        <mongo:map-reduce-objects collection="myCollection" mapFunction="myMapFunction" reduceFunction="myReduceFunction"/>
+<!-- END_INCLUDE(mongo:map-reduce-objects) -->
+
+<!-- BEGIN_INCLUDE(mongo:count-objects) -->
+        <mongo:count-objects collection="myCollection" query-ref="dbObject"/>
+<!-- END_INCLUDE(mongo:count-objects) -->
+
+<!-- BEGIN_INCLUDE(mongo:count-objects-using-map-query) -->
+        <mongo:count-objects-using-map-query collection="myCollection">
+            <mongo:query-attributes>
+                <mongo:queryAttribute key="foo" value="foobaz"/>
+                <mongo:queryAttribute key="foobar" value="foobaz"/>
+            </mongo:query-attributes>
+        </mongo:count-objects-using-map-query>
+<!-- END_INCLUDE(mongo:count-objects-using-map-query) -->
+
+<!-- BEGIN_INCLUDE(mongo:find-objects) -->
+        <mongo:find-objects collection="myCollection" query-ref="dbObject">
+            <mongo:fields>
+                <mongo:field>field1</mongo:field>
+                <mongo:field>field2</mongo:field>
+            </mongo:fields>
+        </mongo:find-objects>
+<!-- END_INCLUDE(mongo:find-objects) -->
+
+<!-- BEGIN_INCLUDE(mongo:find-objects-using-query-map) -->
+       <mongo:find-objects-using-query-map collection="myCollection">
+            <mongo:fields>
+                <mongo:field>field1</mongo:field>
+                <mongo:field>field2</mongo:field>
+            </mongo:fields>
+       </mongo:find-objects-using-query-map>
+<!-- END_INCLUDE(mongo:find-objects-using-query-map) -->
+
+<!-- BEGIN_INCLUDE(mongo:find-one-object) -->
+        <mongo:find-one-object collection="myCollection" query-ref="dbObject">
+            <mongo:fields>
+                <mongo:field>field1</mongo:field>
+                <mongo:field>field2</mongo:field>
+            </mongo:fields>
+        </mongo:find-one-object>
+<!-- END_INCLUDE(mongo:find-one-object) -->
+
+<!-- BEGIN_INCLUDE(mongo:find-one-object-using-query-map) -->
+        <mongo:find-one-object-using-query-map collection="myCollection">
+            <mongo:query-attributes>
+                <mongo:queryAttribute key="foo" value="foobaz"/>
+                <mongo:queryAttribute key="foobar" value="foobaz"/>
+            </mongo:query-attributes>
+        </mongo:find-one-object-using-query-map>
+<!-- END_INCLUDE(mongo:find-one-object-using-query-map) -->
+
+<!-- BEGIN_INCLUDE(mongo:update-objects-using-map) -->
+        <mongo:update-objects-using-map collection="myCollection" upsert="true">
+            <mongo:query-attributes>
+                <mongo:queryAttribute key="foo" value="foobaz"/>
+                <mongo:queryAttribute key="foobar" value="foobaz"/>
+            </mongo:query-attributes>
+            <mongo:element-attributes>
+                <mongo:elementAttribute key="foo" value="bar"/>
+                <mongo:elementAttribute key="foobar" value="baz"/>
+            </mongo:element-attributes>
+        </mongo:update-objects-using-map>
+<!-- END_INCLUDE(mongo:update-objects-using-map) -->
+
+<!-- BEGIN_INCLUDE(mongo:insert-from-map) -->
+        <mongo:insert-from-map collection="Employees" writeConcern="SAFE">
+            <mongo:element-attributes>
+                <mongo:elementAttribute key="foo" value="bar"/>
+                <mongo:elementAttribute key="foobar" value="baz"/>
+            </mongo:element-attributes>
+        </mongo:insert-from-map>
+<!-- END_INCLUDE(mongo:insert-from-map) -->
+
+<!-- BEGIN_INCLUDE(mongo:create-file-from-payload) -->
+        <mongo:create-file-from-payload filename="#[variable:filename]" metadata-ref="myDbObject"/>
+<!-- END_INCLUDE(mongo:create-file-from-payload) -->
+
+<!-- BEGIN_INCLUDE(mongo:find-files) -->
+        <mongo:find-files query-ref="myDbObject" />
+<!-- END_INCLUDE(mongo:find-files) -->
+
+<!-- BEGIN_INCLUDE(mongo:find-files-using-query-map) -->
+        <mongo:find-files-using-query-map>
+            <mongo:query-attributes>
+                <mongo:queryAttribute key="foo" value="foobaz"/>
+                <mongo:queryAttribute key="foobar" value="foobaz"/>
+            </mongo:query-attributes>
+        </mongo:find-files-using-query-map>
+<!-- END_INCLUDE(mongo:find-files-using-query-map) -->
+
+<!-- BEGIN_INCLUDE(mongo:find-one-file) -->
+        <mongo:find-one-file query-ref="myDbObject" />
+<!-- END_INCLUDE(mongo:find-one-file) -->
+
+<!-- BEGIN_INCLUDE(mongo:get-file-content) -->
+        <mongo:get-file-content query-ref="myDbObject" />
+<!-- END_INCLUDE(mongo:get-file-content) -->
+
+<!-- BEGIN_INCLUDE(mongo:get-file-content-using-query-map) -->
+        <mongo:get-file-content-using-query-map>
+            <mongo:query>
+                <mongo:queryAttribute key="foo" value="foobaz"/>
+                <mongo:queryAttribute key="foobar" value="foobaz"/>
+            </mongo:query>
+        </mongo:get-file-content-using-query-map>
+<!-- END_INCLUDE(mongo:get-file-content-using-query-map) -->
+
+<!-- BEGIN_INCLUDE(mongo:list-files) -->
+        <mongo:list-files query-ref="myDbObject"/>
+<!-- END_INCLUDE(mongo:list-files) -->
+
+<!-- BEGIN_INCLUDE(mongo:list-files-using-query-map) -->
+        <mongo:list-files-using-query-map>
+            <mongo:query>
+                <mongo:queryAttribute key="foo" value="foobaz"/>
+                <mongo:queryAttribute key="foobar" value="foobaz"/>
+            </mongo:query>
+        </mongo:list-files-using-query-map>
+<!-- END_INCLUDE(mongo:list-files-using-query-map) -->
+
+<!-- BEGIN_INCLUDE(mongo:remove-files) -->
+        <mongo:remove-files query-ref="myDbObject"/>
+<!-- END_INCLUDE(mongo:remove-files) -->
+
+<!-- BEGIN_INCLUDE(mongo:remove-files-using-query-map) -->
+        <mongo:remove-files-using-query-map>
+            <mongo:query>
+                <mongo:queryAttribute key="foo" value="foobaz"/>
+                <mongo:queryAttribute key="foobar" value="foobaz"/>
+            </mongo:query>
+        </mongo:remove-files-using-query-map>
+<!-- END_INCLUDE(mongo:remove-files-using-query-map) -->

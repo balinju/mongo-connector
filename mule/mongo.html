@@ -1,0 +1,4007 @@
+
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta name="description" content="Documentation for Mule Mongo Cloud Connector." />
+
+<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
+<title>
+
+  MongoCloudConnector
+
+
+| Mule Mongo Cloud Connector
+
+</title>
+<link href="../assets/mule-developer-docs.css" rel="stylesheet" type="text/css" />
+<link href="../assets/mule-developer-prettify.css" rel="stylesheet" type="text/css" />
+<link href="../assets/customizations.css" rel="stylesheet" type="text/css" />
+<script src="../assets/search_autocomplete.js" type="text/javascript"></script>
+<script src="../assets/jquery-resizable.min.js" type="text/javascript"></script>
+<script src="../assets/mule-developer-docs.js" type="text/javascript"></script>
+<script src="../assets/prettify.js" type="text/javascript"></script>
+<script type="text/javascript">
+  setToRoot("../", "../assets/");
+</script>
+<script src="../assets/customizations.js" type="text/javascript"></script>
+<noscript>
+  <style type="text/css">
+    html,body{overflow:auto;}
+    #body-content{position:relative; top:0;}
+    #doc-content{overflow:visible;border-left:3px solid #666;}
+    #side-nav{padding:0;}
+    #side-nav .toggle-list ul {display:block;}
+    #resize-packages-nav{border-bottom:3px solid #666;}
+  </style>
+</noscript>
+</head>
+
+<body class="">
+
+<div id="header">
+    <div id="headerLeft">
+    
+      <span id="masthead-title">Mule Mongo Cloud Connector</span>
+    
+    <ul id="header-tabs" class="mule">
+    	<li id="guide"><a href="../guide/index.html">
+	    	<span class="en">User Guide</span>
+    	</a></li>
+    	<li id="java"><a href="../java/index.html">
+	    	<span class="en">Java API</span>
+    	</a></li>
+    	<li id="mule"><a href="../mule/modules.html">
+	    	<span class="en">Mule API</span>
+    	</a></li>
+    </ul>
+    </div>
+    <div id="headerRight">
+      <a href="http://www.mulesoft.com" tabindex="-1">
+      <img src="../assets//images/mulesoft-logo-final.gif" alt="MuleSoft" border="0" id="mulesoftlogo"></a><br/>
+      
+  <div id="search" >
+      <div id="searchForm">
+          <form accept-charset="utf-8" class="gsc-search-box" 
+                onsubmit="return submit_search()">
+            <table class="gsc-search-box" cellpadding="0" cellspacing="0"><tbody>
+                <tr>
+                  <td class="gsc-input">
+                    <input id="search_autocomplete" class="gsc-input" type="text" size="33" autocomplete="off"
+                      title="search developer docs" name="q"
+                      value="search developer docs"
+                      onFocus="search_focus_changed(this, true)"
+                      onBlur="search_focus_changed(this, false)"
+                      onkeydown="return search_changed(event, true, '../')"
+                      onkeyup="return search_changed(event, false, '../')" />
+                  <div id="search_filtered_div" class="no-display">
+                      <table id="search_filtered" cellspacing=0>
+                      </table>
+                  </div>
+                  </td>
+                  <td class="gsc-search-button">
+                    <input type="submit" value="Search" title="search" id="search-button" class="gsc-search-button" />
+                  </td>
+                  <td class="gsc-clear-button">
+                    <div title="clear results" class="gsc-clear-button">&nbsp;</div>
+                  </td>
+                </tr></tbody>
+              </table>
+          </form>
+      </div><!-- searchForm -->
+  </div><!-- search -->
+      
+    </div>
+</div><!-- header -->
+
+
+<div class="g-unit" id="all-content">
+
+<div id="api-info-block">
+
+<div class="sum-details-links">
+
+Summary:
+<a href="#lconfig">Configuration</a>
+
+  &#124; <a href="#promethods">Message Processors</a>
+
+
+
+  &#124; <a href="#trnasmethods">Transformers</a>
+
+</div><!-- end sum-details-links -->
+
+<div class="api-level">
+  
+
+
+  
+  
+
+</div>
+</div><!-- end api-info-block -->
+
+
+<!-- ======== START OF MODULE DATA ======== -->
+
+<div id="jd-header">
+    org.mule.modules
+<h1>mule-module-mongo</h1>
+    2.0-SNAPSHOT
+
+</div><!-- end header -->
+
+<div id="naMessage"></div>
+
+<div id="jd-content" class="api apilevel-">
+
+
+<div class="jd-tagdata">
+      <table class="jd-tagtable">
+        <tbody><tr>
+          <th>Namespace</th><td>http://www.mulesoft.org/schema/mule/mongo</td>
+        </tr><tr>
+          <th>Schema Location</th><td>http://www.mulesoft.org/schema/mule/mongo/1.0/mule-mongo.xsd</td>
+        </tr>
+<tr>
+          <th>Version</th><td>1.0</td>
+        </tr>
+      </tbody></table>
+  </div>
+
+<div class="jd-descr">
+
+
+<h2>Module Overview</h2>
+<p>A Mongo Connector Facade<br/></p>
+
+
+</div><!-- jd-descr -->
+
+
+
+
+
+
+
+
+
+
+
+<div class="jd-descr">
+
+
+<h2>Summary</h2>
+
+<!-- Config -->
+
+
+<!-- =========== CONFIG SUMMARY =========== -->
+<table id="lconfig" class="jd-sumtable"><tr><th colspan="12">Configuration</th></tr>
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#config">&lt;mongo:config&gt;</a></nobr>
+        <div class="jd-descrdiv">Configure an instance of this module</div>
+  </td></tr>
+</table>
+
+
+
+
+<!-- ========== MESSAGE PROCESSOR SUMMARY =========== -->
+<table id="promethods" class="jd-sumtable"><tr><th colspan="12">Message Processors</th></tr>
+
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#count-objects">&lt;mongo:count-objects&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Counts the number of objects that match the given query.<br/></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#count-objects-using-map-query">&lt;mongo:count-objects-using-map-query&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Counts the number of objects that match the given query.<br/></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#create-collection">&lt;mongo:create-collection&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Creates a new collection.<br/></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#create-file-from-payload">&lt;mongo:create-file-from-payload&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Creates a new GridFSFile in the database, saving the given content, filename,
+ contentType, and extraData, and answers it.<br/></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#create-index">&lt;mongo:create-index&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Creates a new index
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#drop-collection">&lt;mongo:drop-collection&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Deletes a collection and all the objects it contains.<br/></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#drop-index">&lt;mongo:drop-index&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Drops an existing index
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#exists-collection">&lt;mongo:exists-collection&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Answers if a collection exists given its name
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#find-files">&lt;mongo:find-files&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Lists all the files that match the given query
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#find-files-using-query-map">&lt;mongo:find-files-using-query-map&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Lists all the files that match the given query
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#find-objects">&lt;mongo:find-objects&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Finds all objects that match a given query.<br/></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#find-objects-using-query-map">&lt;mongo:find-objects-using-query-map&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Finds all objects that match a given query.<br/></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#find-one-file">&lt;mongo:find-one-file&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Answers the first file that matches the given query.<br/></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#find-one-file-using-query-map">&lt;mongo:find-one-file-using-query-map&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Answers the first file that matches the given query.<br/></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#find-one-object">&lt;mongo:find-one-object&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Finds the first object that matches a given query.<br/></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#find-one-object-using-query-map">&lt;mongo:find-one-object-using-query-map&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Finds the first object that matches a given query.<br/></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#get-file-content">&lt;mongo:get-file-content&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Answers an inputstream to the contents of the first file that matches the given query.<br/></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#get-file-content-using-query-map">&lt;mongo:get-file-content-using-query-map&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Answers an inputstream to the contents of the first file that matches the given query.<br/></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#insert-object">&lt;mongo:insert-object&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Inserts an object in a collection, setting its id if necessary.<br/></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#insert-object-from-map">&lt;mongo:insert-object-from-map&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Inserts an object in a collection, setting its id if necessary.<br/></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#list-collections">&lt;mongo:list-collections&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Lists names of collections available at this database
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#list-files">&lt;mongo:list-files&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Lists all the files that match the given query, sorting them by filename.<br/></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#list-files-using-query-map">&lt;mongo:list-files-using-query-map&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Lists all the files that match the given query, sorting them by filename.<br/></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#list-indices">&lt;mongo:list-indices&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">List existent indices in a collection
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#map-reduce-objects">&lt;mongo:map-reduce-objects&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Transforms a collection into a collection of aggregated groups, by
+ applying a supplied element-mapping function to each element, that transforms each one
+ into a key-value pair, grouping the resulting pairs by key, and finally
+ reducing values in each group applying a suppling 'reduce' function.<br/></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#remove-files">&lt;mongo:remove-files&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Removes all the files that match the given query.<br/></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#remove-files-using-query-map">&lt;mongo:remove-files-using-query-map&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Removes all the files that match the given query.<br/></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#remove-objects">&lt;mongo:remove-objects&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Removes all the objects that match the a given optional query.<br/></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#remove-using-map-query">&lt;mongo:remove-using-map-query&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Removes all the objects that match the a given optional query.<br/></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#save-object">&lt;mongo:save-object&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Inserts or updates an object based on its object _id.<br/></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#save-object-from-map">&lt;mongo:save-object-from-map&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Inserts or updates an object based on its object _id.<br/></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#update-objects">&lt;mongo:update-objects&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Updates objects that matches the given query.<br/></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#update-objects-using-map">&lt;mongo:update-objects-using-map&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Updates objects that matches the given query.<br/></div>
+        
+  </td></tr>
+
+
+
+</table>
+
+
+
+
+
+
+<!-- ========== TRANSFORMER SUMMARY =========== -->
+<table id="trnasmethods" class="jd-sumtable"><tr><th colspan="12">Transformers</th></tr>
+
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#bson-list-to-json">&lt;mongo:bson-list-to-json&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Convert a BasicBSONList into Json
+<br/></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#dbobject-to-json">&lt;mongo:dbobject-to-json&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Convert DBObject to Json
+<br/></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#json-to-d-b-object">&lt;mongo:json-to-d-b-object&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Convert JSON to DBObject
+<br/></div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/mongo.html#mongo-collection-to-json">&lt;mongo:mongo-collection-to-json&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Convert a BasicBSONList into Json
+<br/></div>
+        
+  </td></tr>
+
+
+
+</table>
+
+
+
+
+</div><!-- jd-descr (summary) -->
+
+
+
+<!-- ========= CONFIGURATION DETAIL ======== -->
+<A NAME="config"></A>
+<h2>Configuration</h2>
+<p>To use the this module within a flow the namespace to the module must be included. The resulting flow will look
+similar to the following:</p>
+<pre>
+&lt;mule xmlns="http://www.mulesoft.org/schema/mule/core"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:mongo="http://www.mulesoft.org/schema/mule/mongo"
+      xsi:schemaLocation="
+               http://www.mulesoft.org/schema/mule/core
+               http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+               http://www.mulesoft.org/schema/mule/mongo
+               http://www.mulesoft.org/schema/mule/mongo/1.0/mule-mongo.xsd"&gt;
+
+      &lt;!-- here goes your flows and configuration elements --&gt;
+
+&lt;/mule&gt;
+</pre>
+<p>This module is configured using the <i>config</i> element. This element must be placed outside of your flows and at
+the root of your Mule application. You can create as many configurations as you deem necesary as long as each carries
+its own name.</p>
+<p>Each message processor, message source or transformer carries a <i>config-ref</i> attribute that allows the invoker to
+specify which configuration to use.</p>
+<table id="lconfig" class="jd-sumtable">
+<tr><th colspan="12">Attributes</th></tr>
+<tr><th>Type</th><th>Name</th><th>Default Value</th><th>Description</th></tr>
+<td class="jd-typecol"><nobr>xs:string</nobr></td>
+<td class="jd-linkcol"><nobr>name</nobr></td>
+<td class="jd-descrcol"></td>
+<td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Give a name to this configuration so it can be later referenced.</td>
+
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          xs:string</nobr></td>
+          <td class="jd-linkcol"><nobr>database</nobr></td>
+          <td class="jd-descrcol">test</td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The database name of the Mongo server
+</td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          xs:string</nobr></td>
+          <td class="jd-linkcol"><nobr>host</nobr></td>
+          <td class="jd-descrcol">localhost</td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The host of the Mongo server
+</td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          xs:int</nobr></td>
+          <td class="jd-linkcol"><nobr>port</nobr></td>
+          <td class="jd-descrcol">27017</td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The port of the Mongo server
+</td>
+      </tr>
+      
+    
+</table>
+
+
+
+
+<!-- ========= SESSION MANAGEMENT DETAIL ======== -->
+<h2>Session Management</h2>
+<p>This module offers automatic session management via the use of a session pool. The session pool is fully configurable
+by the user of the module. The pool will act a storage mechanism for all the sessions that are currently being
+handled by different module processors.</p>
+<p>Prior to execution of a processor, the module will attempt to lookup a session and if one doesn't exists it will
+create one. That lookup mechanism is done in the session pool via the use of session variables declared as keys.</p>
+<p>The user of the connector can configure the pool by adding a <code>session-pooling-profile</code> to the connector configuration like this:</p>
+<pre>
+    &lt;mongo:session-pooling-profile maxActive="10" maxIdle="10"
+                             exhaustedAction="WHEN_EXHAUSTED_GROW" maxWait="120"/&gt;
+</pre>
+<p>The following is a list of session variables, each session variable can be configured at the config element level or
+they can also be added to each processor. If they are used at the processor level they get the benefit of full expression
+resolution.</p>
+<table id="lconfig" class="jd-sumtable">
+<tr><th colspan="12">Session Variables</th></tr>
+<tr><th>Name</th><th>Description</th></tr>
+
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-linkcol"><nobr>username</nobr></td>
+          <td class="jd-descrcol" width="100%">the username to use in case authentication is required<br/></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-linkcol"><nobr>password</nobr></td>
+          <td class="jd-descrcol" width="100%">the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+      </tr>
+      
+    
+</table>
+
+
+
+
+
+<!-- ========= MESSAGE PROCESSOR DETAIL ======== -->
+<!-- Message Processors -->
+
+<h2>Message Processors</h2>
+
+
+
+<A NAME="count-objects"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:count-objects&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Counts the number of objects that match the given query. If no query
+ is passed, returns the number of elements in the collection
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>collection</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the target collection<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>query</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the optional query for counting objects. Only objects matching it will be counted.
+                   If unspecified, all objects are counted.<br/></td>
+                </tr>
+                
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+            
+          
+            
+          
+      </table>
+  </div>
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Return Payload</h5>
+      <ul class="nolist"><li>the amount of objects that matches the query
+<br/></li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="count-objects-using-map-query"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:count-objects-using-map-query&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Counts the number of objects that match the given query. If no query
+ is passed, returns the number of elements in the collection
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>collection</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the target collection<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>queryAttributes</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the optional query for counting objects. Only objects matching it will be counted.
+                        If unspecified, all objects are counted.<br/></td>
+                </tr>
+                
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+            
+          
+            
+          
+      </table>
+  </div>
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Return Payload</h5>
+      <ul class="nolist"><li>the amount of objects that matches the query
+<br/></li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="create-collection"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:create-collection&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Creates a new collection.
+ If the collection already exists, a MongoException will be thrown.
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>collection</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the name of the collection to create<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>capped</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>if the collection will be capped<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>maxObjects</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the maximum number of documents the new collection is able to contain<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>size</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the maximum size of the new collection
+<br/></td>
+                </tr>
+                
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+      </table>
+  </div>
+  
+
+    </div>
+</div>
+
+
+<A NAME="create-file-from-payload"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:create-file-from-payload&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Creates a new GridFSFile in the database, saving the given content, filename,
+ contentType, and extraData, and answers it.
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>payload</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the mandatory content of the new gridfs file. It may be a java.io.File, a byte[] or an InputStream.<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>filename</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the mandatory name of new file.<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>contentType</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the optional content type of the new file<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>metadata</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the optional metadata of the new content type<br/></td>
+                </tr>
+                
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+      </table>
+  </div>
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Return Payload</h5>
+      <ul class="nolist"><li>the new GridFSFile
+<br/></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payload</h5>
+      <table class="jd-tagtable">
+        <tr>
+            <th>IOException</td>
+            <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="create-index"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:create-index&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Creates a new index
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>collection</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the name of the collection where the index will be created<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>field</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the name of the field which will be indexed<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>order</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the indexing order
+<br/></td>
+                </tr>
+                
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+            
+          
+            
+          
+            
+          
+      </table>
+  </div>
+  
+
+    </div>
+</div>
+
+
+<A NAME="drop-collection"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:drop-collection&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Deletes a collection and all the objects it contains.
+ If the collection does not exist, does nothing.
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>collection</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the name of the collection to drop
+<br/></td>
+                </tr>
+                
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+            
+          
+      </table>
+  </div>
+  
+
+    </div>
+</div>
+
+
+<A NAME="drop-index"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:drop-index&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Drops an existing index
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>collection</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the name of the collection where the index is<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>index</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the name of the index to drop
+<br/></td>
+                </tr>
+                
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+            
+          
+            
+          
+      </table>
+  </div>
+  
+
+    </div>
+</div>
+
+
+<A NAME="exists-collection"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:exists-collection&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Answers if a collection exists given its name
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>collection</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the name of the collection<br/></td>
+                </tr>
+                
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+            
+          
+      </table>
+  </div>
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Return Payload</h5>
+      <ul class="nolist"><li>if the collection exists
+<br/></li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="find-files"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:find-files&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Lists all the files that match the given query
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>query</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the optional query<br/></td>
+                </tr>
+                
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+            
+          
+      </table>
+  </div>
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Return Payload</h5>
+      <ul class="nolist"><li>a files iterable
+<br/></li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="find-files-using-query-map"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:find-files-using-query-map&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Lists all the files that match the given query
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>query</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the optional query<br/></td>
+                </tr>
+                
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+            
+          
+      </table>
+  </div>
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Return Payload</h5>
+      <ul class="nolist"><li>a files iterable
+<br/></li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="find-objects"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:find-objects&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Finds all objects that match a given query. If no query is specified, all objects of the
+ collection are retrieved. If no fields object is specified, all fields are retrieved.
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>collection</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the target collection<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>query</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the optional query object. If unspecified, all documents are returned.<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>fields</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>alternative way of passing fields as a literal List<br/></td>
+                </tr>
+                
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+            
+          
+            
+          
+            
+          
+      </table>
+  </div>
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Return Payload</h5>
+      <ul class="nolist"><li>an iterable of DBObjects
+<br/></li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="find-objects-using-query-map"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:find-objects-using-query-map&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Finds all objects that match a given query. If no query is specified, all objects of the
+ collection are retrieved. If no fields object is specified, all fields are retrieved.
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>collection</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the target collection<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>queryAttributes</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the optional query object. If unspecified, all documents are returned.<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>fields</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>alternative way of passing fields as a literal List<br/></td>
+                </tr>
+                
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+            
+          
+            
+          
+            
+          
+      </table>
+  </div>
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Return Payload</h5>
+      <ul class="nolist"><li>an iterable of DBObjects
+<br/></li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="find-one-file"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:find-one-file&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Answers the first file that matches the given query. If no object matches it,
+ a MongoException is thrown.
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>query</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the mandatory query<br/></td>
+                </tr>
+                
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+            
+          
+      </table>
+  </div>
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Return Payload</h5>
+      <ul class="nolist"><li>a DBObject
+<br/></li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="find-one-file-using-query-map"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:find-one-file-using-query-map&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Answers the first file that matches the given query. If no object matches it,
+ a MongoException is thrown.
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>query</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the mandatory query<br/></td>
+                </tr>
+                
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+            
+          
+      </table>
+  </div>
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Return Payload</h5>
+      <ul class="nolist"><li>a DBObject
+<br/></li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="find-one-object"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:find-one-object&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Finds the first object that matches a given query.
+ Throws a <br/>MongoException if no one matches the given query
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>collection</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the target collection<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>query</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the mandatory query object that the returned object matches.<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>fields</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>alternative way of passing fields as a literal List<br/></td>
+                </tr>
+                
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+            
+          
+            
+          
+            
+          
+      </table>
+  </div>
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Return Payload</h5>
+      <ul class="nolist"><li>a non-null DBObject that matches the query.
+<br/></li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="find-one-object-using-query-map"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:find-one-object-using-query-map&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Finds the first object that matches a given query.
+ Throws a <br/>MongoException if no one matches the given query
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>collection</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the target collection<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>queryAttributes</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the mandatory query object that the returned object matches.<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>fields</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>alternative way of passing fields as a literal List<br/></td>
+                </tr>
+                
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+            
+          
+            
+          
+            
+          
+      </table>
+  </div>
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Return Payload</h5>
+      <ul class="nolist"><li>a non-null DBObject that matches the query.
+<br/></li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="get-file-content"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:get-file-content&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Answers an inputstream to the contents of the first file that matches the given query.
+ If no object matches it, a MongoException is thrown.
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>query</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the mandatory query<br/></td>
+                </tr>
+                
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+            
+          
+      </table>
+  </div>
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Return Payload</h5>
+      <ul class="nolist"><li>an InputStream to the file contents
+<br/></li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="get-file-content-using-query-map"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:get-file-content-using-query-map&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Answers an inputstream to the contents of the first file that matches the given query.
+ If no object matches it, a MongoException is thrown.
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>query</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the mandatory query<br/></td>
+                </tr>
+                
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+            
+          
+      </table>
+  </div>
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Return Payload</h5>
+      <ul class="nolist"><li>an InputStream to the file contents
+<br/></li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="insert-object"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:insert-object&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Inserts an object in a collection, setting its id if necessary.
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>collection</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the name of the collection where to insert the given object<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>dbObject</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">a com.mongodb.DBObject instance.<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>writeConcern</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the optional write concern of insertion
+<br/></td>
+                </tr>
+                
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+            
+          
+            
+          
+            
+          
+      </table>
+  </div>
+  
+
+    </div>
+</div>
+
+
+<A NAME="insert-object-from-map"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:insert-object-from-map&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Inserts an object in a collection, setting its id if necessary.
+ <p/>
+ A shallow conversion into DBObject is performed - that is, no conversion is performed to its values.
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>collection</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the name of the collection where to insert the given object<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>elementAttributes</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>alternative way of specifying the element as a literal Map inside a Mule Flow<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>writeConcern</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the optional write concern of insertion
+<br/></td>
+                </tr>
+                
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+            
+          
+            
+          
+            
+          
+      </table>
+  </div>
+  
+
+    </div>
+</div>
+
+
+<A NAME="list-collections"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:list-collections&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Lists names of collections available at this database
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+      </table>
+  </div>
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Return Payload</h5>
+      <ul class="nolist"><li>the list of names of collections available at this database
+<br/></li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="list-files"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:list-files&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Lists all the files that match the given query, sorting them by filename. If no query is
+ specified, all files are listed.
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>query</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the optional query<br/></td>
+                </tr>
+                
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+            
+          
+      </table>
+  </div>
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Return Payload</h5>
+      <ul class="nolist"><li>an iterable of DBObjects
+<br/></li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="list-files-using-query-map"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:list-files-using-query-map&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Lists all the files that match the given query, sorting them by filename. If no query is
+ specified, all files are listed.
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>query</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the optional query<br/></td>
+                </tr>
+                
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+            
+          
+      </table>
+  </div>
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Return Payload</h5>
+      <ul class="nolist"><li>an iterable of DBObjects
+<br/></li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="list-indices"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:list-indices&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>List existent indices in a collection
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>collection</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the name of the collection<br/></td>
+                </tr>
+                
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+            
+          
+      </table>
+  </div>
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Return Payload</h5>
+      <ul class="nolist"><li>a collection of DBObjects with indices information
+<br/></li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="map-reduce-objects"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:map-reduce-objects&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Transforms a collection into a collection of aggregated groups, by
+ applying a supplied element-mapping function to each element, that transforms each one
+ into a key-value pair, grouping the resulting pairs by key, and finally
+ reducing values in each group applying a suppling 'reduce' function.
+ <p/>
+ Each supplied function is coded in JavaScript.
+ <p/>
+ Note that the correct way of writing those functions may not be obvious; please
+ consult MongoDB documentation for writing them.
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>collection</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the name of the collection to map and reduce<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>mapFunction</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">a JavaScript encoded mapping function<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>reduceFunction</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">a JavaScript encoded reducing function<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>outputCollection</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the name of the output collection to write the results, replacing previous collection if existed,
+                         mandatory when results may be larger than 16MB.
+                         If outputCollection is unspecified, the computation is performed in-memory and not persisted.<br/></td>
+                </tr>
+                
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+      </table>
+  </div>
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Return Payload</h5>
+      <ul class="nolist"><li>an iterable that retrieves the resulting collection DBObjects
+<br/></li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="remove-files"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:remove-files&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Removes all the files that match the given query. If no query is specified,
+ all files are removed
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>query</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the optional query
+<br/></td>
+                </tr>
+                
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+            
+          
+      </table>
+  </div>
+  
+
+    </div>
+</div>
+
+
+<A NAME="remove-files-using-query-map"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:remove-files-using-query-map&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Removes all the files that match the given query. If no query is specified,
+ all files are removed
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>query</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the optional query
+<br/></td>
+                </tr>
+                
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+            
+          
+      </table>
+  </div>
+  
+
+    </div>
+</div>
+
+
+<A NAME="remove-objects"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:remove-objects&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Removes all the objects that match the a given optional query.
+ If query is not specified, all objects are removed. However, please notice that this is normally
+ less performant that dropping the collection and creating it and its indices again
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>collection</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the collection whose elements will be removed<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>query</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the optional query object. Objects that match it will be removed. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>writeConcern</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the write concern used to remove the object
+<br/></td>
+                </tr>
+                
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+            
+          
+            
+          
+            
+          
+      </table>
+  </div>
+  
+
+    </div>
+</div>
+
+
+<A NAME="remove-using-map-query"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:remove-using-map-query&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Removes all the objects that match the a given optional query.
+ If query is not specified, all objects are removed. However, please notice that this is normally
+ less performant that dropping the collection and creating it and its indices again
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>collection</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the collection whose elements will be removed<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>queryAttributes</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the query object. Objects that match it will be removed.<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>writeConcern</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the write concern used to remove the object
+<br/></td>
+                </tr>
+                
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+            
+          
+            
+          
+            
+          
+      </table>
+  </div>
+  
+
+    </div>
+</div>
+
+
+<A NAME="save-object"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:save-object&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Inserts or updates an object based on its object _id.
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>collection</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the collection where to insert the object<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>element</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the mandatory object to insert.<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>writeConcern</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the write concern used to persist the object
+<br/></td>
+                </tr>
+                
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+            
+          
+            
+          
+            
+          
+      </table>
+  </div>
+  
+
+    </div>
+</div>
+
+
+<A NAME="save-object-from-map"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:save-object-from-map&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Inserts or updates an object based on its object _id.
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>collection</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the collection where to insert the object<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>elementAttributes</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the mandatory object to insert.<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>writeConcern</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the write concern used to persist the object
+<br/></td>
+                </tr>
+                
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+            
+          
+            
+          
+            
+          
+      </table>
+  </div>
+  
+
+    </div>
+</div>
+
+
+<A NAME="update-objects"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:update-objects&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Updates objects that matches the given query. If parameter multi is set to false,
+ only the first document matching it will be updated.
+ Otherwise, all the documents matching it will be updated.
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>collection</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the name of the collection to update<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>query</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the query object used to detect the element to update.<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>element</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the mandatory object that will replace that one which matches the query.<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>upsert</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>if the database should create the element if it does not exist<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>multi</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>if all or just the first object matching the query will be updated<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>writeConcern</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the write concern used to update
+<br/></td>
+                </tr>
+                
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+      </table>
+  </div>
+  
+
+    </div>
+</div>
+
+
+<A NAME="update-objects-using-map"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;mongo:update-objects-using-map&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Updates objects that matches the given query. If parameter multi is set to false,
+ only the first document matching it will be updated.
+ Otherwise, all the documents matching it will be updated.
+ <p/>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+      <table class="jd-tagtable">
+      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+      <td class="jd-descrcol"></td>
+      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+          
+          
+            
+                
+                    <tr class=" api apilevel-" >
+                        <td class="jd-linkcol"><nobr>username</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
+                    </tr>
+                    
+                
+                    <tr class="alt-color api apilevel-" >
+                        <td class="jd-linkcol"><nobr>password</nobr></td>
+                        <td class="jd-descrcol"></td>
+                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null if no authentication is desired
+<br/></td>
+                    </tr>
+                    
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>collection</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the name of the collection to update<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>queryAttributes</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the query object used to detect the element to update.<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>elementAttributes</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%">the mandatory object that will replace that one which matches the query.<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>upsert</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>if the database should create the element if it does not exist<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>multi</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>if all or just the first object matching the query will be updated<br/></td>
+                </tr>
+                
+                
+            
+          
+            
+                
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>writeConcern</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the write concern used to update
+<br/></td>
+                </tr>
+                
+                
+            
+          
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Child Elements</h5>
+
+      <table class="jd-tagtable">
+          
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+      </table>
+  </div>
+  
+
+    </div>
+</div>
+
+
+
+
+
+<!-- ========= MESSAGE SOURCES DETAIL ======== -->
+<!-- Message Processors -->
+
+
+
+
+<!-- ========= END OF CLASS DATA ========= -->
+<A NAME="navbar_top"></A>
+
+<div id="footer">
+Generated by <a href="http://www.mulesoft.com/devkit">Mule DevKit</a>. Document generation technology based on <a href="http://code.google.com/p/doclava/">Google's Doclava</a>.
+</div> <!-- end footer -->
+
+</div> <!-- jd-content -->
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+<script type="text/javascript">
+init(); /* initialize mule-developer-docs.js */
+</script>
+
+</body>
+</html>
