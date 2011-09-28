@@ -12,16 +12,14 @@ package org.mule.module.mongo.api;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
+import org.bson.types.ObjectId;
+import org.codehaus.jackson.map.ObjectMapper;
 
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.apache.commons.lang.UnhandledException;
-import org.bson.types.ObjectId;
-import org.codehaus.jackson.map.ObjectMapper;
 
 /**
  * Conversions between JSon Strings and Maps into DBObjects  
@@ -51,10 +49,6 @@ public final class DBObjects
         {
             return null;
         }
-        if (o instanceof String)
-        {
-            return fromJson((String) o);
-        }
         if (o instanceof DBObject)
         {
             return (DBObject) o;
@@ -64,22 +58,6 @@ public final class DBObjects
             return fromMap((Map<String, Object>) o);
         }
         throw new IllegalArgumentException("Unsupported object type " + o);
-    }
-
-    public static DBObject fromJson(String json)
-    {
-        if (json.length() == 0)
-        {
-            return new BasicDBObject();
-        }
-        try
-        {
-            return (DBObject) adapt(MAPPER.readValue(json, BasicDBObject.class));
-        }
-        catch (Exception e)
-        {
-            throw new UnhandledException("Could not parse JSon " + json, e);
-        }
     }
 
     @SuppressWarnings("unchecked")

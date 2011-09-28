@@ -16,7 +16,7 @@ public enum IndexOrder
 
     private final int value;
 
-    private IndexOrder(int value)
+    IndexOrder(int value)
     {
         this.value = value;
     }

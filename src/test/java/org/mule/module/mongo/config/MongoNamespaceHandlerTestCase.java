@@ -14,7 +14,7 @@
 
 package org.mule.module.mongo.config;
 
-import org.mule.construct.SimpleFlowConstruct;
+import org.mule.construct.Flow;
 import org.mule.tck.FunctionalTestCase;
 
 /**
@@ -35,8 +35,8 @@ public class MongoNamespaceHandlerTestCase extends FunctionalTestCase
         lookupFlowConstruct("CreateCollection");
     }
 
-    private SimpleFlowConstruct lookupFlowConstruct(String name)
+    private Flow lookupFlowConstruct(String name)
     {
-        return (SimpleFlowConstruct) muleContext.getRegistry().lookupFlowConstruct(name);
+        return (Flow) muleContext.getRegistry().lookupFlowConstruct(name);
     }
 }

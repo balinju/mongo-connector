@@ -9,35 +9,34 @@
  */
 
 package org.mule.module.mongo.api;
-import static org.mockito.Matchers.*;
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
 
 import com.mongodb.DBObject;
+import org.bson.types.ObjectId;
+import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.bson.types.ObjectId;
-import org.junit.Test;
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
-public class DBObjectsUnitTest
-{
+public class DBObjectsUnitTest {
 
     @Test
-    public void fromNull() throws Exception
-    {
+    public void fromNull() throws Exception {
         assertNull(DBObjects.from(null));
     }
 
     @SuppressWarnings("serial")
     @Test
-    public void testFromMap() throws Exception
-    {
-        DBObject map = DBObjects.from(new HashMap<String, Object>()
-        {
+    public void fromMap() throws Exception {
+        DBObject map = DBObjects.from(new HashMap<String, Object>() {
             {
                 put("key1", 4);
                 put("key2", Collections.singletonMap("key3", 9));
@@ -48,34 +47,47 @@ public class DBObjectsUnitTest
     }
 
     @Test
-    public void testFromJson() throws Exception
-    {
-        DBObject o = DBObjects.from("{ \"name\": \"John\", \"surname\": \"Doe\", \"age\": 35}");
-        assertEquals("John", o.get("name"));
-        assertEquals("Doe", o.get("surname"));
-        assertEquals(35, o.get("age"));
-    }
-
-    @Test
-    public void testFromJsonWithId() throws Exception
-    {
-        DBObject o = DBObjects.from("{ \"name\": \"John\", \"surname\": \"Doe\", \"age\": 35, \"_id\": 500}");
+    public void fromMapWithId() throws Exception {
+        DBObject o = DBObjects.from(new HashMap<String, Object>() {
+            {
+                put("name", "John");
+                put("surname", "Doe");
+                put("age", 35);
+                put("_id", 500);
+            }
+        });
         assertEquals("John", o.get("name"));
         assertEquals(500, o.get("_id"));
     }
 
     @Test
-    public void testFromJsonWIthObjectId() throws Exception
-    {
-        DBObject o = DBObjects.from("{ \"name\": \"John\", \"surname\": \"Doe\", \"age\": 35, \"_id\": \"ObjectId(4df7b8e8663b85b105725d34)\"}");
+    public void fromMapWithObjectId() throws Exception {
+        DBObject o = DBObjects.from(new HashMap<String, Object>() {
+            {
+                put("name", "John");
+                put("surname", "Doe");
+                put("age", 35);
+                put("_id", "4df7b8e8663b85b105725d34");
+            }
+        });
         assertEquals("John", o.get("name"));
         assertEquals(new ObjectId("4df7b8e8663b85b105725d34"), o.get("_id"));
     }
 
     @Test
-    public void testFromJsonWithNestedObjects() throws Exception
-    {
-        DBObject o = DBObjects.from("{ \"name\": \"Jon\", \"surname\": \"Arbuckle\", \"cat\" : { \"name\" : \"Garfield\" }}");
+    public void fromMapWithNestedObject() throws Exception {
+        final DBObject cat = DBObjects.from(new HashMap<String, Object>() {
+            {
+                put("name", "Garfield");
+            }
+        });
+        DBObject o = DBObjects.from(new HashMap<String, Object>() {
+            {
+                put("name", "Jon");
+                put("surname", "Arbuckle");
+                put("cat", cat);
+            }
+        });
         assertEquals("Jon", o.get("name"));
         assertEquals("Arbuckle", o.get("surname"));
         assertThat(o.get("cat"), instanceOf(DBObject.class));
@@ -83,9 +95,24 @@ public class DBObjectsUnitTest
     }
 
     @Test
-    public void testFromJsonWithList() throws Exception
-    {
-        DBObject o = DBObjects.from("{ \"name\": \"Jon\", \"surname\": \"Arbuckle\", \"pets\" : [ { \"name\" : \"Garfield\" } , {\"name\": \"Oddie\"} ] }");
+    public void fromMapWithNestedList() throws Exception {
+        final DBObject garfield = DBObjects.from(new HashMap<String, Object>() {
+            {
+                put("name", "Garfield");
+            }
+        });
+        final DBObject oddie = DBObjects.from(new HashMap<String, Object>() {
+            {
+                put("name", "Oddie");
+            }
+        });
+        DBObject o = DBObjects.from(new HashMap<String, Object>() {
+            {
+                put("name", "Jon");
+                put("surname", "Arbuckle");
+                put("pets", Arrays.asList(garfield, oddie));
+            }
+        });
         assertEquals("Jon", o.get("name"));
         assertEquals("Arbuckle", o.get("surname"));
         assertThat(o.get("pets"), instanceOf(List.class));

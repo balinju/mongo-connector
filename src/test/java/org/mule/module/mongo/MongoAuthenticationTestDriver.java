@@ -10,31 +10,10 @@
 
 package org.mule.module.mongo;
 
-import static org.junit.Assert.*;
-
-import org.mule.api.lifecycle.InitialisationException;
-import org.mule.module.mongo.api.IndexOrder;
-import org.mule.module.mongo.api.MongoClient;
-import org.mule.module.mongo.api.WriteConcern;
-
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
-import com.mongodb.MapReduceCommand;
-import com.mongodb.MapReduceOutput;
-import com.mongodb.MongoException;
-
-import java.sql.ClientInfoStatus;
-import java.util.Iterator;
-
-import org.junit.After;
-import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.experimental.theories.DataPoint;
-import org.junit.experimental.theories.DataPoints;
-import org.junit.experimental.theories.Theories;
-import org.junit.experimental.theories.Theory;
-import org.junit.runner.RunWith;
+
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Integration test for the Connector when Authenticated.
@@ -48,26 +27,25 @@ import org.junit.runner.RunWith;
 public class MongoAuthenticationTestDriver
 {
     private MongoCloudConnector connector;
+    private MongoCloudConnector.MongoSession session;
 
     /**
      * Setups an athenticated connector
      */
     @Before
-    public void setup() throws InitialisationException
+    public void setup() throws Exception
     {
         connector = new MongoCloudConnector();
         connector.setDatabase("mongo-connector-test");
         connector.setHost("127.0.0.1");
         connector.setPort(27017);
-        connector.setPassword("1234");
-        connector.setUsername("foobar");
-        connector.initialise();
+        session = connector.createSession("foobar", "1234");
     }
 
     @Test
     public void createCollection() throws Exception
     {
-        assertNotNull(connector.listCollections());
+        assertNotNull(connector.listCollections(session));
     }
 
 }

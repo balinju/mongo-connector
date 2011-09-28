@@ -1,5 +1,5 @@
 /**
-fi * Mule MongoDB Cloud Connector
+ fi * Mule MongoDB Cloud Connector
  *
  * Copyright (c) MuleSoft, Inc.  All rights reserved.  http://www.mulesoft.com
  *
@@ -13,28 +13,30 @@ fi * Mule MongoDB Cloud Connector
  */
 package org.mule.module.mongo;
 
-import static org.mule.module.mongo.api.DBObjects.from;
-
+import com.mongodb.DB;
+import com.mongodb.DBObject;
+import com.mongodb.Mongo;
+import com.mongodb.MongoException;
 import com.mongodb.util.JSON;
+import org.apache.commons.lang.Validate;
 import org.bson.types.BasicBSONList;
+import org.mule.api.annotations.Configurable;
+import org.mule.api.annotations.Module;
+import org.mule.api.annotations.Processor;
 import org.mule.api.annotations.Transformer;
-import org.mule.api.lifecycle.Initialisable;
-import org.mule.api.lifecycle.InitialisationException;
+import org.mule.api.annotations.param.Default;
+import org.mule.api.annotations.param.Optional;
+import org.mule.api.annotations.param.Payload;
+import org.mule.api.annotations.param.Session;
+import org.mule.api.annotations.param.SessionKey;
+import org.mule.api.annotations.session.SessionCreate;
+import org.mule.api.annotations.session.SessionDestroy;
 import org.mule.module.mongo.api.IndexOrder;
 import org.mule.module.mongo.api.MongoClient;
 import org.mule.module.mongo.api.MongoClientAdaptor;
 import org.mule.module.mongo.api.MongoClientImpl;
 import org.mule.module.mongo.api.MongoCollection;
 import org.mule.module.mongo.api.WriteConcern;
-import org.mule.tools.cloudconnect.annotations.Connector;
-import org.mule.tools.cloudconnect.annotations.Operation;
-import org.mule.tools.cloudconnect.annotations.Parameter;
-import org.mule.tools.cloudconnect.annotations.Property;
-
-import com.mongodb.DB;
-import com.mongodb.DBObject;
-import com.mongodb.Mongo;
-import com.mongodb.MongoException;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -42,642 +44,721 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.UnknownHostException;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang.Validate;
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.codehaus.jackson.util.ByteArrayBuilder;
+import static org.mule.module.mongo.api.DBObjects.from;
+
 /**
  * A Mongo Connector Facade
+ *
  * @author flbulgarelli
  */
-@Connector(namespacePrefix = "mongo")
-public class MongoCloudConnector implements Initialisable
-{
-    @Property(name = "client-ref", optional = true)
-    private MongoClient client;
+@Module(name = "mongo")
+public class MongoCloudConnector {
+
+    private static final String CAPPED_DEFAULT_VALUE = "false";
+    private static final String WRITE_CONCERN_DEFAULT_VALUE = "DATABASE_DEFAULT";
     /**
      * The host of the Mongo server
      */
-    @Property(optional = true, defaultValue = "localhost")
+    @Configurable
+    @Optional
+    @Default("localhost")
     private String host;
     /**
      * The port of the Mongo server
      */
-    @Property(optional = true, defaultValue = "27017")
+    @Configurable
+    @Optional
+    @Default("27017")
     private int port;
     /**
      * The database name of the Mongo server
      */
-    @Property(optional = true, defaultValue = "test")
+    @Configurable
+    @Optional
+    @Default("test")
     private String database;
-    /**
-     * The user password. Only required for collections that require authentication
-     */
-    @Property(optional = true)
-    private String password;
-    /**
-     * The user name. Only required for collections that require authentication
-     */
-    @Property(optional = true)
-    private String username;
-    
-    private static final Map<MongoRef, Mongo> MONGOS = new HashMap<MongoRef, Mongo>();
-    
-    
+
     /**
      * Lists names of collections available at this database
-     * 
-     * {@code <list-collections/>}
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:list-collections}
+     *
      * @return the list of names of collections available at this database
      */
-    @Operation
-    public Collection<String> listCollections()
-    {
-        return client.listCollections();
+    @Processor
+    public Collection<String> listCollections(@Session MongoSession session) {
+        return session.getClient().listCollections();
     }
 
     /**
      * Answers if a collection exists given its name
-     * 
-     * {@code <exists-collection name="aColllection"/>}
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:exists-collection}
+     *
      * @param collection the name of the collection
-     * @return if the collection exists 
+     * @return if the collection exists
      */
-    @Operation
-    public boolean existsCollection(@Parameter String collection)
-    {
-        return client.existsCollection(collection);
+    @Processor
+    public boolean existsCollection(@Session MongoSession session, String collection) {
+        return session.getClient().existsCollection(collection);
     }
 
     /**
-     * Deletes a collection and all the objects it contains.  
+     * Deletes a collection and all the objects it contains.
      * If the collection does not exist, does nothing.
-     * 
-     * {@code <drop-collection name="aCollection"/>}
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:drop-collection}
+     *
      * @param collection the name of the collection to drop
      */
-    @Operation
-    public void dropCollection(@Parameter String collection)
-    {
-        client.dropCollection(collection);
+    @Processor
+    public void dropCollection(@Session MongoSession session, String collection) {
+        session.getClient().dropCollection(collection);
     }
 
     /**
-     * Creates a new collection. 
+     * Creates a new collection.
      * If the collection already exists, a MongoException will be thrown.
-     * 
-     * {@code <create-collection name="aCollection" capped="true"/>}
-     * 
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:create-collection}
+     *
      * @param collection the name of the collection to create
-     * @param capped if the collection will be capped 
+     * @param capped     if the collection will be capped
      * @param maxObjects the maximum number of documents the new collection is able to contain
-     * @param size the maximum size of the new collection 
+     * @param size       the maximum size of the new collection
      */
-    @Operation
-    public void createCollection(@Parameter String collection,
-                                 @Parameter(optional = true, defaultValue = "false") boolean capped,
-                                 @Parameter(optional = true) Integer maxObjects,
-                                 @Parameter(optional = true) Integer size)
-    {
-        client.createCollection(collection, capped, maxObjects, size);
+    @Processor
+    public void createCollection(@Session MongoSession session,
+                                 String collection,
+                                 @Optional @Default(CAPPED_DEFAULT_VALUE) boolean capped,
+                                 @Optional Integer maxObjects,
+                                 @Optional Integer size) {
+        session.getClient().createCollection(collection, capped, maxObjects, size);
     }
-    
+
     /**
      * Inserts an object in a collection, setting its id if necessary.
-     * 
-     * Object can either be a raw DBObject, a String-Object Map or a JSon String.
-     * If it is passed as Map, a shallow conversion into DBObject is performed - that is, no conversion is performed to its values.
-     * If it is passed as JSon String, _ids of type ObjectId must be passed as a String, for example: 
-     * { "_id": "ObjectId(4df7b8e8663b85b105725d34)", "foo" : 5, "bar": [ 1 , 2 ] }
-     * 
-     * {@code <insert-object collection="Employees" object="#[header:aBsonEmployee]" writeConcern="SAFE"/>}
-     * @param collection the name of the collection where to insert the given object
-     * @param element the object to insert. Maps, JSon Strings and DBObjects are supported.
-     * @param elementAttributes alternative way of specifying the element as a literal Map inside a Mule Flow
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:insert-object}
+     *
+     * @param collection   the name of the collection where to insert the given object
+     * @param dbObject     a com.mongodb.DBObject instance.
      * @param writeConcern the optional write concern of insertion
-     * @return The id of the inserted document
      */
-    @Operation
-    public String insertObject(@Parameter String collection,
-                             @Parameter(optional = true) Object element,
-                             @Parameter(optional = true) Map<String, Object> elementAttributes,
-                             @Parameter(optional = true, defaultValue = "DATABASE_DEFAULT") WriteConcern writeConcern)
-    {
-        return client.insertObject(collection, from(single(elementAttributes, element)), writeConcern);
+    @Processor
+    public void insertObject(@Session MongoSession session,
+                             String collection,
+                             DBObject dbObject,
+                             @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern) {
+        session.getClient().insertObject(collection, dbObject, writeConcern);
+    }
+
+    /**
+     * Inserts an object in a collection, setting its id if necessary.
+     * <p/>
+     * A shallow conversion into DBObject is performed - that is, no conversion is performed to its values.
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:insert-object-from-map}
+     *
+     * @param collection        the name of the collection where to insert the given object
+     * @param elementAttributes alternative way of specifying the element as a literal Map inside a Mule Flow
+     * @param writeConcern      the optional write concern of insertion
+     */
+    @Processor
+    public void insertObjectFromMap(@Session MongoSession session,
+                                    String collection,
+                                    @Optional Map<String, Object> elementAttributes,
+                                    @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern) {
+        session.getClient().insertObject(collection, from(elementAttributes), writeConcern);
     }
 
     /**
      * Updates objects that matches the given query. If parameter multi is set to false,
-     * only the first document matching it will be updated. 
-     * Otherwise, all the documents matching it will be updated.  
-     * 
-     * {@code <update-objects collection="#[map-payload:aCollectionName]" 
-     *         query="#[variable:aBsonQuery]" object="#[variable:aBsonObject]" upsert="true"/>} 
-     * @param collection the name of the collection to update
-     * @param query the query object used to detect the element to update. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.
-     * @param queryAttributes alternative way of passing query as a literal Map inside a Mule flow
-     * @param element the mandatory object that will replace that one which matches the query. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.
-     * @param elementAttributes alternative way of specifying the element as a literal Map inside a Mule Flow 
-     * @param upsert if the database should create the element if it does not exist
-     * @param multi if all or just the first object matching the query will be updated
-     * @param writeConcern the write concern used to update 
+     * only the first document matching it will be updated.
+     * Otherwise, all the documents matching it will be updated.
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:update-objects}
+     *
+     * @param collection   the name of the collection to update
+     * @param query        the query object used to detect the element to update.
+     * @param element      the mandatory object that will replace that one which matches the query.
+     * @param upsert       if the database should create the element if it does not exist
+     * @param multi        if all or just the first object matching the query will be updated
+     * @param writeConcern the write concern used to update
      */
-    @Operation
-    public void updateObjects(@Parameter String collection,
-                              @Parameter( optional = true) Object query,
-                              @Parameter(optional = true) Map<String, Object> queryAttributes,
-                              @Parameter(optional = true) Object element,
-                              @Parameter(optional = true) Map<String, Object> elementAttributes,
-                              @Parameter(optional = true, defaultValue = "false") boolean upsert,
-                              @Parameter(optional = true, defaultValue = "true") boolean multi,
-                              @Parameter(optional = true, defaultValue = "DATABASE_DEFAULT") WriteConcern writeConcern)
-    {
-        client.updateObjects(collection, from(single(queryAttributes, query)), from(single(elementAttributes, element)),
-            upsert, multi, writeConcern);
+    @Processor
+    public void updateObjects(@Session MongoSession session,
+                              String collection,
+                              DBObject query,
+                              DBObject element,
+                              @Optional @Default(CAPPED_DEFAULT_VALUE) boolean upsert,
+                              @Optional @Default("true") boolean multi,
+                              @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern) {
+        session.getClient().updateObjects(collection, query, element, upsert, multi, writeConcern);
+    }
+
+    /**
+     * Updates objects that matches the given query. If parameter multi is set to false,
+     * only the first document matching it will be updated.
+     * Otherwise, all the documents matching it will be updated.
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:update-objects-using-map}
+     *
+     * @param collection        the name of the collection to update
+     * @param queryAttributes   the query object used to detect the element to update.
+     * @param elementAttributes the mandatory object that will replace that one which matches the query.
+     * @param upsert            if the database should create the element if it does not exist
+     * @param multi             if all or just the first object matching the query will be updated
+     * @param writeConcern      the write concern used to update
+     */
+    @Processor
+    public void updateObjectsUsingMap(@Session MongoSession session,
+                                      String collection,
+                                      Map<String, Object> queryAttributes,
+                                      Map<String, Object> elementAttributes,
+                                      @Optional @Default(CAPPED_DEFAULT_VALUE) boolean upsert,
+                                      @Optional @Default("true") boolean multi,
+                                      @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern) {
+        session.getClient().updateObjects(collection, from(queryAttributes), from(elementAttributes), upsert, multi, writeConcern);
     }
 
     /**
      * Inserts or updates an object based on its object _id.
-     *  
-     * {@code <save-object 
-     *          collection="#[map-payload:aCollectionName]"
-     *          object="#[header:aBsonObject]"/>} 
-     * @param collection the collection where to insert the object
-     * @param element the mandatory object to insert. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.
-     * @param elementAttributes an alternative way of passing the element as a literal Map inside a Mule Flow
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:save-object}
+     *
+     * @param collection   the collection where to insert the object
+     * @param element      the mandatory object to insert.
      * @param writeConcern the write concern used to persist the object
      */
-    @Operation
-    public void saveObject(@Parameter String collection,
-                           @Parameter(optional = true) Object element,
-                           @Parameter(optional = true) Map<String, Object> elementAttributes,
-                           @Parameter(optional = true, defaultValue = "DATABASE_DEFAULT") WriteConcern writeConcern)
-    {
-        client.saveObject(collection, from(single(elementAttributes, element)), writeConcern);
+    @Processor
+    public void saveObject(@Session MongoSession session,
+                           String collection,
+                           DBObject element,
+                           @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern) {
+        session.getClient().saveObject(collection, from(element), writeConcern);
     }
 
     /**
-     * Removes all the objects that match the a given optional query. 
+     * Inserts or updates an object based on its object _id.
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:save-object-from-map}
+     *
+     * @param collection        the collection where to insert the object
+     * @param elementAttributes the mandatory object to insert.
+     * @param writeConcern      the write concern used to persist the object
+     */
+    @Processor
+    public void saveObjectFromMap(@Session MongoSession session,
+                                  String collection,
+                                  Map<String, Object> elementAttributes,
+                                  @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern) {
+        session.getClient().saveObject(collection, from(elementAttributes), writeConcern);
+    }
+
+    /**
+     * Removes all the objects that match the a given optional query.
      * If query is not specified, all objects are removed. However, please notice that this is normally
      * less performant that dropping the collection and creating it and its indices again
-     * 
-     * {@code <remove-objects collection="#[map-payload:aCollectionName]" query="#[map-payload:aBsonQuery]"/>}
-     * @param collection the collection whose elements will be removed 
-     * @param query the optional query object. Objects that match it will be removed. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.
-     * @param queryAttributes an alternative way of passing the query as a literal Map inside a Mule Flow
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:remove-objects}
+     *
+     * @param collection   the collection whose elements will be removed
+     * @param query        the optional query object. Objects that match it will be removed. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.
      * @param writeConcern the write concern used to remove the object
      */
-    @Operation
-    public void removeObjects(@Parameter String collection,
-                              @Parameter( optional = true) Object query,
-                              @Parameter(optional = true) Map<String, Object> queryAttributes,
-                              @Parameter(optional = true, defaultValue = "DATABASE_DEFAULT") WriteConcern writeConcern)
-    {
-        client.removeObjects(collection, from(single(queryAttributes, query)), writeConcern);
+    @Processor
+    public void removeObjects(@Session MongoSession session,
+                              String collection,
+                              DBObject query,
+                              @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern) {
+        session.getClient().removeObjects(collection, query, writeConcern);
     }
-    
+
+    /**
+     * Removes all the objects that match the a given optional query.
+     * If query is not specified, all objects are removed. However, please notice that this is normally
+     * less performant that dropping the collection and creating it and its indices again
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:remove-using-map-query}
+     *
+     * @param collection      the collection whose elements will be removed
+     * @param queryAttributes the query object. Objects that match it will be removed.
+     * @param writeConcern    the write concern used to remove the object
+     */
+    @Processor
+    public void removeUsingMapQuery(@Session MongoSession session,
+                                    String collection,
+                                    Map<String, Object> queryAttributes,
+                                    @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern) {
+        session.getClient().removeObjects(collection, from(queryAttributes), writeConcern);
+    }
+
     /**
      * Transforms a collection into a collection of aggregated groups, by
      * applying a supplied element-mapping function to each element, that transforms each one
-     * into a key-value pair, grouping the resulting pairs by key, and finally 
-     * reducing values in each group applying a suppling 'reduce' function.   
-     * 
+     * into a key-value pair, grouping the resulting pairs by key, and finally
+     * reducing values in each group applying a suppling 'reduce' function.
+     * <p/>
      * Each supplied function is coded in JavaScript.
-     * 
-     * Note that the correct way of writing those functions may not be obvious; please 
+     * <p/>
+     * Note that the correct way of writing those functions may not be obvious; please
      * consult MongoDB documentation for writing them.
-     *  
-     * {@code  <map-reduce-objects 
-     *      collection="myCollection"
-     *      mapFunction="#[header:aJSMapFunction]"
-     *      reduceFunction="#[header:aJSReduceFunction]"/>} 
-     * @param collection the name of the collection to map and reduce
-     * @param mapFunction a JavaScript encoded mapping function
-     * @param reduceFunction a JavaScript encoded reducing function 
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:map-reduce-objects}
+     *
+     * @param collection       the name of the collection to map and reduce
+     * @param mapFunction      a JavaScript encoded mapping function
+     * @param reduceFunction   a JavaScript encoded reducing function
      * @param outputCollection the name of the output collection to write the results, replacing previous collection if existed,
-     *          mandatory when results may be larger than 16MB. 
-     *          If outputCollection is unspecified, the computation is performed in-memory and not persisted.
-     * @return an iterable that retrieves the resulting collection DBObjects   
+     *                         mandatory when results may be larger than 16MB.
+     *                         If outputCollection is unspecified, the computation is performed in-memory and not persisted.
+     * @return an iterable that retrieves the resulting collection DBObjects
      */
-    @Operation
-    public Iterable<DBObject> mapReduceObjects(@Parameter String collection,
-                                               @Parameter String mapFunction,
-                                               @Parameter String reduceFunction,
-                                               @Parameter(optional = true) String outputCollection)
-    {
-        return client.mapReduceObjects(collection, mapFunction, reduceFunction, outputCollection);
+    @Processor
+    public Iterable<DBObject> mapReduceObjects(@Session MongoSession session,
+                                               String collection,
+                                               String mapFunction,
+                                               String reduceFunction,
+                                               @Optional String outputCollection) {
+        return session.getClient().mapReduceObjects(collection, mapFunction, reduceFunction, outputCollection);
     }
-    
+
     /**
      * Counts the number of objects that match the given query. If no query
      * is passed, returns the number of elements in the collection
-     * 
-     * {@code <count-objects 
-     *      collection="#[variable:aCollectionName]"
-     *      query="#[variable:aBsonQuery]"/>}
-     *      
-     * @param collection the target collection  
-     * @param query the optional query for counting objects. Only objects matching it will be counted. 
-     *          If unspecified, all objects are counted. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.
-     * @param queryAttributes an alternative way of passing the query as a literal Map inside a Mule Flow    
-     * @return the amount of objects that matches the query     
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:count-objects}
+     *
+     * @param collection the target collection
+     * @param query      the optional query for counting objects. Only objects matching it will be counted.
+     *                   If unspecified, all objects are counted.
+     * @return the amount of objects that matches the query
      */
-    @Operation
-    public long countObjects(@Parameter String collection,
-                             @Parameter( optional = true) Object query,
-                             @Parameter(optional = true) Map<String, Object> queryAttributes)
-    {
-        return client.countObjects(collection, from(single(queryAttributes, query)));
+    @Processor
+    public long countObjects(@Session MongoSession session,
+                             String collection,
+                             @Optional DBObject query) {
+        return session.getClient().countObjects(collection, query);
     }
 
     /**
-     * Finds all objects that match a given query. If no query is specified, all objects of the 
-     * collection are retrieved. If no fields object is specified, all fields are retrieved. 
-     * 
-     * {@code <find-objects query="#[map-payload:aBsonQuery]" fields-ref="#[header:aBsonFieldsSet]"/>}
+     * Counts the number of objects that match the given query. If no query
+     * is passed, returns the number of elements in the collection
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:count-objects-using-map-query}
+     *
+     * @param collection      the target collection
+     * @param queryAttributes the optional query for counting objects. Only objects matching it will be counted.
+     *                        If unspecified, all objects are counted.
+     * @return the amount of objects that matches the query
+     */
+    @Processor
+    public long countObjectsUsingMapQuery(@Session MongoSession session,
+                                          String collection,
+                                          @Optional Map<String, Object> queryAttributes) {
+        return session.getClient().countObjects(collection, from(queryAttributes));
+    }
+
+    /**
+     * Finds all objects that match a given query. If no query is specified, all objects of the
+     * collection are retrieved. If no fields object is specified, all fields are retrieved.
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-objects}
+     *
      * @param collection the target collection
-     * @param query the optional query object. If unspecified, all documents are returned. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.
-     * @param queryAttributes alternative way of passing the query object, as a literal Map inside a Mule Flow
-     * @param fieldsRef an optional list of fields to return. If unspecified, all fields are returned. 
-     * @param fields alternative way of passing fields as a literal List
+     * @param query      the optional query object. If unspecified, all documents are returned.
+     * @param fields     alternative way of passing fields as a literal List
      * @return an iterable of DBObjects
      */
-    @Operation
-    public Iterable<DBObject> findObjects(@Parameter String collection,
-                                          @Parameter( optional = true) Object query,
-                                          @Parameter(optional = true) Map<String, Object> queryAttributes,
-                                          @Parameter(optional = true) Object fieldsRef,
-                                          @Parameter(optional = true) List<String> fields)
-    {
-        return client.findObjects(collection, from(single(queryAttributes, query)), single(fieldsRef, fields));
+    @Processor
+    public Iterable<DBObject> findObjects(@Session MongoSession session,
+                                          String collection,
+                                          @Optional DBObject query,
+                                          @Optional List<String> fields) {
+        return session.getClient().findObjects(collection, query, fields);
     }
 
     /**
-     * Finds the first object that matches a given query. 
-     * Throws a {@link MongoException} if no one matches the given query 
-     * 
-     * {@code <find-one-object  query="#[variable:aBsonQuery]" >
-     *         <fields>
-     *           <field>Field1</field>
-     *           <field>Field2</field>
-     *         </fields>
-     *   </find-one-object>}   
-     * @param collection the target collection
-     * @param query the mandatory query object that the returned object matches. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.
-     * @param queryAttributes alternative way of passing the query object, as a literal Map inside a Mule Flow
-     * @param fieldsRef an optional list of fields to return. If unspecified, all fields are returned. 
-     * @param fields alternative way of passing fields as a literal List
-     * @return a non-null DBObject that matches the query. 
+     * Finds all objects that match a given query. If no query is specified, all objects of the
+     * collection are retrieved. If no fields object is specified, all fields are retrieved.
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-objects-using-query-map}
+     *
+     * @param collection      the target collection
+     * @param queryAttributes the optional query object. If unspecified, all documents are returned.
+     * @param fields          alternative way of passing fields as a literal List
+     * @return an iterable of DBObjects
      */
-    @Operation
-    public DBObject findOneObject(@Parameter String collection,
-                                  @Parameter(optional = true) Object query,
-                                  @Parameter(optional = true) Map<String, Object> queryAttributes,
-                                  @Parameter(optional = true) Object fieldsRef, 
-                                  @Parameter(optional = true) List<String> fields) 
-    {
-        return client.findOneObject(collection, from(single(queryAttributes, query)), single(fieldsRef, fields));
+    @Processor
+    public Iterable<DBObject> findObjectsUsingQueryMap(@Session MongoSession session,
+                                                       String collection,
+                                                       @Optional Map<String, Object> queryAttributes,
+                                                       @Optional List<String> fields) {
+        return session.getClient().findObjects(collection, from(queryAttributes), fields);
+    }
+
+    /**
+     * Finds the first object that matches a given query.
+     * Throws a {@link MongoException} if no one matches the given query
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-one-object}
+     *
+     * @param collection the target collection
+     * @param query      the mandatory query object that the returned object matches.
+     * @param fields     alternative way of passing fields as a literal List
+     * @return a non-null DBObject that matches the query.
+     */
+    @Processor
+    public DBObject findOneObject(@Session MongoSession session,
+                                  String collection,
+                                  DBObject query,
+                                  @Optional List<String> fields) {
+        return session.getClient().findOneObject(collection, query, fields);
 
     }
-    
+
+    /**
+     * Finds the first object that matches a given query.
+     * Throws a {@link MongoException} if no one matches the given query
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-one-object-using-query-map}
+     *
+     * @param collection      the target collection
+     * @param queryAttributes the mandatory query object that the returned object matches.
+     * @param fields          alternative way of passing fields as a literal List
+     * @return a non-null DBObject that matches the query.
+     */
+    @Processor
+    public DBObject findOneObjectUsingQueryMap(@Session MongoSession session,
+                                               String collection,
+                                               Map<String, Object> queryAttributes,
+                                               @Optional List<String> fields) {
+        return session.getClient().findOneObject(collection, from(queryAttributes), fields);
+
+    }
+
     /**
      * Creates a new index
-     * 
-     * {@code <create-index collection="myCollection" keys="#[header:aBsonFieldsSet]"/>}
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:create-index}
+     *
      * @param collection the name of the collection where the index will be created
-     * @param field the name of the field which will be indexed 
-     * @param order the indexing order
+     * @param field      the name of the field which will be indexed
+     * @param order      the indexing order
      */
-    @Operation
-    public void createIndex(@Parameter String collection,
-                            @Parameter String field,
-                            @Parameter(optional = true, defaultValue = "ASC") IndexOrder order)
-    {
-        client.createIndex(collection, field, order);
+    @Processor
+    public void createIndex(@Session MongoSession session,
+                            String collection,
+                            String field,
+                            @Optional @Default("ASC") IndexOrder order) {
+        session.getClient().createIndex(collection, field, order);
     }
-    
+
     /**
      * Drops an existing index
-     *  
-     * {@code <drop-index collection="myCollection" name="#[map-payload:anIndexName]"/>}
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:drop-index}
+     *
      * @param collection the name of the collection where the index is
-     * @param index the name of the index to drop
+     * @param index      the name of the index to drop
      */
-    @Operation
-    public void dropIndex(@Parameter String collection, @Parameter String index)
-    {
-        client.dropIndex(collection, index);
+    @Processor
+    public void dropIndex(@Session MongoSession session, String collection, String index) {
+        session.getClient().dropIndex(collection, index);
     }
-    
+
     /**
      * List existent indices in a collection
-     * 
-     * {@code <drop-index collection="myCollection" name="#[map-payload:anIndexName]"/>}
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:list-indices}
+     *
      * @param collection the name of the collection
-     * @return a collection of DBObjects with indices information  
+     * @return a collection of DBObjects with indices information
      */
-    @Operation
-    public Collection<DBObject> listIndices(@Parameter String collection)
-    {
-        return client.listIndices(collection);
+    @Processor
+    public Collection<DBObject> listIndices(@Session MongoSession session, String collection) {
+        return session.getClient().listIndices(collection);
     }
 
     /**
      * Creates a new GridFSFile in the database, saving the given content, filename,
-     * contentType, and extraData, and answers it. 
-     * {@code <mongo:create-file content="#[payload]" filename="#[variable:filename]" metadata="#[variable:metadata]" />}
-     * @param content the mandatory content of the new gridfs file. It may be a java.io.File, a byte[] or an InputStream.  
-     * @param filename the mandatory name of new file. 
+     * contentType, and extraData, and answers it.
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:create-file-from-payload}
+     *
+     * @param payload     the mandatory content of the new gridfs file. It may be a java.io.File, a byte[] or an InputStream.
+     * @param filename    the mandatory name of new file.
      * @param contentType the optional content type of the new file
-     * @param metadata the optional metadata of the new content type
+     * @param metadata    the optional metadata of the new content type
      * @return the new GridFSFile
      */
-    @Operation
-    public DBObject createFile(@Parameter Object content,
-                               @Parameter String filename,
-                               @Parameter(optional = true) String contentType,
-                               @Parameter(optional = true) DBObject metadata) throws IOException
-    {
-        InputStream stream = toStream(content);
-        try
-        {
-            return client.createFile(stream, filename, contentType, metadata);
-        }
-        finally
-        {
+    @Processor
+    public DBObject createFileFromPayload(@Session MongoSession session,
+                                          @Payload Object payload,
+                                          String filename,
+                                          @Optional String contentType,
+                                          @Optional DBObject metadata) throws IOException {
+        InputStream stream = toStream(payload);
+        try {
+            return session.getClient().createFile(stream, filename, contentType, metadata);
+        } finally {
             stream.close();
         }
     }
-    
-    private InputStream toStream(Object content) throws FileNotFoundException
-    {
-        if (content instanceof InputStream)
-        {
+
+    private InputStream toStream(Object content) throws FileNotFoundException {
+        if (content instanceof InputStream) {
             return (InputStream) content;
         }
-        if (content instanceof byte[])
-        {
+        if (content instanceof byte[]) {
             return new ByteArrayInputStream((byte[]) content);
         }
-        if (content instanceof File)
-        {
+        if (content instanceof File) {
             return new FileInputStream((File) content);
         }
-        throw new IllegalArgumentException("Content "  + content + " is not supported");
+        throw new IllegalArgumentException("Content " + content + " is not supported");
     }
 
     /**
      * Lists all the files that match the given query
-     * 
-     * {@code <mongo:find-files query="#[header:query]"/>}
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-files}
+     *
      * @param query the optional query
      * @return a files iterable
      */
-    @Operation
-    public Iterable<DBObject> findFiles(@Parameter(optional = true) Object query)
-    {
-        return client.findFiles(from(query));
+    @Processor
+    public Iterable<DBObject> findFiles(@Session MongoSession session, @Optional DBObject query) {
+        return session.getClient().findFiles(from(query));
+    }
+
+    /**
+     * Lists all the files that match the given query
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-files-using-query-map}
+     *
+     * @param query the optional query
+     * @return a files iterable
+     */
+    @Processor
+    public Iterable<DBObject> findFilesUsingQueryMap(@Session MongoSession session, @Optional Map<String, Object> query) {
+        return session.getClient().findFiles(from(query));
     }
 
     /**
      * Answers the first file that matches the given query. If no object matches it,
      * a MongoException is thrown.
-     * 
-     * {@code <mongo:find-one-file query="#[header:query]" />}
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-one-file}
+     *
      * @param query the mandatory query
      * @return a DBObject
      */
-    @Operation
-    public DBObject findOneFile(@Parameter Object query)
-    {
-        return client.findOneFile(from(query));
+    @Processor
+    public DBObject findOneFile(@Session MongoSession session, DBObject query) {
+        return session.getClient().findOneFile(from(query));
     }
-    
+
+    /**
+     * Answers the first file that matches the given query. If no object matches it,
+     * a MongoException is thrown.
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-one-file-using-query-map}
+     *
+     * @param query the mandatory query
+     * @return a DBObject
+     */
+    @Processor
+    public DBObject findOneFileUsingQueryMap(@Session MongoSession session, Map<String, Object> query) {
+        return session.getClient().findOneFile(from(query));
+    }
+
     /**
      * Answers an inputstream to the contents of the first file that matches the given query.
-     * If no object matches it, a MongoException is thrown.  
-     *  
-     * {@code <mongo:get-file-content query="#[header:query]" />}
-     *  
+     * If no object matches it, a MongoException is thrown.
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:get-file-content}
+     *
      * @param query the mandatory query
      * @return an InputStream to the file contents
      */
-    @Operation
-    public InputStream getFileContent(@Parameter Object query)
-    {
-        return client.getFileContent(from(query));
+    @Processor
+    public InputStream getFileContent(@Session MongoSession session, DBObject query) {
+        return session.getClient().getFileContent(from(query));
     }
-    
+
+    /**
+     * Answers an inputstream to the contents of the first file that matches the given query.
+     * If no object matches it, a MongoException is thrown.
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:get-file-content-using-query-map}
+     *
+     * @param query the mandatory query
+     * @return an InputStream to the file contents
+     */
+    @Processor
+    public InputStream getFileContentUsingQueryMap(@Session MongoSession session, Map<String, Object> query) {
+        return session.getClient().getFileContent(from(query));
+    }
+
     /**
      * Lists all the files that match the given query, sorting them by filename. If no query is
-     * specified, all files are listed. 
-     * 
-     * {@code <mongo:list-files />}
+     * specified, all files are listed.
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:list-files}
+     *
      * @param query the optional query
      * @return an iterable of DBObjects
      */
-    @Operation
-    public Iterable<DBObject> listFiles(@Parameter(optional = true) Object query)
-    {
-        return client.listFiles(from(query));
+    @Processor
+    public Iterable<DBObject> listFiles(@Session MongoSession session, @Optional DBObject query) {
+        return session.getClient().listFiles(from(query));
+    }
+
+    /**
+     * Lists all the files that match the given query, sorting them by filename. If no query is
+     * specified, all files are listed.
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:list-files-using-query-map}
+     *
+     * @param query the optional query
+     * @return an iterable of DBObjects
+     */
+    @Processor
+    public Iterable<DBObject> listFilesUsingQueryMap(@Session MongoSession session, @Optional Map<String, Object> query) {
+        return session.getClient().listFiles(from(query));
     }
 
     /**
      * Removes all the files that match the given query. If no query is specified,
      * all files are removed
-     * 
-     * {@code  <mongo:remove-files query="#[payload]" />}        
-     * 
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:remove-files}
+     *
      * @param query the optional query
      */
-    @Operation
-    public void removeFiles(@Parameter(optional = true) Object query)
-    {
-        client.removeFiles(from(query));
+    @Processor
+    public void removeFiles(@Session MongoSession session, @Optional DBObject query) {
+        session.getClient().removeFiles(from(query));
+    }
+
+    /**
+     * Removes all the files that match the given query. If no query is specified,
+     * all files are removed
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:remove-files-using-query-map}
+     *
+     * @param query the optional query
+     */
+    @Processor
+    public void removeFilesUsingQueryMap(@Session MongoSession session, @Optional Map<String, Object> query) {
+        session.getClient().removeFiles(from(query));
     }
 
     /**
      * Convert JSON to DBObject
      */
-    @Transformer(sourceTypes={String.class})
-    public DBObject jsonToDBObject(Object input)
-    {
-        return (DBObject) JSON.parse((String)input);
+    @Transformer(sourceTypes = {String.class})
+    public DBObject jsonToDBObject(Object input) {
+        return (DBObject) JSON.parse((String) input);
     }
 
     /**
      * Convert DBObject to Json
      */
-    @Transformer(sourceTypes={DBObject.class})
-    public String dbobjectToJson(Object input)
-    {
-        return JSON.serialize((DBObject)input);
+    @Transformer(sourceTypes = {DBObject.class})
+    public String dbobjectToJson(Object input) {
+        return JSON.serialize(input);
     }
 
     /**
      * Convert a BasicBSONList into Json
      */
-    @Transformer(sourceTypes={BasicBSONList.class})
-    public String bsonListToJson(Object input)
-    {
-        return JSON.serialize((BasicBSONList)input);
+    @Transformer(sourceTypes = {BasicBSONList.class})
+    public String bsonListToJson(Object input) {
+        return JSON.serialize(input);
     }
 
     /**
      * Convert a BasicBSONList into Json
      */
-    @Transformer(sourceTypes={MongoCollection.class})
-    public String mongoCollectionToJson(Object input)
-    {
-        return JSON.serialize((MongoCollection)input);
+    @Transformer(sourceTypes = {MongoCollection.class})
+    public String mongoCollectionToJson(Object input) {
+        return JSON.serialize(input);
     }
 
-    public void initialise() throws InitialisationException
-    {
-        if (client == null)
-        {
-            try
-            {
-                setClient(new MongoClientImpl(getDatabase(getMongo())));
-            }
-            catch (Exception e)
-            {
-                throw new InitialisationException(e, this);
-            }
-        }
-    }
-    
-    private synchronized Mongo getMongo() throws Exception
-    {
-        MongoRef ref = new MongoRef(host, port);
-        Mongo mongo = MONGOS.get(ref);
-        if (mongo == null)
-        {
-            mongo = newMongo();
-            MONGOS.put(ref, mongo);
-        }
-        return mongo;
-    }
-    
-    protected Mongo newMongo() throws UnknownHostException
-    {
-        return new Mongo(host, port);
+    /**
+     * @param username the username to use in case authentication is required
+     * @param password the password to use in case authentication is required, null if no authentication is desired
+     */
+    @SessionCreate
+    public MongoSession createSession(@SessionKey String username, String password) throws Exception {
+        DB db = getDatabase(new Mongo(host, port), username, password);
+        return new MongoSession(username, new MongoClientImpl(db));
     }
 
-    private DB getDatabase(Mongo m)
-    {
-        DB db = m.getDB(database);
-        if (password != null)
-        {
+    @SessionDestroy
+    public void destroySession(@Session MongoSession session) {
+        // nothing to do here
+    }
+
+    private DB getDatabase(Mongo mongo, String username, String password) {
+        DB db = mongo.getDB(database);
+        if (password != null) {
             Validate.notNull(username, "Username must not be null if password is set");
             db.authenticate(username, password.toCharArray());
         }
         return db;
     }
 
-    public MongoClient getClient()
-    {
-        return client;
-    }
-
-    public void setClient(MongoClient client)
-    {
-        this.client = adaptClient(client);
-    }
-
-    protected MongoClient adaptClient(MongoClient client)
-    {
+    protected MongoClient adaptClient(MongoClient client) {
         return MongoClientAdaptor.adapt(client);
     }
 
-    public String getDatabase()
-    {
+    public String getDatabase() {
         return database;
     }
 
-    public void setDatabase(String database)
-    {
+    public void setDatabase(String database) {
         this.database = database;
     }
 
-    public String getHost()
-    {
+    public String getHost() {
         return host;
     }
 
-    public void setHost(String host)
-    {
+    public void setHost(String host) {
         this.host = host;
     }
 
-    public int getPort()
-    {
+    public int getPort() {
         return port;
     }
 
-    public void setPort(int port)
-    {
+    public void setPort(int port) {
         this.port = port;
     }
 
-    public String getPassword()
-    {
-        return password;
-    }
+    public static class MongoSession {
 
-    public void setPassword(String password)
-    {
-        this.password = password;
-    }
+        private String username;
+        private MongoClient client;
 
-    public String getUsername()
-    {
-        return username;
-    }
-
-    public void setUsername(String username)
-    {
-        this.username = username;
-    }
-    
-    @SuppressWarnings("unchecked")
-    private <T> T single(Object o1, T o2 )
-    {
-        Validate.isTrue(o1 == null || o2 == null, "Can not specify both arguments at the same time" );
-        return (T) (o1 != null ? o1 : o2); 
-    }
-
-
-    @SuppressWarnings("unused")
-    protected static final class MongoRef
-    {
-        private final String host;
-        private final int port;
-
-        public MongoRef(String host, int port)
-        {
-            this.host = host;
-            this.port = port;
+        public MongoSession(String username, MongoClient client) {
+            this.username = username;
+            this.client = client;
         }
 
-        @Override
-        public int hashCode()
-        {
-            return HashCodeBuilder.reflectionHashCode(this);
+        public String getUsername() {
+            return username;
         }
 
-        @Override
-        public boolean equals(Object obj)
-        {
-            return EqualsBuilder.reflectionEquals(this, obj);
+        public MongoClient getClient() {
+            return client;
         }
     }
-    
-    
 }
