@@ -146,7 +146,7 @@ public class MongoCloudConnector {
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:insert-object}
      *
      * @param collection   the name of the collection where to insert the given object
-     * @param dbObject     a com.mongodb.DBObject instance.
+     * @param dbObject     a {@link DBObject} instance.
      * @param writeConcern the optional write concern of insertion
      */
     @Processor
@@ -171,7 +171,7 @@ public class MongoCloudConnector {
     @Processor
     public void insertObjectFromMap(@Session MongoSession session,
                                     String collection,
-                                    @Optional Map<String, Object> elementAttributes,
+                                    @Optional Map<String, String> elementAttributes,
                                     @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern) {
         session.getClient().insertObject(collection, from(elementAttributes), writeConcern);
     }
@@ -184,8 +184,8 @@ public class MongoCloudConnector {
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:update-objects}
      *
      * @param collection   the name of the collection to update
-     * @param query        the query object used to detect the element to update.
-     * @param element      the mandatory object that will replace that one which matches the query.
+     * @param query        the {@link DBObject} query object used to detect the element to update.
+     * @param element      the {@link DBObject} mandatory object that will replace that one which matches the query.
      * @param upsert       if the database should create the element if it does not exist
      * @param multi        if all or just the first object matching the query will be updated
      * @param writeConcern the write concern used to update
@@ -218,8 +218,8 @@ public class MongoCloudConnector {
     @Processor
     public void updateObjectsUsingMap(@Session MongoSession session,
                                       String collection,
-                                      Map<String, Object> queryAttributes,
-                                      Map<String, Object> elementAttributes,
+                                      Map<String, String> queryAttributes,
+                                      Map<String, String> elementAttributes,
                                       @Optional @Default(CAPPED_DEFAULT_VALUE) boolean upsert,
                                       @Optional @Default("true") boolean multi,
                                       @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern) {
@@ -232,7 +232,7 @@ public class MongoCloudConnector {
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:save-object}
      *
      * @param collection   the collection where to insert the object
-     * @param element      the mandatory object to insert.
+     * @param element      the mandatory {@link DBObject} object to insert.
      * @param writeConcern the write concern used to persist the object
      */
     @Processor
@@ -255,7 +255,7 @@ public class MongoCloudConnector {
     @Processor
     public void saveObjectFromMap(@Session MongoSession session,
                                   String collection,
-                                  Map<String, Object> elementAttributes,
+                                  Map<String, String> elementAttributes,
                                   @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern) {
         session.getClient().saveObject(collection, from(elementAttributes), writeConcern);
     }
@@ -268,7 +268,7 @@ public class MongoCloudConnector {
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:remove-objects}
      *
      * @param collection   the collection whose elements will be removed
-     * @param query        the optional query object. Objects that match it will be removed. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.
+     * @param query        the optional {@link DBObject} query object. Objects that match it will be removed.
      * @param writeConcern the write concern used to remove the object
      */
     @Processor
@@ -293,7 +293,7 @@ public class MongoCloudConnector {
     @Processor
     public void removeUsingMapQuery(@Session MongoSession session,
                                     String collection,
-                                    Map<String, Object> queryAttributes,
+                                    Map<String, String> queryAttributes,
                                     @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern) {
         session.getClient().removeObjects(collection, from(queryAttributes), writeConcern);
     }
@@ -317,7 +317,7 @@ public class MongoCloudConnector {
      * @param outputCollection the name of the output collection to write the results, replacing previous collection if existed,
      *                         mandatory when results may be larger than 16MB.
      *                         If outputCollection is unspecified, the computation is performed in-memory and not persisted.
-     * @return an iterable that retrieves the resulting collection DBObjects
+     * @return an iterable that retrieves the resulting collection of {@link DBObject}
      */
     @Processor
     public Iterable<DBObject> mapReduceObjects(@Session MongoSession session,
@@ -335,7 +335,7 @@ public class MongoCloudConnector {
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:count-objects}
      *
      * @param collection the target collection
-     * @param query      the optional query for counting objects. Only objects matching it will be counted.
+     * @param query      the optional {@link DBObject} query for counting objects. Only objects matching it will be counted.
      *                   If unspecified, all objects are counted.
      * @return the amount of objects that matches the query
      */
@@ -360,7 +360,7 @@ public class MongoCloudConnector {
     @Processor
     public long countObjectsUsingMapQuery(@Session MongoSession session,
                                           String collection,
-                                          @Optional Map<String, Object> queryAttributes) {
+                                          @Optional Map<String, String> queryAttributes) {
         return session.getClient().countObjects(collection, from(queryAttributes));
     }
 
@@ -371,9 +371,9 @@ public class MongoCloudConnector {
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-objects}
      *
      * @param collection the target collection
-     * @param query      the optional query object. If unspecified, all documents are returned.
+     * @param query      the optional {@link DBObject} query object. If unspecified, all documents are returned.
      * @param fields     alternative way of passing fields as a literal List
-     * @return an iterable of DBObjects
+     * @return an iterable of {@link DBObject}
      */
     @Processor
     public Iterable<DBObject> findObjects(@Session MongoSession session,
@@ -392,12 +392,12 @@ public class MongoCloudConnector {
      * @param collection      the target collection
      * @param queryAttributes the optional query object. If unspecified, all documents are returned.
      * @param fields          alternative way of passing fields as a literal List
-     * @return an iterable of DBObjects
+     * @return an iterable of {@link DBObject}
      */
     @Processor
     public Iterable<DBObject> findObjectsUsingQueryMap(@Session MongoSession session,
                                                        String collection,
-                                                       @Optional Map<String, Object> queryAttributes,
+                                                       @Optional Map<String, String> queryAttributes,
                                                        @Optional List<String> fields) {
         return session.getClient().findObjects(collection, from(queryAttributes), fields);
     }
@@ -409,9 +409,9 @@ public class MongoCloudConnector {
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-one-object}
      *
      * @param collection the target collection
-     * @param query      the mandatory query object that the returned object matches.
+     * @param query      the mandatory {@link DBObject} query object that the returned object matches.
      * @param fields     alternative way of passing fields as a literal List
-     * @return a non-null DBObject that matches the query.
+     * @return a non-null {@link DBObject} that matches the query.
      */
     @Processor
     public DBObject findOneObject(@Session MongoSession session,
@@ -426,17 +426,17 @@ public class MongoCloudConnector {
      * Finds the first object that matches a given query.
      * Throws a {@link MongoException} if no one matches the given query
      * <p/>
-     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-one-object-using-query-map}
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:c}
      *
      * @param collection      the target collection
      * @param queryAttributes the mandatory query object that the returned object matches.
      * @param fields          alternative way of passing fields as a literal List
-     * @return a non-null DBObject that matches the query.
+     * @return a non-null {@link DBObject} that matches the query.
      */
     @Processor
     public DBObject findOneObjectUsingQueryMap(@Session MongoSession session,
                                                String collection,
-                                               Map<String, Object> queryAttributes,
+                                               Map<String, String> queryAttributes,
                                                @Optional List<String> fields) {
         return session.getClient().findOneObject(collection, from(queryAttributes), fields);
 
@@ -478,7 +478,7 @@ public class MongoCloudConnector {
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:list-indices}
      *
      * @param collection the name of the collection
-     * @return a collection of DBObjects with indices information
+     * @return a collection of {@link DBObject} with indices information
      */
     @Processor
     public Collection<DBObject> listIndices(@Session MongoSession session, String collection) {
@@ -493,8 +493,8 @@ public class MongoCloudConnector {
      * @param payload     the mandatory content of the new gridfs file. It may be a java.io.File, a byte[] or an InputStream.
      * @param filename    the mandatory name of new file.
      * @param contentType the optional content type of the new file
-     * @param metadata    the optional metadata of the new content type
-     * @return the new GridFSFile
+     * @param metadata    the optional {@link DBObject} metadata of the new content type
+     * @return the new GridFSFile {@link DBObject}
      */
     @Processor
     public DBObject createFileFromPayload(@Session MongoSession session,
@@ -528,8 +528,8 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-files}
      *
-     * @param query the optional query
-     * @return a files iterable
+     * @param query a {@link DBObject} query the optional query
+     * @return a {@link DBObject} files iterable
      */
     @Processor
     public Iterable<DBObject> findFiles(@Session MongoSession session, @Optional DBObject query) {
@@ -542,10 +542,10 @@ public class MongoCloudConnector {
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-files-using-query-map}
      *
      * @param query the optional query
-     * @return a files iterable
+     * @return a {@link DBObject} files iterable
      */
     @Processor
-    public Iterable<DBObject> findFilesUsingQueryMap(@Session MongoSession session, @Optional Map<String, Object> query) {
+    public Iterable<DBObject> findFilesUsingQueryMap(@Session MongoSession session, @Optional Map<String, String> query) {
         return session.getClient().findFiles(from(query));
     }
 
@@ -555,8 +555,8 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-one-file}
      *
-     * @param query the mandatory query
-     * @return a DBObject
+     * @param query the {@link DBObject} mandatory query
+     * @return a {@link DBObject}
      */
     @Processor
     public DBObject findOneFile(@Session MongoSession session, DBObject query) {
@@ -570,10 +570,10 @@ public class MongoCloudConnector {
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-one-file-using-query-map}
      *
      * @param query the mandatory query
-     * @return a DBObject
+     * @return a {@link DBObject}
      */
     @Processor
-    public DBObject findOneFileUsingQueryMap(@Session MongoSession session, Map<String, Object> query) {
+    public DBObject findOneFileUsingQueryMap(@Session MongoSession session, Map<String, String> query) {
         return session.getClient().findOneFile(from(query));
     }
 
@@ -583,7 +583,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:get-file-content}
      *
-     * @param query the mandatory query
+     * @param query the {@link DBObject} mandatory query
      * @return an InputStream to the file contents
      */
     @Processor
@@ -601,7 +601,7 @@ public class MongoCloudConnector {
      * @return an InputStream to the file contents
      */
     @Processor
-    public InputStream getFileContentUsingQueryMap(@Session MongoSession session, Map<String, Object> query) {
+    public InputStream getFileContentUsingQueryMap(@Session MongoSession session, Map<String, String> query) {
         return session.getClient().getFileContent(from(query));
     }
 
@@ -611,8 +611,8 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:list-files}
      *
-     * @param query the optional query
-     * @return an iterable of DBObjects
+     * @param query the {@link DBObject} optional query
+     * @return an iterable of {@link DBObject}
      */
     @Processor
     public Iterable<DBObject> listFiles(@Session MongoSession session, @Optional DBObject query) {
@@ -626,10 +626,10 @@ public class MongoCloudConnector {
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:list-files-using-query-map}
      *
      * @param query the optional query
-     * @return an iterable of DBObjects
+     * @return an iterable of {@link DBObject}
      */
     @Processor
-    public Iterable<DBObject> listFilesUsingQueryMap(@Session MongoSession session, @Optional Map<String, Object> query) {
+    public Iterable<DBObject> listFilesUsingQueryMap(@Session MongoSession session, @Optional Map<String, String> query) {
         return session.getClient().listFiles(from(query));
     }
 
@@ -639,7 +639,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:remove-files}
      *
-     * @param query the optional query
+     * @param query the {@link DBObject} optional query
      */
     @Processor
     public void removeFiles(@Session MongoSession session, @Optional DBObject query) {
@@ -655,12 +655,13 @@ public class MongoCloudConnector {
      * @param query the optional query
      */
     @Processor
-    public void removeFilesUsingQueryMap(@Session MongoSession session, @Optional Map<String, Object> query) {
+    public void removeFilesUsingQueryMap(@Session MongoSession session, @Optional Map<String, String> query) {
         session.getClient().removeFiles(from(query));
     }
 
     /**
      * Convert JSON to DBObject
+     * @return the converted {@link DBObject}
      */
     @Transformer(sourceTypes = {String.class})
     public DBObject jsonToDBObject(Object input) {
@@ -741,24 +742,5 @@ public class MongoCloudConnector {
 
     public void setPort(int port) {
         this.port = port;
-    }
-
-    public static class MongoSession {
-
-        private String username;
-        private MongoClient client;
-
-        public MongoSession(String username, MongoClient client) {
-            this.username = username;
-            this.client = client;
-        }
-
-        public String getUsername() {
-            return username;
-        }
-
-        public MongoClient getClient() {
-            return client;
-        }
     }
 }

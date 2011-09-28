@@ -204,3 +204,12 @@
             </mongo:query>
         </mongo:remove-files-using-query-map>
 <!-- END_INCLUDE(mongo:remove-files-using-query-map) -->
+
+<!-- BEGIN_INCLUDE(mongo:find-one-file-using-query-map) -->
+    <mongo:find-one-file-using-query-map>
+        <mongo:query>
+            <mongo:query-attribute key="foo">foobaz</mongo:query-attribute>
+            <mongo:query-attribute key="foobar">foobaz</mongo:query-attribute>
+        </mongo:query>
+    </mongo:find-one-file-using-query-map>
+<!-- END_INCLUDE(mongo:find-one-file-using-query-map) -->

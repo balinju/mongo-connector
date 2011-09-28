@@ -48,7 +48,7 @@ public class MongoTestDriver
     private static final String MAIN_COLLECTION = "aCollection";
     private static final String ANOTHER_COLLECTION = "anotherCollection";
     private MongoCloudConnector connector;
-    private MongoCloudConnector.MongoSession session;
+    private MongoSession session;
 
     /**
      * Tests methods in this test class assume that there is always a collection

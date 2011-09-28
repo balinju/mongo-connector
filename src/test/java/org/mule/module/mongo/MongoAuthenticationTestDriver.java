@@ -27,7 +27,7 @@ import static org.junit.Assert.assertNotNull;
 public class MongoAuthenticationTestDriver
 {
     private MongoCloudConnector connector;
-    private MongoCloudConnector.MongoSession session;
+    private MongoSession session;
 
     /**
      * Setups an athenticated connector
