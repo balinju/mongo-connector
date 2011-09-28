@@ -306,7 +306,7 @@ Summary:
         
         <div class="jd-descrdiv">Creates a new index
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:create-index collection="myCollection" field="myField" order="DESC"/&gt;</pre></div></div>
         
   </td></tr>
 
@@ -328,7 +328,7 @@ Summary:
         
         <div class="jd-descrdiv">Drops an existing index
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:drop-index collection="myCollection" index="myIndex"/&gt;</pre></div></div>
         
   </td></tr>
 
@@ -340,7 +340,7 @@ Summary:
         
         <div class="jd-descrdiv">Answers if a collection exists given its name
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:exists-collection collection="aColllection"/&gt;</pre></div></div>
         
   </td></tr>
 
@@ -352,7 +352,7 @@ Summary:
         
         <div class="jd-descrdiv">Lists all the files that match the given query
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:find-files query-ref="myDbObject" /&gt;</pre></div></div>
         
   </td></tr>
 
@@ -364,7 +364,12 @@ Summary:
         
         <div class="jd-descrdiv">Lists all the files that match the given query
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:find-files-using-query-map&gt;
+    &lt;mongo:query-attributes&gt;
+        &lt;mongo:queryAttribute key="foo" value="foobaz"/&gt;
+        &lt;mongo:queryAttribute key="foobar" value="foobaz"/&gt;
+    &lt;/mongo:query-attributes&gt;
+&lt;/mongo:find-files-using-query-map&gt;</pre></div></div>
         
   </td></tr>
 
@@ -476,7 +481,7 @@ Summary:
         
         <div class="jd-descrdiv">Lists names of collections available at this database
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:list-collections/&gt;</pre></div></div>
         
   </td></tr>
 
@@ -508,7 +513,7 @@ Summary:
         
         <div class="jd-descrdiv">List existent indices in a collection
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:list-indices collection="myCollection"/&gt;</pre></div></div>
         
   </td></tr>
 
@@ -803,7 +808,7 @@ resolution.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Counts the number of objects that match the given query. If no query
  is passed, returns the number of elements in the collection
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:count-objects collection="myCollection" query-ref="dbObject"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -898,7 +903,12 @@ resolution.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Counts the number of objects that match the given query. If no query
  is passed, returns the number of elements in the collection
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:count-objects-using-map-query collection="myCollection"&gt;
+    &lt;mongo:query-attributes&gt;
+        &lt;mongo:queryAttribute key="foo" value="foobaz"/&gt;
+        &lt;mongo:queryAttribute key="foobar" value="foobaz"/&gt;
+    &lt;/mongo:query-attributes&gt;
+&lt;/mongo:count-objects-using-map-query&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -993,7 +1003,7 @@ resolution.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Creates a new collection.
  If the collection already exists, a MongoException will be thrown.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:create-collection collection="aCollection" capped="true"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -1108,7 +1118,7 @@ resolution.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Creates a new GridFSFile in the database, saving the given content, filename,
  contentType, and extraData, and answers it.
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:create-file-from-payload filename="#[variable:filename]" metadata-ref="myDbObject"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -1236,7 +1246,7 @@ resolution.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Creates a new index
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:create-index collection="myCollection" field="myField" order="DESC"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -1339,7 +1349,7 @@ resolution.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Deletes a collection and all the objects it contains.
  If the collection does not exist, does nothing.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:drop-collection collection="aCollection"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -1415,7 +1425,7 @@ resolution.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Drops an existing index
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:drop-index collection="myCollection" index="myIndex"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -1504,7 +1514,7 @@ resolution.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Answers if a collection exists given its name
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:exists-collection collection="aColllection"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -1584,7 +1594,7 @@ resolution.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Lists all the files that match the given query
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:find-files query-ref="myDbObject" /&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -1664,7 +1674,12 @@ resolution.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Lists all the files that match the given query
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:find-files-using-query-map&gt;
+    &lt;mongo:query-attributes&gt;
+        &lt;mongo:queryAttribute key="foo" value="foobaz"/&gt;
+        &lt;mongo:queryAttribute key="foobar" value="foobaz"/&gt;
+    &lt;/mongo:query-attributes&gt;
+&lt;/mongo:find-files-using-query-map&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -1745,7 +1760,12 @@ resolution.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Finds all objects that match a given query. If no query is specified, all objects of the
  collection are retrieved. If no fields object is specified, all fields are retrieved.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:find-objects collection="myCollection" query-ref="dbObject"&gt;
+    &lt;mongo:fields&gt;
+        &lt;mongo:field&gt;field1&lt;/mongo:field&gt;
+        &lt;mongo:field&gt;field2&lt;/mongo:field&gt;
+    &lt;/mongo:fields&gt;
+&lt;/mongo:find-objects&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -1852,7 +1872,12 @@ resolution.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Finds all objects that match a given query. If no query is specified, all objects of the
  collection are retrieved. If no fields object is specified, all fields are retrieved.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:find-objects-using-query-map collection="myCollection"&gt;
+     &lt;mongo:fields&gt;
+         &lt;mongo:field&gt;field1&lt;/mongo:field&gt;
+         &lt;mongo:field&gt;field2&lt;/mongo:field&gt;
+     &lt;/mongo:fields&gt;
+&lt;/mongo:find-objects-using-query-map&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -1959,7 +1984,7 @@ resolution.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Answers the first file that matches the given query. If no object matches it,
  a MongoException is thrown.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:find-one-file query-ref="myDbObject" /&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -2121,7 +2146,12 @@ resolution.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Finds the first object that matches a given query.
  Throws a <br/>MongoException if no one matches the given query
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:find-one-object collection="myCollection" query-ref="dbObject"&gt;
+    &lt;mongo:fields&gt;
+        &lt;mongo:field&gt;field1&lt;/mongo:field&gt;
+        &lt;mongo:field&gt;field2&lt;/mongo:field&gt;
+    &lt;/mongo:fields&gt;
+&lt;/mongo:find-one-object&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -2228,7 +2258,12 @@ resolution.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Finds the first object that matches a given query.
  Throws a <br/>MongoException if no one matches the given query
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:find-one-object-using-query-map collection="myCollection"&gt;
+    &lt;mongo:query-attributes&gt;
+        &lt;mongo:queryAttribute key="foo" value="foobaz"/&gt;
+        &lt;mongo:queryAttribute key="foobar" value="foobaz"/&gt;
+    &lt;/mongo:query-attributes&gt;
+&lt;/mongo:find-one-object-using-query-map&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -2335,7 +2370,7 @@ resolution.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Answers an inputstream to the contents of the first file that matches the given query.
  If no object matches it, a MongoException is thrown.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:get-file-content query-ref="myDbObject" /&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -2416,7 +2451,12 @@ resolution.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Answers an inputstream to the contents of the first file that matches the given query.
  If no object matches it, a MongoException is thrown.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:get-file-content-using-query-map&gt;
+    &lt;mongo:query&gt;
+        &lt;mongo:queryAttribute key="foo" value="foobaz"/&gt;
+        &lt;mongo:queryAttribute key="foobar" value="foobaz"/&gt;
+    &lt;/mongo:query&gt;
+&lt;/mongo:get-file-content-using-query-map&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -2496,7 +2536,7 @@ resolution.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Inserts an object in a collection, setting its id if necessary.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:insert-object collection="Employees" dbObject-ref="dbObject" writeConcern="SAFE"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -2600,7 +2640,13 @@ resolution.</p>
  <p/>
  A shallow conversion into DBObject is performed - that is, no conversion is performed to its values.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:insert-object-from-map collection="Employees" writeConcern="SAFE"&gt;
+    &lt;mongo:element-attributes&gt;
+        &lt;mongo:elementAttribute key="foo" value="bar"/&gt;
+        &lt;mongo:elementAttribute key="foobar"
+                                value="baz"/&gt;
+    &lt;/mongo:element-attributes&gt;
+&lt;/mongo:insert-object-from-map&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -2702,7 +2748,7 @@ resolution.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Lists names of collections available at this database
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:list-collections/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -2770,7 +2816,7 @@ resolution.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Lists all the files that match the given query, sorting them by filename. If no query is
  specified, all files are listed.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:list-files query-ref="myDbObject"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -2851,7 +2897,12 @@ resolution.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Lists all the files that match the given query, sorting them by filename. If no query is
  specified, all files are listed.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:list-files-using-query-map&gt;
+    &lt;mongo:query&gt;
+        &lt;mongo:queryAttribute key="foo" value="foobaz"/&gt;
+        &lt;mongo:queryAttribute key="foobar" value="foobaz"/&gt;
+    &lt;/mongo:query&gt;
+&lt;/mongo:list-files-using-query-map&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -2931,7 +2982,7 @@ resolution.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>List existent indices in a collection
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:list-indices collection="myCollection"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -3019,7 +3070,7 @@ resolution.</p>
  Note that the correct way of writing those functions may not be obvious; please
  consult MongoDB documentation for writing them.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:map-reduce-objects collection="myCollection" mapFunction="myMapFunction" reduceFunction="myReduceFunction"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -3141,7 +3192,7 @@ resolution.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Removes all the files that match the given query. If no query is specified,
  all files are removed
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:remove-files query-ref="myDbObject"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -3218,7 +3269,12 @@ resolution.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Removes all the files that match the given query. If no query is specified,
  all files are removed
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:remove-files-using-query-map&gt;
+    &lt;mongo:query&gt;
+        &lt;mongo:queryAttribute key="foo" value="foobaz"/&gt;
+        &lt;mongo:queryAttribute key="foobar" value="foobaz"/&gt;
+    &lt;/mongo:query&gt;
+&lt;/mongo:remove-files-using-query-map&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -3296,7 +3352,7 @@ resolution.</p>
  If query is not specified, all objects are removed. However, please notice that this is normally
  less performant that dropping the collection and creating it and its indices again
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:remove-objects collection="myCollection" query-ref="dbObject"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -3400,7 +3456,12 @@ resolution.</p>
  If query is not specified, all objects are removed. However, please notice that this is normally
  less performant that dropping the collection and creating it and its indices again
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:remove-using-map-query collection="myCollection"&gt;
+    &lt;mongo:query-attributes&gt;
+        &lt;mongo:queryAttribute key="foo" value="foobaz"/&gt;
+        &lt;mongo:queryAttribute key="foobar" value="foobaz"/&gt;
+    &lt;/mongo:query-attributes&gt;
+&lt;/mongo:remove-using-map-query&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -3502,7 +3563,7 @@ resolution.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Inserts or updates an object based on its object _id.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:save-object collection="myCollection" element-ref="dbObject"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -3604,7 +3665,12 @@ resolution.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Inserts or updates an object based on its object _id.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:save-object-from-map collection="myCollection"&gt;
+    &lt;mongo:element-attributes&gt;
+        &lt;mongo:elementAttribute key="foo" value="bar"/&gt;
+        &lt;mongo:elementAttribute key="foobar" value="baz"/&gt;
+    &lt;/mongo:element-attributes&gt;
+&lt;/mongo:save-object-from-map&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -3708,7 +3774,7 @@ resolution.</p>
  only the first document matching it will be updated.
  Otherwise, all the documents matching it will be updated.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:update-objects collection="myCollection" query-ref="dbObject" element-ref="dbObject" upsert="true"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -3851,7 +3917,16 @@ resolution.</p>
  only the first document matching it will be updated.
  Otherwise, all the documents matching it will be updated.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:update-objects-using-map collection="myCollection" upsert="true"&gt;
+    &lt;mongo:query-attributes&gt;
+        &lt;mongo:queryAttribute key="foo" value="foobaz"/&gt;
+        &lt;mongo:queryAttribute key="foobar" value="foobaz"/&gt;
+    &lt;/mongo:query-attributes&gt;
+    &lt;mongo:element-attributes&gt;
+        &lt;mongo:elementAttribute key="foo" value="bar"/&gt;
+        &lt;mongo:elementAttribute key="foobar" value="baz"/&gt;
+    &lt;/mongo:element-attributes&gt;
+&lt;/mongo:update-objects-using-map&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 

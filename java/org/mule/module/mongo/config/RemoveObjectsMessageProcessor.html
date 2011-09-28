@@ -659,8 +659,8 @@ org.mule.api.lifecycle.Stoppable
           private
           
           
-          Object</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/RemoveObjectsMessageProcessor.html#collection">collection</a></td>
+          String</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/RemoveObjectsMessageProcessor.html#_collectionType">_collectionType</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -671,7 +671,51 @@ org.mule.api.lifecycle.Stoppable
           
           
           String</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/RemoveObjectsMessageProcessor.html#collectionType">collectionType</a></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/RemoveObjectsMessageProcessor.html#_passwordType">_passwordType</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          DBObject</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/RemoveObjectsMessageProcessor.html#_queryType">_queryType</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          String</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/RemoveObjectsMessageProcessor.html#_usernameType">_usernameType</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          <a href="../../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/RemoveObjectsMessageProcessor.html#_writeConcernType">_writeConcernType</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          Object</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/RemoveObjectsMessageProcessor.html#collection">collection</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -744,17 +788,6 @@ org.mule.api.lifecycle.Stoppable
           private
           
           
-          String</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/RemoveObjectsMessageProcessor.html#passwordType">passwordType</a></td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-      <tr class="alt-color api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          private
-          
-          
           TemplateParser.PatternInfo</nobr></td>
           <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/RemoveObjectsMessageProcessor.html#patternInfo">patternInfo</a></td>
           <td class="jd-descrcol" width="100%">Mule Pattern Info
@@ -763,24 +796,13 @@ org.mule.api.lifecycle.Stoppable
       </tr>
       
     
-      <tr class=" api apilevel-" >
+      <tr class="alt-color api apilevel-" >
           <td class="jd-typecol"><nobr>
           private
           
           
           Object</nobr></td>
           <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/RemoveObjectsMessageProcessor.html#query">query</a></td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-      <tr class="alt-color api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          private
-          
-          
-          DBObject</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/RemoveObjectsMessageProcessor.html#queryType">queryType</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -801,30 +823,8 @@ org.mule.api.lifecycle.Stoppable
           private
           
           
-          String</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/RemoveObjectsMessageProcessor.html#usernameType">usernameType</a></td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-      <tr class=" api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          private
-          
-          
           Object</nobr></td>
           <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/RemoveObjectsMessageProcessor.html#writeConcern">writeConcern</a></td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-      <tr class="alt-color api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          private
-          
-          
-          <a href="../../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a></nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/RemoveObjectsMessageProcessor.html#writeConcernType">writeConcernType</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -1642,7 +1642,7 @@ From interface
 
 
 
-<A NAME="collection"></A>
+<A NAME="_collectionType"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -1650,9 +1650,9 @@ From interface
         private 
          
          
-        Object
+        String
       </span>
-        collection
+        _collectionType
     </h4>
       <div class="api-level">
         
@@ -1672,7 +1672,7 @@ From interface
 
 
 
-<A NAME="collectionType"></A>
+<A NAME="_passwordType"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -1682,7 +1682,127 @@ From interface
          
         String
       </span>
-        collectionType
+        _passwordType
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="_queryType"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        DBObject
+      </span>
+        _queryType
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="_usernameType"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        String
+      </span>
+        _usernameType
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="_writeConcernType"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        <a href="../../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a>
+      </span>
+        _writeConcernType
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="collection"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        Object
+      </span>
+        collection
     </h4>
       <div class="api-level">
         
@@ -1860,36 +1980,6 @@ From interface
 
 
 
-<A NAME="passwordType"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        private 
-         
-         
-        String
-      </span>
-        passwordType
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-    </div>
-</div>
-
-
-
 <A NAME="patternInfo"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -1952,36 +2042,6 @@ From interface
 
 
 
-<A NAME="queryType"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        private 
-         
-         
-        DBObject
-      </span>
-        queryType
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-    </div>
-</div>
-
-
-
 <A NAME="username"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -2012,36 +2072,6 @@ From interface
 
 
 
-<A NAME="usernameType"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        private 
-         
-         
-        String
-      </span>
-        usernameType
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-    </div>
-</div>
-
-
-
 <A NAME="writeConcern"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -2053,36 +2083,6 @@ From interface
         Object
       </span>
         writeConcern
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-    </div>
-</div>
-
-
-
-<A NAME="writeConcernType"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        private 
-         
-         
-        <a href="../../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a>
-      </span>
-        writeConcernType
     </h4>
       <div class="api-level">
         
