@@ -30,7 +30,7 @@ var DATA = [
       { id:28, label:"mongo-collection-to-json", link:"mule/mongo.html#mongo-collection-to-json", type:"method" },
       { id:29, label:"org.mule.module.mongo", link:"java/org/mule/module/mongo/package-summary.html", type:"package" },
       { id:30, label:"org.mule.module.mongo.MongoCloudConnector", link:"java/org/mule/module/mongo/MongoCloudConnector.html", type:"class" },
-      { id:31, label:"org.mule.module.mongo.MongoCloudConnector.MongoSession", link:"java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html", type:"class" },
+      { id:31, label:"org.mule.module.mongo.MongoSession", link:"java/org/mule/module/mongo/MongoSession.html", type:"class" },
       { id:32, label:"org.mule.module.mongo.api", link:"java/org/mule/module/mongo/api/package-summary.html", type:"package" },
       { id:33, label:"org.mule.module.mongo.api.DBObjects", link:"java/org/mule/module/mongo/api/DBObjects.html", type:"class" },
       { id:34, label:"org.mule.module.mongo.api.FieldsSet", link:"java/org/mule/module/mongo/api/FieldsSet.html", type:"class" },

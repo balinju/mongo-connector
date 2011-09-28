@@ -955,7 +955,7 @@ org.mule.api.lifecycle.Stoppable
             
             
             
-            <a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a></nobr>
+            <a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a></nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.html#borrowSession(org.mule.module.mongo.config.MongoCloudConnectorSessionManagerAdapter.SessionKey)">borrowSession</a></span>(<a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.SessionKey.html">MongoCloudConnectorSessionManagerAdapter.SessionKey</a> key)</nobr>
@@ -974,7 +974,7 @@ org.mule.api.lifecycle.Stoppable
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.html#destroySession(org.mule.module.mongo.config.MongoCloudConnectorSessionManagerAdapter.SessionKey, org.mule.module.mongo.MongoCloudConnector.MongoSession)">destroySession</a></span>(<a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.SessionKey.html">MongoCloudConnectorSessionManagerAdapter.SessionKey</a> key, <a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.html#destroySession(org.mule.module.mongo.config.MongoCloudConnectorSessionManagerAdapter.SessionKey, org.mule.module.mongo.MongoSession)">destroySession</a></span>(<a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.SessionKey.html">MongoCloudConnectorSessionManagerAdapter.SessionKey</a> key, <a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session)</nobr>
         
   </td></tr>
 
@@ -1066,7 +1066,7 @@ org.mule.api.lifecycle.Stoppable
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.html#returnSession(org.mule.module.mongo.config.MongoCloudConnectorSessionManagerAdapter.SessionKey, org.mule.module.mongo.MongoCloudConnector.MongoSession)">returnSession</a></span>(<a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.SessionKey.html">MongoCloudConnectorSessionManagerAdapter.SessionKey</a> key, <a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.html#returnSession(org.mule.module.mongo.config.MongoCloudConnectorSessionManagerAdapter.SessionKey, org.mule.module.mongo.MongoSession)">returnSession</a></span>(<a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.SessionKey.html">MongoCloudConnectorSessionManagerAdapter.SessionKey</a> key, <a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session)</nobr>
         
   </td></tr>
 
@@ -1341,7 +1341,7 @@ From class
             long</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#countObjects(org.mule.module.mongo.MongoCloudConnector.MongoSession, java.lang.String, com.mongodb.DBObject)">countObjects</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session, String collection, DBObject query)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#countObjects(org.mule.module.mongo.MongoSession, java.lang.String, com.mongodb.DBObject)">countObjects</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, DBObject query)</nobr>
         
         <div class="jd-descrdiv">Counts the number of objects that match the given query.</div>
   
@@ -1359,7 +1359,7 @@ From class
             long</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#countObjectsUsingMapQuery(org.mule.module.mongo.MongoCloudConnector.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>)">countObjectsUsingMapQuery</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session, String collection, Map&lt;String,&nbsp;Object&gt; queryAttributes)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#countObjectsUsingMapQuery(org.mule.module.mongo.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.String>)">countObjectsUsingMapQuery</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, Map&lt;String,&nbsp;String&gt; queryAttributes)</nobr>
         
         <div class="jd-descrdiv">Counts the number of objects that match the given query.</div>
   
@@ -1377,7 +1377,7 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#createCollection(org.mule.module.mongo.MongoCloudConnector.MongoSession, java.lang.String, boolean, java.lang.Integer, java.lang.Integer)">createCollection</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session, String collection, boolean capped, Integer maxObjects, Integer size)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#createCollection(org.mule.module.mongo.MongoSession, java.lang.String, boolean, java.lang.Integer, java.lang.Integer)">createCollection</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, boolean capped, Integer maxObjects, Integer size)</nobr>
         
         <div class="jd-descrdiv">Creates a new collection.</div>
   
@@ -1395,7 +1395,7 @@ From class
             DBObject</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#createFileFromPayload(org.mule.module.mongo.MongoCloudConnector.MongoSession, java.lang.Object, java.lang.String, java.lang.String, com.mongodb.DBObject)">createFileFromPayload</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session, Object payload, String filename, String contentType, DBObject metadata)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#createFileFromPayload(org.mule.module.mongo.MongoSession, java.lang.Object, java.lang.String, java.lang.String, com.mongodb.DBObject)">createFileFromPayload</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, Object payload, String filename, String contentType, DBObject metadata)</nobr>
         
         <div class="jd-descrdiv">Creates a new GridFSFile in the database, saving the given content, filename,
  contentType, and extraData, and answers it.</div>
@@ -1414,7 +1414,7 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#createIndex(org.mule.module.mongo.MongoCloudConnector.MongoSession, java.lang.String, java.lang.String, org.mule.module.mongo.api.IndexOrder)">createIndex</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session, String collection, String field, <a href="../../../../../../java/org/mule/module/mongo/api/IndexOrder.html">IndexOrder</a> order)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#createIndex(org.mule.module.mongo.MongoSession, java.lang.String, java.lang.String, org.mule.module.mongo.api.IndexOrder)">createIndex</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, String field, <a href="../../../../../../java/org/mule/module/mongo/api/IndexOrder.html">IndexOrder</a> order)</nobr>
         
         <div class="jd-descrdiv">Creates a new index
  <p/>
@@ -1431,7 +1431,7 @@ From class
             
             
             
-            <a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a></nobr>
+            <a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a></nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#createSession(java.lang.String, java.lang.String)">createSession</a></span>(String username, String password)</nobr>
@@ -1469,7 +1469,7 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#destroySession(org.mule.module.mongo.MongoCloudConnector.MongoSession)">destroySession</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#destroySession(org.mule.module.mongo.MongoSession)">destroySession</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session)</nobr>
         
   </td></tr>
 
@@ -1485,7 +1485,7 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#dropCollection(org.mule.module.mongo.MongoCloudConnector.MongoSession, java.lang.String)">dropCollection</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session, String collection)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#dropCollection(org.mule.module.mongo.MongoSession, java.lang.String)">dropCollection</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection)</nobr>
         
         <div class="jd-descrdiv">Deletes a collection and all the objects it contains.</div>
   
@@ -1503,7 +1503,7 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#dropIndex(org.mule.module.mongo.MongoCloudConnector.MongoSession, java.lang.String, java.lang.String)">dropIndex</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session, String collection, String index)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#dropIndex(org.mule.module.mongo.MongoSession, java.lang.String, java.lang.String)">dropIndex</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, String index)</nobr>
         
         <div class="jd-descrdiv">Drops an existing index
  <p/>
@@ -1523,7 +1523,7 @@ From class
             boolean</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#existsCollection(org.mule.module.mongo.MongoCloudConnector.MongoSession, java.lang.String)">existsCollection</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session, String collection)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#existsCollection(org.mule.module.mongo.MongoSession, java.lang.String)">existsCollection</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection)</nobr>
         
         <div class="jd-descrdiv">Answers if a collection exists given its name
  <p/>
@@ -1543,7 +1543,7 @@ From class
             Iterable&lt;DBObject&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#findFiles(org.mule.module.mongo.MongoCloudConnector.MongoSession, com.mongodb.DBObject)">findFiles</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session, DBObject query)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#findFiles(org.mule.module.mongo.MongoSession, com.mongodb.DBObject)">findFiles</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, DBObject query)</nobr>
         
         <div class="jd-descrdiv">Lists all the files that match the given query
  <p/>
@@ -1563,7 +1563,7 @@ From class
             Iterable&lt;DBObject&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#findFilesUsingQueryMap(org.mule.module.mongo.MongoCloudConnector.MongoSession, java.util.Map<java.lang.String, java.lang.Object>)">findFilesUsingQueryMap</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session, Map&lt;String,&nbsp;Object&gt; query)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#findFilesUsingQueryMap(org.mule.module.mongo.MongoSession, java.util.Map<java.lang.String, java.lang.String>)">findFilesUsingQueryMap</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, Map&lt;String,&nbsp;String&gt; query)</nobr>
         
         <div class="jd-descrdiv">Lists all the files that match the given query
  <p/>
@@ -1583,7 +1583,7 @@ From class
             Iterable&lt;DBObject&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#findObjects(org.mule.module.mongo.MongoCloudConnector.MongoSession, java.lang.String, com.mongodb.DBObject, java.util.List<java.lang.String>)">findObjects</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session, String collection, DBObject query, List&lt;String&gt; fields)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#findObjects(org.mule.module.mongo.MongoSession, java.lang.String, com.mongodb.DBObject, java.util.List<java.lang.String>)">findObjects</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, DBObject query, List&lt;String&gt; fields)</nobr>
         
         <div class="jd-descrdiv">Finds all objects that match a given query.</div>
   
@@ -1601,7 +1601,7 @@ From class
             Iterable&lt;DBObject&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#findObjectsUsingQueryMap(org.mule.module.mongo.MongoCloudConnector.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.util.List<java.lang.String>)">findObjectsUsingQueryMap</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session, String collection, Map&lt;String,&nbsp;Object&gt; queryAttributes, List&lt;String&gt; fields)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#findObjectsUsingQueryMap(org.mule.module.mongo.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.String>, java.util.List<java.lang.String>)">findObjectsUsingQueryMap</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, Map&lt;String,&nbsp;String&gt; queryAttributes, List&lt;String&gt; fields)</nobr>
         
         <div class="jd-descrdiv">Finds all objects that match a given query.</div>
   
@@ -1619,7 +1619,7 @@ From class
             DBObject</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#findOneFile(org.mule.module.mongo.MongoCloudConnector.MongoSession, com.mongodb.DBObject)">findOneFile</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session, DBObject query)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#findOneFile(org.mule.module.mongo.MongoSession, com.mongodb.DBObject)">findOneFile</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, DBObject query)</nobr>
         
         <div class="jd-descrdiv">Answers the first file that matches the given query.</div>
   
@@ -1637,7 +1637,7 @@ From class
             DBObject</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#findOneFileUsingQueryMap(org.mule.module.mongo.MongoCloudConnector.MongoSession, java.util.Map<java.lang.String, java.lang.Object>)">findOneFileUsingQueryMap</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session, Map&lt;String,&nbsp;Object&gt; query)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#findOneFileUsingQueryMap(org.mule.module.mongo.MongoSession, java.util.Map<java.lang.String, java.lang.String>)">findOneFileUsingQueryMap</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, Map&lt;String,&nbsp;String&gt; query)</nobr>
         
         <div class="jd-descrdiv">Answers the first file that matches the given query.</div>
   
@@ -1655,7 +1655,7 @@ From class
             DBObject</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#findOneObject(org.mule.module.mongo.MongoCloudConnector.MongoSession, java.lang.String, com.mongodb.DBObject, java.util.List<java.lang.String>)">findOneObject</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session, String collection, DBObject query, List&lt;String&gt; fields)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#findOneObject(org.mule.module.mongo.MongoSession, java.lang.String, com.mongodb.DBObject, java.util.List<java.lang.String>)">findOneObject</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, DBObject query, List&lt;String&gt; fields)</nobr>
         
         <div class="jd-descrdiv">Finds the first object that matches a given query.</div>
   
@@ -1673,7 +1673,7 @@ From class
             DBObject</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#findOneObjectUsingQueryMap(org.mule.module.mongo.MongoCloudConnector.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.util.List<java.lang.String>)">findOneObjectUsingQueryMap</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session, String collection, Map&lt;String,&nbsp;Object&gt; queryAttributes, List&lt;String&gt; fields)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#findOneObjectUsingQueryMap(org.mule.module.mongo.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.String>, java.util.List<java.lang.String>)">findOneObjectUsingQueryMap</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, Map&lt;String,&nbsp;String&gt; queryAttributes, List&lt;String&gt; fields)</nobr>
         
         <div class="jd-descrdiv">Finds the first object that matches a given query.</div>
   
@@ -1707,7 +1707,7 @@ From class
             InputStream</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#getFileContent(org.mule.module.mongo.MongoCloudConnector.MongoSession, com.mongodb.DBObject)">getFileContent</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session, DBObject query)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#getFileContent(org.mule.module.mongo.MongoSession, com.mongodb.DBObject)">getFileContent</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, DBObject query)</nobr>
         
         <div class="jd-descrdiv">Answers an inputstream to the contents of the first file that matches the given query.</div>
   
@@ -1725,7 +1725,7 @@ From class
             InputStream</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#getFileContentUsingQueryMap(org.mule.module.mongo.MongoCloudConnector.MongoSession, java.util.Map<java.lang.String, java.lang.Object>)">getFileContentUsingQueryMap</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session, Map&lt;String,&nbsp;Object&gt; query)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#getFileContentUsingQueryMap(org.mule.module.mongo.MongoSession, java.util.Map<java.lang.String, java.lang.String>)">getFileContentUsingQueryMap</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, Map&lt;String,&nbsp;String&gt; query)</nobr>
         
         <div class="jd-descrdiv">Answers an inputstream to the contents of the first file that matches the given query.</div>
   
@@ -1775,7 +1775,7 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#insertObject(org.mule.module.mongo.MongoCloudConnector.MongoSession, java.lang.String, com.mongodb.DBObject, org.mule.module.mongo.api.WriteConcern)">insertObject</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session, String collection, DBObject dbObject, <a href="../../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#insertObject(org.mule.module.mongo.MongoSession, java.lang.String, com.mongodb.DBObject, org.mule.module.mongo.api.WriteConcern)">insertObject</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, DBObject dbObject, <a href="../../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
         
         <div class="jd-descrdiv">Inserts an object in a collection, setting its id if necessary.</div>
   
@@ -1793,7 +1793,7 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#insertObjectFromMap(org.mule.module.mongo.MongoCloudConnector.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, org.mule.module.mongo.api.WriteConcern)">insertObjectFromMap</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session, String collection, Map&lt;String,&nbsp;Object&gt; elementAttributes, <a href="../../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#insertObjectFromMap(org.mule.module.mongo.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.String>, org.mule.module.mongo.api.WriteConcern)">insertObjectFromMap</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, Map&lt;String,&nbsp;String&gt; elementAttributes, <a href="../../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
         
         <div class="jd-descrdiv">Inserts an object in a collection, setting its id if necessary.</div>
   
@@ -1813,8 +1813,7 @@ From class
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#jsonToDBObject(java.lang.Object)">jsonToDBObject</a></span>(Object input)</nobr>
         
-        <div class="jd-descrdiv">Convert JSON to DBObject
-</div>
+        <div class="jd-descrdiv">Convert JSON to DBObject</div>
   
   </td></tr>
 
@@ -1830,7 +1829,7 @@ From class
             Collection&lt;String&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#listCollections(org.mule.module.mongo.MongoCloudConnector.MongoSession)">listCollections</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#listCollections(org.mule.module.mongo.MongoSession)">listCollections</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session)</nobr>
         
         <div class="jd-descrdiv">Lists names of collections available at this database
  <p/>
@@ -1850,7 +1849,7 @@ From class
             Iterable&lt;DBObject&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#listFiles(org.mule.module.mongo.MongoCloudConnector.MongoSession, com.mongodb.DBObject)">listFiles</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session, DBObject query)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#listFiles(org.mule.module.mongo.MongoSession, com.mongodb.DBObject)">listFiles</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, DBObject query)</nobr>
         
         <div class="jd-descrdiv">Lists all the files that match the given query, sorting them by filename.</div>
   
@@ -1868,7 +1867,7 @@ From class
             Iterable&lt;DBObject&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#listFilesUsingQueryMap(org.mule.module.mongo.MongoCloudConnector.MongoSession, java.util.Map<java.lang.String, java.lang.Object>)">listFilesUsingQueryMap</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session, Map&lt;String,&nbsp;Object&gt; query)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#listFilesUsingQueryMap(org.mule.module.mongo.MongoSession, java.util.Map<java.lang.String, java.lang.String>)">listFilesUsingQueryMap</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, Map&lt;String,&nbsp;String&gt; query)</nobr>
         
         <div class="jd-descrdiv">Lists all the files that match the given query, sorting them by filename.</div>
   
@@ -1886,7 +1885,7 @@ From class
             Collection&lt;DBObject&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#listIndices(org.mule.module.mongo.MongoCloudConnector.MongoSession, java.lang.String)">listIndices</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session, String collection)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#listIndices(org.mule.module.mongo.MongoSession, java.lang.String)">listIndices</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection)</nobr>
         
         <div class="jd-descrdiv">List existent indices in a collection
  <p/>
@@ -1906,7 +1905,7 @@ From class
             Iterable&lt;DBObject&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#mapReduceObjects(org.mule.module.mongo.MongoCloudConnector.MongoSession, java.lang.String, java.lang.String, java.lang.String, java.lang.String)">mapReduceObjects</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session, String collection, String mapFunction, String reduceFunction, String outputCollection)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#mapReduceObjects(org.mule.module.mongo.MongoSession, java.lang.String, java.lang.String, java.lang.String, java.lang.String)">mapReduceObjects</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, String mapFunction, String reduceFunction, String outputCollection)</nobr>
         
         <div class="jd-descrdiv">Transforms a collection into a collection of aggregated groups, by
  applying a supplied element-mapping function to each element, that transforms each one
@@ -1946,7 +1945,7 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#removeFiles(org.mule.module.mongo.MongoCloudConnector.MongoSession, com.mongodb.DBObject)">removeFiles</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session, DBObject query)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#removeFiles(org.mule.module.mongo.MongoSession, com.mongodb.DBObject)">removeFiles</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, DBObject query)</nobr>
         
         <div class="jd-descrdiv">Removes all the files that match the given query.</div>
   
@@ -1964,7 +1963,7 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#removeFilesUsingQueryMap(org.mule.module.mongo.MongoCloudConnector.MongoSession, java.util.Map<java.lang.String, java.lang.Object>)">removeFilesUsingQueryMap</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session, Map&lt;String,&nbsp;Object&gt; query)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#removeFilesUsingQueryMap(org.mule.module.mongo.MongoSession, java.util.Map<java.lang.String, java.lang.String>)">removeFilesUsingQueryMap</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, Map&lt;String,&nbsp;String&gt; query)</nobr>
         
         <div class="jd-descrdiv">Removes all the files that match the given query.</div>
   
@@ -1982,7 +1981,7 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#removeObjects(org.mule.module.mongo.MongoCloudConnector.MongoSession, java.lang.String, com.mongodb.DBObject, org.mule.module.mongo.api.WriteConcern)">removeObjects</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session, String collection, DBObject query, <a href="../../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#removeObjects(org.mule.module.mongo.MongoSession, java.lang.String, com.mongodb.DBObject, org.mule.module.mongo.api.WriteConcern)">removeObjects</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, DBObject query, <a href="../../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
         
         <div class="jd-descrdiv">Removes all the objects that match the a given optional query.</div>
   
@@ -2000,7 +1999,7 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#removeUsingMapQuery(org.mule.module.mongo.MongoCloudConnector.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, org.mule.module.mongo.api.WriteConcern)">removeUsingMapQuery</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session, String collection, Map&lt;String,&nbsp;Object&gt; queryAttributes, <a href="../../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#removeUsingMapQuery(org.mule.module.mongo.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.String>, org.mule.module.mongo.api.WriteConcern)">removeUsingMapQuery</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, Map&lt;String,&nbsp;String&gt; queryAttributes, <a href="../../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
         
         <div class="jd-descrdiv">Removes all the objects that match the a given optional query.</div>
   
@@ -2018,7 +2017,7 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#saveObject(org.mule.module.mongo.MongoCloudConnector.MongoSession, java.lang.String, com.mongodb.DBObject, org.mule.module.mongo.api.WriteConcern)">saveObject</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session, String collection, DBObject element, <a href="../../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#saveObject(org.mule.module.mongo.MongoSession, java.lang.String, com.mongodb.DBObject, org.mule.module.mongo.api.WriteConcern)">saveObject</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, DBObject element, <a href="../../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
         
         <div class="jd-descrdiv">Inserts or updates an object based on its object _id.</div>
   
@@ -2036,7 +2035,7 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#saveObjectFromMap(org.mule.module.mongo.MongoCloudConnector.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, org.mule.module.mongo.api.WriteConcern)">saveObjectFromMap</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session, String collection, Map&lt;String,&nbsp;Object&gt; elementAttributes, <a href="../../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#saveObjectFromMap(org.mule.module.mongo.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.String>, org.mule.module.mongo.api.WriteConcern)">saveObjectFromMap</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, Map&lt;String,&nbsp;String&gt; elementAttributes, <a href="../../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
         
         <div class="jd-descrdiv">Inserts or updates an object based on its object _id.</div>
   
@@ -2102,7 +2101,7 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#updateObjects(org.mule.module.mongo.MongoCloudConnector.MongoSession, java.lang.String, com.mongodb.DBObject, com.mongodb.DBObject, boolean, boolean, org.mule.module.mongo.api.WriteConcern)">updateObjects</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session, String collection, DBObject query, DBObject element, boolean upsert, boolean multi, <a href="../../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#updateObjects(org.mule.module.mongo.MongoSession, java.lang.String, com.mongodb.DBObject, com.mongodb.DBObject, boolean, boolean, org.mule.module.mongo.api.WriteConcern)">updateObjects</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, DBObject query, DBObject element, boolean upsert, boolean multi, <a href="../../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
         
         <div class="jd-descrdiv">Updates objects that matches the given query.</div>
   
@@ -2120,7 +2119,7 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#updateObjectsUsingMap(org.mule.module.mongo.MongoCloudConnector.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.util.Map<java.lang.String, java.lang.Object>, boolean, boolean, org.mule.module.mongo.api.WriteConcern)">updateObjectsUsingMap</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session, String collection, Map&lt;String,&nbsp;Object&gt; queryAttributes, Map&lt;String,&nbsp;Object&gt; elementAttributes, boolean upsert, boolean multi, <a href="../../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#updateObjectsUsingMap(org.mule.module.mongo.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.String>, java.util.Map<java.lang.String, java.lang.String>, boolean, boolean, org.mule.module.mongo.api.WriteConcern)">updateObjectsUsingMap</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, Map&lt;String,&nbsp;String&gt; queryAttributes, Map&lt;String,&nbsp;String&gt; elementAttributes, boolean upsert, boolean multi, <a href="../../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
         
         <div class="jd-descrdiv">Updates objects that matches the given query.</div>
   
@@ -2870,7 +2869,7 @@ From interface
          
          
          
-        <a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a>
+        <a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a>
       </span>
       <span class="sympad">borrowSession</span>
       <span class="normal">(<a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.SessionKey.html">MongoCloudConnectorSessionManagerAdapter.SessionKey</a> key)</span>
@@ -2909,7 +2908,7 @@ From interface
 </div>
 
 
-<A NAME="destroySession(org.mule.module.mongo.config.MongoCloudConnectorSessionManagerAdapter.SessionKey, org.mule.module.mongo.MongoCloudConnector.MongoSession)"></A>
+<A NAME="destroySession(org.mule.module.mongo.config.MongoCloudConnectorSessionManagerAdapter.SessionKey, org.mule.module.mongo.MongoSession)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2922,7 +2921,7 @@ From interface
         void
       </span>
       <span class="sympad">destroySession</span>
-      <span class="normal">(<a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.SessionKey.html">MongoCloudConnectorSessionManagerAdapter.SessionKey</a> key, <a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session)</span>
+      <span class="normal">(<a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.SessionKey.html">MongoCloudConnectorSessionManagerAdapter.SessionKey</a> key, <a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -3092,7 +3091,7 @@ From interface
 </div>
 
 
-<A NAME="returnSession(org.mule.module.mongo.config.MongoCloudConnectorSessionManagerAdapter.SessionKey, org.mule.module.mongo.MongoCloudConnector.MongoSession)"></A>
+<A NAME="returnSession(org.mule.module.mongo.config.MongoCloudConnectorSessionManagerAdapter.SessionKey, org.mule.module.mongo.MongoSession)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -3105,7 +3104,7 @@ From interface
         void
       </span>
       <span class="sympad">returnSession</span>
-      <span class="normal">(<a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.SessionKey.html">MongoCloudConnectorSessionManagerAdapter.SessionKey</a> key, <a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.MongoSession.html">MongoCloudConnector.MongoSession</a> session)</span>
+      <span class="normal">(<a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.SessionKey.html">MongoCloudConnectorSessionManagerAdapter.SessionKey</a> key, <a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session)</span>
     </h4>
       <div class="api-level">
         <div>

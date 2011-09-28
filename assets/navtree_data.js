@@ -1,5 +1,5 @@
 var NAVTREE_DATA =
-[ [ "org.mule.module.mongo", "org/mule/module/mongo/package-summary.html", [ [ "Classes", null, [ [ "MongoCloudConnector", "org/mule/module/mongo/MongoCloudConnector.html", null, "" ], [ "MongoCloudConnector.MongoSession", "org/mule/module/mongo/MongoCloudConnector.MongoSession.html", null, "" ] ]
+[ [ "org.mule.module.mongo", "org/mule/module/mongo/package-summary.html", [ [ "Classes", null, [ [ "MongoCloudConnector", "org/mule/module/mongo/MongoCloudConnector.html", null, "" ], [ "MongoSession", "org/mule/module/mongo/MongoSession.html", null, "" ] ]
 , "" ] ]
 , "" ], [ "org.mule.module.mongo.api", "org/mule/module/mongo/api/package-summary.html", [ [ "Interfaces", null, [ [ "MongoClient", "org/mule/module/mongo/api/MongoClient.html", null, "" ] ]
 , "" ], [ "Classes", null, [ [ "DBObjects", "org/mule/module/mongo/api/DBObjects.html", null, "" ], [ "FieldsSet", "org/mule/module/mongo/api/FieldsSet.html", null, "" ], [ "MongoClientAdaptor", "org/mule/module/mongo/api/MongoClientAdaptor.html", null, "" ], [ "MongoClientImpl", "org/mule/module/mongo/api/MongoClientImpl.html", null, "" ], [ "MongoCollection", "org/mule/module/mongo/api/MongoCollection.html", null, "" ] ]

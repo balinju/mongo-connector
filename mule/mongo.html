@@ -651,8 +651,7 @@ Summary:
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../mule/mongo.html#json-to-d-b-object">&lt;mongo:json-to-d-b-object&gt;</a></nobr>
         
-        <div class="jd-descrdiv">Convert JSON to DBObject
-<br/></div>
+        <div class="jd-descrdiv">Convert JSON to DBObject<br/></div>
         
   </td></tr>
 
@@ -853,7 +852,7 @@ resolution.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>query</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the optional query for counting objects. Only objects matching it will be counted.
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the optional <br/>DBObject query for counting objects. Only objects matching it will be counted.
                    If unspecified, all objects are counted.<br/></td>
                 </tr>
                 
@@ -1185,7 +1184,7 @@ resolution.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>metadata</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the optional metadata of the new content type<br/></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the optional <br/>DBObject metadata of the new content type<br/></td>
                 </tr>
                 
                 
@@ -1214,7 +1213,7 @@ resolution.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>the new GridFSFile
+      <ul class="nolist"><li>the new GridFSFile <br/>DBObject
 <br/></li></ul>
   </div>
   <div class="jd-tagdata">
@@ -1628,7 +1627,7 @@ resolution.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>query</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the optional query<br/></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>a <br/>DBObject query the optional query<br/></td>
                 </tr>
                 
                 
@@ -1651,7 +1650,7 @@ resolution.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>a files iterable
+      <ul class="nolist"><li>a <br/>DBObject files iterable
 <br/></li></ul>
   </div>
 
@@ -1736,7 +1735,7 @@ resolution.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>a files iterable
+      <ul class="nolist"><li>a <br/>DBObject files iterable
 <br/></li></ul>
   </div>
 
@@ -1810,7 +1809,7 @@ resolution.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>query</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the optional query object. If unspecified, all documents are returned.<br/></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the optional <br/>DBObject query object. If unspecified, all documents are returned.<br/></td>
                 </tr>
                 
                 
@@ -1848,7 +1847,7 @@ resolution.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>an iterable of DBObjects
+      <ul class="nolist"><li>an iterable of <br/>DBObject
 <br/></li></ul>
   </div>
 
@@ -1960,7 +1959,7 @@ resolution.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>an iterable of DBObjects
+      <ul class="nolist"><li>an iterable of <br/>DBObject
 <br/></li></ul>
   </div>
 
@@ -2018,7 +2017,7 @@ resolution.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>query</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">the mandatory query<br/></td>
+                    <td class="jd-descrcol" width="100%">the <br/>DBObject mandatory query<br/></td>
                 </tr>
                 
                 
@@ -2041,7 +2040,7 @@ resolution.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>a DBObject
+      <ul class="nolist"><li>a <br/>DBObject
 <br/></li></ul>
   </div>
 
@@ -2065,7 +2064,12 @@ resolution.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Answers the first file that matches the given query. If no object matches it,
  a MongoException is thrown.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:find-one-file-using-query-map&gt;
+    &lt;mongo:query&gt;
+        &lt;mongo:query-attribute key="foo"&gt;foobaz&lt;/mongo:query-attribute&gt;
+        &lt;mongo:query-attribute key="foobar"&gt;foobaz&lt;/mongo:query-attribute&gt;
+    &lt;/mongo:query&gt;
+&lt;/mongo:find-one-file-using-query-map&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -2122,7 +2126,7 @@ resolution.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>a DBObject
+      <ul class="nolist"><li>a <br/>DBObject
 <br/></li></ul>
   </div>
 
@@ -2196,7 +2200,7 @@ resolution.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>query</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">the mandatory query object that the returned object matches.<br/></td>
+                    <td class="jd-descrcol" width="100%">the mandatory <br/>DBObject query object that the returned object matches.<br/></td>
                 </tr>
                 
                 
@@ -2234,7 +2238,7 @@ resolution.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>a non-null DBObject that matches the query.
+      <ul class="nolist"><li>a non-null <br/>DBObject that matches the query.
 <br/></li></ul>
   </div>
 
@@ -2258,12 +2262,7 @@ resolution.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Finds the first object that matches a given query.
  Throws a <br/>MongoException if no one matches the given query
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:find-one-object-using-query-map collection="myCollection"&gt;
-    &lt;mongo:query-attributes&gt;
-        &lt;mongo:queryAttribute key="foo" value="foobaz"/&gt;
-        &lt;mongo:queryAttribute key="foobar" value="foobaz"/&gt;
-    &lt;/mongo:query-attributes&gt;
-&lt;/mongo:find-one-object-using-query-map&gt;</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -2346,7 +2345,7 @@ resolution.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>a non-null DBObject that matches the query.
+      <ul class="nolist"><li>a non-null <br/>DBObject that matches the query.
 <br/></li></ul>
   </div>
 
@@ -2404,7 +2403,7 @@ resolution.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>query</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">the mandatory query<br/></td>
+                    <td class="jd-descrcol" width="100%">the <br/>DBObject mandatory query<br/></td>
                 </tr>
                 
                 
@@ -2581,7 +2580,7 @@ resolution.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>dbObject</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">a com.mongodb.DBObject instance.<br/></td>
+                    <td class="jd-descrcol" width="100%">a <br/>DBObject instance.<br/></td>
                 </tr>
                 
                 
@@ -2850,7 +2849,7 @@ resolution.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>query</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the optional query<br/></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the <br/>DBObject optional query<br/></td>
                 </tr>
                 
                 
@@ -2873,7 +2872,7 @@ resolution.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>an iterable of DBObjects
+      <ul class="nolist"><li>an iterable of <br/>DBObject
 <br/></li></ul>
   </div>
 
@@ -2959,7 +2958,7 @@ resolution.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>an iterable of DBObjects
+      <ul class="nolist"><li>an iterable of <br/>DBObject
 <br/></li></ul>
   </div>
 
@@ -3039,7 +3038,7 @@ resolution.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>a collection of DBObjects with indices information
+      <ul class="nolist"><li>a collection of <br/>DBObject with indices information
 <br/></li></ul>
   </div>
 
@@ -3168,7 +3167,7 @@ resolution.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>an iterable that retrieves the resulting collection DBObjects
+      <ul class="nolist"><li>an iterable that retrieves the resulting collection of <br/>DBObject
 <br/></li></ul>
   </div>
 
@@ -3226,7 +3225,7 @@ resolution.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>query</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the optional query
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the <br/>DBObject optional query
 <br/></td>
                 </tr>
                 
@@ -3397,7 +3396,7 @@ resolution.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>query</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">the optional query object. Objects that match it will be removed. Maps, JSon Strings and DBObjects are supported, as described in insert-object operation.<br/></td>
+                    <td class="jd-descrcol" width="100%">the optional <br/>DBObject query object. Objects that match it will be removed.<br/></td>
                 </tr>
                 
                 
@@ -3608,7 +3607,7 @@ resolution.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>element</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">the mandatory object to insert.<br/></td>
+                    <td class="jd-descrcol" width="100%">the mandatory <br/>DBObject object to insert.<br/></td>
                 </tr>
                 
                 
@@ -3819,7 +3818,7 @@ resolution.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>query</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">the query object used to detect the element to update.<br/></td>
+                    <td class="jd-descrcol" width="100%">the <br/>DBObject query object used to detect the element to update.<br/></td>
                 </tr>
                 
                 
@@ -3830,7 +3829,7 @@ resolution.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>element</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">the mandatory object that will replace that one which matches the query.<br/></td>
+                    <td class="jd-descrcol" width="100%">the <br/>DBObject mandatory object that will replace that one which matches the query.<br/></td>
                 </tr>
                 
                 
