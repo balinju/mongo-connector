@@ -205,10 +205,10 @@ Summary:
         <tbody><tr>
           <th>Namespace</th><td>http://www.mulesoft.org/schema/mule/mongo</td>
         </tr><tr>
-          <th>Schema Location</th><td>http://www.mulesoft.org/schema/mule/mongo/1.0/mule-mongo.xsd</td>
+          <th>Schema Location</th><td>http://www.mulesoft.org/schema/mule/mongo/2.0/mule-mongo.xsd</td>
         </tr>
 <tr>
-          <th>Version</th><td>1.0</td>
+          <th>Version</th><td>2.0</td>
         </tr>
       </tbody></table>
   </div>
@@ -364,12 +364,11 @@ Summary:
         
         <div class="jd-descrdiv">Lists all the files that match the given query
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:find-files-using-query-map&gt;
-    &lt;mongo:query-attributes&gt;
-        &lt;mongo:queryAttribute key="foo" value="foobaz"/&gt;
-        &lt;mongo:queryAttribute key="foobar" value="foobaz"/&gt;
-    &lt;/mongo:query-attributes&gt;
-&lt;/mongo:find-files-using-query-map&gt;</pre></div></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:list-files-using-query-map username="1" password="1"&gt;
+    &lt;mongo:query&gt;
+         &lt;mongo:query key="foo"&gt;bar&lt;/mongo:query&gt;
+    &lt;/mongo:query&gt;
+&lt;/mongo:list-files-using-query-map&gt;</pre></div></div>
         
   </td></tr>
 
@@ -690,7 +689,7 @@ similar to the following:</p>
                http://www.mulesoft.org/schema/mule/core
                http://www.mulesoft.org/schema/mule/core/current/mule.xsd
                http://www.mulesoft.org/schema/mule/mongo
-               http://www.mulesoft.org/schema/mule/mongo/1.0/mule-mongo.xsd"&gt;
+               http://www.mulesoft.org/schema/mule/mongo/2.0/mule-mongo.xsd"&gt;
 
       &lt;!-- here goes your flows and configuration elements --&gt;
 
@@ -904,8 +903,8 @@ resolution.</p>
  <p/>
  <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:count-objects-using-map-query collection="myCollection"&gt;
     &lt;mongo:query-attributes&gt;
-        &lt;mongo:queryAttribute key="foo" value="foobaz"/&gt;
-        &lt;mongo:queryAttribute key="foobar" value="foobaz"/&gt;
+        &lt;mongo:query-attribute key="foo"&gt;bar&lt;/mongo:query-attribute&gt;
+        &lt;mongo:query-attribute key="foo"&gt;bar&lt;/mongo:query-attribute&gt;
     &lt;/mongo:query-attributes&gt;
 &lt;/mongo:count-objects-using-map-query&gt;</pre></div></p></div>
   <div class="jd-tagdata">
@@ -1673,12 +1672,11 @@ resolution.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Lists all the files that match the given query
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:find-files-using-query-map&gt;
-    &lt;mongo:query-attributes&gt;
-        &lt;mongo:queryAttribute key="foo" value="foobaz"/&gt;
-        &lt;mongo:queryAttribute key="foobar" value="foobaz"/&gt;
-    &lt;/mongo:query-attributes&gt;
-&lt;/mongo:find-files-using-query-map&gt;</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:list-files-using-query-map username="1" password="1"&gt;
+    &lt;mongo:query&gt;
+         &lt;mongo:query key="foo"&gt;bar&lt;/mongo:query&gt;
+    &lt;/mongo:query&gt;
+&lt;/mongo:list-files-using-query-map&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
@@ -2065,10 +2063,10 @@ resolution.</p>
  a MongoException is thrown.
  <p/>
  <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:find-one-file-using-query-map&gt;
-    &lt;mongo:query&gt;
-        &lt;mongo:query-attribute key="foo"&gt;foobaz&lt;/mongo:query-attribute&gt;
-        &lt;mongo:query-attribute key="foobar"&gt;foobaz&lt;/mongo:query-attribute&gt;
-    &lt;/mongo:query&gt;
+        &lt;mongo:query&gt;
+            &lt;mongo:query key="foo"&gt;bar&lt;/mongo:query&gt;
+            &lt;mongo:query key="foos"&gt;bars&lt;/mongo:query&gt;
+        &lt;/mongo:query&gt;
 &lt;/mongo:find-one-file-using-query-map&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
@@ -2452,8 +2450,8 @@ resolution.</p>
  <p/>
  <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:get-file-content-using-query-map&gt;
     &lt;mongo:query&gt;
-        &lt;mongo:queryAttribute key="foo" value="foobaz"/&gt;
-        &lt;mongo:queryAttribute key="foobar" value="foobaz"/&gt;
+        &lt;mongo:query key="foo"&gt;bar&lt;/mongo:query&gt;
+        &lt;mongo:query key="foos"&gt;bars&lt;/mongo:query&gt;
     &lt;/mongo:query&gt;
 &lt;/mongo:get-file-content-using-query-map&gt;</pre></div></p></div>
   <div class="jd-tagdata">
@@ -2641,9 +2639,8 @@ resolution.</p>
  <p/>
  <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:insert-object-from-map collection="Employees" writeConcern="SAFE"&gt;
     &lt;mongo:element-attributes&gt;
-        &lt;mongo:elementAttribute key="foo" value="bar"/&gt;
-        &lt;mongo:elementAttribute key="foobar"
-                                value="baz"/&gt;
+        &lt;mongo:element-attribute key="foo"&gt;bar&lt;/mongo:element-attribute&gt;
+        &lt;mongo:element-attribute key="foobar"&gt;baz&lt;/mongo:element-attribute&gt;
     &lt;/mongo:element-attributes&gt;
 &lt;/mongo:insert-object-from-map&gt;</pre></div></p></div>
   <div class="jd-tagdata">
@@ -2898,8 +2895,8 @@ resolution.</p>
  <p/>
  <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:list-files-using-query-map&gt;
     &lt;mongo:query&gt;
-        &lt;mongo:queryAttribute key="foo" value="foobaz"/&gt;
-        &lt;mongo:queryAttribute key="foobar" value="foobaz"/&gt;
+        &lt;mongo:query key="foo"&gt;bar&lt;/mongo:query&gt;
+        &lt;mongo:query key="foos"&gt;bars&lt;/mongo:query&gt;
     &lt;/mongo:query&gt;
 &lt;/mongo:list-files-using-query-map&gt;</pre></div></p></div>
   <div class="jd-tagdata">
@@ -3270,8 +3267,8 @@ resolution.</p>
  <p/>
  <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:remove-files-using-query-map&gt;
     &lt;mongo:query&gt;
-        &lt;mongo:queryAttribute key="foo" value="foobaz"/&gt;
-        &lt;mongo:queryAttribute key="foobar" value="foobaz"/&gt;
+        &lt;mongo:query key="foo"&gt;bar&lt;/mongo:query&gt;
+        &lt;mongo:query key="foos"&gt;bars&lt;/mongo:query&gt;
     &lt;/mongo:query&gt;
 &lt;/mongo:remove-files-using-query-map&gt;</pre></div></p></div>
   <div class="jd-tagdata">
@@ -3457,8 +3454,8 @@ resolution.</p>
  <p/>
  <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:remove-using-map-query collection="myCollection"&gt;
     &lt;mongo:query-attributes&gt;
-        &lt;mongo:queryAttribute key="foo" value="foobaz"/&gt;
-        &lt;mongo:queryAttribute key="foobar" value="foobaz"/&gt;
+        &lt;mongo:query-attribute key="foo"&gt;bar&lt;/mongo:query-attribute&gt;
+        &lt;mongo:query-attribute key="foobar"&gt;baz&lt;/mongo:query-attribute&gt;
     &lt;/mongo:query-attributes&gt;
 &lt;/mongo:remove-using-map-query&gt;</pre></div></p></div>
   <div class="jd-tagdata">
@@ -3666,8 +3663,8 @@ resolution.</p>
  <p/>
  <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:save-object-from-map collection="myCollection"&gt;
     &lt;mongo:element-attributes&gt;
-        &lt;mongo:elementAttribute key="foo" value="bar"/&gt;
-        &lt;mongo:elementAttribute key="foobar" value="baz"/&gt;
+        &lt;mongo:element-attribute key="foo"&gt;bar&lt;/mongo:element-attribute&gt;
+        &lt;mongo:element-attribute key="foobar"&gt;baz&lt;/mongo:element-attribute&gt;
     &lt;/mongo:element-attributes&gt;
 &lt;/mongo:save-object-from-map&gt;</pre></div></p></div>
   <div class="jd-tagdata">
@@ -3918,12 +3915,12 @@ resolution.</p>
  <p/>
  <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:update-objects-using-map collection="myCollection" upsert="true"&gt;
     &lt;mongo:query-attributes&gt;
-        &lt;mongo:queryAttribute key="foo" value="foobaz"/&gt;
-        &lt;mongo:queryAttribute key="foobar" value="foobaz"/&gt;
+        &lt;mongo:query-attribute key="foo"&gt;bar&lt;/mongo:query-attribute&gt;
+        &lt;mongo:query-attribute key="foo"&gt;bar&lt;/mongo:query-attribute&gt;
     &lt;/mongo:query-attributes&gt;
     &lt;mongo:element-attributes&gt;
-        &lt;mongo:elementAttribute key="foo" value="bar"/&gt;
-        &lt;mongo:elementAttribute key="foobar" value="baz"/&gt;
+        &lt;mongo:element-attribute key="foo"&gt;bar&lt;/mongo:element-attribute&gt;
+        &lt;mongo:element-attribute key="foobar"&gt;baz&lt;/mongo:element-attribute&gt;
     &lt;/mongo:element-attributes&gt;
 &lt;/mongo:update-objects-using-map&gt;</pre></div></p></div>
   <div class="jd-tagdata">
