@@ -62,6 +62,8 @@
 
 
 
+
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -108,10 +110,10 @@
       <span id="masthead-title">Mule Mongo Cloud Connector</span>
     
     <ul id="header-tabs" class="mule">
-    	<li id="guide"><a href="../guide/index.html">
-	    	<span class="en">User Guide</span>
+    	<li id="guide"><a href="../guide/install.html">
+	    	<span class="en">Install Guide</span>
     	</a></li>
-    	<li id="java"><a href="../java/index.html">
+    	<li id="java"><a href="../java/packages.html">
 	    	<span class="en">Java API</span>
     	</a></li>
     	<li id="mule"><a href="../mule/modules.html">
@@ -309,7 +311,7 @@ Summary:
         
         <div class="jd-descrdiv">Creates a new index
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:create-index collection="myCollection" field="myField" order="DESC"/&gt;</pre></div></div>
+ <br/></div>
         
   </td></tr>
 
@@ -331,7 +333,7 @@ Summary:
         
         <div class="jd-descrdiv">Drops an existing index
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:drop-index collection="myCollection" index="myIndex"/&gt;</pre></div></div>
+ <br/></div>
         
   </td></tr>
 
@@ -343,7 +345,7 @@ Summary:
         
         <div class="jd-descrdiv">Answers if a collection exists given its name
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:exists-collection collection="aColllection"/&gt;</pre></div></div>
+ <br/></div>
         
   </td></tr>
 
@@ -355,7 +357,7 @@ Summary:
         
         <div class="jd-descrdiv">Lists all the files that match the given query
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:find-files query-ref="myDbObject" /&gt;</pre></div></div>
+ <br/></div>
         
   </td></tr>
 
@@ -367,11 +369,7 @@ Summary:
         
         <div class="jd-descrdiv">Lists all the files that match the given query
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:list-files-using-query-map username="1" password="1"&gt;
-    &lt;mongo:query&gt;
-         &lt;mongo:query key="foo"&gt;bar&lt;/mongo:query&gt;
-    &lt;/mongo:query&gt;
-&lt;/mongo:list-files-using-query-map&gt;</pre></div></div>
+ <br/></div>
         
   </td></tr>
 
@@ -483,7 +481,7 @@ Summary:
         
         <div class="jd-descrdiv">Lists names of collections available at this database
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:list-collections/&gt;</pre></div></div>
+ <br/></div>
         
   </td></tr>
 
@@ -515,7 +513,7 @@ Summary:
         
         <div class="jd-descrdiv">List existent indices in a collection
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:list-indices collection="myCollection"/&gt;</pre></div></div>
+ <br/></div>
         
   </td></tr>
 
