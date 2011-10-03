@@ -664,7 +664,7 @@ public class MongoCloudConnector {
      * @return the converted {@link DBObject}
      */
     @Transformer(sourceTypes = {String.class})
-    public DBObject jsonToDBObject(Object input) {
+    public DBObject jsonToDbobject(Object input) {
         return (DBObject) JSON.parse((String) input);
     }
 
