@@ -11,7 +11,9 @@
 -protected
 -sourcepath
 '/opt/j2ee/domains/mulesource.com/bamboo/webapps/atlassian-bamboo/data/atlassian-bamboo-3.0.3/xml-data/build-dir/MULECONTRIB-MONGO-JOB1/src/main/java:/opt/j2ee/domains/mulesource.com/bamboo/webapps/atlassian-bamboo/data/atlassian-bamboo-3.0.3/xml-data/build-dir/MULECONTRIB-MONGO-JOB1/target/generated-sources/mule'
--hdf project.artifactId "mule-module-mongo"
+-federate MONGO http://api.mongodb.org/java/current/
+                        
+                        -hdf project.artifactId "mule-module-mongo"
                         -hdf project.groupId "org.mule.modules"
                         -hdf project.version "2.0-SNAPSHOT"
                         -hdf project.name "Mule Mongo Cloud Connector"
