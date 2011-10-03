@@ -16,7 +16,7 @@
                         -hdf project.artifactId "mule-module-mongo"
                         -hdf project.groupId "org.mule.modules"
                         -hdf project.version "2.0-SNAPSHOT"
-                        -hdf project.name "Mule Mongo Cloud Connector"
+                        -hdf project.name "Mule Mongo Connector"
 						-hdf project.repo.name "MuleSoft Snapshot Repository"
 						-hdf project.repo.id "mulesoft-releases"
 						-hdf project.repo.url "http://repository.mulesoft.org/releases/"
