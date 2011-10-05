@@ -55,7 +55,7 @@ import static org.mule.module.mongo.api.DBObjects.from;
  *
  * @author flbulgarelli
  */
-@Module(name = "mongo", version = "2.0")
+@Module(name = "mongo", schemaVersion = "2.0")
 public class MongoCloudConnector {
 
     private static final String CAPPED_DEFAULT_VALUE = "false";
