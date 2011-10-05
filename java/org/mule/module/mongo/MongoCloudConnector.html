@@ -583,7 +583,8 @@ Summary:
         <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#bsonListToJson(java.lang.Object)">bsonListToJson</a></span>(Object input)</nobr>
         
         <div class="jd-descrdiv">Convert a BasicBSONList into Json
-</div>
+
+ </div>
   
   </td></tr>
 
@@ -694,6 +695,8 @@ Summary:
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#createSession(java.lang.String, java.lang.String)">createSession</a></span>(String username, String password)</nobr>
         
+        <div class="jd-descrdiv">Method invoked when a <code><a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a></code> needs to be created.</div>
+  
   </td></tr>
 
 
@@ -711,7 +714,8 @@ Summary:
         <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#dbobjectToJson(java.lang.Object)">dbobjectToJson</a></span>(Object input)</nobr>
         
         <div class="jd-descrdiv">Convert DBObject to Json
-</div>
+
+ </div>
   
   </td></tr>
 
@@ -729,6 +733,8 @@ Summary:
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#destroySession(org.mule.module.mongo.MongoSession)">destroySession</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session)</nobr>
         
+        <div class="jd-descrdiv">Method invoked when the <code><a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a></code> is to be destroyed.</div>
+  
   </td></tr>
 
 
@@ -1071,7 +1077,9 @@ Summary:
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#jsonToDbobject(java.lang.Object)">jsonToDbobject</a></span>(Object input)</nobr>
         
-        <div class="jd-descrdiv">Convert JSON to DBObject</div>
+        <div class="jd-descrdiv">Convert JSON to DBObject
+
+ </div>
   
   </td></tr>
 
@@ -1187,7 +1195,8 @@ Summary:
         <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#mongoCollectionToJson(java.lang.Object)">mongoCollectionToJson</a></span>(Object input)</nobr>
         
         <div class="jd-descrdiv">Convert a BasicBSONList into Json
-</div>
+
+ </div>
   
   </td></tr>
 
@@ -1916,15 +1925,21 @@ From class
     <div class="jd-details-descr">
       
   <div class="jd-tagdata jd-tagdescr"><p>Convert a BasicBSONList into Json
-</p></div>
+
+ </p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
           <th>input</td>
-          <td></td>
+          <td>the input for this transformer</td>
         </tr>
       </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>the converted string representation
+</li></ul>
   </div>
 
     </div>
@@ -1965,7 +1980,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information</td>
         </tr>
         <tr>
           <th>collection</td>
@@ -2022,7 +2037,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information</td>
         </tr>
         <tr>
           <th>collection</td>
@@ -2079,7 +2094,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information</td>
         </tr>
         <tr>
           <th>collection</td>
@@ -2138,7 +2153,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information</td>
         </tr>
         <tr>
           <th>payload</td>
@@ -2160,8 +2175,7 @@ From class
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>the new GridFSFile DBObject
-</li></ul>
+      <ul class="nolist"><li>the new GridFSFile DBObject</li></ul>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Throws</h5>
@@ -2210,7 +2224,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information</td>
         </tr>
         <tr>
           <th>collection</td>
@@ -2257,7 +2271,7 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Method invoked when a <code><a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a></code> needs to be created.</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
@@ -2267,14 +2281,22 @@ From class
         </tr>
         <tr>
           <th>password</td>
-          <td>the password to use in case authentication is required, null if no authentication is desired
-</td>
+          <td>the password to use in case authentication is required, null if no authentication is desired</td>
         </tr>
       </table>
   </div>
   <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>the newly created <code><a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a></code>
+</li></ul>
+  </div>
+  <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Throws</h5>
       <table class="jd-tagtable">  
+        <tr>
+            <th></td>
+            <td>Exception</td>
+        </tr>  
         <tr>
             <th>Exception</td>
             <td></td>
@@ -2312,15 +2334,21 @@ From class
     <div class="jd-details-descr">
       
   <div class="jd-tagdata jd-tagdescr"><p>Convert DBObject to Json
-</p></div>
+
+ </p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
           <th>input</td>
-          <td></td>
+          <td>the input for this transformer</td>
         </tr>
       </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>the converted string representation
+</li></ul>
   </div>
 
     </div>
@@ -2352,13 +2380,14 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Method invoked when the <code><a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a></code> is to be destroyed.</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>the <code><a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a></code> instance to be destroyed
+</td>
         </tr>
       </table>
   </div>
@@ -2401,7 +2430,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information</td>
         </tr>
         <tr>
           <th>collection</td>
@@ -2448,7 +2477,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information</td>
         </tr>
         <tr>
           <th>collection</td>
@@ -2499,7 +2528,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information</td>
         </tr>
         <tr>
           <th>collection</td>
@@ -2550,7 +2579,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information</td>
         </tr>
         <tr>
           <th>query</td>
@@ -2601,7 +2630,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information</td>
         </tr>
         <tr>
           <th>query</td>
@@ -2653,7 +2682,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information</td>
         </tr>
         <tr>
           <th>collection</td>
@@ -2713,7 +2742,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information</td>
         </tr>
         <tr>
           <th>collection</td>
@@ -2773,7 +2802,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information</td>
         </tr>
         <tr>
           <th>query</td>
@@ -2825,7 +2854,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information</td>
         </tr>
         <tr>
           <th>query</td>
@@ -2877,7 +2906,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information</td>
         </tr>
         <tr>
           <th>collection</td>
@@ -2937,7 +2966,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information</td>
         </tr>
         <tr>
           <th>collection</td>
@@ -3028,7 +3057,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information</td>
         </tr>
         <tr>
           <th>query</td>
@@ -3080,7 +3109,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information</td>
         </tr>
         <tr>
           <th>query</td>
@@ -3193,7 +3222,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information</td>
         </tr>
         <tr>
           <th>collection</td>
@@ -3250,7 +3279,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information</td>
         </tr>
         <tr>
           <th>collection</td>
@@ -3297,13 +3326,15 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Convert JSON to DBObject</p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Convert JSON to DBObject
+
+ </p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
           <th>input</td>
-          <td></td>
+          <td>the input for this transformer</td>
         </tr>
       </table>
   </div>
@@ -3350,7 +3381,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information</td>
         </tr>
       </table>
   </div>
@@ -3398,7 +3429,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information</td>
         </tr>
         <tr>
           <th>query</td>
@@ -3450,7 +3481,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information</td>
         </tr>
         <tr>
           <th>query</td>
@@ -3501,7 +3532,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information</td>
         </tr>
         <tr>
           <th>collection</td>
@@ -3560,7 +3591,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information represent a session to Mongo DB holding user information and a client to handle the connections</td>
         </tr>
         <tr>
           <th>collection</td>
@@ -3618,15 +3649,21 @@ From class
     <div class="jd-details-descr">
       
   <div class="jd-tagdata jd-tagdescr"><p>Convert a BasicBSONList into Json
-</p></div>
+
+ </p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
           <th>input</td>
-          <td></td>
+          <td>the input for this transformer</td>
         </tr>
       </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>the converted string representation
+</li></ul>
   </div>
 
     </div>
@@ -3667,7 +3704,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information</td>
         </tr>
         <tr>
           <th>query</td>
@@ -3715,7 +3752,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information</td>
         </tr>
         <tr>
           <th>query</td>
@@ -3764,7 +3801,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information</td>
         </tr>
         <tr>
           <th>collection</td>
@@ -3821,7 +3858,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information</td>
         </tr>
         <tr>
           <th>collection</td>
@@ -3876,7 +3913,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information</td>
         </tr>
         <tr>
           <th>collection</td>
@@ -3931,7 +3968,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information</td>
         </tr>
         <tr>
           <th>collection</td>
@@ -4108,7 +4145,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information</td>
         </tr>
         <tr>
           <th>collection</td>
@@ -4177,7 +4214,7 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>session</td>
-          <td></td>
+          <td>represents a session to Mongo DB holding user information and connectivity information</td>
         </tr>
         <tr>
           <th>collection</td>
