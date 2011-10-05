@@ -87,6 +87,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:list-collections}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information
      * @return the list of names of collections available at this database
      */
     @Processor
@@ -99,6 +100,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:exists-collection}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information
      * @param collection the name of the collection
      * @return if the collection exists
      */
@@ -113,6 +115,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:drop-collection}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information
      * @param collection the name of the collection to drop
      */
     @Processor
@@ -126,6 +129,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:create-collection}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information
      * @param collection the name of the collection to create
      * @param capped     if the collection will be capped
      * @param maxObjects the maximum number of documents the new collection is able to contain
@@ -145,6 +149,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:insert-object}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information
      * @param collection   the name of the collection where to insert the given object
      * @param dbObject     a {@link DBObject} instance.
      * @param writeConcern the optional write concern of insertion
@@ -164,6 +169,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:insert-object-from-map}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information
      * @param collection        the name of the collection where to insert the given object
      * @param elementAttributes alternative way of specifying the element as a literal Map inside a Mule Flow
      * @param writeConcern      the optional write concern of insertion
@@ -183,6 +189,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:update-objects}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information
      * @param collection   the name of the collection to update
      * @param query        the {@link DBObject} query object used to detect the element to update.
      * @param element      the {@link DBObject} mandatory object that will replace that one which matches the query.
@@ -208,6 +215,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:update-objects-using-map}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information
      * @param collection        the name of the collection to update
      * @param queryAttributes   the query object used to detect the element to update.
      * @param elementAttributes the mandatory object that will replace that one which matches the query.
@@ -231,6 +239,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:save-object}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information
      * @param collection   the collection where to insert the object
      * @param element      the mandatory {@link DBObject} object to insert.
      * @param writeConcern the write concern used to persist the object
@@ -248,6 +257,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:save-object-from-map}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information
      * @param collection        the collection where to insert the object
      * @param elementAttributes the mandatory object to insert.
      * @param writeConcern      the write concern used to persist the object
@@ -267,6 +277,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:remove-objects}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information
      * @param collection   the collection whose elements will be removed
      * @param query        the optional {@link DBObject} query object. Objects that match it will be removed.
      * @param writeConcern the write concern used to remove the object
@@ -286,6 +297,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:remove-using-map-query}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information
      * @param collection      the collection whose elements will be removed
      * @param queryAttributes the query object. Objects that match it will be removed.
      * @param writeConcern    the write concern used to remove the object
@@ -311,6 +323,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:map-reduce-objects}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information represent a session to Mongo DB holding user information and a client to handle the connections
      * @param collection       the name of the collection to map and reduce
      * @param mapFunction      a JavaScript encoded mapping function
      * @param reduceFunction   a JavaScript encoded reducing function
@@ -334,6 +347,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:count-objects}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information
      * @param collection the target collection
      * @param query      the optional {@link DBObject} query for counting objects. Only objects matching it will be counted.
      *                   If unspecified, all objects are counted.
@@ -352,6 +366,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:count-objects-using-map-query}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information
      * @param collection      the target collection
      * @param queryAttributes the optional query for counting objects. Only objects matching it will be counted.
      *                        If unspecified, all objects are counted.
@@ -370,6 +385,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-objects}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information
      * @param collection the target collection
      * @param query      the optional {@link DBObject} query object. If unspecified, all documents are returned.
      * @param fields     alternative way of passing fields as a literal List
@@ -389,6 +405,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-objects-using-query-map}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information
      * @param collection      the target collection
      * @param queryAttributes the optional query object. If unspecified, all documents are returned.
      * @param fields          alternative way of passing fields as a literal List
@@ -408,6 +425,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-one-object}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information
      * @param collection the target collection
      * @param query      the mandatory {@link DBObject} query object that the returned object matches.
      * @param fields     alternative way of passing fields as a literal List
@@ -428,6 +446,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:c}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information
      * @param collection      the target collection
      * @param queryAttributes the mandatory query object that the returned object matches.
      * @param fields          alternative way of passing fields as a literal List
@@ -447,6 +466,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:create-index}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information
      * @param collection the name of the collection where the index will be created
      * @param field      the name of the field which will be indexed
      * @param order      the indexing order
@@ -464,6 +484,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:drop-index}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information
      * @param collection the name of the collection where the index is
      * @param index      the name of the index to drop
      */
@@ -477,6 +498,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:list-indices}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information
      * @param collection the name of the collection
      * @return a collection of {@link DBObject} with indices information
      */
@@ -490,11 +512,13 @@ public class MongoCloudConnector {
      * contentType, and extraData, and answers it.
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:create-file-from-payload}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information
      * @param payload     the mandatory content of the new gridfs file. It may be a java.io.File, a byte[] or an InputStream.
      * @param filename    the mandatory name of new file.
      * @param contentType the optional content type of the new file
      * @param metadata    the optional {@link DBObject} metadata of the new content type
      * @return the new GridFSFile {@link DBObject}
+     * @throws IOException
      */
     @Processor
     public DBObject createFileFromPayload(@Session MongoSession session,
@@ -528,6 +552,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-files}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information
      * @param query a {@link DBObject} query the optional query
      * @return a {@link DBObject} files iterable
      */
@@ -541,6 +566,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-files-using-query-map}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information
      * @param query the optional query
      * @return a {@link DBObject} files iterable
      */
@@ -555,6 +581,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-one-file}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information
      * @param query the {@link DBObject} mandatory query
      * @return a {@link DBObject}
      */
@@ -569,6 +596,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-one-file-using-query-map}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information
      * @param query the mandatory query
      * @return a {@link DBObject}
      */
@@ -583,6 +611,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:get-file-content}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information
      * @param query the {@link DBObject} mandatory query
      * @return an InputStream to the file contents
      */
@@ -597,6 +626,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:get-file-content-using-query-map}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information
      * @param query the mandatory query
      * @return an InputStream to the file contents
      */
@@ -611,6 +641,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:list-files}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information
      * @param query the {@link DBObject} optional query
      * @return an iterable of {@link DBObject}
      */
@@ -625,6 +656,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:list-files-using-query-map}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information
      * @param query the optional query
      * @return an iterable of {@link DBObject}
      */
@@ -639,6 +671,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:remove-files}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information
      * @param query the {@link DBObject} optional query
      */
     @Processor
@@ -652,6 +685,7 @@ public class MongoCloudConnector {
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:remove-files-using-query-map}
      *
+     * @param session represents a session to Mongo DB holding user information and connectivity information
      * @param query the optional query
      */
     @Processor
@@ -661,6 +695,10 @@ public class MongoCloudConnector {
 
     /**
      * Convert JSON to DBObject
+     *
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:jsonToDbobject}
+     *
+     * @param input the input for this transformer
      * @return the converted {@link DBObject}
      */
     @Transformer(sourceTypes = {String.class})
@@ -670,6 +708,11 @@ public class MongoCloudConnector {
 
     /**
      * Convert DBObject to Json
+     *
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:dbobjectToJson}
+     *
+     * @param input the input for this transformer
+     * @return the converted string representation
      */
     @Transformer(sourceTypes = {DBObject.class})
     public String dbobjectToJson(Object input) {
@@ -678,6 +721,11 @@ public class MongoCloudConnector {
 
     /**
      * Convert a BasicBSONList into Json
+     *
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:bsonListToJson}
+     *
+     * @param input the input for this transformer
+     * @return the converted string representation
      */
     @Transformer(sourceTypes = {BasicBSONList.class})
     public String bsonListToJson(Object input) {
@@ -686,6 +734,11 @@ public class MongoCloudConnector {
 
     /**
      * Convert a BasicBSONList into Json
+     *
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:mongoCollectionToJson}
+     *
+     * @param input the input for this transformer
+     * @return the converted string representation
      */
     @Transformer(sourceTypes = {MongoCollection.class})
     public String mongoCollectionToJson(Object input) {
@@ -693,8 +746,12 @@ public class MongoCloudConnector {
     }
 
     /**
+     * Method invoked when a {@link MongoSession} needs to be created.
+     *
      * @param username the username to use in case authentication is required
      * @param password the password to use in case authentication is required, null if no authentication is desired
+     * @throws Exception
+     * @return the newly created {@link MongoSession}
      */
     @SessionCreate
     public MongoSession createSession(@SessionKey String username, String password) throws Exception {
@@ -702,6 +759,12 @@ public class MongoCloudConnector {
         return new MongoSession(username, new MongoClientImpl(db));
     }
 
+    /**
+     *
+     * Method invoked when the {@link MongoSession} is to be destroyed.
+     *
+     * @param session the {@link MongoSession} instance to be destroyed
+     */
     @SessionDestroy
     public void destroySession(@Session MongoSession session) {
         // nothing to do here

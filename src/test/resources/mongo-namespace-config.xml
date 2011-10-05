@@ -233,4 +233,20 @@
             </mongo:query-attributes>
         </mongo:remove-using-map-query>
     </flow>
+
+    <flow name="jsonToDbobject">
+        <mongo:json-to-dbobject />
+    </flow>
+
+    <flow name="dbobjectToJson">
+        <mongo:dbobject-to-json />
+    </flow>
+
+    <flow name="bsonListToJson">
+        <mongo:bson-list-to-json />
+    </flow>
+
+    <flow name="mongoCollectionToJson">
+        <mongo:mongo-collection-to-json />
+    </flow>
 </mule>

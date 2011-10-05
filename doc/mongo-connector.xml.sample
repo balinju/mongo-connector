@@ -211,3 +211,19 @@
             </mongo:query>
     </mongo:find-one-file-using-query-map>
 <!-- END_INCLUDE(mongo:find-one-file-using-query-map) -->
+
+<!-- BEGIN_INCLUDE(mongo:jsonToDbobject) -->
+        <mongo:json-to-dbobject />
+<!-- END_INCLUDE(mongo:jsonToDbobject) -->
+
+<!-- BEGIN_INCLUDE(mongo:dbobjectToJson) -->
+        <mongo:json-to-dbobject />
+<!-- END_INCLUDE(mongo:dbobjectToJson) -->
+
+<!-- BEGIN_INCLUDE(mongo:bsonListToJson) -->
+        <mongo:bson-list-to-json />
+<!-- END_INCLUDE(mongo:bsonListToJson) -->
+
+<!-- BEGIN_INCLUDE(mongo:mongoCollectionToJson) -->
+        <mongo:mongo-collection-to-json />
+<!-- END_INCLUDE(mongo:mongoCollectionToJson) -->
