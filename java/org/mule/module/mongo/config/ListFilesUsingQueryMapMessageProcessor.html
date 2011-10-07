@@ -194,6 +194,7 @@
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/BsonListToJsonTransformer.html">BsonListToJsonTransformer</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/CountObjectsMessageProcessor.html">CountObjectsMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/CountObjectsUsingMapQueryMessageProcessor.html">CountObjectsUsingMapQueryMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/CountObjectsUsingQueryMapMessageProcessor.html">CountObjectsUsingQueryMapMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/CreateCollectionMessageProcessor.html">CreateCollectionMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/CreateFileFromPayloadMessageProcessor.html">CreateFileFromPayloadMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/CreateIndexMessageProcessor.html">CreateIndexMessageProcessor</a></li>
@@ -229,6 +230,7 @@
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/RemoveFilesUsingQueryMapMessageProcessor.html">RemoveFilesUsingQueryMapMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/RemoveObjectsMessageProcessor.html">RemoveObjectsMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/RemoveUsingMapQueryMessageProcessor.html">RemoveUsingMapQueryMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html">RemoveUsingQueryMapMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/SaveObjectFromMapMessageProcessor.html">SaveObjectFromMapMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/SaveObjectMessageProcessor.html">SaveObjectMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/UpdateObjectsMessageProcessor.html">UpdateObjectsMessageProcessor</a></li>
@@ -670,7 +672,7 @@ org.mule.api.lifecycle.Stoppable
           
           
           Map&lt;String,&nbsp;String&gt;</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/ListFilesUsingQueryMapMessageProcessor.html#_queryType">_queryType</a></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/ListFilesUsingQueryMapMessageProcessor.html#_queryAttributesType">_queryAttributesType</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -768,7 +770,7 @@ org.mule.api.lifecycle.Stoppable
           
           
           Object</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/ListFilesUsingQueryMapMessageProcessor.html#query">query</a></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/ListFilesUsingQueryMapMessageProcessor.html#queryAttributes">queryAttributes</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -962,9 +964,9 @@ org.mule.api.lifecycle.Stoppable
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/ListFilesUsingQueryMapMessageProcessor.html#setQuery(java.lang.Object)">setQuery</a></span>(Object value)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/ListFilesUsingQueryMapMessageProcessor.html#setQueryAttributes(java.lang.Object)">setQueryAttributes</a></span>(Object value)</nobr>
         
-        <div class="jd-descrdiv">Sets query</div>
+        <div class="jd-descrdiv">Sets queryAttributes</div>
   
   </td></tr>
 
@@ -1591,7 +1593,7 @@ From interface
 
 
 
-<A NAME="_queryType"></A>
+<A NAME="_queryAttributesType"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -1601,7 +1603,7 @@ From interface
          
         Map&lt;String,&nbsp;String&gt;
       </span>
-        _queryType
+        _queryAttributesType
     </h4>
       <div class="api-level">
         
@@ -1841,7 +1843,7 @@ From interface
 
 
 
-<A NAME="query"></A>
+<A NAME="queryAttributes"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -1851,7 +1853,7 @@ From interface
          
         Object
       </span>
-        query
+        queryAttributes
     </h4>
       <div class="api-level">
         
@@ -2240,7 +2242,7 @@ From interface
 </div>
 
 
-<A NAME="setQuery(java.lang.Object)"></A>
+<A NAME="setQueryAttributes(java.lang.Object)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2252,7 +2254,7 @@ From interface
          
         void
       </span>
-      <span class="sympad">setQuery</span>
+      <span class="sympad">setQueryAttributes</span>
       <span class="normal">(Object value)</span>
     </h4>
       <div class="api-level">
@@ -2265,7 +2267,7 @@ From interface
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Sets query</p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Sets queryAttributes</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">

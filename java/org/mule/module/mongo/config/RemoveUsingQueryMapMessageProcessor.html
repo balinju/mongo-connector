@@ -72,7 +72,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="../../../../../../favicon.ico" />
 <title>
 
-  DropCollectionMessageProcessor
+  RemoveUsingQueryMapMessageProcessor
 
 
 | Mule Mongo Connector
@@ -199,7 +199,7 @@
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/CreateFileFromPayloadMessageProcessor.html">CreateFileFromPayloadMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/CreateIndexMessageProcessor.html">CreateIndexMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/DbobjectToJsonTransformer.html">DbobjectToJsonTransformer</a></li>
-          <li class="selected api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/DropCollectionMessageProcessor.html">DropCollectionMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/DropCollectionMessageProcessor.html">DropCollectionMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/DropIndexMessageProcessor.html">DropIndexMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/ExistsCollectionMessageProcessor.html">ExistsCollectionMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/FindFilesMessageProcessor.html">FindFilesMessageProcessor</a></li>
@@ -230,7 +230,7 @@
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/RemoveFilesUsingQueryMapMessageProcessor.html">RemoveFilesUsingQueryMapMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/RemoveObjectsMessageProcessor.html">RemoveObjectsMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/RemoveUsingMapQueryMessageProcessor.html">RemoveUsingMapQueryMessageProcessor</a></li>
-          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html">RemoveUsingQueryMapMessageProcessor</a></li>
+          <li class="selected api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html">RemoveUsingQueryMapMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/SaveObjectFromMapMessageProcessor.html">SaveObjectFromMapMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/SaveObjectMessageProcessor.html">SaveObjectMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/UpdateObjectsMessageProcessor.html">UpdateObjectsMessageProcessor</a></li>
@@ -397,7 +397,7 @@ Summary:
      
     
     class
-<h1>DropCollectionMessageProcessor</h1>
+<h1>RemoveUsingQueryMapMessageProcessor</h1>
 
 
 
@@ -447,7 +447,7 @@ Summary:
         
             <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
         
-        <td colspan="1" class="jd-inheritance-class-cell">org.mule.module.mongo.config.DropCollectionMessageProcessor</td>
+        <td colspan="1" class="jd-inheritance-class-cell">org.mule.module.mongo.config.RemoveUsingQueryMapMessageProcessor</td>
     </tr>
     
 
@@ -463,7 +463,7 @@ Summary:
 
 
 <h2>Class Overview</h2>
-<p>DropCollectionMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.html#dropCollection(org.mule.module.mongo.MongoSession, java.lang.String)">dropCollection(org.mule.module.mongo.MongoSession, java.lang.String)</a></code> method in <code><a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.html">MongoCloudConnector</a></code>. For each argument there is a field in this processor to match it.  Before invoking the actual method the processor will evaluate and transform where possible to the expected argument type.
+<p>RemoveUsingQueryMapMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.html#removeUsingQueryMap(org.mule.module.mongo.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.String>, org.mule.module.mongo.api.WriteConcern)">removeUsingQueryMap(org.mule.module.mongo.MongoSession, java.lang.String, java.util.Map, org.mule.module.mongo.api.WriteConcern)</a></code> method in <code><a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.html">MongoCloudConnector</a></code>. For each argument there is a field in this processor to match it.  Before invoking the actual method the processor will evaluate and transform where possible to the expected argument type.
  
 </p>
 
@@ -661,7 +661,7 @@ org.mule.api.lifecycle.Stoppable
           
           
           String</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/DropCollectionMessageProcessor.html#_collectionType">_collectionType</a></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html#_collectionType">_collectionType</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -672,7 +672,7 @@ org.mule.api.lifecycle.Stoppable
           
           
           String</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/DropCollectionMessageProcessor.html#_passwordType">_passwordType</a></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html#_passwordType">_passwordType</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -682,8 +682,30 @@ org.mule.api.lifecycle.Stoppable
           private
           
           
+          Map&lt;String,&nbsp;String&gt;</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html#_queryAttributesType">_queryAttributesType</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
           String</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/DropCollectionMessageProcessor.html#_usernameType">_usernameType</a></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html#_usernameType">_usernameType</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          <a href="../../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html#_writeConcernType">_writeConcernType</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -694,7 +716,7 @@ org.mule.api.lifecycle.Stoppable
           
           
           Object</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/DropCollectionMessageProcessor.html#collection">collection</a></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html#collection">collection</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -705,7 +727,7 @@ org.mule.api.lifecycle.Stoppable
           
           
           ExpressionManager</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/DropCollectionMessageProcessor.html#expressionManager">expressionManager</a></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html#expressionManager">expressionManager</a></td>
           <td class="jd-descrcol" width="100%">Mule Expression Manager
  
 </td>
@@ -718,7 +740,7 @@ org.mule.api.lifecycle.Stoppable
           
           
           FlowConstruct</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/DropCollectionMessageProcessor.html#flowConstruct">flowConstruct</a></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html#flowConstruct">flowConstruct</a></td>
           <td class="jd-descrcol" width="100%">Flow construct
  
 </td>
@@ -731,7 +753,7 @@ org.mule.api.lifecycle.Stoppable
           
           
           <a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.html">MongoCloudConnectorSessionManagerAdapter</a></nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/DropCollectionMessageProcessor.html#moduleObject">moduleObject</a></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html#moduleObject">moduleObject</a></td>
           <td class="jd-descrcol" width="100%">Module object
  
 </td>
@@ -744,7 +766,7 @@ org.mule.api.lifecycle.Stoppable
           
           
           MuleContext</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/DropCollectionMessageProcessor.html#muleContext">muleContext</a></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html#muleContext">muleContext</a></td>
           <td class="jd-descrcol" width="100%">Mule Context
  
 </td>
@@ -757,7 +779,7 @@ org.mule.api.lifecycle.Stoppable
           
           
           Object</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/DropCollectionMessageProcessor.html#password">password</a></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html#password">password</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -768,7 +790,7 @@ org.mule.api.lifecycle.Stoppable
           
           
           TemplateParser.PatternInfo</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/DropCollectionMessageProcessor.html#patternInfo">patternInfo</a></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html#patternInfo">patternInfo</a></td>
           <td class="jd-descrcol" width="100%">Mule Pattern Info
  
 </td>
@@ -781,7 +803,29 @@ org.mule.api.lifecycle.Stoppable
           
           
           Object</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/DropCollectionMessageProcessor.html#username">username</a></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html#queryAttributes">queryAttributes</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          Object</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html#username">username</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          Object</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html#writeConcern">writeConcern</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -811,7 +855,7 @@ org.mule.api.lifecycle.Stoppable
             </nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/DropCollectionMessageProcessor.html#DropCollectionMessageProcessor()">DropCollectionMessageProcessor</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html#RemoveUsingQueryMapMessageProcessor()">RemoveUsingQueryMapMessageProcessor</a></span>()</nobr>
         
   </td></tr>
 
@@ -840,7 +884,7 @@ org.mule.api.lifecycle.Stoppable
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/DropCollectionMessageProcessor.html#dispose()">dispose</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html#dispose()">dispose</a></span>()</nobr>
         
   </td></tr>
 
@@ -856,7 +900,7 @@ org.mule.api.lifecycle.Stoppable
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/DropCollectionMessageProcessor.html#initialise()">initialise</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html#initialise()">initialise</a></span>()</nobr>
         
         <div class="jd-descrdiv">Obtains the expression manager from the Mule context and initialises the connector.</div>
   
@@ -874,7 +918,7 @@ org.mule.api.lifecycle.Stoppable
             MuleEvent</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/DropCollectionMessageProcessor.html#process(org.mule.api.MuleEvent)">process</a></span>(MuleEvent event)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html#process(org.mule.api.MuleEvent)">process</a></span>(MuleEvent event)</nobr>
         
         <div class="jd-descrdiv">Invokes the MessageProcessor.</div>
   
@@ -892,7 +936,7 @@ org.mule.api.lifecycle.Stoppable
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/DropCollectionMessageProcessor.html#setCollection(java.lang.Object)">setCollection</a></span>(Object value)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html#setCollection(java.lang.Object)">setCollection</a></span>(Object value)</nobr>
         
         <div class="jd-descrdiv">Sets collection</div>
   
@@ -910,7 +954,7 @@ org.mule.api.lifecycle.Stoppable
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/DropCollectionMessageProcessor.html#setFlowConstruct(org.mule.api.construct.FlowConstruct)">setFlowConstruct</a></span>(FlowConstruct flowConstruct)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html#setFlowConstruct(org.mule.api.construct.FlowConstruct)">setFlowConstruct</a></span>(FlowConstruct flowConstruct)</nobr>
         
         <div class="jd-descrdiv">Sets flow construct</div>
   
@@ -928,7 +972,7 @@ org.mule.api.lifecycle.Stoppable
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/DropCollectionMessageProcessor.html#setModuleObject(org.mule.module.mongo.config.MongoCloudConnectorSessionManagerAdapter)">setModuleObject</a></span>(<a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.html">MongoCloudConnectorSessionManagerAdapter</a> moduleObject)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html#setModuleObject(org.mule.module.mongo.config.MongoCloudConnectorSessionManagerAdapter)">setModuleObject</a></span>(<a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.html">MongoCloudConnectorSessionManagerAdapter</a> moduleObject)</nobr>
         
         <div class="jd-descrdiv">Sets the instance of the object under which the processor will execute</div>
   
@@ -946,7 +990,7 @@ org.mule.api.lifecycle.Stoppable
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/DropCollectionMessageProcessor.html#setMuleContext(org.mule.api.MuleContext)">setMuleContext</a></span>(MuleContext context)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html#setMuleContext(org.mule.api.MuleContext)">setMuleContext</a></span>(MuleContext context)</nobr>
         
         <div class="jd-descrdiv">Set the Mule context</div>
   
@@ -964,7 +1008,7 @@ org.mule.api.lifecycle.Stoppable
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/DropCollectionMessageProcessor.html#setPassword(java.lang.Object)">setPassword</a></span>(Object value)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html#setPassword(java.lang.Object)">setPassword</a></span>(Object value)</nobr>
         
         <div class="jd-descrdiv">Sets password</div>
   
@@ -982,9 +1026,9 @@ org.mule.api.lifecycle.Stoppable
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/DropCollectionMessageProcessor.html#setUsername(java.lang.Object)">setUsername</a></span>(Object value)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html#setQueryAttributes(java.lang.Object)">setQueryAttributes</a></span>(Object value)</nobr>
         
-        <div class="jd-descrdiv">Sets username</div>
+        <div class="jd-descrdiv">Sets queryAttributes</div>
   
   </td></tr>
 
@@ -1000,7 +1044,43 @@ org.mule.api.lifecycle.Stoppable
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/DropCollectionMessageProcessor.html#start()">start</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html#setUsername(java.lang.Object)">setUsername</a></span>(Object value)</nobr>
+        
+        <div class="jd-descrdiv">Sets username</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html#setWriteConcern(java.lang.Object)">setWriteConcern</a></span>(Object value)</nobr>
+        
+        <div class="jd-descrdiv">Sets writeConcern</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html#start()">start</a></span>()</nobr>
         
   </td></tr>
 
@@ -1016,7 +1096,7 @@ org.mule.api.lifecycle.Stoppable
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/DropCollectionMessageProcessor.html#stop()">stop</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html#stop()">stop</a></span>()</nobr>
         
   </td></tr>
 
@@ -1623,6 +1703,36 @@ From interface
 
 
 
+<A NAME="_queryAttributesType"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        Map&lt;String,&nbsp;String&gt;
+      </span>
+        _queryAttributesType
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
 <A NAME="_usernameType"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -1634,6 +1744,36 @@ From interface
         String
       </span>
         _usernameType
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="_writeConcernType"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        <a href="../../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a>
+      </span>
+        _writeConcernType
     </h4>
       <div class="api-level">
         
@@ -1873,6 +2013,36 @@ From interface
 
 
 
+<A NAME="queryAttributes"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        Object
+      </span>
+        queryAttributes
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
 <A NAME="username"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -1903,6 +2073,36 @@ From interface
 
 
 
+<A NAME="writeConcern"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        Object
+      </span>
+        writeConcern
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
 
 <!-- Public ctors -->
 
@@ -1912,7 +2112,7 @@ From interface
 
 
 
-<A NAME="DropCollectionMessageProcessor()"></A>
+<A NAME="RemoveUsingQueryMapMessageProcessor()"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -1924,7 +2124,7 @@ From interface
          
         
       </span>
-      <span class="sympad">DropCollectionMessageProcessor</span>
+      <span class="sympad">RemoveUsingQueryMapMessageProcessor</span>
       <span class="normal">()</span>
     </h4>
       <div class="api-level">
@@ -2283,6 +2483,47 @@ From interface
 </div>
 
 
+<A NAME="setQueryAttributes(java.lang.Object)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setQueryAttributes</span>
+      <span class="normal">(Object value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets queryAttributes</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>Value to set
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
 <A NAME="setUsername(java.lang.Object)"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -2309,6 +2550,47 @@ From interface
     <div class="jd-details-descr">
       
   <div class="jd-tagdata jd-tagdescr"><p>Sets username</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>Value to set
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setWriteConcern(java.lang.Object)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setWriteConcern</span>
+      <span class="normal">(Object value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets writeConcern</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">

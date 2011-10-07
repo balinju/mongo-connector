@@ -194,6 +194,7 @@
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/BsonListToJsonTransformer.html">BsonListToJsonTransformer</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/CountObjectsMessageProcessor.html">CountObjectsMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/CountObjectsUsingMapQueryMessageProcessor.html">CountObjectsUsingMapQueryMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/CountObjectsUsingQueryMapMessageProcessor.html">CountObjectsUsingQueryMapMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/CreateCollectionMessageProcessor.html">CreateCollectionMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/CreateFileFromPayloadMessageProcessor.html">CreateFileFromPayloadMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/CreateIndexMessageProcessor.html">CreateIndexMessageProcessor</a></li>
@@ -229,6 +230,7 @@
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/RemoveFilesUsingQueryMapMessageProcessor.html">RemoveFilesUsingQueryMapMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/RemoveObjectsMessageProcessor.html">RemoveObjectsMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/RemoveUsingMapQueryMessageProcessor.html">RemoveUsingMapQueryMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/RemoveUsingQueryMapMessageProcessor.html">RemoveUsingQueryMapMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/SaveObjectFromMapMessageProcessor.html">SaveObjectFromMapMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/SaveObjectMessageProcessor.html">SaveObjectMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/UpdateObjectsMessageProcessor.html">UpdateObjectsMessageProcessor</a></li>
@@ -1363,7 +1365,7 @@ From class
             long</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#countObjectsUsingMapQuery(org.mule.module.mongo.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.String>)">countObjectsUsingMapQuery</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, Map&lt;String,&nbsp;String&gt; queryAttributes)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#countObjectsUsingQueryMap(org.mule.module.mongo.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.String>)">countObjectsUsingQueryMap</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, Map&lt;String,&nbsp;String&gt; queryAttributes)</nobr>
         
         <div class="jd-descrdiv">Counts the number of objects that match the given query.</div>
   
@@ -1572,7 +1574,7 @@ From class
             Iterable&lt;DBObject&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#findFilesUsingQueryMap(org.mule.module.mongo.MongoSession, java.util.Map<java.lang.String, java.lang.String>)">findFilesUsingQueryMap</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, Map&lt;String,&nbsp;String&gt; query)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#findFilesUsingQueryMap(org.mule.module.mongo.MongoSession, java.util.Map<java.lang.String, java.lang.String>)">findFilesUsingQueryMap</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, Map&lt;String,&nbsp;String&gt; queryAttributes)</nobr>
         
         <div class="jd-descrdiv">Lists all the files that match the given query
  <p/>
@@ -1646,7 +1648,7 @@ From class
             DBObject</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#findOneFileUsingQueryMap(org.mule.module.mongo.MongoSession, java.util.Map<java.lang.String, java.lang.String>)">findOneFileUsingQueryMap</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, Map&lt;String,&nbsp;String&gt; query)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#findOneFileUsingQueryMap(org.mule.module.mongo.MongoSession, java.util.Map<java.lang.String, java.lang.String>)">findOneFileUsingQueryMap</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, Map&lt;String,&nbsp;String&gt; queryAttributes)</nobr>
         
         <div class="jd-descrdiv">Answers the first file that matches the given query.</div>
   
@@ -1734,9 +1736,9 @@ From class
             InputStream</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#getFileContentUsingQueryMap(org.mule.module.mongo.MongoSession, java.util.Map<java.lang.String, java.lang.String>)">getFileContentUsingQueryMap</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, Map&lt;String,&nbsp;String&gt; query)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#getFileContentUsingQueryMap(org.mule.module.mongo.MongoSession, java.util.Map<java.lang.String, java.lang.String>)">getFileContentUsingQueryMap</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, Map&lt;String,&nbsp;String&gt; queryAttributes)</nobr>
         
-        <div class="jd-descrdiv">Answers an inputstream to the contents of the first file that matches the given query.</div>
+        <div class="jd-descrdiv">Answers an inputstream to the contents of the first file that matches the given queryAttributes.</div>
   
   </td></tr>
 
@@ -1878,7 +1880,7 @@ From class
             Iterable&lt;DBObject&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#listFilesUsingQueryMap(org.mule.module.mongo.MongoSession, java.util.Map<java.lang.String, java.lang.String>)">listFilesUsingQueryMap</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, Map&lt;String,&nbsp;String&gt; query)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#listFilesUsingQueryMap(org.mule.module.mongo.MongoSession, java.util.Map<java.lang.String, java.lang.String>)">listFilesUsingQueryMap</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, Map&lt;String,&nbsp;String&gt; queryAttributes)</nobr>
         
         <div class="jd-descrdiv">Lists all the files that match the given query, sorting them by filename.</div>
   
@@ -1975,7 +1977,7 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#removeFilesUsingQueryMap(org.mule.module.mongo.MongoSession, java.util.Map<java.lang.String, java.lang.String>)">removeFilesUsingQueryMap</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, Map&lt;String,&nbsp;String&gt; query)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#removeFilesUsingQueryMap(org.mule.module.mongo.MongoSession, java.util.Map<java.lang.String, java.lang.String>)">removeFilesUsingQueryMap</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, Map&lt;String,&nbsp;String&gt; queryAttributes)</nobr>
         
         <div class="jd-descrdiv">Removes all the files that match the given query.</div>
   
@@ -2011,7 +2013,7 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#removeUsingMapQuery(org.mule.module.mongo.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.String>, org.mule.module.mongo.api.WriteConcern)">removeUsingMapQuery</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, Map&lt;String,&nbsp;String&gt; queryAttributes, <a href="../../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoCloudConnector.html#removeUsingQueryMap(org.mule.module.mongo.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.String>, org.mule.module.mongo.api.WriteConcern)">removeUsingQueryMap</a></span>(<a href="../../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, Map&lt;String,&nbsp;String&gt; queryAttributes, <a href="../../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
         
         <div class="jd-descrdiv">Removes all the objects that match the a given optional query.</div>
   

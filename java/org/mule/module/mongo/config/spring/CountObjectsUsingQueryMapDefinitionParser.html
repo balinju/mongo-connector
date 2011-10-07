@@ -72,7 +72,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="../../../../../../../favicon.ico" />
 <title>
 
-  MongoCloudConnectorNamespaceHandler
+  CountObjectsUsingQueryMapDefinitionParser
 
 
 | Mule Mongo Connector
@@ -193,7 +193,7 @@
       <ul>
           <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/mongo/config/spring/CountObjectsDefinitionParser.html">CountObjectsDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/mongo/config/spring/CountObjectsUsingMapQueryDefinitionParser.html">CountObjectsUsingMapQueryDefinitionParser</a></li>
-          <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/mongo/config/spring/CountObjectsUsingQueryMapDefinitionParser.html">CountObjectsUsingQueryMapDefinitionParser</a></li>
+          <li class="selected api apilevel-"><a href="../../../../../../../java/org/mule/module/mongo/config/spring/CountObjectsUsingQueryMapDefinitionParser.html">CountObjectsUsingQueryMapDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/mongo/config/spring/CreateCollectionDefinitionParser.html">CreateCollectionDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/mongo/config/spring/CreateFileFromPayloadDefinitionParser.html">CreateFileFromPayloadDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/mongo/config/spring/CreateIndexDefinitionParser.html">CreateIndexDefinitionParser</a></li>
@@ -218,7 +218,7 @@
           <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/mongo/config/spring/ListIndicesDefinitionParser.html">ListIndicesDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/mongo/config/spring/MapReduceObjectsDefinitionParser.html">MapReduceObjectsDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/mongo/config/spring/MongoCloudConnectorConfigDefinitionParser.html">MongoCloudConnectorConfigDefinitionParser</a></li>
-          <li class="selected api apilevel-"><a href="../../../../../../../java/org/mule/module/mongo/config/spring/MongoCloudConnectorNamespaceHandler.html">MongoCloudConnectorNamespaceHandler</a></li>
+          <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/mongo/config/spring/MongoCloudConnectorNamespaceHandler.html">MongoCloudConnectorNamespaceHandler</a></li>
           <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/mongo/config/spring/RemoveFilesDefinitionParser.html">RemoveFilesDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/mongo/config/spring/RemoveFilesUsingQueryMapDefinitionParser.html">RemoveFilesUsingQueryMapDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/mongo/config/spring/RemoveObjectsDefinitionParser.html">RemoveObjectsDefinitionParser</a></li>
@@ -276,15 +276,6 @@
   
   
   
-   
-  
-  
-
-  
-   
-  
-  
-  
   
 
   
@@ -306,9 +297,9 @@ Summary:
 
 
 
-
-  <a href="#inhfields">Inherited Fields</a>
+  <a href="#lfields">Fields</a>
   
+
 
 
   &#124; <a href="#pubctors">Ctors</a>
@@ -319,6 +310,9 @@ Summary:
   &#124; <a href="#pubmethods">Methods</a>
   
 
+
+  &#124; <a href="#promethods">Protected Methods</a>
+  
 
 
   &#124; <a href="#inhmethods">Inherited Methods</a>
@@ -345,21 +339,22 @@ Summary:
      
     
     class
-<h1>MongoCloudConnectorNamespaceHandler</h1>
+<h1>CountObjectsUsingQueryMapDefinitionParser</h1>
 
 
 
   
-  
-  
-
-  
-    extends NamespaceHandlerSupport<br/>
+    extends Object<br/>
   
   
   
 
   
+  
+      implements 
+      
+        BeanDefinitionParser 
+      
   
   
 
@@ -374,7 +369,7 @@ Summary:
 
     <tr>
         
-        <td colspan="3" class="jd-inheritance-class-cell">java.lang.Object</td>
+        <td colspan="2" class="jd-inheritance-class-cell">java.lang.Object</td>
     </tr>
     
 
@@ -382,17 +377,7 @@ Summary:
         
             <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
         
-        <td colspan="2" class="jd-inheritance-class-cell">org.springframework.beans.factory.xml.NamespaceHandlerSupport</td>
-    </tr>
-    
-
-    <tr>
-        
-            <td class="jd-inheritance-space">&nbsp;</td>
-        
-            <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
-        
-        <td colspan="1" class="jd-inheritance-class-cell">org.mule.module.mongo.config.spring.MongoCloudConnectorNamespaceHandler</td>
+        <td colspan="1" class="jd-inheritance-class-cell">org.mule.module.mongo.config.spring.CountObjectsUsingQueryMapDefinitionParser</td>
     </tr>
     
 
@@ -406,11 +391,6 @@ Summary:
 
 <div class="jd-descr">
 
-
-<h2>Class Overview</h2>
-<p>Registers bean definitions parsers for handling elements in <code>http://www.mulesoft.org/schema/mule/mongo</code>.
- 
-</p>
 
 
 
@@ -455,76 +435,29 @@ Summary:
 
 
 
-
-
-
 <!-- =========== FIELD SUMMARY =========== -->
-<table id="inhfields" class="jd-sumtable"><tr><th>
-  <a href="#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
-  <div style="clear:left;">Inherited Fields</div></th></tr>
+<table id="lfields" class="jd-sumtable"><tr><th colspan="12">Fields</th></tr>
 
-
-<tr class="api apilevel-" >
-<td colspan="12">
-
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-fields-org.springframework.beans.factory.xml.NamespaceHandlerSupport" class="jd-expando-trigger closed"
-          ><img id="inherited-fields-org.springframework.beans.factory.xml.NamespaceHandlerSupport-trigger"
-          src="../../../../../../../assets/images/triangle-closed.png"
-          class="jd-expando-trigger-img" /></a>From class
-org.springframework.beans.factory.xml.NamespaceHandlerSupport
-<div id="inherited-fields-org.springframework.beans.factory.xml.NamespaceHandlerSupport">
-  <div id="inherited-fields-org.springframework.beans.factory.xml.NamespaceHandlerSupport-list"
-        class="jd-inheritedlinks">
-  </div>
-  <div id="inherited-fields-org.springframework.beans.factory.xml.NamespaceHandlerSupport-summary" style="display: none;">
-    <table class="jd-sumtable-expando">
-    
 
     
       <tr class="alt-color api apilevel-" >
           <td class="jd-typecol"><nobr>
           private
           
-          final
-          Map&lt;String,&nbsp;BeanDefinitionDecorator&gt;</nobr></td>
-          <td class="jd-linkcol">attributeDecorators</td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-      <tr class=" api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          private
           
-          final
-          Map&lt;String,&nbsp;BeanDefinitionDecorator&gt;</nobr></td>
-          <td class="jd-linkcol">decorators</td>
-          <td class="jd-descrcol" width="100%"></td>
+          TemplateParser.PatternInfo</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../../org/mule/module/mongo/config/spring/CountObjectsUsingQueryMapDefinitionParser.html#patternInfo">patternInfo</a></td>
+          <td class="jd-descrcol" width="100%">Mule Pattern Info
+ 
+</td>
       </tr>
       
     
-      <tr class="alt-color api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          private
-          
-          final
-          Map&lt;String,&nbsp;BeanDefinitionParser&gt;</nobr></td>
-          <td class="jd-linkcol">parsers</td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-</table>
-  </div>
-</div>
-</td></tr>
-
-
-
-
-
 
 </table>
+
+
+
 
 
 
@@ -545,7 +478,7 @@ org.springframework.beans.factory.xml.NamespaceHandlerSupport
             </nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../../org/mule/module/mongo/config/spring/MongoCloudConnectorNamespaceHandler.html#MongoCloudConnectorNamespaceHandler()">MongoCloudConnectorNamespaceHandler</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/mongo/config/spring/CountObjectsUsingQueryMapDefinitionParser.html#CountObjectsUsingQueryMapDefinitionParser()">CountObjectsUsingQueryMapDefinitionParser</a></span>()</nobr>
         
   </td></tr>
 
@@ -571,13 +504,11 @@ org.springframework.beans.factory.xml.NamespaceHandlerSupport
             
             
             
-            void</nobr>
+            BeanDefinition</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../../org/mule/module/mongo/config/spring/MongoCloudConnectorNamespaceHandler.html#init()">init</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/mongo/config/spring/CountObjectsUsingQueryMapDefinitionParser.html#parse(org.w3c.dom.Element, org.springframework.beans.factory.xml.ParserContext)">parse</a></span>(Element element, ParserContext parserContent)</nobr>
         
-        <div class="jd-descrdiv">Invoked by the DefaultBeanDefinitionDocumentReader after construction but before any custom elements are parsed.</div>
-  
   </td></tr>
 
 
@@ -585,6 +516,31 @@ org.springframework.beans.factory.xml.NamespaceHandlerSupport
 </table>
 
 
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="promethods" class="jd-sumtable"><tr><th colspan="12">Protected Methods</th></tr>
+
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/mongo/config/spring/CountObjectsUsingQueryMapDefinitionParser.html#getAttributeValue(org.w3c.dom.Element, java.lang.String)">getAttributeValue</a></span>(Element element, String attributeName)</nobr>
+        
+  </td></tr>
+
+
+
+</table>
 
 
 
@@ -594,112 +550,6 @@ org.springframework.beans.factory.xml.NamespaceHandlerSupport
 <table id="inhmethods" class="jd-sumtable"><tr><th>
   <a href="#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
   <div style="clear:left;">Inherited Methods</div></th></tr>
-
-
-<tr class="api apilevel-" >
-<td colspan="12">
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.springframework.beans.factory.xml.NamespaceHandlerSupport" class="jd-expando-trigger closed"
-          ><img id="inherited-methods-org.springframework.beans.factory.xml.NamespaceHandlerSupport-trigger"
-          src="../../../../../../../assets/images/triangle-closed.png"
-          class="jd-expando-trigger-img" /></a>
-From class
-
-  org.springframework.beans.factory.xml.NamespaceHandlerSupport
-
-<div id="inherited-methods-org.springframework.beans.factory.xml.NamespaceHandlerSupport">
-  <div id="inherited-methods-org.springframework.beans.factory.xml.NamespaceHandlerSupport-list"
-        class="jd-inheritedlinks">
-  </div>
-  <div id="inherited-methods-org.springframework.beans.factory.xml.NamespaceHandlerSupport-summary" style="display: none;">
-    <table class="jd-sumtable-expando">
-    
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            BeanDefinitionHolder</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">decorate</span>(Node arg0, BeanDefinitionHolder arg1, ParserContext arg2)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            BeanDefinition</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">parse</span>(Element arg0, ParserContext arg1)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            final
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">registerBeanDefinitionDecorator</span>(String arg0, BeanDefinitionDecorator arg1)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            final
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">registerBeanDefinitionDecoratorForAttribute</span>(String arg0, BeanDefinitionDecorator arg1)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            final
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">registerBeanDefinitionParser</span>(String arg0, BeanDefinitionParser arg1)</nobr>
-        
-  </td></tr>
-
-
-</table>
-  </div>
-</div>
-</td></tr>
-
 
 
 <tr class="api apilevel-" >
@@ -906,53 +756,21 @@ From class
 
 <tr class="api apilevel-" >
 <td colspan="12">
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.springframework.beans.factory.xml.NamespaceHandler" class="jd-expando-trigger closed"
-          ><img id="inherited-methods-org.springframework.beans.factory.xml.NamespaceHandler-trigger"
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.springframework.beans.factory.xml.BeanDefinitionParser" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-org.springframework.beans.factory.xml.BeanDefinitionParser-trigger"
           src="../../../../../../../assets/images/triangle-closed.png"
           class="jd-expando-trigger-img" /></a>
 From interface
 
-  org.springframework.beans.factory.xml.NamespaceHandler
+  org.springframework.beans.factory.xml.BeanDefinitionParser
 
-<div id="inherited-methods-org.springframework.beans.factory.xml.NamespaceHandler">
-  <div id="inherited-methods-org.springframework.beans.factory.xml.NamespaceHandler-list"
+<div id="inherited-methods-org.springframework.beans.factory.xml.BeanDefinitionParser">
+  <div id="inherited-methods-org.springframework.beans.factory.xml.BeanDefinitionParser-list"
         class="jd-inheritedlinks">
   </div>
-  <div id="inherited-methods-org.springframework.beans.factory.xml.NamespaceHandler-summary" style="display: none;">
+  <div id="inherited-methods-org.springframework.beans.factory.xml.BeanDefinitionParser-summary" style="display: none;">
     <table class="jd-sumtable-expando">
     
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            abstract
-            
-            
-            
-            
-            BeanDefinitionHolder</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">decorate</span>(Node arg0, BeanDefinitionHolder arg1, ParserContext arg2)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            abstract
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">init</span>()</nobr>
-        
-  </td></tr>
 
 
 	 
@@ -1003,6 +821,45 @@ From interface
 <!-- Fields -->
 
 
+<!-- ========= FIELD DETAIL ======== -->
+<h2>Fields</h2>
+
+
+
+
+<A NAME="patternInfo"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        TemplateParser.PatternInfo
+      </span>
+        patternInfo
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Mule Pattern Info
+ 
+</p></div>
+
+    
+    </div>
+</div>
+
+
+
+
 <!-- Public ctors -->
 
 
@@ -1011,7 +868,7 @@ From interface
 
 
 
-<A NAME="MongoCloudConnectorNamespaceHandler()"></A>
+<A NAME="CountObjectsUsingQueryMapDefinitionParser()"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -1023,7 +880,7 @@ From interface
          
         
       </span>
-      <span class="sympad">MongoCloudConnectorNamespaceHandler</span>
+      <span class="sympad">CountObjectsUsingQueryMapDefinitionParser</span>
       <span class="normal">()</span>
     </h4>
       <div class="api-level">
@@ -1057,7 +914,7 @@ From interface
 
 
 
-<A NAME="init()"></A>
+<A NAME="parse(org.w3c.dom.Element, org.springframework.beans.factory.xml.ParserContext)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -1067,10 +924,10 @@ From interface
          
          
          
-        void
+        BeanDefinition
       </span>
-      <span class="sympad">init</span>
-      <span class="normal">()</span>
+      <span class="sympad">parse</span>
+      <span class="normal">(Element element, ParserContext parserContent)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -1082,11 +939,19 @@ From interface
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Invoked by the DefaultBeanDefinitionDocumentReader after construction but before any custom elements are parsed. </p></div>
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
   <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">See Also</h5>
-      <ul class="nolist"><li><code><a href="../../../../../../../null#registerBeanDefinitionParser(java.lang.String, org.springframework.beans.factory.xml.BeanDefinitionParser)">registerBeanDefinitionParser(String, BeanDefinitionParser)</a></code></li>
-      </ul>
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>element</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>parserContent</td>
+          <td></td>
+        </tr>
+      </table>
   </div>
 
     </div>
@@ -1097,6 +962,55 @@ From interface
 
 
 <!-- ========= METHOD DETAIL ======== -->
+
+<h2>Protected Methods</h2>
+
+
+
+<A NAME="getAttributeValue(org.w3c.dom.Element, java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">getAttributeValue</span>
+      <span class="normal">(Element element, String attributeName)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>element</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>attributeName</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
 
 
 
