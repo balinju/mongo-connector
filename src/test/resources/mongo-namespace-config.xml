@@ -17,7 +17,7 @@
       xmlns:spring="http://www.springframework.org/schema/beans"
       xmlns:mongo="http://www.mulesoft.org/schema/mule/mongo"
       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-                          http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
+                          http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.2/mule.xsd
                           http://www.mulesoft.org/schema/mule/mongo http://www.mulesoft.org/schema/mule/mongo/2.0/mule-mongo.xsd">
 
     <mongo:config/>
@@ -148,10 +148,10 @@
 
     <flow name="ListFilesUsingQueryMap">
         <mongo:list-files-using-query-map username="1" password="1">
-            <mongo:query>
-                <mongo:query key="foo">bar</mongo:query>
-                <mongo:query key="foos">bars</mongo:query>
-            </mongo:query>
+            <mongo:query-attributes>
+                <mongo:query-attribute key="foo">foobaz</mongo:query-attribute>
+                <mongo:query-attribute key="foobar">foobaz</mongo:query-attribute>
+            </mongo:query-attributes>
         </mongo:list-files-using-query-map>
     </flow>
 
@@ -161,10 +161,10 @@
 
     <flow name="RemoveFilesUsingQueryMap">
         <mongo:remove-files-using-query-map>
-            <mongo:query>
-                <mongo:query key="foo">bar</mongo:query>
-                <mongo:query key="foos">bars</mongo:query>
-            </mongo:query>
+            <mongo:query-attributes>
+                <mongo:query-attribute key="foo">foobaz</mongo:query-attribute>
+                <mongo:query-attribute key="foobar">foobaz</mongo:query-attribute>
+            </mongo:query-attributes>
         </mongo:remove-files-using-query-map>
     </flow>
 
@@ -174,10 +174,10 @@
 
     <flow name="FindFilesUsingQueryMap">
         <mongo:find-files-using-query-map>
-            <mongo:query>
-                <mongo:query key="foo">bar</mongo:query>
-                <mongo:query key="foos">bars</mongo:query>
-            </mongo:query>
+            <mongo:query-attributes>
+                <mongo:query-attribute key="foo">bar</mongo:query-attribute>
+                <mongo:query-attribute key="foos">bars</mongo:query-attribute>
+            </mongo:query-attributes>
         </mongo:find-files-using-query-map>
     </flow>
 
@@ -187,10 +187,10 @@
 
     <flow name="FindOneFileUsing">
         <mongo:find-one-file-using-query-map>
-            <mongo:query>
-                <mongo:query key="foo">bar</mongo:query>
-                <mongo:query key="foos">bars</mongo:query>
-            </mongo:query>
+            <mongo:query-attributes>
+                <mongo:query-attribute key="foo">bar</mongo:query-attribute>
+                <mongo:query-attribute key="foos">bars</mongo:query-attribute>
+            </mongo:query-attributes>
         </mongo:find-one-file-using-query-map>
     </flow>
 
@@ -200,19 +200,19 @@
 
     <flow name="GetFileContentUsingQueryMap">
         <mongo:get-file-content-using-query-map>
-            <mongo:query>
-                <mongo:query key="foo">bar</mongo:query>
-                <mongo:query key="foos">bars</mongo:query>
-            </mongo:query>
+            <mongo:query-attributes>
+                <mongo:query-attribute key="foo">bar</mongo:query-attribute>
+                <mongo:query-attribute key="foos">bars</mongo:query-attribute>
+            </mongo:query-attributes>
         </mongo:get-file-content-using-query-map>
     </flow>
 
     <flow name="FindOneFileUsingQueryMap">
         <mongo:find-one-file-using-query-map>
-            <mongo:query>
-                <mongo:query key="foo">bar</mongo:query>
-                <mongo:query key="foos">bars</mongo:query>
-            </mongo:query>
+            <mongo:query-attributes>
+                <mongo:query-attribute key="foo">bar</mongo:query-attribute>
+                <mongo:query-attribute key="foos">bars</mongo:query-attribute>
+            </mongo:query-attributes>
         </mongo:find-one-file-using-query-map>
     </flow>
 
@@ -225,13 +225,13 @@
         </mongo:save-object-from-map>
     </flow>
 
-    <flow name="RemoveUsingMapQuery">
-        <mongo:remove-using-map-query collection="myCollection">
+    <flow name="RemoveUsingQueryMap">
+        <mongo:remove-using-query-map collection="myCollection">
             <mongo:query-attributes>
                 <mongo:query-attribute key="foo">bar</mongo:query-attribute>
                 <mongo:query-attribute key="foobar">baz</mongo:query-attribute>
             </mongo:query-attributes>
-        </mongo:remove-using-map-query>
+        </mongo:remove-using-query-map>
     </flow>
 
     <flow name="jsonToDbobject">

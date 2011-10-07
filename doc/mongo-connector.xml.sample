@@ -60,14 +60,14 @@
         <mongo:remove-objects collection="myCollection" query-ref="dbObject"/>
 <!-- END_INCLUDE(mongo:remove-objects) -->
 
-<!-- BEGIN_INCLUDE(mongo:remove-using-map-query) -->
-        <mongo:remove-using-map-query collection="myCollection">
+<!-- BEGIN_INCLUDE(mongo:remove-using-query-map) -->
+        <mongo:remove-using-query-map collection="myCollection">
             <mongo:query-attributes>
                 <mongo:query-attribute key="foo">bar</mongo:query-attribute>
                 <mongo:query-attribute key="foobar">baz</mongo:query-attribute>
             </mongo:query-attributes>
-        </mongo:remove-using-map-query>
-<!-- END_INCLUDE(mongo:remove-using-map-query) -->
+        </mongo:remove-using-query-map>
+<!-- END_INCLUDE(mongo:remove-using-query-map) -->
 
 <!-- BEGIN_INCLUDE(mongo:map-reduce-objects) -->
         <mongo:map-reduce-objects collection="myCollection" mapFunction="myMapFunction" reduceFunction="myReduceFunction"/>
@@ -77,14 +77,14 @@
         <mongo:count-objects collection="myCollection" query-ref="dbObject"/>
 <!-- END_INCLUDE(mongo:count-objects) -->
 
-<!-- BEGIN_INCLUDE(mongo:count-objects-using-map-query) -->
-        <mongo:count-objects-using-map-query collection="myCollection">
+<!-- BEGIN_INCLUDE(mongo:count-objects-using-query-map) -->
+        <mongo:count-objects-using-query-map collection="myCollection">
             <mongo:query-attributes>
                 <mongo:query-attribute key="foo">bar</mongo:query-attribute>
                 <mongo:query-attribute key="foo">bar</mongo:query-attribute>
             </mongo:query-attributes>
-        </mongo:count-objects-using-map-query>
-<!-- END_INCLUDE(mongo:count-objects-using-map-query) -->
+        </mongo:count-objects-using-query-map>
+<!-- END_INCLUDE(mongo:count-objects-using-query-map) -->
 
 <!-- BEGIN_INCLUDE(mongo:find-objects) -->
         <mongo:find-objects collection="myCollection" query-ref="dbObject">
@@ -153,11 +153,12 @@
 <!-- END_INCLUDE(mongo:find-files) -->
 
 <!-- BEGIN_INCLUDE(mongo:find-files-using-query-map) -->
-        <mongo:list-files-using-query-map username="1" password="1">
-            <mongo:query>
-                 <mongo:query key="foo">bar</mongo:query>
-            </mongo:query>
-        </mongo:list-files-using-query-map>
+        <mongo:find-files-using-query-map>
+            <mongo:query-attributes>
+                <mongo:query-attribute key="foo">bar</mongo:query-attribute>
+                <mongo:query-attribute key="foos">bars</mongo:query-attribute>
+            </mongo:query-attributes>
+        </mongo:find-files-using-query-map>
 <!-- END_INCLUDE(mongo:find-files-using-query-map) -->
 
 <!-- BEGIN_INCLUDE(mongo:find-one-file) -->
@@ -170,10 +171,10 @@
 
 <!-- BEGIN_INCLUDE(mongo:get-file-content-using-query-map) -->
         <mongo:get-file-content-using-query-map>
-            <mongo:query>
-                <mongo:query key="foo">bar</mongo:query>
-                <mongo:query key="foos">bars</mongo:query>
-            </mongo:query>
+            <mongo:query-attributes>
+                <mongo:query-attribute key="foo">bar</mongo:query-attribute>
+                <mongo:query-attribute key="foos">bars</mongo:query-attribute>
+            </mongo:query-attributes>
         </mongo:get-file-content-using-query-map>
 <!-- END_INCLUDE(mongo:get-file-content-using-query-map) -->
 
@@ -183,10 +184,10 @@
 
 <!-- BEGIN_INCLUDE(mongo:list-files-using-query-map) -->
         <mongo:list-files-using-query-map>
-            <mongo:query>
-                <mongo:query key="foo">bar</mongo:query>
-                <mongo:query key="foos">bars</mongo:query>
-            </mongo:query>
+            <mongo:query-attributes>
+                <mongo:query-attribute key="foo">foobaz</mongo:query-attribute>
+                <mongo:query-attribute key="foobar">foobaz</mongo:query-attribute>
+            </mongo:query-attributes>
         </mongo:list-files-using-query-map>
 <!-- END_INCLUDE(mongo:list-files-using-query-map) -->
 
@@ -196,20 +197,20 @@
 
 <!-- BEGIN_INCLUDE(mongo:remove-files-using-query-map) -->
         <mongo:remove-files-using-query-map>
-            <mongo:query>
-                <mongo:query key="foo">bar</mongo:query>
-                <mongo:query key="foos">bars</mongo:query>
-            </mongo:query>
+            <mongo:query-attributes>
+                <mongo:query-attribute key="foo">foobaz</mongo:query-attribute>
+                <mongo:query-attribute key="foobar">foobaz</mongo:query-attribute>
+            </mongo:query-attributes>
         </mongo:remove-files-using-query-map>
 <!-- END_INCLUDE(mongo:remove-files-using-query-map) -->
 
 <!-- BEGIN_INCLUDE(mongo:find-one-file-using-query-map) -->
-    <mongo:find-one-file-using-query-map>
-            <mongo:query>
-                <mongo:query key="foo">bar</mongo:query>
-                <mongo:query key="foos">bars</mongo:query>
-            </mongo:query>
-    </mongo:find-one-file-using-query-map>
+        <mongo:find-one-file-using-query-map>
+            <mongo:query-attributes>
+                <mongo:query-attribute key="foo">bar</mongo:query-attribute>
+                <mongo:query-attribute key="foos">bars</mongo:query-attribute>
+            </mongo:query-attributes>
+        </mongo:find-one-file-using-query-map>
 <!-- END_INCLUDE(mongo:find-one-file-using-query-map) -->
 
 <!-- BEGIN_INCLUDE(mongo:jsonToDbobject) -->
