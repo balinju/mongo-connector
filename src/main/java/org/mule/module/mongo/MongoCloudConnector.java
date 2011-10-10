@@ -14,11 +14,18 @@
 
 package org.mule.module.mongo;
 
-import com.mongodb.DB;
-import com.mongodb.DBObject;
-import com.mongodb.Mongo;
-import com.mongodb.MongoException;
-import com.mongodb.util.JSON;
+import static org.mule.module.mongo.api.DBObjects.from;
+
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.commons.lang.Validate;
 import org.bson.types.BasicBSONList;
 import org.mule.api.annotations.Configurable;
@@ -39,17 +46,11 @@ import org.mule.module.mongo.api.MongoClientImpl;
 import org.mule.module.mongo.api.MongoCollection;
 import org.mule.module.mongo.api.WriteConcern;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-
-import static org.mule.module.mongo.api.DBObjects.from;
+import com.mongodb.DB;
+import com.mongodb.DBObject;
+import com.mongodb.Mongo;
+import com.mongodb.MongoException;
+import com.mongodb.util.JSON;
 
 /**
  * A Mongo Connector Facade
@@ -585,8 +586,10 @@ public class MongoCloudConnector
 
     /**
      * Creates a new GridFSFile in the database, saving the given content, filename,
-     * contentType, and extraData, and answers it. {@sample.xml
-     * ../../../doc/mongo-connector.xml.sample mongo:create-file-from-payload}
+     * contentType, and extraData, and answers it.
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample
+     * mongo:create-file-from-payload}
      * 
      * @param session represents a session to Mongo DB holding user information and
      *            connectivity information
@@ -810,8 +813,9 @@ public class MongoCloudConnector
     }
 
     /**
-     * Convert JSON to DBObject {@sample.xml ../../../doc/mongo-connector.xml.sample
-     * mongo:jsonToDbobject}
+     * Convert JSON to DBObject.
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:jsonToDbobject}
      * 
      * @param input the input for this transformer
      * @return the converted {@link DBObject}
@@ -823,8 +827,9 @@ public class MongoCloudConnector
     }
 
     /**
-     * Convert DBObject to Json {@sample.xml ../../../doc/mongo-connector.xml.sample
-     * mongo:dbobjectToJson}
+     * Convert DBObject to Json.
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:dbobjectToJson}
      * 
      * @param input the input for this transformer
      * @return the converted string representation
@@ -836,8 +841,9 @@ public class MongoCloudConnector
     }
 
     /**
-     * Convert a BasicBSONList into Json {@sample.xml
-     * ../../../doc/mongo-connector.xml.sample mongo:bsonListToJson}
+     * Convert a BasicBSONList into Json.
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:bsonListToJson}
      * 
      * @param input the input for this transformer
      * @return the converted string representation
@@ -849,8 +855,10 @@ public class MongoCloudConnector
     }
 
     /**
-     * Convert a BasicBSONList into Json {@sample.xml
-     * ../../../doc/mongo-connector.xml.sample mongo:mongoCollectionToJson}
+     * Convert a BasicBSONList into Json.
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample
+     * mongo:mongoCollectionToJson}
      * 
      * @param input the input for this transformer
      * @return the converted string representation
