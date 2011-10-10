@@ -22,7 +22,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Conversions between JSon Strings and Maps into DBObjects  
+ * Conversions between JSon Strings and Maps into DBObjects
  */
 public final class DBObjects
 {

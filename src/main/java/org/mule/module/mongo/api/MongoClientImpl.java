@@ -100,17 +100,16 @@ public class MongoClientImpl implements MongoClient
     }
 
     public String insertObject(@NotNull String collection,
-                             @NotNull DBObject object,
-                             @NotNull WriteConcern writeConcern)
+                               @NotNull DBObject object,
+                               @NotNull WriteConcern writeConcern)
     {
         Validate.notNull(collection);
         Validate.notNull(object);
         Validate.notNull(writeConcern);
         WriteResult writeResult = openSession().getCollection(collection).insert(object,
             writeConcern.toMongoWriteConcern(openSession()));
-        ObjectId id = (ObjectId)object.get( "_id" );
-        if( id == null )
-            return null;
+        ObjectId id = (ObjectId) object.get("_id");
+        if (id == null) return null;
 
         return id.toStringMongod();
     }
@@ -128,8 +127,9 @@ public class MongoClientImpl implements MongoClient
         Validate.notNull(collection);
         Validate.notEmpty(mapFunction);
         Validate.notEmpty(reduceFunction);
-        return bug5588Workaournd(openSession().getCollection(collection).mapReduce(mapFunction,
-            reduceFunction, outputCollection, outputTypeFor(outputCollection), null).results());
+        return bug5588Workaournd(openSession().getCollection(collection)
+            .mapReduce(mapFunction, reduceFunction, outputCollection, outputTypeFor(outputCollection), null)
+            .results());
     }
 
     private OutputType outputTypeFor(String outputCollection)
@@ -183,7 +183,7 @@ public class MongoClientImpl implements MongoClient
     {
         return openSession().getCollection(collection).getIndexInfo();
     }
-    
+
     public DBObject createFile(InputStream content, String filename, String contentType, DBObject metadata)
     {
         Validate.notNull(filename);
@@ -220,21 +220,22 @@ public class MongoClientImpl implements MongoClient
         Validate.notNull(query);
         return ((GridFSDBFile) findOneFile(query)).getInputStream();
     }
-    
+
     public Iterable<DBObject> listFiles(DBObject query)
     {
         return bug5588Workaournd(getGridFs().getFileList(query));
     }
-    
+
     public void removeFiles(DBObject query)
     {
         getGridFs().remove(query);
-    }   
-    
+    }
+
     protected GridFS getGridFs()
     {
         return new GridFS(openSession());
     }
+
     /*
      * see http://www.mulesoft.org/jira/browse/MULE-5588
      */

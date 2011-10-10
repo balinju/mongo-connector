@@ -23,11 +23,11 @@ public final class FieldsSet
 
     public static DBObject from(List<String> fieldsList)
     {
-        if(fieldsList == null)
+        if (fieldsList == null)
         {
             return null;
         }
-        
+
         BasicDBObject o = new BasicDBObject();
         for (String s : fieldsList)
         {
@@ -35,6 +35,5 @@ public final class FieldsSet
         }
         return o;
     }
-    
-    
+
 }

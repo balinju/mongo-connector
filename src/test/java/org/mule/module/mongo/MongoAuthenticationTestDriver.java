@@ -16,11 +16,13 @@ import org.junit.Test;
 import static org.junit.Assert.assertNotNull;
 
 /**
- * Integration test for the Connector when Authenticated.
- * This test is only meaningful when server has being started with 
- * --auth argument, and a user has being created:
+ * Integration test for the Connector when Authenticated. This test is only
+ * meaningful when server has being started with --auth argument, and a user has
+ * being created:
  * 
- * <pre>db.addUser(username, password)</pre>
+ * <pre>
+ * db.addUser(username, password)
+ * </pre>
  * 
  * @author flbulgarelli
  */

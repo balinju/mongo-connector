@@ -152,7 +152,8 @@ public class MongoTestDriver
         connector.insertObject(session, MAIN_COLLECTION, acmeEmployee(), WriteConcern.NORMAL);
 
         assertEquals(1, connector.countObjects(session, MAIN_COLLECTION, acmeQuery()));
-        DBObject employee = connector.findOneObject(session, MAIN_COLLECTION, acmeQuery(), Arrays.asList("name"));
+        DBObject employee = connector.findOneObject(session, MAIN_COLLECTION, acmeQuery(),
+            Arrays.asList("name"));
         assertNotNull(employee);
         assertEquals("John", employee.get("name"));
         assertNull(employee.get("company"));
@@ -281,8 +282,9 @@ public class MongoTestDriver
         insertInTestDb(new BasicDBObject("x", 60));
         insertInTestDb(new BasicDBObject("x", 60));
         insertInTestDb(new BasicDBObject("x", 70));
-        connector.updateObjects(session, MAIN_COLLECTION, new BasicDBObject("x", new BasicDBObject("$gt", 55)),
-            new BasicDBObject("$inc", new BasicDBObject("x", 2)), false, true, WriteConcern.DATABASE_DEFAULT);
+        connector.updateObjects(session, MAIN_COLLECTION,
+            new BasicDBObject("x", new BasicDBObject("$gt", 55)), new BasicDBObject("$inc",
+                new BasicDBObject("x", 2)), false, true, WriteConcern.DATABASE_DEFAULT);
 
         Iterator<DBObject> iter = connector.findObjects(session, MAIN_COLLECTION, null, null).iterator();
         assertEquals(50, iter.next().get("x"));
@@ -297,8 +299,9 @@ public class MongoTestDriver
         insertInTestDb(new BasicDBObject("x", 50));
         insertInTestDb(new BasicDBObject("x", 60));
         insertInTestDb(new BasicDBObject("x", 60));
-        connector.updateObjects(session, MAIN_COLLECTION, new BasicDBObject("x", new BasicDBObject("$gt", 55)),
-            new BasicDBObject("$inc", new BasicDBObject("x", 2)), false, false, WriteConcern.DATABASE_DEFAULT);
+        connector.updateObjects(session, MAIN_COLLECTION,
+            new BasicDBObject("x", new BasicDBObject("$gt", 55)), new BasicDBObject("$inc",
+                new BasicDBObject("x", 2)), false, false, WriteConcern.DATABASE_DEFAULT);
 
         Iterator<DBObject> iter = connector.findObjects(session, MAIN_COLLECTION, null, null).iterator();
         assertEquals(50, iter.next().get("x"));
@@ -317,14 +320,15 @@ public class MongoTestDriver
     @Test
     public void testCreateAndGetFile() throws Exception
     {
-        DBObject file = connector.createFileFromPayload(session, new ByteArrayInputStream("hello world".getBytes()),
-                "testFile.txt", "text/plain", new BasicDBObject("foo", "bar"));
+        DBObject file = connector.createFileFromPayload(session,
+            new ByteArrayInputStream("hello world".getBytes()), "testFile.txt", "text/plain",
+            new BasicDBObject("foo", "bar"));
         try
         {
             assertEquals("testFile.txt", file.get("filename"));
             assertEquals("text/plain", file.get("contentType"));
             assertEquals("bar", ((DBObject) file.get("metadata")).get("foo"));
-            
+
             InputStream in = connector.getFileContent(session, filenameQuery("testFile.txt"));
             assertEquals("hello world", new Scanner(in).nextLine());
         }
@@ -333,19 +337,18 @@ public class MongoTestDriver
             connector.removeFiles(session, filenameQuery("testFile.txt"));
         }
     }
-    
+
     @Test
     public void testCreateAndListFile() throws Exception
     {
-        connector.createFileFromPayload(session, "hello world".getBytes(), "testFile.txt", null,
-                null);
+        connector.createFileFromPayload(session, "hello world".getBytes(), "testFile.txt", null, null);
         try
         {
             Iterator<DBObject> iter = connector.listFiles(session, filenameQuery("testFile.txt")).iterator();
             assertTrue(iter.hasNext());
             iter.next();
             assertFalse(iter.hasNext());
-            
+
             iter = connector.findFiles(session, filenameQuery("testFile.txt")).iterator();
             assertTrue(iter.hasNext());
             iter.next();

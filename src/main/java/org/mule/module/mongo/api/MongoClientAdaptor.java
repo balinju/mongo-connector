@@ -8,7 +8,6 @@
  * LICENSE.txt file.
  */
 
-
 package org.mule.module.mongo.api;
 
 import org.mule.module.mongo.MongoCloudConnector;

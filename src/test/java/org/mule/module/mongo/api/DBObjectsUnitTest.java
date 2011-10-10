@@ -26,17 +26,21 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
-public class DBObjectsUnitTest {
+public class DBObjectsUnitTest
+{
 
     @Test
-    public void fromNull() throws Exception {
+    public void fromNull() throws Exception
+    {
         assertNull(DBObjects.from(null));
     }
 
     @SuppressWarnings("serial")
     @Test
-    public void fromMap() throws Exception {
-        DBObject map = DBObjects.from(new HashMap<String, Object>() {
+    public void fromMap() throws Exception
+    {
+        DBObject map = DBObjects.from(new HashMap<String, Object>()
+        {
             {
                 put("key1", 4);
                 put("key2", Collections.singletonMap("key3", 9));
@@ -47,8 +51,10 @@ public class DBObjectsUnitTest {
     }
 
     @Test
-    public void fromMapWithId() throws Exception {
-        DBObject o = DBObjects.from(new HashMap<String, Object>() {
+    public void fromMapWithId() throws Exception
+    {
+        DBObject o = DBObjects.from(new HashMap<String, Object>()
+        {
             {
                 put("name", "John");
                 put("surname", "Doe");
@@ -61,8 +67,10 @@ public class DBObjectsUnitTest {
     }
 
     @Test
-    public void fromMapWithObjectId() throws Exception {
-        DBObject o = DBObjects.from(new HashMap<String, Object>() {
+    public void fromMapWithObjectId() throws Exception
+    {
+        DBObject o = DBObjects.from(new HashMap<String, Object>()
+        {
             {
                 put("name", "John");
                 put("surname", "Doe");
@@ -75,13 +83,16 @@ public class DBObjectsUnitTest {
     }
 
     @Test
-    public void fromMapWithNestedObject() throws Exception {
-        final DBObject cat = DBObjects.from(new HashMap<String, Object>() {
+    public void fromMapWithNestedObject() throws Exception
+    {
+        final DBObject cat = DBObjects.from(new HashMap<String, Object>()
+        {
             {
                 put("name", "Garfield");
             }
         });
-        DBObject o = DBObjects.from(new HashMap<String, Object>() {
+        DBObject o = DBObjects.from(new HashMap<String, Object>()
+        {
             {
                 put("name", "Jon");
                 put("surname", "Arbuckle");
@@ -95,18 +106,22 @@ public class DBObjectsUnitTest {
     }
 
     @Test
-    public void fromMapWithNestedList() throws Exception {
-        final DBObject garfield = DBObjects.from(new HashMap<String, Object>() {
+    public void fromMapWithNestedList() throws Exception
+    {
+        final DBObject garfield = DBObjects.from(new HashMap<String, Object>()
+        {
             {
                 put("name", "Garfield");
             }
         });
-        final DBObject oddie = DBObjects.from(new HashMap<String, Object>() {
+        final DBObject oddie = DBObjects.from(new HashMap<String, Object>()
+        {
             {
                 put("name", "Oddie");
             }
         });
-        DBObject o = DBObjects.from(new HashMap<String, Object>() {
+        DBObject o = DBObjects.from(new HashMap<String, Object>()
+        {
             {
                 put("name", "Jon");
                 put("surname", "Arbuckle");

@@ -32,14 +32,16 @@ public interface MongoClient
 
     void createCollection(@NotNull String name, boolean capped, Integer maxObjects, Integer size);
 
-    String insertObject(@NotNull String collection, @NotNull DBObject object, @NotNull WriteConcern writeConcern);
+    String insertObject(@NotNull String collection,
+                        @NotNull DBObject object,
+                        @NotNull WriteConcern writeConcern);
 
     void updateObjects(@NotNull String collection,
-                      DBObject query,
-                      DBObject object,
-                      boolean upsert,
-                      boolean multi,
-                      @NotNull WriteConcern writeConcern);
+                       DBObject query,
+                       DBObject object,
+                       boolean upsert,
+                       boolean multi,
+                       @NotNull WriteConcern writeConcern);
 
     void saveObject(@NotNull String collection, @NotNull DBObject object, @NotNull WriteConcern writeConcern);
 
