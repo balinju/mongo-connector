@@ -22,6 +22,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +42,10 @@ import org.mule.api.annotations.param.Session;
 import org.mule.api.annotations.param.SessionKey;
 import org.mule.api.annotations.session.SessionCreate;
 import org.mule.api.annotations.session.SessionDestroy;
+import org.mule.api.store.ObjectDoesNotExistException;
+import org.mule.api.store.ObjectStoreException;
+import org.mule.api.store.ObjectStoreNotAvaliableException;
+import org.mule.api.store.PartitionableExpirableObjectStore;
 import org.mule.module.mongo.api.IndexOrder;
 import org.mule.module.mongo.api.MongoClient;
 import org.mule.module.mongo.api.MongoClientAdaptor;
@@ -46,6 +53,7 @@ import org.mule.module.mongo.api.MongoClientImpl;
 import org.mule.module.mongo.api.MongoCollection;
 import org.mule.module.mongo.api.WriteConcern;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBObject;
 import com.mongodb.Mongo;
@@ -58,11 +66,14 @@ import com.mongodb.util.JSON;
  * @author flbulgarelli
  */
 @Module(name = "mongo", schemaVersion = "2.0")
-public class MongoCloudConnector
+public class MongoCloudConnector implements PartitionableExpirableObjectStore<Serializable>
 {
-
     private static final String CAPPED_DEFAULT_VALUE = "false";
     private static final String WRITE_CONCERN_DEFAULT_VALUE = "DATABASE_DEFAULT";
+
+    private static final String OBJECTSTORE_COLLECTION_PREFIX = "mule.objectstore.";
+    private static final String OBJECTSTORE_DEFAULT_PARTITION_NAME = "_default";
+
     /**
      * The host of the Mongo server
      */
@@ -84,6 +95,13 @@ public class MongoCloudConnector
     @Optional
     @Default("test")
     private String database;
+    /**
+     * The password to use to connect to the Mongo server
+     */
+    @Configurable
+    @Optional
+    @Default("DATABASE_DEFAULT")
+    private WriteConcern defaultWriteConcern;
 
     /**
      * Lists names of collections available at this database
@@ -879,7 +897,8 @@ public class MongoCloudConnector
      * @return the newly created {@link MongoSession}
      */
     @SessionCreate
-    public MongoSession createSession(@SessionKey String username, String password) throws Exception
+    public MongoSession createSession(@SessionKey String username, String password)
+        throws UnknownHostException
     {
         DB db = getDatabase(new Mongo(host, port), username, password);
         return new MongoSession(username, new MongoClientImpl(db));
@@ -895,6 +914,131 @@ public class MongoCloudConnector
     {
         // nothing to do here
     }
+
+    // --------- Object Store Implementation -----------
+    public boolean isPersistent()
+    {
+        return true;
+    }
+
+    public void open() throws ObjectStoreException
+    {
+        open(OBJECTSTORE_DEFAULT_PARTITION_NAME);
+    }
+
+    public void close() throws ObjectStoreException
+    {
+        close(OBJECTSTORE_DEFAULT_PARTITION_NAME);
+    }
+
+    public List<Serializable> allKeys() throws ObjectStoreException
+    {
+        return allKeys(OBJECTSTORE_DEFAULT_PARTITION_NAME);
+    }
+
+    public void expire(int entryTTL, int maxEntries) throws ObjectStoreException
+    {
+        expire(entryTTL, maxEntries, OBJECTSTORE_DEFAULT_PARTITION_NAME);
+    }
+
+    public boolean contains(Serializable key) throws ObjectStoreException
+    {
+        return contains(key, OBJECTSTORE_DEFAULT_PARTITION_NAME);
+    }
+
+    public void store(Serializable key, Serializable value) throws ObjectStoreException
+    {
+        store(key, value, OBJECTSTORE_DEFAULT_PARTITION_NAME);
+    }
+
+    public Serializable retrieve(Serializable key) throws ObjectStoreException
+    {
+        return retrieve(key, OBJECTSTORE_DEFAULT_PARTITION_NAME);
+    }
+
+    public Serializable remove(Serializable key) throws ObjectStoreException
+    {
+        return remove(key, OBJECTSTORE_DEFAULT_PARTITION_NAME);
+    }
+
+    public void open(String partitionName) throws ObjectStoreException
+    {
+        // FIXME ensure indexing of the collection searched fields (key, timestamp)
+    }
+
+    public void close(String partitionName) throws ObjectStoreException
+    {
+        // NOOP
+    }
+
+    public boolean contains(Serializable key, String partitionName) throws ObjectStoreException
+    {
+        // FIXME implement!
+        return false;
+    }
+
+    public void store(Serializable key, Serializable value, String partitionName) throws ObjectStoreException
+    {
+        String collection = OBJECTSTORE_COLLECTION_PREFIX + partitionName;
+
+        MongoSession session = null;
+        try
+        {
+            // FIXME support username and password
+            session = createSession(null, null);
+            DBObject dbObject = new BasicDBObject("timestamp", System.currentTimeMillis());
+            // FIXME consider also storing a hash of the key as searchable field
+            dbObject.put("key", key);
+            dbObject.put("value", value);
+            insertObject(session, collection, dbObject, getDefaultWriteConcern());
+        }
+        catch (UnknownHostException uoe)
+        {
+            throw new ObjectStoreNotAvaliableException(uoe);
+        }
+        finally
+        {
+            if (session != null) destroySession(session);
+        }
+    }
+
+    public Serializable retrieve(Serializable key, String partitionName) throws ObjectStoreException
+    {
+        // FIXME implement!
+        throw new ObjectDoesNotExistException();
+    }
+
+    public Serializable remove(Serializable key, String partitionName) throws ObjectStoreException
+    {
+        // FIXME implement!
+        return null;
+    }
+
+    public List<Serializable> allKeys(String partitionName) throws ObjectStoreException
+    {
+        // FIXME implement!
+        return new ArrayList<Serializable>();
+    }
+
+    public List<String> allPartitions() throws ObjectStoreException
+    {
+        // FIXME implement!
+        return new ArrayList<String>();
+    }
+
+    public void disposePartition(String partitionName) throws ObjectStoreException
+    {
+        // FIXME implement!
+        throw new UnsupportedOperationException("NOT IMPLEMENTED YET");
+    }
+
+    public void expire(int entryTTL, int maxEntries, String partitionName) throws ObjectStoreException
+    {
+        // FIXME implement!
+        throw new UnsupportedOperationException("NOT IMPLEMENTED YET");
+    }
+
+    // --------- Support Methods ---------
 
     private DB getDatabase(Mongo mongo, String username, String password)
     {
@@ -940,5 +1084,15 @@ public class MongoCloudConnector
     public void setPort(int port)
     {
         this.port = port;
+    }
+
+    public WriteConcern getDefaultWriteConcern()
+    {
+        return defaultWriteConcern;
+    }
+
+    public void setDefaultWriteConcern(WriteConcern defaultWriteConcern)
+    {
+        this.defaultWriteConcern = defaultWriteConcern;
     }
 }
