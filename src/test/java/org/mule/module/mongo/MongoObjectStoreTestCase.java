@@ -40,8 +40,6 @@ public class MongoObjectStoreTestCase extends FunctionalTestCase
         objectStore = muleContext.getRegistry().lookupObject(FakeObjectStoreUser.class).getObjectStore();
     }
 
-    // FIXME test TTL expiration!
-
     public void testListableObjectStoreOperations() throws ObjectStoreException
     {
         // open and close are noops

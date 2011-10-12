@@ -26,6 +26,7 @@ import java.util.Map;
 import org.apache.commons.lang.Validate;
 import org.bson.types.BasicBSONList;
 import org.mule.api.annotations.Configurable;
+import org.mule.api.annotations.Module;
 import org.mule.api.annotations.Processor;
 import org.mule.api.annotations.Transformer;
 import org.mule.api.annotations.param.Default;
@@ -53,8 +54,7 @@ import com.mongodb.util.JSON;
  * 
  * @author flbulgarelli
  */
-// FIXME reactivate when DevKit can handle
-// @Module(name = "mongo", schemaVersion = "2.0")
+@Module(name = "mongo", schemaVersion = "2.0")
 public class MongoCloudConnector
 {
     private static final String CAPPED_DEFAULT_VALUE = "false";
@@ -179,8 +179,7 @@ public class MongoCloudConnector
      * A shallow conversion into DBObject is performed - that is, no conversion is
      * performed to its values.
      * <p/>
-     * {@sample.xml ../../../doc/mongo-connector.xml.sample
-     * mongo:insert-object-from-map}
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:insert-object-from-map}
      * 
      * @param session represents a session to Mongo DB holding user information and
      *            connectivity information
@@ -234,8 +233,7 @@ public class MongoCloudConnector
      * false, only the first document matching it will be updated. Otherwise, all the
      * documents matching it will be updated.
      * <p/>
-     * {@sample.xml ../../../doc/mongo-connector.xml.sample
-     * mongo:update-objects-using-map}
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:update-objects-using-map}
      * 
      * @param session represents a session to Mongo DB holding user information and
      *            connectivity information
@@ -284,8 +282,7 @@ public class MongoCloudConnector
     /**
      * Inserts or updates an object based on its object _id.
      * <p/>
-     * {@sample.xml ../../../doc/mongo-connector.xml.sample
-     * mongo:save-object-from-map}
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:save-object-from-map}
      * 
      * @param session represents a session to Mongo DB holding user information and
      *            connectivity information
@@ -332,8 +329,7 @@ public class MongoCloudConnector
      * normally less performant that dropping the collection and creating it and its
      * indices again
      * <p/>
-     * {@sample.xml ../../../doc/mongo-connector.xml.sample
-     * mongo:remove-using-query-map}
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:remove-using-query-map}
      * 
      * @param session represents a session to Mongo DB holding user information and
      *            connectivity information
@@ -413,8 +409,7 @@ public class MongoCloudConnector
      * Counts the number of objects that match the given query. If no query is
      * passed, returns the number of elements in the collection
      * <p/>
-     * {@sample.xml ../../../doc/mongo-connector.xml.sample
-     * mongo:count-objects-using-query-map}
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:count-objects-using-query-map}
      * 
      * @param session represents a session to Mongo DB holding user information and
      *            connectivity information
@@ -461,8 +456,7 @@ public class MongoCloudConnector
      * objects of the collection are retrieved. If no fields object is specified, all
      * fields are retrieved.
      * <p/>
-     * {@sample.xml ../../../doc/mongo-connector.xml.sample
-     * mongo:find-objects-using-query-map}
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-objects-using-query-map}
      * 
      * @param session represents a session to Mongo DB holding user information and
      *            connectivity information
@@ -509,8 +503,7 @@ public class MongoCloudConnector
      * Finds the first object that matches a given query. Throws a
      * {@link MongoException} if no one matches the given query
      * <p/>
-     * {@sample.xml ../../../doc/mongo-connector.xml.sample
-     * mongo:find-one-object-using-query-map}
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-one-object-using-query-map}
      * 
      * @param session represents a session to Mongo DB holding user information and
      *            connectivity information
@@ -586,8 +579,7 @@ public class MongoCloudConnector
      * Creates a new GridFSFile in the database, saving the given content, filename,
      * contentType, and extraData, and answers it.
      * <p/>
-     * {@sample.xml ../../../doc/mongo-connector.xml.sample
-     * mongo:create-file-from-payload}
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:create-file-from-payload}
      * 
      * @param session represents a session to Mongo DB holding user information and
      *            connectivity information
@@ -653,8 +645,7 @@ public class MongoCloudConnector
     /**
      * Lists all the files that match the given query
      * <p/>
-     * {@sample.xml ../../../doc/mongo-connector.xml.sample
-     * mongo:find-files-using-query-map}
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-files-using-query-map}
      * 
      * @param session represents a session to Mongo DB holding user information and
      *            connectivity information
@@ -689,8 +680,7 @@ public class MongoCloudConnector
      * Answers the first file that matches the given query. If no object matches it,
      * a MongoException is thrown.
      * <p/>
-     * {@sample.xml ../../../doc/mongo-connector.xml.sample
-     * mongo:find-one-file-using-query-map}
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-one-file-using-query-map}
      * 
      * @param session represents a session to Mongo DB holding user information and
      *            connectivity information
@@ -725,8 +715,7 @@ public class MongoCloudConnector
      * Answers an inputstream to the contents of the first file that matches the
      * given queryAttributes. If no object matches it, a MongoException is thrown.
      * <p/>
-     * {@sample.xml ../../../doc/mongo-connector.xml.sample
-     * mongo:get-file-content-using-query-map}
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:get-file-content-using-query-map}
      * 
      * @param session represents a session to Mongo DB holding user information and
      *            connectivity information
@@ -761,8 +750,7 @@ public class MongoCloudConnector
      * Lists all the files that match the given query, sorting them by filename. If
      * no query is specified, all files are listed.
      * <p/>
-     * {@sample.xml ../../../doc/mongo-connector.xml.sample
-     * mongo:list-files-using-query-map}
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:list-files-using-query-map}
      * 
      * @param session represents a session to Mongo DB holding user information and
      *            connectivity information
@@ -796,8 +784,7 @@ public class MongoCloudConnector
      * Removes all the files that match the given query. If no query is specified,
      * all files are removed
      * <p/>
-     * {@sample.xml ../../../doc/mongo-connector.xml.sample
-     * mongo:remove-files-using-query-map}
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:remove-files-using-query-map}
      * 
      * @param session represents a session to Mongo DB holding user information and
      *            connectivity information
@@ -855,8 +842,7 @@ public class MongoCloudConnector
     /**
      * Convert a BasicBSONList into Json.
      * <p/>
-     * {@sample.xml ../../../doc/mongo-connector.xml.sample
-     * mongo:mongoCollectionToJson}
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:mongoCollectionToJson}
      * 
      * @param input the input for this transformer
      * @return the converted string representation
