@@ -12,21 +12,21 @@ package org.mule.module.mongo;
 
 import java.io.Serializable;
 
-import org.mule.api.store.PartitionableObjectStore;
+import org.mule.api.store.PartitionableExpirableObjectStore;
 import org.springframework.beans.factory.annotation.Required;
 
 public class FakeObjectStoreUser
 {
 
-    private PartitionableObjectStore<Serializable> objectStore;
+    private PartitionableExpirableObjectStore<Serializable> objectStore;
 
-    public PartitionableObjectStore<Serializable> getObjectStore()
+    public PartitionableExpirableObjectStore<Serializable> getObjectStore()
     {
         return objectStore;
     }
 
     @Required
-    public void setObjectStore(final PartitionableObjectStore<Serializable> objectStore)
+    public void setObjectStore(final PartitionableExpirableObjectStore<Serializable> objectStore)
     {
         this.objectStore = objectStore;
     }

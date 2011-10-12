@@ -26,7 +26,6 @@ import java.util.Map;
 import org.apache.commons.lang.Validate;
 import org.bson.types.BasicBSONList;
 import org.mule.api.annotations.Configurable;
-import org.mule.api.annotations.Module;
 import org.mule.api.annotations.Processor;
 import org.mule.api.annotations.Transformer;
 import org.mule.api.annotations.param.Default;
@@ -54,7 +53,8 @@ import com.mongodb.util.JSON;
  * 
  * @author flbulgarelli
  */
-@Module(name = "mongo", schemaVersion = "2.0")
+// FIXME reactivate when DevKit can handle
+// @Module(name = "mongo", schemaVersion = "2.0")
 public class MongoCloudConnector
 {
     private static final String CAPPED_DEFAULT_VALUE = "false";

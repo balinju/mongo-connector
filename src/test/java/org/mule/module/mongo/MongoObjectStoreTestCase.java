@@ -18,13 +18,13 @@ import org.apache.commons.lang.math.RandomUtils;
 import org.mule.api.store.ObjectAlreadyExistsException;
 import org.mule.api.store.ObjectDoesNotExistException;
 import org.mule.api.store.ObjectStoreException;
-import org.mule.api.store.PartitionableObjectStore;
+import org.mule.api.store.PartitionableExpirableObjectStore;
 import org.mule.tck.FunctionalTestCase;
 
 public class MongoObjectStoreTestCase extends FunctionalTestCase
 {
 
-    private PartitionableObjectStore<Serializable> objectStore;
+    private PartitionableExpirableObjectStore<Serializable> objectStore;
 
     @Override
     protected String getConfigResources()
@@ -41,8 +41,6 @@ public class MongoObjectStoreTestCase extends FunctionalTestCase
     }
 
     // FIXME test TTL expiration!
-
-    // FIXME test storing other things that String!
 
     public void testListableObjectStoreOperations() throws ObjectStoreException
     {
@@ -97,6 +95,12 @@ public class MongoObjectStoreTestCase extends FunctionalTestCase
         {
             // NOOP
         }
+
+        objectStore.store(testKey, testValue);
+        assertTrue(objectStore.contains(testKey));
+        // using a negative TTL expires everything!
+        objectStore.expire(-1000000, Integer.MAX_VALUE);
+        assertFalse(objectStore.contains(testKey));
     }
 
     public void testPartitionableObjectStoreOperations() throws ObjectStoreException
@@ -160,5 +164,11 @@ public class MongoObjectStoreTestCase extends FunctionalTestCase
         objectStore.disposePartition(testPartition);
         assertFalse(objectStore.contains(testKey, testPartition));
         assertFalse(objectStore.allPartitions().contains(testPartition));
+
+        objectStore.store(testKey, testValue, testPartition);
+        assertTrue(objectStore.contains(testKey, testPartition));
+        // using a negative TTL expires everything!
+        objectStore.expire(-1000000, Integer.MAX_VALUE, testPartition);
+        assertFalse(objectStore.contains(testKey, testPartition));
     }
 }

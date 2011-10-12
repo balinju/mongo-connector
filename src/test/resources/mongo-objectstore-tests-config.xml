@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mule xmlns="http://www.mulesoft.org/schema/mule/core"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns:mongo="http://www.mulesoft.org/schema/mule/mongo"
+      xmlns:mos="http://www.mulesoft.org/schema/mule/mongo-object-store"
       xmlns:http="http://www.mulesoft.org/schema/mule/http"
       xmlns:script="http://www.mulesoft.org/schema/mule/scripting"
       xmlns:test="http://www.mulesoft.org/schema/mule/test"
@@ -10,7 +10,7 @@
       xmlns:p="http://www.springframework.org/schema/p"
       xsi:schemaLocation="
           http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.2/mule.xsd
-          http://www.mulesoft.org/schema/mule/mongo http://www.mulesoft.org/schema/mule/mongo/2.0/mule-mongo.xsd
+          http://www.mulesoft.org/schema/mule/mongo-object-store http://www.mulesoft.org/schema/mule/mongo-object-store/2.0/mule-mongo-object-store.xsd
           http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/3.2/mule-http.xsd
           http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/3.2/mule-scripting.xsd
           http://www.mulesoft.org/schema/mule/test http://www.mulesoft.org/schema/mule/test/3.2/mule-test.xsd
@@ -18,8 +18,8 @@
           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
     <spring:beans>
-        <spring:bean class="org.mule.module.mongo.FakeObjectStoreUser" p:objectStore-ref="localMongo" />
+        <spring:bean class="org.mule.module.mongo.FakeObjectStoreUser" p:objectStore-ref="mos" />
     </spring:beans>
 
-    <mongo:config name="localMongo" database="mongo-connector-test" />
+    <mos:config name="mos" database="mongo-connector-test" />
 </mule>          
