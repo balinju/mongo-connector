@@ -13,11 +13,11 @@ package org.mule.module.mongo.api;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
-import com.mongodb.BasicDBObject;
-
 import java.util.Arrays;
 
 import org.junit.Test;
+
+import com.mongodb.BasicDBObject;
 
 public class FieldsSetUnitTest
 {

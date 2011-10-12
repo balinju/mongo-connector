@@ -11,14 +11,12 @@
 package org.mule.module.mongo;
 
 import org.apache.commons.lang.RandomStringUtils;
-import org.junit.Ignore;
 import org.mule.api.store.ObjectAlreadyExistsException;
 import org.mule.api.store.ObjectDoesNotExistException;
 import org.mule.api.store.ObjectStoreException;
 import org.mule.api.store.PartitionableObjectStore;
 import org.mule.tck.FunctionalTestCase;
 
-@Ignore
 public class MongoObjectStoreTestCase extends FunctionalTestCase
 {
 

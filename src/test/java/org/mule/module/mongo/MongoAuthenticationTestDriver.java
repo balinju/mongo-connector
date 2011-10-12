@@ -10,10 +10,10 @@
 
 package org.mule.module.mongo;
 
+import static org.junit.Assert.assertNotNull;
+
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.assertNotNull;
 
 /**
  * Integration test for the Connector when Authenticated. This test is only

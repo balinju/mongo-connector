@@ -10,13 +10,14 @@
 
 package org.mule.module.mongo.api;
 
-import com.mongodb.DBObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.AbstractCollection;
 import java.util.Iterator;
 import java.util.LinkedList;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.mongodb.DBObject;
 
 public class MongoCollection extends AbstractCollection<DBObject>
 {
@@ -28,6 +29,7 @@ public class MongoCollection extends AbstractCollection<DBObject>
         this.o = o;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public Iterator<DBObject> iterator()
     {

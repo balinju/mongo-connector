@@ -10,23 +10,22 @@
 
 package org.mule.module.mongo.api;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
-import org.bson.types.ObjectId;
-import org.codehaus.jackson.map.ObjectMapper;
-
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.bson.types.ObjectId;
+
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+
 /**
  * Conversions between JSon Strings and Maps into DBObjects
  */
 public final class DBObjects
 {
-    private static final ObjectMapper MAPPER = new ObjectMapper();
     private static final Pattern OBJECT_ID_PATTERN = Pattern.compile("ObjectId\\((.+)\\)");
 
     private DBObjects()
