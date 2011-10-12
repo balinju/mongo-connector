@@ -10,13 +10,13 @@
 
 package org.mule.module.mongo.api;
 
-import com.mongodb.DBObject;
-
 import java.io.InputStream;
 import java.util.Collection;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
+
+import com.mongodb.DBObject;
 
 /**
  * @author flbulgarelli

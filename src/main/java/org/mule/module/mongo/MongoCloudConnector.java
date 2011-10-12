@@ -14,11 +14,18 @@
 
 package org.mule.module.mongo;
 
-import com.mongodb.DB;
-import com.mongodb.DBObject;
-import com.mongodb.Mongo;
-import com.mongodb.MongoException;
-import com.mongodb.util.JSON;
+import static org.mule.module.mongo.api.DBObjects.from;
+
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.commons.lang.Validate;
 import org.bson.types.BasicBSONList;
 import org.mule.api.annotations.Configurable;
@@ -39,17 +46,11 @@ import org.mule.module.mongo.api.MongoClientImpl;
 import org.mule.module.mongo.api.MongoCollection;
 import org.mule.module.mongo.api.WriteConcern;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-
-import static org.mule.module.mongo.api.DBObjects.from;
+import com.mongodb.DB;
+import com.mongodb.DBObject;
+import com.mongodb.Mongo;
+import com.mongodb.MongoException;
+import com.mongodb.util.JSON;
 
 /**
  * A Mongo Connector Facade

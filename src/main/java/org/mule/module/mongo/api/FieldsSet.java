@@ -10,10 +10,10 @@
 
 package org.mule.module.mongo.api;
 
+import java.util.List;
+
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
-
-import java.util.List;
 
 public final class FieldsSet
 {

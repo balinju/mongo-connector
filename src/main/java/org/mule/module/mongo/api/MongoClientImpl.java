@@ -10,34 +10,27 @@
 
 package org.mule.module.mongo.api;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.DB;
-import com.mongodb.DBObject;
-import com.mongodb.MongoException;
-import com.mongodb.MapReduceCommand.OutputType;
-import com.mongodb.WriteResult;
-import com.mongodb.gridfs.GridFS;
-import com.mongodb.gridfs.GridFSDBFile;
-import com.mongodb.gridfs.GridFSInputFile;
-
 import java.io.InputStream;
-import java.util.AbstractCollection;
 import java.util.Collection;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
 import org.apache.commons.lang.Validate;
 import org.bson.types.ObjectId;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import com.mongodb.BasicDBObject;
+import com.mongodb.DB;
+import com.mongodb.DBObject;
+import com.mongodb.MapReduceCommand.OutputType;
+import com.mongodb.MongoException;
+import com.mongodb.gridfs.GridFS;
+import com.mongodb.gridfs.GridFSDBFile;
+import com.mongodb.gridfs.GridFSInputFile;
 
 public class MongoClientImpl implements MongoClient
 {
     private final DB db;
-    private static Logger logger = LoggerFactory.getLogger(MongoClientImpl.class);
 
     public MongoClientImpl(DB db)
     {
@@ -106,7 +99,7 @@ public class MongoClientImpl implements MongoClient
         Validate.notNull(collection);
         Validate.notNull(object);
         Validate.notNull(writeConcern);
-        WriteResult writeResult = openSession().getCollection(collection).insert(object,
+        openSession().getCollection(collection).insert(object,
             writeConcern.toMongoWriteConcern(openSession()));
         ObjectId id = (ObjectId) object.get("_id");
         if (id == null) return null;
