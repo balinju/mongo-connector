@@ -2271,7 +2271,12 @@ resolution.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Finds the first object that matches a given query. Throws a
  <br/>MongoException if no one matches the given query
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>INCLUDE_ERROR</pre></div></p></div>
+ <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:find-one-object-using-query-map collection="myCollection"&gt;
+    &lt;mongo:query-attributes&gt;
+        &lt;mongo:query-attribute key="foo"&gt;bar&lt;/mongo:query-attribute&gt;
+        &lt;mongo:query-attribute key="foo"&gt;bar&lt;/mongo:query-attribute&gt;
+    &lt;/mongo:query-attributes&gt;
+&lt;/mongo:find-one-object-using-query-map&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
