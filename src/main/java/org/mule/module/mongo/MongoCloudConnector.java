@@ -530,7 +530,8 @@ public class MongoCloudConnector implements PartitionableExpirableObjectStore<Se
      * Finds the first object that matches a given query. Throws a
      * {@link MongoException} if no one matches the given query
      * <p/>
-     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:c}
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample
+     * mongo:find-one-object-using-query-map}
      * 
      * @param session represents a session to Mongo DB holding user information and
      *            connectivity information
