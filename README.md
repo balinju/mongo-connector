@@ -513,7 +513,7 @@ The Mongo Object Store must be configured specifically in order to use it:
 
         <mos:config name="mongoObjectStore"
                     host="localhost"
-                    port="44465"
+                    port="27017"
                     database="mule-object-store"
                     writeConcern="SAFE"
                     username="${mongodb.username}"

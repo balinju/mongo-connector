@@ -21,5 +21,10 @@
         <spring:bean class="org.mule.module.mongo.FakeObjectStoreUser" p:objectStore-ref="mos" />
     </spring:beans>
 
-    <mos:config name="mos" database="mongo-connector-test" />
+    <mos:config name="mos"
+                host="127.0.0.1"
+                port="27017"
+                username="user"
+                password="pass"
+                database="mongo-connector-test" />
 </mule>          
