@@ -222,6 +222,8 @@
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/ListIndicesMessageProcessor.html">ListIndicesMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/MapReduceObjectsMessageProcessor.html">MapReduceObjectsMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorCapabilitiesAdapter.html">MongoCloudConnectorCapabilitiesAdapter</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.html">MongoCloudConnectorConnectionManager</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.ConnectionKey.html">MongoCloudConnectorConnectionManager.ConnectionKey</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorLifecycleAdapter.html">MongoCloudConnectorLifecycleAdapter</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.html">MongoCloudConnectorSessionManagerAdapter</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.SessionKey.html">MongoCloudConnectorSessionManagerAdapter.SessionKey</a></li>
@@ -463,7 +465,7 @@ Summary:
 
 
 <h2>Class Overview</h2>
-<p>ListFilesUsingQueryMapMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.html#listFilesUsingQueryMap(org.mule.module.mongo.MongoSession, java.util.Map<java.lang.String, java.lang.String>)">listFilesUsingQueryMap(org.mule.module.mongo.MongoSession, java.util.Map)</a></code> method in <code><a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.html">MongoCloudConnector</a></code>. For each argument there is a field in this processor to match it.  Before invoking the actual method the processor will evaluate and transform where possible to the expected argument type.
+<p>ListFilesUsingQueryMapMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.html#listFilesUsingQueryMap(java.util.Map<java.lang.String, java.lang.String>)">listFilesUsingQueryMap(java.util.Map)</a></code> method in <code><a href="../../../../../../java/org/mule/module/mongo/MongoCloudConnector.html">MongoCloudConnector</a></code>. For each argument there is a field in this processor to match it.  Before invoking the actual method the processor will evaluate and transform where possible to the expected argument type.
  
 </p>
 
@@ -719,7 +721,7 @@ org.mule.api.lifecycle.Stoppable
           private
           
           
-          <a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.html">MongoCloudConnectorSessionManagerAdapter</a></nobr></td>
+          <a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.html">MongoCloudConnectorConnectionManager</a></nobr></td>
           <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/ListFilesUsingQueryMapMessageProcessor.html#moduleObject">moduleObject</a></td>
           <td class="jd-descrcol" width="100%">Module object
  
@@ -910,7 +912,7 @@ org.mule.api.lifecycle.Stoppable
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/ListFilesUsingQueryMapMessageProcessor.html#setModuleObject(org.mule.module.mongo.config.MongoCloudConnectorSessionManagerAdapter)">setModuleObject</a></span>(<a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.html">MongoCloudConnectorSessionManagerAdapter</a> moduleObject)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/ListFilesUsingQueryMapMessageProcessor.html#setModuleObject(org.mule.module.mongo.config.MongoCloudConnectorConnectionManager)">setModuleObject</a></span>(<a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.html">MongoCloudConnectorConnectionManager</a> moduleObject)</nobr>
         
         <div class="jd-descrdiv">Sets the instance of the object under which the processor will execute</div>
   
@@ -1725,7 +1727,7 @@ From interface
         private 
          
          
-        <a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.html">MongoCloudConnectorSessionManagerAdapter</a>
+        <a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.html">MongoCloudConnectorConnectionManager</a>
       </span>
         moduleObject
     </h4>
@@ -2119,7 +2121,7 @@ From interface
 </div>
 
 
-<A NAME="setModuleObject(org.mule.module.mongo.config.MongoCloudConnectorSessionManagerAdapter)"></A>
+<A NAME="setModuleObject(org.mule.module.mongo.config.MongoCloudConnectorConnectionManager)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2132,7 +2134,7 @@ From interface
         void
       </span>
       <span class="sympad">setModuleObject</span>
-      <span class="normal">(<a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.html">MongoCloudConnectorSessionManagerAdapter</a> moduleObject)</span>
+      <span class="normal">(<a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.html">MongoCloudConnectorConnectionManager</a> moduleObject)</span>
     </h4>
       <div class="api-level">
         <div>

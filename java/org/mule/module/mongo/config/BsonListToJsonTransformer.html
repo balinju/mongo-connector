@@ -222,6 +222,8 @@
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/ListIndicesMessageProcessor.html">ListIndicesMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/MapReduceObjectsMessageProcessor.html">MapReduceObjectsMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorCapabilitiesAdapter.html">MongoCloudConnectorCapabilitiesAdapter</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.html">MongoCloudConnectorConnectionManager</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.ConnectionKey.html">MongoCloudConnectorConnectionManager.ConnectionKey</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorLifecycleAdapter.html">MongoCloudConnectorLifecycleAdapter</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.html">MongoCloudConnectorSessionManagerAdapter</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.SessionKey.html">MongoCloudConnectorSessionManagerAdapter.SessionKey</a></li>
@@ -462,10 +464,6 @@ Summary:
   
   
       implements 
-      
-        MuleContextAware 
-      
-        Initialisable 
       
         DiscoverableTransformer 
       
@@ -735,32 +733,6 @@ org.mule.api.transformer.DiscoverableTransformer
           private
           
           
-          <a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.html">MongoCloudConnectorSessionManagerAdapter</a></nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/BsonListToJsonTransformer.html#moduleObject">moduleObject</a></td>
-          <td class="jd-descrcol" width="100%">Module object
- 
-</td>
-      </tr>
-      
-    
-      <tr class=" api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          private
-          
-          
-          MuleContext</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/BsonListToJsonTransformer.html#muleContext">muleContext</a></td>
-          <td class="jd-descrcol" width="100%">Mule Context
- 
-</td>
-      </tr>
-      
-    
-      <tr class="alt-color api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          private
-          
-          
           int</nobr></td>
           <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/BsonListToJsonTransformer.html#weighting">weighting</a></td>
           <td class="jd-descrcol" width="100%"></td>
@@ -1018,60 +990,6 @@ org.mule.transformer.AbstractTransformer
 
 	 
     <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/BsonListToJsonTransformer.html#initialise()">initialise</a></span>()</nobr>
-        
-        <div class="jd-descrdiv">Obtains the expression manager from the Mule context and initialises the connector.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/BsonListToJsonTransformer.html#setModuleObject(org.mule.module.mongo.config.MongoCloudConnectorSessionManagerAdapter)">setModuleObject</a></span>(<a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.html">MongoCloudConnectorSessionManagerAdapter</a> moduleObject)</nobr>
-        
-        <div class="jd-descrdiv">Sets the instance of the object under which the processor will execute</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/BsonListToJsonTransformer.html#setMuleContext(org.mule.api.MuleContext)">setMuleContext</a></span>(MuleContext context)</nobr>
-        
-        <div class="jd-descrdiv">Set the Mule context</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -2825,70 +2743,6 @@ From interface
 
 
 
-<A NAME="moduleObject"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        private 
-         
-         
-        <a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.html">MongoCloudConnectorSessionManagerAdapter</a>
-      </span>
-        moduleObject
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Module object
- 
-</p></div>
-
-    
-    </div>
-</div>
-
-
-
-<A NAME="muleContext"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        private 
-         
-         
-        MuleContext
-      </span>
-        muleContext
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Mule Context
- 
-</p></div>
-
-    
-    </div>
-</div>
-
-
-
 <A NAME="weighting"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -3000,128 +2854,6 @@ From interface
     <div class="jd-details-descr">
       
   <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    </div>
-</div>
-
-
-<A NAME="initialise()"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">initialise</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Obtains the expression manager from the Mule context and initialises the connector. If a target object  has not been set already it will search the Mule registry for a default one.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Throws</h5>
-      <table class="jd-tagtable">  
-        <tr>
-            <th>InitialisationException</td>
-            <td></td>
-        </tr>
-      </table>
-  </div>
-
-    </div>
-</div>
-
-
-<A NAME="setModuleObject(org.mule.module.mongo.config.MongoCloudConnectorSessionManagerAdapter)"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">setModuleObject</span>
-      <span class="normal">(<a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.html">MongoCloudConnectorSessionManagerAdapter</a> moduleObject)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Sets the instance of the object under which the processor will execute</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>moduleObject</td>
-          <td>Instace of the module
-</td>
-        </tr>
-      </table>
-  </div>
-
-    </div>
-</div>
-
-
-<A NAME="setMuleContext(org.mule.api.MuleContext)"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">setMuleContext</span>
-      <span class="normal">(MuleContext context)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Set the Mule context</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>context</td>
-          <td>Mule context to set
-</td>
-        </tr>
-      </table>
-  </div>
 
     </div>
 </div>

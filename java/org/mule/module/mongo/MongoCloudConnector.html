@@ -495,6 +495,17 @@ Summary:
           private
           
           
+          <a href="../../../../../java/org/mule/module/mongo/api/MongoClient.html">MongoClient</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#client">client</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
           String</nobr></td>
           <td class="jd-linkcol"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#database">database</a></td>
           <td class="jd-descrcol" width="100%">The database name of the Mongo server
@@ -502,7 +513,7 @@ Summary:
       </tr>
       
     
-      <tr class=" api apilevel-" >
+      <tr class="alt-color api apilevel-" >
           <td class="jd-typecol"><nobr>
           private
           
@@ -514,7 +525,7 @@ Summary:
       </tr>
       
     
-      <tr class="alt-color api apilevel-" >
+      <tr class=" api apilevel-" >
           <td class="jd-typecol"><nobr>
           private
           
@@ -575,7 +586,7 @@ Summary:
             
             
             
-            
+            static
             
             String</nobr>
         </td>
@@ -595,12 +606,12 @@ Summary:
             
             
             
-            long</nobr>
+            void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#countObjects(org.mule.module.mongo.MongoSession, java.lang.String, com.mongodb.DBObject)">countObjects</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, DBObject query)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#connect(java.lang.String, java.lang.String)">connect</a></span>(String username, String password)</nobr>
         
-        <div class="jd-descrdiv">Counts the number of objects that match the given query.</div>
+        <div class="jd-descrdiv">Method invoked when a <code><a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a></code> needs to be created.</div>
   
   </td></tr>
 
@@ -616,7 +627,7 @@ Summary:
             long</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#countObjectsUsingQueryMap(org.mule.module.mongo.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.String>)">countObjectsUsingQueryMap</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, Map&lt;String,&nbsp;String&gt; queryAttributes)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#countObjects(java.lang.String, com.mongodb.DBObject)">countObjects</a></span>(String collection, DBObject query)</nobr>
         
         <div class="jd-descrdiv">Counts the number of objects that match the given query.</div>
   
@@ -631,10 +642,28 @@ Summary:
             
             
             
+            long</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#countObjectsUsingQueryMap(java.lang.String, java.util.Map<java.lang.String, java.lang.String>)">countObjectsUsingQueryMap</a></span>(String collection, Map&lt;String,&nbsp;String&gt; queryAttributes)</nobr>
+        
+        <div class="jd-descrdiv">Counts the number of objects that match the given query.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#createCollection(org.mule.module.mongo.MongoSession, java.lang.String, boolean, java.lang.Integer, java.lang.Integer)">createCollection</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, boolean capped, Integer maxObjects, Integer size)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#createCollection(java.lang.String, boolean, java.lang.Integer, java.lang.Integer)">createCollection</a></span>(String collection, boolean capped, Integer maxObjects, Integer size)</nobr>
         
         <div class="jd-descrdiv">Creates a new collection.</div>
   
@@ -642,7 +671,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -652,30 +681,10 @@ Summary:
             DBObject</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#createFileFromPayload(org.mule.module.mongo.MongoSession, java.lang.Object, java.lang.String, java.lang.String, com.mongodb.DBObject)">createFileFromPayload</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, Object payload, String filename, String contentType, DBObject metadata)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#createFileFromPayload(java.lang.Object, java.lang.String, java.lang.String, com.mongodb.DBObject)">createFileFromPayload</a></span>(Object payload, String filename, String contentType, DBObject metadata)</nobr>
         
         <div class="jd-descrdiv">Creates a new GridFSFile in the database, saving the given content, filename,
  contentType, and extraData, and answers it.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#createIndex(org.mule.module.mongo.MongoSession, java.lang.String, java.lang.String, org.mule.module.mongo.api.IndexOrder)">createIndex</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, String field, <a href="../../../../../java/org/mule/module/mongo/api/IndexOrder.html">IndexOrder</a> order)</nobr>
-        
-        <div class="jd-descrdiv">Creates a new index
- <p/>
- </div>
   
   </td></tr>
 
@@ -688,12 +697,14 @@ Summary:
             
             
             
-            <a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a></nobr>
+            void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#createSession(java.lang.String, java.lang.String)">createSession</a></span>(String username, String password)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#createIndex(java.lang.String, java.lang.String, org.mule.module.mongo.api.IndexOrder)">createIndex</a></span>(String collection, String field, <a href="../../../../../java/org/mule/module/mongo/api/IndexOrder.html">IndexOrder</a> order)</nobr>
         
-        <div class="jd-descrdiv">Method invoked when a <code><a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a></code> needs to be created.</div>
+        <div class="jd-descrdiv">Creates a new index
+ <p/>
+ </div>
   
   </td></tr>
 
@@ -704,7 +715,7 @@ Summary:
             
             
             
-            
+            static
             
             String</nobr>
         </td>
@@ -727,7 +738,7 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#destroySession(org.mule.module.mongo.MongoSession)">destroySession</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#disconnect()">disconnect</a></span>()</nobr>
         
         <div class="jd-descrdiv">Method invoked when the <code><a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a></code> is to be destroyed.</div>
   
@@ -745,7 +756,7 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#dropCollection(org.mule.module.mongo.MongoSession, java.lang.String)">dropCollection</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#dropCollection(java.lang.String)">dropCollection</a></span>(String collection)</nobr>
         
         <div class="jd-descrdiv">Deletes a collection and all the objects it contains.</div>
   
@@ -763,7 +774,7 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#dropIndex(org.mule.module.mongo.MongoSession, java.lang.String, java.lang.String)">dropIndex</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, String index)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#dropIndex(java.lang.String, java.lang.String)">dropIndex</a></span>(String collection, String index)</nobr>
         
         <div class="jd-descrdiv">Drops an existing index
  <p/>
@@ -783,7 +794,7 @@ Summary:
             boolean</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#existsCollection(org.mule.module.mongo.MongoSession, java.lang.String)">existsCollection</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#existsCollection(java.lang.String)">existsCollection</a></span>(String collection)</nobr>
         
         <div class="jd-descrdiv">Answers if a collection exists given its name
  <p/>
@@ -803,7 +814,7 @@ Summary:
             Iterable&lt;DBObject&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#findFiles(org.mule.module.mongo.MongoSession, com.mongodb.DBObject)">findFiles</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, DBObject query)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#findFiles(com.mongodb.DBObject)">findFiles</a></span>(DBObject query)</nobr>
         
         <div class="jd-descrdiv">Lists all the files that match the given query
  <p/>
@@ -823,7 +834,7 @@ Summary:
             Iterable&lt;DBObject&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#findFilesUsingQueryMap(org.mule.module.mongo.MongoSession, java.util.Map<java.lang.String, java.lang.String>)">findFilesUsingQueryMap</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, Map&lt;String,&nbsp;String&gt; queryAttributes)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#findFilesUsingQueryMap(java.util.Map<java.lang.String, java.lang.String>)">findFilesUsingQueryMap</a></span>(Map&lt;String,&nbsp;String&gt; queryAttributes)</nobr>
         
         <div class="jd-descrdiv">Lists all the files that match the given query
  <p/>
@@ -843,7 +854,7 @@ Summary:
             Iterable&lt;DBObject&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#findObjects(org.mule.module.mongo.MongoSession, java.lang.String, com.mongodb.DBObject, java.util.List<java.lang.String>)">findObjects</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, DBObject query, List&lt;String&gt; fields)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#findObjects(java.lang.String, com.mongodb.DBObject, java.util.List<java.lang.String>)">findObjects</a></span>(String collection, DBObject query, List&lt;String&gt; fields)</nobr>
         
         <div class="jd-descrdiv">Finds all objects that match a given query.</div>
   
@@ -861,7 +872,7 @@ Summary:
             Iterable&lt;DBObject&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#findObjectsUsingQueryMap(org.mule.module.mongo.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.String>, java.util.List<java.lang.String>)">findObjectsUsingQueryMap</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, Map&lt;String,&nbsp;String&gt; queryAttributes, List&lt;String&gt; fields)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#findObjectsUsingQueryMap(java.lang.String, java.util.Map<java.lang.String, java.lang.String>, java.util.List<java.lang.String>)">findObjectsUsingQueryMap</a></span>(String collection, Map&lt;String,&nbsp;String&gt; queryAttributes, List&lt;String&gt; fields)</nobr>
         
         <div class="jd-descrdiv">Finds all objects that match a given query.</div>
   
@@ -879,7 +890,7 @@ Summary:
             DBObject</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#findOneFile(org.mule.module.mongo.MongoSession, com.mongodb.DBObject)">findOneFile</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, DBObject query)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#findOneFile(com.mongodb.DBObject)">findOneFile</a></span>(DBObject query)</nobr>
         
         <div class="jd-descrdiv">Answers the first file that matches the given query.</div>
   
@@ -897,7 +908,7 @@ Summary:
             DBObject</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#findOneFileUsingQueryMap(org.mule.module.mongo.MongoSession, java.util.Map<java.lang.String, java.lang.String>)">findOneFileUsingQueryMap</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, Map&lt;String,&nbsp;String&gt; queryAttributes)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#findOneFileUsingQueryMap(java.util.Map<java.lang.String, java.lang.String>)">findOneFileUsingQueryMap</a></span>(Map&lt;String,&nbsp;String&gt; queryAttributes)</nobr>
         
         <div class="jd-descrdiv">Answers the first file that matches the given query.</div>
   
@@ -915,7 +926,7 @@ Summary:
             DBObject</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#findOneObject(org.mule.module.mongo.MongoSession, java.lang.String, com.mongodb.DBObject, java.util.List<java.lang.String>)">findOneObject</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, DBObject query, List&lt;String&gt; fields)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#findOneObject(java.lang.String, com.mongodb.DBObject, java.util.List<java.lang.String>)">findOneObject</a></span>(String collection, DBObject query, List&lt;String&gt; fields)</nobr>
         
         <div class="jd-descrdiv">Finds the first object that matches a given query.</div>
   
@@ -933,7 +944,7 @@ Summary:
             DBObject</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#findOneObjectUsingQueryMap(org.mule.module.mongo.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.String>, java.util.List<java.lang.String>)">findOneObjectUsingQueryMap</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, Map&lt;String,&nbsp;String&gt; queryAttributes, List&lt;String&gt; fields)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#findOneObjectUsingQueryMap(java.lang.String, java.util.Map<java.lang.String, java.lang.String>, java.util.List<java.lang.String>)">findOneObjectUsingQueryMap</a></span>(String collection, Map&lt;String,&nbsp;String&gt; queryAttributes, List&lt;String&gt; fields)</nobr>
         
         <div class="jd-descrdiv">Finds the first object that matches a given query.</div>
   
@@ -967,7 +978,7 @@ Summary:
             InputStream</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#getFileContent(org.mule.module.mongo.MongoSession, com.mongodb.DBObject)">getFileContent</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, DBObject query)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#getFileContent(com.mongodb.DBObject)">getFileContent</a></span>(DBObject query)</nobr>
         
         <div class="jd-descrdiv">Answers an inputstream to the contents of the first file that matches the
  given query.</div>
@@ -986,7 +997,7 @@ Summary:
             InputStream</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#getFileContentUsingQueryMap(org.mule.module.mongo.MongoSession, java.util.Map<java.lang.String, java.lang.String>)">getFileContentUsingQueryMap</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, Map&lt;String,&nbsp;String&gt; queryAttributes)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#getFileContentUsingQueryMap(java.util.Map<java.lang.String, java.lang.String>)">getFileContentUsingQueryMap</a></span>(Map&lt;String,&nbsp;String&gt; queryAttributes)</nobr>
         
         <div class="jd-descrdiv">Answers an inputstream to the contents of the first file that matches the
  given queryAttributes.</div>
@@ -1037,7 +1048,7 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#insertObject(org.mule.module.mongo.MongoSession, java.lang.String, com.mongodb.DBObject, org.mule.module.mongo.api.WriteConcern)">insertObject</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, DBObject dbObject, <a href="../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#insertObject(java.lang.String, com.mongodb.DBObject, org.mule.module.mongo.api.WriteConcern)">insertObject</a></span>(String collection, DBObject dbObject, <a href="../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
         
         <div class="jd-descrdiv">Inserts an object in a collection, setting its id if necessary.</div>
   
@@ -1055,7 +1066,7 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#insertObjectFromMap(org.mule.module.mongo.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.String>, org.mule.module.mongo.api.WriteConcern)">insertObjectFromMap</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, Map&lt;String,&nbsp;String&gt; elementAttributes, <a href="../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#insertObjectFromMap(java.lang.String, java.util.Map<java.lang.String, java.lang.String>, org.mule.module.mongo.api.WriteConcern)">insertObjectFromMap</a></span>(String collection, Map&lt;String,&nbsp;String&gt; elementAttributes, <a href="../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
         
         <div class="jd-descrdiv">Inserts an object in a collection, setting its id if necessary.</div>
   
@@ -1068,7 +1079,7 @@ Summary:
             
             
             
-            
+            static
             
             DBObject</nobr>
         </td>
@@ -1091,7 +1102,7 @@ Summary:
             Collection&lt;String&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#listCollections(org.mule.module.mongo.MongoSession)">listCollections</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#listCollections()">listCollections</a></span>()</nobr>
         
         <div class="jd-descrdiv">Lists names of collections available at this database
  <p/>
@@ -1111,7 +1122,7 @@ Summary:
             Iterable&lt;DBObject&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#listFiles(org.mule.module.mongo.MongoSession, com.mongodb.DBObject)">listFiles</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, DBObject query)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#listFiles(com.mongodb.DBObject)">listFiles</a></span>(DBObject query)</nobr>
         
         <div class="jd-descrdiv">Lists all the files that match the given query, sorting them by filename.</div>
   
@@ -1129,7 +1140,7 @@ Summary:
             Iterable&lt;DBObject&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#listFilesUsingQueryMap(org.mule.module.mongo.MongoSession, java.util.Map<java.lang.String, java.lang.String>)">listFilesUsingQueryMap</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, Map&lt;String,&nbsp;String&gt; queryAttributes)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#listFilesUsingQueryMap(java.util.Map<java.lang.String, java.lang.String>)">listFilesUsingQueryMap</a></span>(Map&lt;String,&nbsp;String&gt; queryAttributes)</nobr>
         
         <div class="jd-descrdiv">Lists all the files that match the given query, sorting them by filename.</div>
   
@@ -1147,7 +1158,7 @@ Summary:
             Collection&lt;DBObject&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#listIndices(org.mule.module.mongo.MongoSession, java.lang.String)">listIndices</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#listIndices(java.lang.String)">listIndices</a></span>(String collection)</nobr>
         
         <div class="jd-descrdiv">List existent indices in a collection
  <p/>
@@ -1167,7 +1178,7 @@ Summary:
             Iterable&lt;DBObject&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#mapReduceObjects(org.mule.module.mongo.MongoSession, java.lang.String, java.lang.String, java.lang.String, java.lang.String)">mapReduceObjects</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, String mapFunction, String reduceFunction, String outputCollection)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#mapReduceObjects(java.lang.String, java.lang.String, java.lang.String, java.lang.String)">mapReduceObjects</a></span>(String collection, String mapFunction, String reduceFunction, String outputCollection)</nobr>
         
         <div class="jd-descrdiv">Transforms a collection into a collection of aggregated groups, by applying a
  supplied element-mapping function to each element, that transforms each one
@@ -1183,7 +1194,7 @@ Summary:
             
             
             
-            
+            static
             
             String</nobr>
         </td>
@@ -1206,7 +1217,7 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#removeFiles(org.mule.module.mongo.MongoSession, com.mongodb.DBObject)">removeFiles</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, DBObject query)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#removeFiles(com.mongodb.DBObject)">removeFiles</a></span>(DBObject query)</nobr>
         
         <div class="jd-descrdiv">Removes all the files that match the given query.</div>
   
@@ -1224,7 +1235,7 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#removeFilesUsingQueryMap(org.mule.module.mongo.MongoSession, java.util.Map<java.lang.String, java.lang.String>)">removeFilesUsingQueryMap</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, Map&lt;String,&nbsp;String&gt; queryAttributes)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#removeFilesUsingQueryMap(java.util.Map<java.lang.String, java.lang.String>)">removeFilesUsingQueryMap</a></span>(Map&lt;String,&nbsp;String&gt; queryAttributes)</nobr>
         
         <div class="jd-descrdiv">Removes all the files that match the given query.</div>
   
@@ -1242,7 +1253,7 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#removeObjects(org.mule.module.mongo.MongoSession, java.lang.String, com.mongodb.DBObject, org.mule.module.mongo.api.WriteConcern)">removeObjects</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, DBObject query, <a href="../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#removeObjects(java.lang.String, com.mongodb.DBObject, org.mule.module.mongo.api.WriteConcern)">removeObjects</a></span>(String collection, DBObject query, <a href="../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
         
         <div class="jd-descrdiv">Removes all the objects that match the a given optional query.</div>
   
@@ -1260,7 +1271,7 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#removeUsingQueryMap(org.mule.module.mongo.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.String>, org.mule.module.mongo.api.WriteConcern)">removeUsingQueryMap</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, Map&lt;String,&nbsp;String&gt; queryAttributes, <a href="../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#removeUsingQueryMap(java.lang.String, java.util.Map<java.lang.String, java.lang.String>, org.mule.module.mongo.api.WriteConcern)">removeUsingQueryMap</a></span>(String collection, Map&lt;String,&nbsp;String&gt; queryAttributes, <a href="../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
         
         <div class="jd-descrdiv">Removes all the objects that match the a given optional query.</div>
   
@@ -1278,7 +1289,7 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#saveObject(org.mule.module.mongo.MongoSession, java.lang.String, com.mongodb.DBObject, org.mule.module.mongo.api.WriteConcern)">saveObject</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, DBObject element, <a href="../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#saveObject(java.lang.String, com.mongodb.DBObject, org.mule.module.mongo.api.WriteConcern)">saveObject</a></span>(String collection, DBObject element, <a href="../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
         
         <div class="jd-descrdiv">Inserts or updates an object based on its object _id.</div>
   
@@ -1296,7 +1307,7 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#saveObjectFromMap(org.mule.module.mongo.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.String>, org.mule.module.mongo.api.WriteConcern)">saveObjectFromMap</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, Map&lt;String,&nbsp;String&gt; elementAttributes, <a href="../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#saveObjectFromMap(java.lang.String, java.util.Map<java.lang.String, java.lang.String>, org.mule.module.mongo.api.WriteConcern)">saveObjectFromMap</a></span>(String collection, Map&lt;String,&nbsp;String&gt; elementAttributes, <a href="../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
         
         <div class="jd-descrdiv">Inserts or updates an object based on its object _id.</div>
   
@@ -1362,7 +1373,7 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#updateObjects(org.mule.module.mongo.MongoSession, java.lang.String, com.mongodb.DBObject, com.mongodb.DBObject, boolean, boolean, org.mule.module.mongo.api.WriteConcern)">updateObjects</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, DBObject query, DBObject element, boolean upsert, boolean multi, <a href="../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#updateObjects(java.lang.String, com.mongodb.DBObject, com.mongodb.DBObject, boolean, boolean, org.mule.module.mongo.api.WriteConcern)">updateObjects</a></span>(String collection, DBObject query, DBObject element, boolean upsert, boolean multi, <a href="../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
         
         <div class="jd-descrdiv">Updates objects that matches the given query.</div>
   
@@ -1380,7 +1391,7 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#updateObjectsUsingMap(org.mule.module.mongo.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.String>, java.util.Map<java.lang.String, java.lang.String>, boolean, boolean, org.mule.module.mongo.api.WriteConcern)">updateObjectsUsingMap</a></span>(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, Map&lt;String,&nbsp;String&gt; queryAttributes, Map&lt;String,&nbsp;String&gt; elementAttributes, boolean upsert, boolean multi, <a href="../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/mongo/MongoCloudConnector.html#updateObjectsUsingMap(java.lang.String, java.util.Map<java.lang.String, java.lang.String>, java.util.Map<java.lang.String, java.lang.String>, boolean, boolean, org.mule.module.mongo.api.WriteConcern)">updateObjectsUsingMap</a></span>(String collection, Map&lt;String,&nbsp;String&gt; queryAttributes, Map&lt;String,&nbsp;String&gt; elementAttributes, boolean upsert, boolean multi, <a href="../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
         
         <div class="jd-descrdiv">Updates objects that matches the given query.</div>
   
@@ -1745,6 +1756,36 @@ From class
 
 
 
+<A NAME="client"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        <a href="../../../../../java/org/mule/module/mongo/api/MongoClient.html">MongoClient</a>
+      </span>
+        client
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
 <A NAME="database"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -1899,7 +1940,7 @@ From class
     <h4 class="jd-details-title">
       <span class="normal">
         public 
-         
+        static 
          
          
          
@@ -1940,7 +1981,69 @@ From class
 </div>
 
 
-<A NAME="countObjects(org.mule.module.mongo.MongoSession, java.lang.String, com.mongodb.DBObject)"></A>
+<A NAME="connect(java.lang.String, java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">connect</span>
+      <span class="normal">(String username, String password)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Method invoked when a <code><a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a></code> needs to be created.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>username</td>
+          <td>the username to use in case authentication is required</td>
+        </tr>
+        <tr>
+          <th>password</td>
+          <td>the password to use in case authentication is required, null
+                 if no authentication is desired</td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>the newly created <code><a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a></code></li></ul>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Throws</h5>
+      <table class="jd-tagtable">  
+        <tr>
+            <th>Exception</td>
+            <td></td>
+        </tr>  
+        <tr>
+            <th>ConnectionException</td>
+            <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="countObjects(java.lang.String, com.mongodb.DBObject)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -1953,7 +2056,7 @@ From class
         long
       </span>
       <span class="sympad">countObjects</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, DBObject query)</span>
+      <span class="normal">(String collection, DBObject query)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -1973,19 +2076,14 @@ From class
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information</td>
-        </tr>
-        <tr>
           <th>collection</td>
           <td>the target collection</td>
         </tr>
         <tr>
           <th>query</td>
           <td>the optional DBObject query for counting objects. Only
-            objects matching it will be counted. If unspecified, all objects
-            are counted.</td>
+                   objects matching it will be counted. If unspecified, all objects
+                   are counted.</td>
         </tr>
       </table>
   </div>
@@ -1999,7 +2097,7 @@ From class
 </div>
 
 
-<A NAME="countObjectsUsingQueryMap(org.mule.module.mongo.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.String>)"></A>
+<A NAME="countObjectsUsingQueryMap(java.lang.String, java.util.Map<java.lang.String, java.lang.String>)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2012,7 +2110,7 @@ From class
         long
       </span>
       <span class="sympad">countObjectsUsingQueryMap</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, Map&lt;String,&nbsp;String&gt; queryAttributes)</span>
+      <span class="normal">(String collection, Map&lt;String,&nbsp;String&gt; queryAttributes)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -2032,19 +2130,14 @@ From class
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information</td>
-        </tr>
-        <tr>
           <th>collection</td>
           <td>the target collection</td>
         </tr>
         <tr>
           <th>queryAttributes</td>
           <td>the optional query for counting objects. Only objects
-            matching it will be counted. If unspecified, all objects are
-            counted.</td>
+                        matching it will be counted. If unspecified, all objects are
+                        counted.</td>
         </tr>
       </table>
   </div>
@@ -2058,7 +2151,7 @@ From class
 </div>
 
 
-<A NAME="createCollection(org.mule.module.mongo.MongoSession, java.lang.String, boolean, java.lang.Integer, java.lang.Integer)"></A>
+<A NAME="createCollection(java.lang.String, boolean, java.lang.Integer, java.lang.Integer)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2071,7 +2164,7 @@ From class
         void
       </span>
       <span class="sympad">createCollection</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, boolean capped, Integer maxObjects, Integer size)</span>
+      <span class="normal">(String collection, boolean capped, Integer maxObjects, Integer size)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -2091,11 +2184,6 @@ From class
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information</td>
-        </tr>
-        <tr>
           <th>collection</td>
           <td>the name of the collection to create</td>
         </tr>
@@ -2106,7 +2194,7 @@ From class
         <tr>
           <th>maxObjects</td>
           <td>the maximum number of documents the new collection is able
-            to contain</td>
+                   to contain</td>
         </tr>
         <tr>
           <th>size</td>
@@ -2120,7 +2208,7 @@ From class
 </div>
 
 
-<A NAME="createFileFromPayload(org.mule.module.mongo.MongoSession, java.lang.Object, java.lang.String, java.lang.String, com.mongodb.DBObject)"></A>
+<A NAME="createFileFromPayload(java.lang.Object, java.lang.String, java.lang.String, com.mongodb.DBObject)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2133,7 +2221,7 @@ From class
         DBObject
       </span>
       <span class="sympad">createFileFromPayload</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, Object payload, String filename, String contentType, DBObject metadata)</span>
+      <span class="normal">(Object payload, String filename, String contentType, DBObject metadata)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -2153,14 +2241,9 @@ From class
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information</td>
-        </tr>
-        <tr>
           <th>payload</td>
           <td>the mandatory content of the new gridfs file. It may be a
-            java.io.File, a byte[] or an InputStream.</td>
+                    java.io.File, a byte[] or an InputStream.</td>
         </tr>
         <tr>
           <th>filename</td>
@@ -2194,7 +2277,7 @@ From class
 </div>
 
 
-<A NAME="createIndex(org.mule.module.mongo.MongoSession, java.lang.String, java.lang.String, org.mule.module.mongo.api.IndexOrder)"></A>
+<A NAME="createIndex(java.lang.String, java.lang.String, org.mule.module.mongo.api.IndexOrder)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2207,7 +2290,7 @@ From class
         void
       </span>
       <span class="sympad">createIndex</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, String field, <a href="../../../../../java/org/mule/module/mongo/api/IndexOrder.html">IndexOrder</a> order)</span>
+      <span class="normal">(String collection, String field, <a href="../../../../../java/org/mule/module/mongo/api/IndexOrder.html">IndexOrder</a> order)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -2225,11 +2308,6 @@ From class
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
-        <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information</td>
-        </tr>
         <tr>
           <th>collection</td>
           <td>the name of the collection where the index will be created</td>
@@ -2250,76 +2328,13 @@ From class
 </div>
 
 
-<A NAME="createSession(java.lang.String, java.lang.String)"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        <a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a>
-      </span>
-      <span class="sympad">createSession</span>
-      <span class="normal">(String username, String password)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Method invoked when a <code><a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a></code> needs to be created.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>username</td>
-          <td>the username to use in case authentication is required</td>
-        </tr>
-        <tr>
-          <th>password</td>
-          <td>the password to use in case authentication is required, null
-            if no authentication is desired</td>
-        </tr>
-      </table>
-  </div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>the newly created <code><a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a></code>
-</li></ul>
-  </div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Throws</h5>
-      <table class="jd-tagtable">  
-        <tr>
-            <th></td>
-            <td>Exception</td>
-        </tr>  
-        <tr>
-            <th>Exception</td>
-            <td></td>
-        </tr>
-      </table>
-  </div>
-
-    </div>
-</div>
-
-
 <A NAME="dbobjectToJson(java.lang.Object)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
       <span class="normal">
         public 
-         
+        static 
          
          
          
@@ -2360,7 +2375,7 @@ From class
 </div>
 
 
-<A NAME="destroySession(org.mule.module.mongo.MongoSession)"></A>
+<A NAME="disconnect()"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2372,8 +2387,8 @@ From class
          
         void
       </span>
-      <span class="sympad">destroySession</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session)</span>
+      <span class="sympad">disconnect</span>
+      <span class="normal">()</span>
     </h4>
       <div class="api-level">
         <div>
@@ -2385,23 +2400,14 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Method invoked when the <code><a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a></code> is to be destroyed.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>session</td>
-          <td>the <code><a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a></code> instance to be destroyed
-</td>
-        </tr>
-      </table>
-  </div>
+  <div class="jd-tagdata jd-tagdescr"><p>Method invoked when the <code><a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a></code> is to be destroyed.
+</p></div>
 
     </div>
 </div>
 
 
-<A NAME="dropCollection(org.mule.module.mongo.MongoSession, java.lang.String)"></A>
+<A NAME="dropCollection(java.lang.String)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2414,7 +2420,7 @@ From class
         void
       </span>
       <span class="sympad">dropCollection</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection)</span>
+      <span class="normal">(String collection)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -2434,11 +2440,6 @@ From class
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information</td>
-        </tr>
-        <tr>
           <th>collection</td>
           <td>the name of the collection to drop
 </td>
@@ -2450,7 +2451,7 @@ From class
 </div>
 
 
-<A NAME="dropIndex(org.mule.module.mongo.MongoSession, java.lang.String, java.lang.String)"></A>
+<A NAME="dropIndex(java.lang.String, java.lang.String)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2463,7 +2464,7 @@ From class
         void
       </span>
       <span class="sympad">dropIndex</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, String index)</span>
+      <span class="normal">(String collection, String index)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -2482,11 +2483,6 @@ From class
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information</td>
-        </tr>
-        <tr>
           <th>collection</td>
           <td>the name of the collection where the index is</td>
         </tr>
@@ -2502,7 +2498,7 @@ From class
 </div>
 
 
-<A NAME="existsCollection(org.mule.module.mongo.MongoSession, java.lang.String)"></A>
+<A NAME="existsCollection(java.lang.String)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2515,7 +2511,7 @@ From class
         boolean
       </span>
       <span class="sympad">existsCollection</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection)</span>
+      <span class="normal">(String collection)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -2534,11 +2530,6 @@ From class
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information</td>
-        </tr>
-        <tr>
           <th>collection</td>
           <td>the name of the collection</td>
         </tr>
@@ -2554,7 +2545,7 @@ From class
 </div>
 
 
-<A NAME="findFiles(org.mule.module.mongo.MongoSession, com.mongodb.DBObject)"></A>
+<A NAME="findFiles(com.mongodb.DBObject)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2567,7 +2558,7 @@ From class
         Iterable&lt;DBObject&gt;
       </span>
       <span class="sympad">findFiles</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, DBObject query)</span>
+      <span class="normal">(DBObject query)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -2585,11 +2576,6 @@ From class
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
-        <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information</td>
-        </tr>
         <tr>
           <th>query</td>
           <td>a DBObject query the optional query</td>
@@ -2606,7 +2592,7 @@ From class
 </div>
 
 
-<A NAME="findFilesUsingQueryMap(org.mule.module.mongo.MongoSession, java.util.Map<java.lang.String, java.lang.String>)"></A>
+<A NAME="findFilesUsingQueryMap(java.util.Map<java.lang.String, java.lang.String>)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2619,7 +2605,7 @@ From class
         Iterable&lt;DBObject&gt;
       </span>
       <span class="sympad">findFilesUsingQueryMap</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, Map&lt;String,&nbsp;String&gt; queryAttributes)</span>
+      <span class="normal">(Map&lt;String,&nbsp;String&gt; queryAttributes)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -2638,11 +2624,6 @@ From class
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information</td>
-        </tr>
-        <tr>
           <th>queryAttributes</td>
           <td>the optional query attributes</td>
         </tr>
@@ -2658,7 +2639,7 @@ From class
 </div>
 
 
-<A NAME="findObjects(org.mule.module.mongo.MongoSession, java.lang.String, com.mongodb.DBObject, java.util.List<java.lang.String>)"></A>
+<A NAME="findObjects(java.lang.String, com.mongodb.DBObject, java.util.List<java.lang.String>)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2671,7 +2652,7 @@ From class
         Iterable&lt;DBObject&gt;
       </span>
       <span class="sympad">findObjects</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, DBObject query, List&lt;String&gt; fields)</span>
+      <span class="normal">(String collection, DBObject query, List&lt;String&gt; fields)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -2692,18 +2673,13 @@ From class
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information</td>
-        </tr>
-        <tr>
           <th>collection</td>
           <td>the target collection</td>
         </tr>
         <tr>
           <th>query</td>
           <td>the optional DBObject query object. If unspecified, all
-            documents are returned.</td>
+                   documents are returned.</td>
         </tr>
         <tr>
           <th>fields</td>
@@ -2721,7 +2697,7 @@ From class
 </div>
 
 
-<A NAME="findObjectsUsingQueryMap(org.mule.module.mongo.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.String>, java.util.List<java.lang.String>)"></A>
+<A NAME="findObjectsUsingQueryMap(java.lang.String, java.util.Map<java.lang.String, java.lang.String>, java.util.List<java.lang.String>)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2734,7 +2710,7 @@ From class
         Iterable&lt;DBObject&gt;
       </span>
       <span class="sympad">findObjectsUsingQueryMap</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, Map&lt;String,&nbsp;String&gt; queryAttributes, List&lt;String&gt; fields)</span>
+      <span class="normal">(String collection, Map&lt;String,&nbsp;String&gt; queryAttributes, List&lt;String&gt; fields)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -2755,18 +2731,13 @@ From class
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information</td>
-        </tr>
-        <tr>
           <th>collection</td>
           <td>the target collection</td>
         </tr>
         <tr>
           <th>queryAttributes</td>
           <td>the optional query object. If unspecified, all
-            documents are returned.</td>
+                        documents are returned.</td>
         </tr>
         <tr>
           <th>fields</td>
@@ -2784,7 +2755,7 @@ From class
 </div>
 
 
-<A NAME="findOneFile(org.mule.module.mongo.MongoSession, com.mongodb.DBObject)"></A>
+<A NAME="findOneFile(com.mongodb.DBObject)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2797,7 +2768,7 @@ From class
         DBObject
       </span>
       <span class="sympad">findOneFile</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, DBObject query)</span>
+      <span class="normal">(DBObject query)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -2816,11 +2787,6 @@ From class
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
-        <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information</td>
-        </tr>
         <tr>
           <th>query</td>
           <td>the DBObject mandatory query</td>
@@ -2837,7 +2803,7 @@ From class
 </div>
 
 
-<A NAME="findOneFileUsingQueryMap(org.mule.module.mongo.MongoSession, java.util.Map<java.lang.String, java.lang.String>)"></A>
+<A NAME="findOneFileUsingQueryMap(java.util.Map<java.lang.String, java.lang.String>)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2850,7 +2816,7 @@ From class
         DBObject
       </span>
       <span class="sympad">findOneFileUsingQueryMap</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, Map&lt;String,&nbsp;String&gt; queryAttributes)</span>
+      <span class="normal">(Map&lt;String,&nbsp;String&gt; queryAttributes)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -2870,11 +2836,6 @@ From class
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information</td>
-        </tr>
-        <tr>
           <th>queryAttributes</td>
           <td>the mandatory query</td>
         </tr>
@@ -2890,7 +2851,7 @@ From class
 </div>
 
 
-<A NAME="findOneObject(org.mule.module.mongo.MongoSession, java.lang.String, com.mongodb.DBObject, java.util.List<java.lang.String>)"></A>
+<A NAME="findOneObject(java.lang.String, com.mongodb.DBObject, java.util.List<java.lang.String>)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2903,7 +2864,7 @@ From class
         DBObject
       </span>
       <span class="sympad">findOneObject</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, DBObject query, List&lt;String&gt; fields)</span>
+      <span class="normal">(String collection, DBObject query, List&lt;String&gt; fields)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -2923,18 +2884,13 @@ From class
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information</td>
-        </tr>
-        <tr>
           <th>collection</td>
           <td>the target collection</td>
         </tr>
         <tr>
           <th>query</td>
           <td>the mandatory DBObject query object that the returned
-            object matches.</td>
+                   object matches.</td>
         </tr>
         <tr>
           <th>fields</td>
@@ -2952,7 +2908,7 @@ From class
 </div>
 
 
-<A NAME="findOneObjectUsingQueryMap(org.mule.module.mongo.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.String>, java.util.List<java.lang.String>)"></A>
+<A NAME="findOneObjectUsingQueryMap(java.lang.String, java.util.Map<java.lang.String, java.lang.String>, java.util.List<java.lang.String>)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2965,7 +2921,7 @@ From class
         DBObject
       </span>
       <span class="sympad">findOneObjectUsingQueryMap</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, Map&lt;String,&nbsp;String&gt; queryAttributes, List&lt;String&gt; fields)</span>
+      <span class="normal">(String collection, Map&lt;String,&nbsp;String&gt; queryAttributes, List&lt;String&gt; fields)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -2985,18 +2941,13 @@ From class
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information</td>
-        </tr>
-        <tr>
           <th>collection</td>
           <td>the target collection</td>
         </tr>
         <tr>
           <th>queryAttributes</td>
           <td>the mandatory query object that the returned object
-            matches.</td>
+                        matches.</td>
         </tr>
         <tr>
           <th>fields</td>
@@ -3045,7 +2996,7 @@ From class
 </div>
 
 
-<A NAME="getFileContent(org.mule.module.mongo.MongoSession, com.mongodb.DBObject)"></A>
+<A NAME="getFileContent(com.mongodb.DBObject)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -3058,7 +3009,7 @@ From class
         InputStream
       </span>
       <span class="sympad">getFileContent</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, DBObject query)</span>
+      <span class="normal">(DBObject query)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -3078,11 +3029,6 @@ From class
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information</td>
-        </tr>
-        <tr>
           <th>query</td>
           <td>the DBObject mandatory query</td>
         </tr>
@@ -3098,7 +3044,7 @@ From class
 </div>
 
 
-<A NAME="getFileContentUsingQueryMap(org.mule.module.mongo.MongoSession, java.util.Map<java.lang.String, java.lang.String>)"></A>
+<A NAME="getFileContentUsingQueryMap(java.util.Map<java.lang.String, java.lang.String>)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -3111,7 +3057,7 @@ From class
         InputStream
       </span>
       <span class="sympad">getFileContentUsingQueryMap</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, Map&lt;String,&nbsp;String&gt; queryAttributes)</span>
+      <span class="normal">(Map&lt;String,&nbsp;String&gt; queryAttributes)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -3130,11 +3076,6 @@ From class
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
-        <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information</td>
-        </tr>
         <tr>
           <th>queryAttributes</td>
           <td>the mandatory query attributes</td>
@@ -3213,7 +3154,7 @@ From class
 </div>
 
 
-<A NAME="insertObject(org.mule.module.mongo.MongoSession, java.lang.String, com.mongodb.DBObject, org.mule.module.mongo.api.WriteConcern)"></A>
+<A NAME="insertObject(java.lang.String, com.mongodb.DBObject, org.mule.module.mongo.api.WriteConcern)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -3226,7 +3167,7 @@ From class
         void
       </span>
       <span class="sympad">insertObject</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, DBObject dbObject, <a href="../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</span>
+      <span class="normal">(String collection, DBObject dbObject, <a href="../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -3244,11 +3185,6 @@ From class
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
-        <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information</td>
-        </tr>
         <tr>
           <th>collection</td>
           <td>the name of the collection where to insert the given object</td>
@@ -3269,7 +3205,7 @@ From class
 </div>
 
 
-<A NAME="insertObjectFromMap(org.mule.module.mongo.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.String>, org.mule.module.mongo.api.WriteConcern)"></A>
+<A NAME="insertObjectFromMap(java.lang.String, java.util.Map<java.lang.String, java.lang.String>, org.mule.module.mongo.api.WriteConcern)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -3282,7 +3218,7 @@ From class
         void
       </span>
       <span class="sympad">insertObjectFromMap</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, Map&lt;String,&nbsp;String&gt; elementAttributes, <a href="../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</span>
+      <span class="normal">(String collection, Map&lt;String,&nbsp;String&gt; elementAttributes, <a href="../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -3304,18 +3240,13 @@ From class
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information</td>
-        </tr>
-        <tr>
           <th>collection</td>
           <td>the name of the collection where to insert the given object</td>
         </tr>
         <tr>
           <th>elementAttributes</td>
           <td>alternative way of specifying the element as a
-            literal Map inside a Mule Flow</td>
+                          literal Map inside a Mule Flow</td>
         </tr>
         <tr>
           <th>writeConcern</td>
@@ -3335,7 +3266,7 @@ From class
     <h4 class="jd-details-title">
       <span class="normal">
         public 
-         
+        static 
          
          
          
@@ -3376,7 +3307,7 @@ From class
 </div>
 
 
-<A NAME="listCollections(org.mule.module.mongo.MongoSession)"></A>
+<A NAME="listCollections()"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -3389,7 +3320,7 @@ From class
         Collection&lt;String&gt;
       </span>
       <span class="sympad">listCollections</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session)</span>
+      <span class="normal">()</span>
     </h4>
       <div class="api-level">
         <div>
@@ -3405,16 +3336,6 @@ From class
  <p/>
  </p></div>
   <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information</td>
-        </tr>
-      </table>
-  </div>
-  <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
       <ul class="nolist"><li>the list of names of collections available at this database
 </li></ul>
@@ -3424,7 +3345,7 @@ From class
 </div>
 
 
-<A NAME="listFiles(org.mule.module.mongo.MongoSession, com.mongodb.DBObject)"></A>
+<A NAME="listFiles(com.mongodb.DBObject)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -3437,7 +3358,7 @@ From class
         Iterable&lt;DBObject&gt;
       </span>
       <span class="sympad">listFiles</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, DBObject query)</span>
+      <span class="normal">(DBObject query)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -3456,11 +3377,6 @@ From class
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
-        <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information</td>
-        </tr>
         <tr>
           <th>query</td>
           <td>the DBObject optional query</td>
@@ -3477,7 +3393,7 @@ From class
 </div>
 
 
-<A NAME="listFilesUsingQueryMap(org.mule.module.mongo.MongoSession, java.util.Map<java.lang.String, java.lang.String>)"></A>
+<A NAME="listFilesUsingQueryMap(java.util.Map<java.lang.String, java.lang.String>)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -3490,7 +3406,7 @@ From class
         Iterable&lt;DBObject&gt;
       </span>
       <span class="sympad">listFilesUsingQueryMap</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, Map&lt;String,&nbsp;String&gt; queryAttributes)</span>
+      <span class="normal">(Map&lt;String,&nbsp;String&gt; queryAttributes)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -3510,11 +3426,6 @@ From class
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information</td>
-        </tr>
-        <tr>
           <th>queryAttributes</td>
           <td>the optional query</td>
         </tr>
@@ -3530,7 +3441,7 @@ From class
 </div>
 
 
-<A NAME="listIndices(org.mule.module.mongo.MongoSession, java.lang.String)"></A>
+<A NAME="listIndices(java.lang.String)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -3543,7 +3454,7 @@ From class
         Collection&lt;DBObject&gt;
       </span>
       <span class="sympad">listIndices</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection)</span>
+      <span class="normal">(String collection)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -3562,11 +3473,6 @@ From class
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information</td>
-        </tr>
-        <tr>
           <th>collection</td>
           <td>the name of the collection</td>
         </tr>
@@ -3582,7 +3488,7 @@ From class
 </div>
 
 
-<A NAME="mapReduceObjects(org.mule.module.mongo.MongoSession, java.lang.String, java.lang.String, java.lang.String, java.lang.String)"></A>
+<A NAME="mapReduceObjects(java.lang.String, java.lang.String, java.lang.String, java.lang.String)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -3595,7 +3501,7 @@ From class
         Iterable&lt;DBObject&gt;
       </span>
       <span class="sympad">mapReduceObjects</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, String mapFunction, String reduceFunction, String outputCollection)</span>
+      <span class="normal">(String collection, String mapFunction, String reduceFunction, String outputCollection)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -3622,12 +3528,6 @@ From class
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information represent a session to Mongo DB holding
-            user information and a client to handle the connections</td>
-        </tr>
-        <tr>
           <th>collection</td>
           <td>the name of the collection to map and reduce</td>
         </tr>
@@ -3642,10 +3542,10 @@ From class
         <tr>
           <th>outputCollection</td>
           <td>the name of the output collection to write the
-            results, replacing previous collection if existed, mandatory when
-            results may be larger than 16MB. If outputCollection is
-            unspecified, the computation is performed in-memory and not
-            persisted.</td>
+                         results, replacing previous collection if existed, mandatory when
+                         results may be larger than 16MB. If outputCollection is
+                         unspecified, the computation is performed in-memory and not
+                         persisted.</td>
         </tr>
       </table>
   </div>
@@ -3666,7 +3566,7 @@ From class
     <h4 class="jd-details-title">
       <span class="normal">
         public 
-         
+        static 
          
          
          
@@ -3707,7 +3607,7 @@ From class
 </div>
 
 
-<A NAME="removeFiles(org.mule.module.mongo.MongoSession, com.mongodb.DBObject)"></A>
+<A NAME="removeFiles(com.mongodb.DBObject)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -3720,7 +3620,7 @@ From class
         void
       </span>
       <span class="sympad">removeFiles</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, DBObject query)</span>
+      <span class="normal">(DBObject query)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -3739,11 +3639,6 @@ From class
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
-        <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information</td>
-        </tr>
         <tr>
           <th>query</td>
           <td>the DBObject optional query
@@ -3756,7 +3651,7 @@ From class
 </div>
 
 
-<A NAME="removeFilesUsingQueryMap(org.mule.module.mongo.MongoSession, java.util.Map<java.lang.String, java.lang.String>)"></A>
+<A NAME="removeFilesUsingQueryMap(java.util.Map<java.lang.String, java.lang.String>)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -3769,7 +3664,7 @@ From class
         void
       </span>
       <span class="sympad">removeFilesUsingQueryMap</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, Map&lt;String,&nbsp;String&gt; queryAttributes)</span>
+      <span class="normal">(Map&lt;String,&nbsp;String&gt; queryAttributes)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -3789,11 +3684,6 @@ From class
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information</td>
-        </tr>
-        <tr>
           <th>queryAttributes</td>
           <td>the optional query
 </td>
@@ -3805,7 +3695,7 @@ From class
 </div>
 
 
-<A NAME="removeObjects(org.mule.module.mongo.MongoSession, java.lang.String, com.mongodb.DBObject, org.mule.module.mongo.api.WriteConcern)"></A>
+<A NAME="removeObjects(java.lang.String, com.mongodb.DBObject, org.mule.module.mongo.api.WriteConcern)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -3818,7 +3708,7 @@ From class
         void
       </span>
       <span class="sympad">removeObjects</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, DBObject query, <a href="../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</span>
+      <span class="normal">(String collection, DBObject query, <a href="../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -3840,18 +3730,13 @@ From class
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information</td>
-        </tr>
-        <tr>
           <th>collection</td>
           <td>the collection whose elements will be removed</td>
         </tr>
         <tr>
           <th>query</td>
           <td>the optional DBObject query object. Objects that match it
-            will be removed.</td>
+                     will be removed.</td>
         </tr>
         <tr>
           <th>writeConcern</td>
@@ -3865,7 +3750,7 @@ From class
 </div>
 
 
-<A NAME="removeUsingQueryMap(org.mule.module.mongo.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.String>, org.mule.module.mongo.api.WriteConcern)"></A>
+<A NAME="removeUsingQueryMap(java.lang.String, java.util.Map<java.lang.String, java.lang.String>, org.mule.module.mongo.api.WriteConcern)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -3878,7 +3763,7 @@ From class
         void
       </span>
       <span class="sympad">removeUsingQueryMap</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, Map&lt;String,&nbsp;String&gt; queryAttributes, <a href="../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</span>
+      <span class="normal">(String collection, Map&lt;String,&nbsp;String&gt; queryAttributes, <a href="../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -3900,18 +3785,13 @@ From class
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information</td>
-        </tr>
-        <tr>
           <th>collection</td>
           <td>the collection whose elements will be removed</td>
         </tr>
         <tr>
           <th>queryAttributes</td>
           <td>the query object. Objects that match it will be
-            removed.</td>
+                        removed.</td>
         </tr>
         <tr>
           <th>writeConcern</td>
@@ -3925,7 +3805,7 @@ From class
 </div>
 
 
-<A NAME="saveObject(org.mule.module.mongo.MongoSession, java.lang.String, com.mongodb.DBObject, org.mule.module.mongo.api.WriteConcern)"></A>
+<A NAME="saveObject(java.lang.String, com.mongodb.DBObject, org.mule.module.mongo.api.WriteConcern)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -3938,7 +3818,7 @@ From class
         void
       </span>
       <span class="sympad">saveObject</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, DBObject element, <a href="../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</span>
+      <span class="normal">(String collection, DBObject element, <a href="../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -3956,11 +3836,6 @@ From class
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
-        <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information</td>
-        </tr>
         <tr>
           <th>collection</td>
           <td>the collection where to insert the object</td>
@@ -3981,7 +3856,7 @@ From class
 </div>
 
 
-<A NAME="saveObjectFromMap(org.mule.module.mongo.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.String>, org.mule.module.mongo.api.WriteConcern)"></A>
+<A NAME="saveObjectFromMap(java.lang.String, java.util.Map<java.lang.String, java.lang.String>, org.mule.module.mongo.api.WriteConcern)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -3994,7 +3869,7 @@ From class
         void
       </span>
       <span class="sympad">saveObjectFromMap</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, Map&lt;String,&nbsp;String&gt; elementAttributes, <a href="../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</span>
+      <span class="normal">(String collection, Map&lt;String,&nbsp;String&gt; elementAttributes, <a href="../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -4012,11 +3887,6 @@ From class
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
-        <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information</td>
-        </tr>
         <tr>
           <th>collection</td>
           <td>the collection where to insert the object</td>
@@ -4157,7 +4027,7 @@ From class
 </div>
 
 
-<A NAME="updateObjects(org.mule.module.mongo.MongoSession, java.lang.String, com.mongodb.DBObject, com.mongodb.DBObject, boolean, boolean, org.mule.module.mongo.api.WriteConcern)"></A>
+<A NAME="updateObjects(java.lang.String, com.mongodb.DBObject, com.mongodb.DBObject, boolean, boolean, org.mule.module.mongo.api.WriteConcern)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -4170,7 +4040,7 @@ From class
         void
       </span>
       <span class="sympad">updateObjects</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, DBObject query, DBObject element, boolean upsert, boolean multi, <a href="../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</span>
+      <span class="normal">(String collection, DBObject query, DBObject element, boolean upsert, boolean multi, <a href="../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -4191,23 +4061,18 @@ From class
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information</td>
-        </tr>
-        <tr>
           <th>collection</td>
           <td>the name of the collection to update</td>
         </tr>
         <tr>
           <th>query</td>
           <td>the DBObject query object used to detect the element to
-            update.</td>
+                     update.</td>
         </tr>
         <tr>
           <th>element</td>
           <td>the DBObject mandatory object that will replace that
-            one which matches the query.</td>
+                     one which matches the query.</td>
         </tr>
         <tr>
           <th>upsert</td>
@@ -4216,7 +4081,7 @@ From class
         <tr>
           <th>multi</td>
           <td>if all or just the first object matching the query will be
-            updated</td>
+                     updated</td>
         </tr>
         <tr>
           <th>writeConcern</td>
@@ -4230,7 +4095,7 @@ From class
 </div>
 
 
-<A NAME="updateObjectsUsingMap(org.mule.module.mongo.MongoSession, java.lang.String, java.util.Map<java.lang.String, java.lang.String>, java.util.Map<java.lang.String, java.lang.String>, boolean, boolean, org.mule.module.mongo.api.WriteConcern)"></A>
+<A NAME="updateObjectsUsingMap(java.lang.String, java.util.Map<java.lang.String, java.lang.String>, java.util.Map<java.lang.String, java.lang.String>, boolean, boolean, org.mule.module.mongo.api.WriteConcern)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -4243,7 +4108,7 @@ From class
         void
       </span>
       <span class="sympad">updateObjectsUsingMap</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a> session, String collection, Map&lt;String,&nbsp;String&gt; queryAttributes, Map&lt;String,&nbsp;String&gt; elementAttributes, boolean upsert, boolean multi, <a href="../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</span>
+      <span class="normal">(String collection, Map&lt;String,&nbsp;String&gt; queryAttributes, Map&lt;String,&nbsp;String&gt; elementAttributes, boolean upsert, boolean multi, <a href="../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -4264,11 +4129,6 @@ From class
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
-          <th>session</td>
-          <td>represents a session to Mongo DB holding user information and
-            connectivity information</td>
-        </tr>
-        <tr>
           <th>collection</td>
           <td>the name of the collection to update</td>
         </tr>
@@ -4279,7 +4139,7 @@ From class
         <tr>
           <th>elementAttributes</td>
           <td>the mandatory object that will replace that one which
-            matches the query.</td>
+                          matches the query.</td>
         </tr>
         <tr>
           <th>upsert</td>
@@ -4288,7 +4148,7 @@ From class
         <tr>
           <th>multi</td>
           <td>if all or just the first object matching the query will be
-            updated</td>
+                          updated</td>
         </tr>
         <tr>
           <th>writeConcern</td>
