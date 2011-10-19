@@ -745,23 +745,22 @@ specify which configuration to use.</p>
 
 
 
-<!-- ========= SESSION MANAGEMENT DETAIL ======== -->
-<h2>Session Management</h2>
-<p>This module offers automatic session management via the use of a session pool. The session pool is fully configurable
-by the user of the module. The pool will act a storage mechanism for all the sessions that are currently being
-handled by different module processors.</p>
-<p>Prior to execution of a processor, the module will attempt to lookup a session and if one doesn't exists it will
-create one. That lookup mechanism is done in the session pool via the use of session variables declared as keys.</p>
-<p>The user of the connector can configure the pool by adding a <code>session-pooling-profile</code> to the connector configuration like this:</p>
+<!-- ========= CONNECTION MANAGEMENT DETAIL ======== -->
+<h2>Connection Pool</h2>
+<p>This connector offers automatic connection management via the use of a connection pool. The pool will act a storage mechanism for all the connections that are in-use by the user of
+this connector.</p>
+<p>Prior to execution of a processor, the connector will attempt to lookup an already established connection and if one doesn't exists it will
+create one. That lookup mechanism is done in the connection pool via the use of connection variables declared as keys.</p>
+<p>The user of the connector can configure the pool by adding a <code>connection-pooling-profile</code> to the connector configuration like this:</p>
 <pre>
-    &lt;mongo:session-pooling-profile maxActive="10" maxIdle="10"
+    &lt;mongo:connection-pooling-profile maxActive="10" maxIdle="10"
                              exhaustedAction="WHEN_EXHAUSTED_GROW" maxWait="120"/&gt;
 </pre>
-<p>The following is a list of session variables, each session variable can be configured at the config element level or
+<p>The following is a list of connection attributes, each connection attribute can be configured at the config element level or
 they can also be added to each processor. If they are used at the processor level they get the benefit of full expression
 resolution.</p>
 <table id="lconfig" class="jd-sumtable">
-<tr><th colspan="12">Session Variables</th></tr>
+<tr><th colspan="12">Connection Attributes</th></tr>
 <tr><th>Name</th><th>Description</th></tr>
 
     
@@ -774,7 +773,7 @@ resolution.</p>
       <tr class="alt-color api apilevel-" >
           <td class="jd-linkcol"><nobr>password</nobr></td>
           <td class="jd-descrcol" width="100%">the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
+                 if no authentication is desired<br/></td>
       </tr>
       
     
@@ -819,25 +818,6 @@ resolution.</p>
           
             
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
-          
-            
-                
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
@@ -853,8 +833,8 @@ resolution.</p>
                     <td class="jd-linkcol"><nobr>query</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the optional <br/>DBObject query for counting objects. Only
-            objects matching it will be counted. If unspecified, all objects
-            are counted.<br/></td>
+                   objects matching it will be counted. If unspecified, all objects
+                   are counted.<br/></td>
                 </tr>
                 
                 
@@ -867,8 +847,6 @@ resolution.</p>
 
       <table class="jd-tagtable">
           
-          
-            
           
             
           
@@ -920,25 +898,6 @@ resolution.</p>
           
             
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
-          
-            
-                
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
@@ -954,8 +913,8 @@ resolution.</p>
                     <td class="jd-linkcol"><nobr>queryAttributes</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the optional query for counting objects. Only objects
-            matching it will be counted. If unspecified, all objects are
-            counted.<br/></td>
+                        matching it will be counted. If unspecified, all objects are
+                        counted.<br/></td>
                 </tr>
                 
                 
@@ -968,8 +927,6 @@ resolution.</p>
 
       <table class="jd-tagtable">
           
-          
-            
           
             
           
@@ -1016,25 +973,6 @@ resolution.</p>
           
             
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
-          
-            
-                
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
@@ -1061,7 +999,7 @@ resolution.</p>
                     <td class="jd-linkcol"><nobr>maxObjects</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the maximum number of documents the new collection is able
-            to contain<br/></td>
+                   to contain<br/></td>
                 </tr>
                 
                 
@@ -1086,8 +1024,6 @@ resolution.</p>
 
       <table class="jd-tagtable">
           
-          
-            
           
             
           
@@ -1133,30 +1069,11 @@ resolution.</p>
           
             
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
-          
-            
-                
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>payload</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">the mandatory content of the new gridfs file. It may be a
-            java.io.File, a byte[] or an InputStream.<br/></td>
+                    java.io.File, a byte[] or an InputStream.<br/></td>
                 </tr>
                 
                 
@@ -1202,8 +1119,6 @@ resolution.</p>
 
       <table class="jd-tagtable">
           
-          
-            
           
             
           
@@ -1261,25 +1176,6 @@ resolution.</p>
           
             
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
-          
-            
-                
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
@@ -1326,8 +1222,6 @@ resolution.</p>
           
             
           
-            
-          
       </table>
   </div>
   
@@ -1364,25 +1258,6 @@ resolution.</p>
           
             
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
-          
-            
-                
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
@@ -1400,8 +1275,6 @@ resolution.</p>
 
       <table class="jd-tagtable">
           
-          
-            
           
             
           
@@ -1440,25 +1313,6 @@ resolution.</p>
           
             
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
-          
-            
-                
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
@@ -1487,8 +1341,6 @@ resolution.</p>
 
       <table class="jd-tagtable">
           
-          
-            
           
             
           
@@ -1529,25 +1381,6 @@ resolution.</p>
           
             
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
-          
-            
-                
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
@@ -1564,8 +1397,6 @@ resolution.</p>
 
       <table class="jd-tagtable">
           
-          
-            
           
             
           
@@ -1609,25 +1440,6 @@ resolution.</p>
           
             
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
-          
-            
-                
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>query</nobr></td>
                     <td class="jd-descrcol"></td>
@@ -1644,8 +1456,6 @@ resolution.</p>
 
       <table class="jd-tagtable">
           
-          
-            
           
             
           
@@ -1694,25 +1504,6 @@ resolution.</p>
           
             
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
-          
-            
-                
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>queryAttributes</nobr></td>
                     <td class="jd-descrcol"></td>
@@ -1729,8 +1520,6 @@ resolution.</p>
 
       <table class="jd-tagtable">
           
-          
-            
           
             
           
@@ -1781,25 +1570,6 @@ resolution.</p>
           
             
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
-          
-            
-                
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
@@ -1815,7 +1585,7 @@ resolution.</p>
                     <td class="jd-linkcol"><nobr>query</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the optional <br/>DBObject query object. If unspecified, all
-            documents are returned.<br/></td>
+                   documents are returned.<br/></td>
                 </tr>
                 
                 
@@ -1839,8 +1609,6 @@ resolution.</p>
 
       <table class="jd-tagtable">
           
-          
-            
           
             
           
@@ -1895,25 +1663,6 @@ resolution.</p>
           
             
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
-          
-            
-                
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
@@ -1929,7 +1678,7 @@ resolution.</p>
                     <td class="jd-linkcol"><nobr>queryAttributes</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the optional query object. If unspecified, all
-            documents are returned.<br/></td>
+                        documents are returned.<br/></td>
                 </tr>
                 
                 
@@ -1953,8 +1702,6 @@ resolution.</p>
 
       <table class="jd-tagtable">
           
-          
-            
           
             
           
@@ -2003,25 +1750,6 @@ resolution.</p>
           
             
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
-          
-            
-                
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>query</nobr></td>
                     <td class="jd-descrcol"></td>
@@ -2038,8 +1766,6 @@ resolution.</p>
 
       <table class="jd-tagtable">
           
-          
-            
           
             
           
@@ -2089,25 +1815,6 @@ resolution.</p>
           
             
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
-          
-            
-                
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>queryAttributes</nobr></td>
                     <td class="jd-descrcol"></td>
@@ -2124,8 +1831,6 @@ resolution.</p>
 
       <table class="jd-tagtable">
           
-          
-            
           
             
           
@@ -2175,25 +1880,6 @@ resolution.</p>
           
             
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
-          
-            
-                
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
@@ -2209,7 +1895,7 @@ resolution.</p>
                     <td class="jd-linkcol"><nobr>query</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">the mandatory <br/>DBObject query object that the returned
-            object matches.<br/></td>
+                   object matches.<br/></td>
                 </tr>
                 
                 
@@ -2233,8 +1919,6 @@ resolution.</p>
 
       <table class="jd-tagtable">
           
-          
-            
           
             
           
@@ -2288,25 +1972,6 @@ resolution.</p>
           
             
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
-          
-            
-                
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
@@ -2322,7 +1987,7 @@ resolution.</p>
                     <td class="jd-linkcol"><nobr>queryAttributes</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">the mandatory query object that the returned object
-            matches.<br/></td>
+                        matches.<br/></td>
                 </tr>
                 
                 
@@ -2346,8 +2011,6 @@ resolution.</p>
 
       <table class="jd-tagtable">
           
-          
-            
           
             
           
@@ -2396,25 +2059,6 @@ resolution.</p>
           
             
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
-          
-            
-                
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>query</nobr></td>
                     <td class="jd-descrcol"></td>
@@ -2431,8 +2075,6 @@ resolution.</p>
 
       <table class="jd-tagtable">
           
-          
-            
           
             
           
@@ -2482,25 +2124,6 @@ resolution.</p>
           
             
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
-          
-            
-                
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>queryAttributes</nobr></td>
                     <td class="jd-descrcol"></td>
@@ -2517,8 +2140,6 @@ resolution.</p>
 
       <table class="jd-tagtable">
           
-          
-            
           
             
           
@@ -2562,25 +2183,6 @@ resolution.</p>
           
             
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
-          
-            
-                
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
@@ -2620,8 +2222,6 @@ resolution.</p>
 
       <table class="jd-tagtable">
           
-          
-            
           
             
           
@@ -2672,25 +2272,6 @@ resolution.</p>
           
             
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
-          
-            
-                
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
@@ -2706,7 +2287,7 @@ resolution.</p>
                     <td class="jd-linkcol"><nobr>elementAttributes</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>alternative way of specifying the element as a
-            literal Map inside a Mule Flow<br/></td>
+                          literal Map inside a Mule Flow<br/></td>
                 </tr>
                 
                 
@@ -2731,8 +2312,6 @@ resolution.</p>
 
       <table class="jd-tagtable">
           
-          
-            
           
             
           
@@ -2773,25 +2352,6 @@ resolution.</p>
       <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
-            
-                
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
-          
       </table>
   </div>
   <div class="jd-tagdata">
@@ -2799,8 +2359,6 @@ resolution.</p>
 
       <table class="jd-tagtable">
           
-          
-            
           
       </table>
   </div>
@@ -2843,25 +2401,6 @@ resolution.</p>
           
             
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
-          
-            
-                
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>query</nobr></td>
                     <td class="jd-descrcol"></td>
@@ -2878,8 +2417,6 @@ resolution.</p>
 
       <table class="jd-tagtable">
           
-          
-            
           
             
           
@@ -2929,25 +2466,6 @@ resolution.</p>
           
             
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
-          
-            
-                
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>queryAttributes</nobr></td>
                     <td class="jd-descrcol"></td>
@@ -2964,8 +2482,6 @@ resolution.</p>
 
       <table class="jd-tagtable">
           
-          
-            
           
             
           
@@ -3009,25 +2525,6 @@ resolution.</p>
           
             
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
-          
-            
-                
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
@@ -3044,8 +2541,6 @@ resolution.</p>
 
       <table class="jd-tagtable">
           
-          
-            
           
             
           
@@ -3097,25 +2592,6 @@ resolution.</p>
           
             
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
-          
-            
-                
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
@@ -3153,10 +2629,10 @@ resolution.</p>
                     <td class="jd-linkcol"><nobr>outputCollection</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the name of the output collection to write the
-            results, replacing previous collection if existed, mandatory when
-            results may be larger than 16MB. If outputCollection is
-            unspecified, the computation is performed in-memory and not
-            persisted.<br/></td>
+                         results, replacing previous collection if existed, mandatory when
+                         results may be larger than 16MB. If outputCollection is
+                         unspecified, the computation is performed in-memory and not
+                         persisted.<br/></td>
                 </tr>
                 
                 
@@ -3169,8 +2645,6 @@ resolution.</p>
 
       <table class="jd-tagtable">
           
-          
-            
           
             
           
@@ -3222,25 +2696,6 @@ resolution.</p>
           
             
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
-          
-            
-                
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>query</nobr></td>
                     <td class="jd-descrcol"></td>
@@ -3258,8 +2713,6 @@ resolution.</p>
 
       <table class="jd-tagtable">
           
-          
-            
           
             
           
@@ -3304,25 +2757,6 @@ resolution.</p>
           
             
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
-          
-            
-                
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>queryAttributes</nobr></td>
                     <td class="jd-descrcol"></td>
@@ -3340,8 +2774,6 @@ resolution.</p>
 
       <table class="jd-tagtable">
           
-          
-            
           
             
           
@@ -3383,25 +2815,6 @@ resolution.</p>
           
             
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
-          
-            
-                
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
@@ -3417,7 +2830,7 @@ resolution.</p>
                     <td class="jd-linkcol"><nobr>query</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">the optional <br/>DBObject query object. Objects that match it
-            will be removed.<br/></td>
+                     will be removed.<br/></td>
                 </tr>
                 
                 
@@ -3442,8 +2855,6 @@ resolution.</p>
 
       <table class="jd-tagtable">
           
-          
-            
           
             
           
@@ -3494,25 +2905,6 @@ resolution.</p>
           
             
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
-          
-            
-                
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
@@ -3528,7 +2920,7 @@ resolution.</p>
                     <td class="jd-linkcol"><nobr>queryAttributes</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">the query object. Objects that match it will be
-            removed.<br/></td>
+                        removed.<br/></td>
                 </tr>
                 
                 
@@ -3553,8 +2945,6 @@ resolution.</p>
 
       <table class="jd-tagtable">
           
-          
-            
           
             
           
@@ -3594,25 +2984,6 @@ resolution.</p>
       <td class="jd-descrcol"></td>
       <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
-          
-            
-                
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
           
             
                 
@@ -3662,8 +3033,6 @@ resolution.</p>
           
             
           
-            
-          
       </table>
   </div>
   
@@ -3701,25 +3070,6 @@ resolution.</p>
       <td class="jd-descrcol"></td>
       <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
-          
-            
-                
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
           
             
                 
@@ -3769,8 +3119,6 @@ resolution.</p>
           
             
           
-            
-          
       </table>
   </div>
   
@@ -3808,25 +3156,6 @@ resolution.</p>
           
             
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
-          
-            
-                
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
@@ -3842,7 +3171,7 @@ resolution.</p>
                     <td class="jd-linkcol"><nobr>query</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">the <br/>DBObject query object used to detect the element to
-            update.<br/></td>
+                     update.<br/></td>
                 </tr>
                 
                 
@@ -3854,7 +3183,7 @@ resolution.</p>
                     <td class="jd-linkcol"><nobr>element</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">the <br/>DBObject mandatory object that will replace that
-            one which matches the query.<br/></td>
+                     one which matches the query.<br/></td>
                 </tr>
                 
                 
@@ -3877,7 +3206,7 @@ resolution.</p>
                     <td class="jd-linkcol"><nobr>multi</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>if all or just the first object matching the query will be
-            updated<br/></td>
+                     updated<br/></td>
                 </tr>
                 
                 
@@ -3902,8 +3231,6 @@ resolution.</p>
 
       <table class="jd-tagtable">
           
-          
-            
           
             
           
@@ -3963,25 +3290,6 @@ resolution.</p>
           
             
                 
-                    <tr class=" api apilevel-" >
-                        <td class="jd-linkcol"><nobr>username</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the username to use in case authentication is required<br/></td>
-                    </tr>
-                    
-                
-                    <tr class="alt-color api apilevel-" >
-                        <td class="jd-linkcol"><nobr>password</nobr></td>
-                        <td class="jd-descrcol"></td>
-                        <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>the password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-                    </tr>
-                    
-                
-            
-          
-            
-                
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
@@ -4008,7 +3316,7 @@ resolution.</p>
                     <td class="jd-linkcol"><nobr>elementAttributes</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">the mandatory object that will replace that one which
-            matches the query.<br/></td>
+                          matches the query.<br/></td>
                 </tr>
                 
                 
@@ -4031,7 +3339,7 @@ resolution.</p>
                     <td class="jd-linkcol"><nobr>multi</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>if all or just the first object matching the query will be
-            updated<br/></td>
+                          updated<br/></td>
                 </tr>
                 
                 
@@ -4056,8 +3364,6 @@ resolution.</p>
 
       <table class="jd-tagtable">
           
-          
-            
           
             
           
