@@ -192,6 +192,7 @@
     <li><h2>Classes</h2>
       <ul>
           <li class="selected api apilevel-"><a href="../../../../../java/org/mule/module/mongo/MongoCloudConnector.html">MongoCloudConnector</a></li>
+          <li class="api apilevel-"><a href="../../../../../java/org/mule/module/mongo/MongoObjectStore.html">MongoObjectStore</a></li>
           <li class="api apilevel-"><a href="../../../../../java/org/mule/module/mongo/MongoSession.html">MongoSession</a></li>
       </ul>
     </li>
@@ -2017,7 +2018,7 @@ From class
         <tr>
           <th>password</td>
           <td>the password to use in case authentication is required, null
-                 if no authentication is desired</td>
+            if no authentication is desired</td>
         </tr>
       </table>
   </div>
@@ -2082,8 +2083,8 @@ From class
         <tr>
           <th>query</td>
           <td>the optional DBObject query for counting objects. Only
-                   objects matching it will be counted. If unspecified, all objects
-                   are counted.</td>
+            objects matching it will be counted. If unspecified, all objects
+            are counted.</td>
         </tr>
       </table>
   </div>
@@ -2136,8 +2137,8 @@ From class
         <tr>
           <th>queryAttributes</td>
           <td>the optional query for counting objects. Only objects
-                        matching it will be counted. If unspecified, all objects are
-                        counted.</td>
+            matching it will be counted. If unspecified, all objects are
+            counted.</td>
         </tr>
       </table>
   </div>
@@ -2194,7 +2195,7 @@ From class
         <tr>
           <th>maxObjects</td>
           <td>the maximum number of documents the new collection is able
-                   to contain</td>
+            to contain</td>
         </tr>
         <tr>
           <th>size</td>
@@ -2243,7 +2244,7 @@ From class
         <tr>
           <th>payload</td>
           <td>the mandatory content of the new gridfs file. It may be a
-                    java.io.File, a byte[] or an InputStream.</td>
+            java.io.File, a byte[] or an InputStream.</td>
         </tr>
         <tr>
           <th>filename</td>
@@ -2679,7 +2680,7 @@ From class
         <tr>
           <th>query</td>
           <td>the optional DBObject query object. If unspecified, all
-                   documents are returned.</td>
+            documents are returned.</td>
         </tr>
         <tr>
           <th>fields</td>
@@ -2737,7 +2738,7 @@ From class
         <tr>
           <th>queryAttributes</td>
           <td>the optional query object. If unspecified, all
-                        documents are returned.</td>
+            documents are returned.</td>
         </tr>
         <tr>
           <th>fields</td>
@@ -2890,7 +2891,7 @@ From class
         <tr>
           <th>query</td>
           <td>the mandatory DBObject query object that the returned
-                   object matches.</td>
+            object matches.</td>
         </tr>
         <tr>
           <th>fields</td>
@@ -2947,7 +2948,7 @@ From class
         <tr>
           <th>queryAttributes</td>
           <td>the mandatory query object that the returned object
-                        matches.</td>
+            matches.</td>
         </tr>
         <tr>
           <th>fields</td>
@@ -3246,7 +3247,7 @@ From class
         <tr>
           <th>elementAttributes</td>
           <td>alternative way of specifying the element as a
-                          literal Map inside a Mule Flow</td>
+            literal Map inside a Mule Flow</td>
         </tr>
         <tr>
           <th>writeConcern</td>
@@ -3542,10 +3543,10 @@ From class
         <tr>
           <th>outputCollection</td>
           <td>the name of the output collection to write the
-                         results, replacing previous collection if existed, mandatory when
-                         results may be larger than 16MB. If outputCollection is
-                         unspecified, the computation is performed in-memory and not
-                         persisted.</td>
+            results, replacing previous collection if existed, mandatory when
+            results may be larger than 16MB. If outputCollection is
+            unspecified, the computation is performed in-memory and not
+            persisted.</td>
         </tr>
       </table>
   </div>
@@ -3736,7 +3737,7 @@ From class
         <tr>
           <th>query</td>
           <td>the optional DBObject query object. Objects that match it
-                     will be removed.</td>
+            will be removed.</td>
         </tr>
         <tr>
           <th>writeConcern</td>
@@ -3791,7 +3792,7 @@ From class
         <tr>
           <th>queryAttributes</td>
           <td>the query object. Objects that match it will be
-                        removed.</td>
+            removed.</td>
         </tr>
         <tr>
           <th>writeConcern</td>
@@ -4067,12 +4068,12 @@ From class
         <tr>
           <th>query</td>
           <td>the DBObject query object used to detect the element to
-                     update.</td>
+            update.</td>
         </tr>
         <tr>
           <th>element</td>
           <td>the DBObject mandatory object that will replace that
-                     one which matches the query.</td>
+            one which matches the query.</td>
         </tr>
         <tr>
           <th>upsert</td>
@@ -4081,7 +4082,7 @@ From class
         <tr>
           <th>multi</td>
           <td>if all or just the first object matching the query will be
-                     updated</td>
+            updated</td>
         </tr>
         <tr>
           <th>writeConcern</td>
@@ -4139,7 +4140,7 @@ From class
         <tr>
           <th>elementAttributes</td>
           <td>the mandatory object that will replace that one which
-                          matches the query.</td>
+            matches the query.</td>
         </tr>
         <tr>
           <th>upsert</td>
@@ -4148,7 +4149,7 @@ From class
         <tr>
           <th>multi</td>
           <td>if all or just the first object matching the query will be
-                          updated</td>
+            updated</td>
         </tr>
         <tr>
           <th>writeConcern</td>

@@ -72,7 +72,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="../../../../../../favicon.ico" />
 <title>
 
-  JsonToDbobjectTransformer
+  MongoObjectStoreCapabilitiesAdapter
 
 
 | Mule Mongo Connector
@@ -215,7 +215,7 @@
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/IndexOrderEnumTransformer.html">IndexOrderEnumTransformer</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/InsertObjectFromMapMessageProcessor.html">InsertObjectFromMapMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/InsertObjectMessageProcessor.html">InsertObjectMessageProcessor</a></li>
-          <li class="selected api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/JsonToDbobjectTransformer.html">JsonToDbobjectTransformer</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/JsonToDbobjectTransformer.html">JsonToDbobjectTransformer</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/ListCollectionsMessageProcessor.html">ListCollectionsMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/ListFilesMessageProcessor.html">ListFilesMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/ListFilesUsingQueryMapMessageProcessor.html">ListFilesUsingQueryMapMessageProcessor</a></li>
@@ -228,7 +228,7 @@
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.html">MongoCloudConnectorSessionManagerAdapter</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.SessionKey.html">MongoCloudConnectorSessionManagerAdapter.SessionKey</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/MongoCollectionToJsonTransformer.html">MongoCollectionToJsonTransformer</a></li>
-          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/MongoObjectStoreCapabilitiesAdapter.html">MongoObjectStoreCapabilitiesAdapter</a></li>
+          <li class="selected api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/MongoObjectStoreCapabilitiesAdapter.html">MongoObjectStoreCapabilitiesAdapter</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/MongoObjectStoreLifecycleAdapter.html">MongoObjectStoreLifecycleAdapter</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/RemoveFilesMessageProcessor.html">RemoveFilesMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/RemoveFilesUsingQueryMapMessageProcessor.html">RemoveFilesUsingQueryMapMessageProcessor</a></li>
@@ -287,6 +287,8 @@
    
   
   
+   
+  
   
    
   
@@ -295,15 +297,6 @@
   
    
   
-  
-  
-  
-
-  
-   
-  
-  
-   
   
   
   
@@ -330,47 +323,8 @@
   
 
   
-  
-  
-  
-
-  
    
   
-  
-  
-  
-
-  
-   
-  
-  
-   
-  
-  
-  
-
-  
-   
-  
-  
-   
-  
-  
-  
-
-  
-   
-  
-  
-  
-  
-
-  
-   
-  
-  
-   
   
   
   
@@ -404,9 +358,6 @@ Summary:
   
 
 
-  &#124; <a href="#lfields">Fields</a>
-  
-
 
   &#124; <a href="#inhfields">Inherited Fields</a>
   
@@ -420,9 +371,6 @@ Summary:
   &#124; <a href="#pubmethods">Methods</a>
   
 
-
-  &#124; <a href="#promethods">Protected Methods</a>
-  
 
 
   &#124; <a href="#inhmethods">Inherited Methods</a>
@@ -449,7 +397,7 @@ Summary:
      
     
     class
-<h1>JsonToDbobjectTransformer</h1>
+<h1>MongoObjectStoreCapabilitiesAdapter</h1>
 
 
 
@@ -458,7 +406,7 @@ Summary:
   
 
   
-    extends AbstractTransformer<br/>
+    extends <a href="../../../../../../java/org/mule/module/mongo/MongoObjectStore.html">MongoObjectStore</a><br/>
   
   
   
@@ -467,7 +415,7 @@ Summary:
   
       implements 
       
-        DiscoverableTransformer 
+        Capabilities 
       
   
   
@@ -491,7 +439,7 @@ Summary:
         
             <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
         
-        <td colspan="2" class="jd-inheritance-class-cell">org.mule.transformer.AbstractTransformer</td>
+        <td colspan="2" class="jd-inheritance-class-cell"><a href="../../../../../../java/org/mule/module/mongo/MongoObjectStore.html">org.mule.module.mongo.MongoObjectStore</a></td>
     </tr>
     
 
@@ -501,7 +449,7 @@ Summary:
         
             <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
         
-        <td colspan="1" class="jd-inheritance-class-cell">org.mule.module.mongo.config.JsonToDbobjectTransformer</td>
+        <td colspan="1" class="jd-inheritance-class-cell">org.mule.module.mongo.config.MongoObjectStoreCapabilitiesAdapter</td>
     </tr>
     
 
@@ -510,11 +458,47 @@ Summary:
 
 
 
+<table class="jd-sumtable jd-sumtable-subclasses"><tr><td colspan="12" style="border:none;margin:0;padding:0;">
+
+  <a href="#" onclick="return toggleInherited(this, null)" id="subclasses-direct" class="jd-expando-trigger closed"
+          ><img id="subclasses-direct-trigger"
+          src="../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>Known Direct Subclasses
+
+  <div id="subclasses-direct">
+      <div id="subclasses-direct-list"
+              class="jd-inheritedlinks"
+              
+              >
+          
+            
+              <a href="../../../../../../java/org/mule/module/mongo/config/MongoObjectStoreLifecycleAdapter.html">MongoObjectStoreLifecycleAdapter</a>
+            
+          
+      </div>
+      <div id="subclasses-direct-summary"
+              style="display: none;"
+              >
+  <table class="jd-sumtable-expando">
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/module/mongo/config/MongoObjectStoreLifecycleAdapter.html">MongoObjectStoreLifecycleAdapter</a></td>
+              <td class="jd-descrcol" width="100%">A <code>MongoObjectStoreLifecycleAdapter</code> is a wrapper around <code><a href="../../../../../../java/org/mule/module/mongo/MongoObjectStore.html">MongoObjectStore</a></code> that adds lifecycle methods to the pojo.&nbsp;</td>
+          </tr>
+  </table>
+      </div>
+  </div>
+</td></tr></table>
+
 
 
 
 <div class="jd-descr">
 
+
+<h2>Class Overview</h2>
+<p>A <code>MongoObjectStoreCapabilitiesAdapter</code> is a wrapper around <code><a href="../../../../../../java/org/mule/module/mongo/MongoObjectStore.html">MongoObjectStore</a></code> that implements org.mule.api.Capabilities interface.
+ 
+</p>
 
 
 
@@ -563,149 +547,61 @@ Summary:
   <div style="clear:left;">Inherited Constants</div></th></tr>
 
 
-
-
-
-
 <tr class="api apilevel-" >
 <td colspan="12">
 
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-constants-org.mule.api.AnnotatedObject" class="jd-expando-trigger closed"
-          ><img id="inherited-constants-org.mule.api.AnnotatedObject-trigger"
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-constants-org.mule.module.mongo.MongoObjectStore" class="jd-expando-trigger closed"
+          ><img id="inherited-constants-org.mule.module.mongo.MongoObjectStore-trigger"
           src="../../../../../../assets/images/triangle-closed.png"
-          class="jd-expando-trigger-img" /></a>From interface
-org.mule.api.AnnotatedObject
-<div id="inherited-constants-org.mule.api.AnnotatedObject">
-  <div id="inherited-constants-org.mule.api.AnnotatedObject-list"
+          class="jd-expando-trigger-img" /></a>From class
+<a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html">org.mule.module.mongo.MongoObjectStore</a>
+<div id="inherited-constants-org.mule.module.mongo.MongoObjectStore">
+  <div id="inherited-constants-org.mule.module.mongo.MongoObjectStore-list"
         class="jd-inheritedlinks">
   </div>
-  <div id="inherited-constants-org.mule.api.AnnotatedObject-summary" style="display: none;">
+  <div id="inherited-constants-org.mule.module.mongo.MongoObjectStore-summary" style="display: none;">
     <table class="jd-sumtable-expando">
     
 
     
     <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">String</td>
-        <td class="jd-linkcol">PROPERTY_NAME</td>
-        <td class="jd-descrcol" width="100%"></td>
-    </tr>
-    
-    
-</table>
-  </div>
-</div>
-</td></tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<tr class="api apilevel-" >
-<td colspan="12">
-
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-constants-org.mule.api.lifecycle.Disposable" class="jd-expando-trigger closed"
-          ><img id="inherited-constants-org.mule.api.lifecycle.Disposable-trigger"
-          src="../../../../../../assets/images/triangle-closed.png"
-          class="jd-expando-trigger-img" /></a>From interface
-org.mule.api.lifecycle.Disposable
-<div id="inherited-constants-org.mule.api.lifecycle.Disposable">
-  <div id="inherited-constants-org.mule.api.lifecycle.Disposable-list"
-        class="jd-inheritedlinks">
-  </div>
-  <div id="inherited-constants-org.mule.api.lifecycle.Disposable-summary" style="display: none;">
-    <table class="jd-sumtable-expando">
-    
-
-    
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">String</td>
-        <td class="jd-linkcol">PHASE_NAME</td>
-        <td class="jd-descrcol" width="100%"></td>
-    </tr>
-    
-    
-</table>
-  </div>
-</div>
-</td></tr>
-
-
-
-<tr class="api apilevel-" >
-<td colspan="12">
-
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-constants-org.mule.api.lifecycle.Initialisable" class="jd-expando-trigger closed"
-          ><img id="inherited-constants-org.mule.api.lifecycle.Initialisable-trigger"
-          src="../../../../../../assets/images/triangle-closed.png"
-          class="jd-expando-trigger-img" /></a>From interface
-org.mule.api.lifecycle.Initialisable
-<div id="inherited-constants-org.mule.api.lifecycle.Initialisable">
-  <div id="inherited-constants-org.mule.api.lifecycle.Initialisable-list"
-        class="jd-inheritedlinks">
-  </div>
-  <div id="inherited-constants-org.mule.api.lifecycle.Initialisable-summary" style="display: none;">
-    <table class="jd-sumtable-expando">
-    
-
-    
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">String</td>
-        <td class="jd-linkcol">PHASE_NAME</td>
-        <td class="jd-descrcol" width="100%"></td>
-    </tr>
-    
-    
-</table>
-  </div>
-</div>
-</td></tr>
-
-
-
-
-
-<tr class="api apilevel-" >
-<td colspan="12">
-
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-constants-org.mule.api.transformer.DiscoverableTransformer" class="jd-expando-trigger closed"
-          ><img id="inherited-constants-org.mule.api.transformer.DiscoverableTransformer-trigger"
-          src="../../../../../../assets/images/triangle-closed.png"
-          class="jd-expando-trigger-img" /></a>From interface
-org.mule.api.transformer.DiscoverableTransformer
-<div id="inherited-constants-org.mule.api.transformer.DiscoverableTransformer">
-  <div id="inherited-constants-org.mule.api.transformer.DiscoverableTransformer-list"
-        class="jd-inheritedlinks">
-  </div>
-  <div id="inherited-constants-org.mule.api.transformer.DiscoverableTransformer-summary" style="display: none;">
-    <table class="jd-sumtable-expando">
-    
-
-    
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">int</td>
-        <td class="jd-linkcol">DEFAULT_PRIORITY_WEIGHTING</td>
+        <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#ID_FIELD">ID_FIELD</a></td>
         <td class="jd-descrcol" width="100%"></td>
     </tr>
     
     
     <tr class=" api apilevel-" >
-        <td class="jd-typecol">int</td>
-        <td class="jd-linkcol">MAX_PRIORITY_WEIGHTING</td>
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#KEY_FIELD">KEY_FIELD</a></td>
         <td class="jd-descrcol" width="100%"></td>
     </tr>
     
     
     <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">int</td>
-        <td class="jd-linkcol">MIN_PRIORITY_WEIGHTING</td>
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#OBJECTSTORE_COLLECTION_PREFIX">OBJECTSTORE_COLLECTION_PREFIX</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#OBJECTSTORE_DEFAULT_PARTITION_NAME">OBJECTSTORE_DEFAULT_PARTITION_NAME</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#TIMESTAMP_FIELD">TIMESTAMP_FIELD</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#VALUE_FIELD">VALUE_FIELD</a></td>
         <td class="jd-descrcol" width="100%"></td>
     </tr>
     
@@ -720,29 +616,19 @@ org.mule.api.transformer.DiscoverableTransformer
 
 
 
+
+
+
+
+
+
+
+
+
+
 </table>
 
 
-
-
-<!-- =========== FIELD SUMMARY =========== -->
-<table id="lfields" class="jd-sumtable"><tr><th colspan="12">Fields</th></tr>
-
-
-    
-      <tr class="alt-color api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          private
-          
-          
-          int</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/JsonToDbobjectTransformer.html#weighting">weighting</a></td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-
-</table>
 
 
 
@@ -757,27 +643,27 @@ org.mule.api.transformer.DiscoverableTransformer
 <tr class="api apilevel-" >
 <td colspan="12">
 
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-fields-org.mule.transformer.AbstractTransformer" class="jd-expando-trigger closed"
-          ><img id="inherited-fields-org.mule.transformer.AbstractTransformer-trigger"
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-fields-org.mule.module.mongo.MongoObjectStore" class="jd-expando-trigger closed"
+          ><img id="inherited-fields-org.mule.module.mongo.MongoObjectStore-trigger"
           src="../../../../../../assets/images/triangle-closed.png"
           class="jd-expando-trigger-img" /></a>From class
-org.mule.transformer.AbstractTransformer
-<div id="inherited-fields-org.mule.transformer.AbstractTransformer">
-  <div id="inherited-fields-org.mule.transformer.AbstractTransformer-list"
+<a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html">org.mule.module.mongo.MongoObjectStore</a>
+<div id="inherited-fields-org.mule.module.mongo.MongoObjectStore">
+  <div id="inherited-fields-org.mule.module.mongo.MongoObjectStore-list"
         class="jd-inheritedlinks">
   </div>
-  <div id="inherited-fields-org.mule.transformer.AbstractTransformer-summary" style="display: none;">
+  <div id="inherited-fields-org.mule.module.mongo.MongoObjectStore-summary" style="display: none;">
     <table class="jd-sumtable-expando">
     
 
     
       <tr class="alt-color api apilevel-" >
           <td class="jd-typecol"><nobr>
-          public
+          private
           static
           final
-          DataType&lt;MuleMessage&gt;</nobr></td>
-          <td class="jd-linkcol">MULE_MESSAGE_DATA_TYPE</td>
+          List&lt;String&gt;</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#NO_FIELD_LIST">NO_FIELD_LIST</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -787,9 +673,10 @@ org.mule.transformer.AbstractTransformer
           private
           
           
-          boolean</nobr></td>
-          <td class="jd-linkcol">allowNullReturn</td>
-          <td class="jd-descrcol" width="100%"></td>
+          String</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#database">database</a></td>
+          <td class="jd-descrcol" width="100%">The database name of the Mongo server
+</td>
       </tr>
       
     
@@ -797,32 +684,11 @@ org.mule.transformer.AbstractTransformer
           <td class="jd-typecol"><nobr>
           private
           
-          final
-          Map&lt;QName,&nbsp;Object&gt;</nobr></td>
-          <td class="jd-linkcol">annotations</td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-      <tr class=" api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          protected
-          
           
           String</nobr></td>
-          <td class="jd-linkcol">encoding</td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-      <tr class="alt-color api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          protected
-          
-          
-          ImmutableEndpoint</nobr></td>
-          <td class="jd-linkcol">endpoint</td>
-          <td class="jd-descrcol" width="100%"></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#host">host</a></td>
+          <td class="jd-descrcol" width="100%">The host of the Mongo server
+</td>
       </tr>
       
     
@@ -831,75 +697,57 @@ org.mule.transformer.AbstractTransformer
           private
           
           
-          boolean</nobr></td>
-          <td class="jd-linkcol">ignoreBadInput</td>
+          <a href="../../../../../../java/org/mule/module/mongo/api/MongoClient.html">MongoClient</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#mongoClient">mongoClient</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
     
       <tr class="alt-color api apilevel-" >
           <td class="jd-typecol"><nobr>
-          protected
-          
-          final
-          Log</nobr></td>
-          <td class="jd-linkcol">logger</td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-      <tr class=" api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          protected
+          private
           
           
           String</nobr></td>
-          <td class="jd-linkcol">mimeType</td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-      <tr class="alt-color api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          protected
-          
-          
-          MuleContext</nobr></td>
-          <td class="jd-linkcol">muleContext</td>
-          <td class="jd-descrcol" width="100%"></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#password">password</a></td>
+          <td class="jd-descrcol" width="100%">The password used to connect to the Mongo server
+</td>
       </tr>
       
     
       <tr class=" api apilevel-" >
           <td class="jd-typecol"><nobr>
-          protected
+          private
+          
+          
+          int</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#port">port</a></td>
+          <td class="jd-descrcol" width="100%">The port of the Mongo server
+</td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
           
           
           String</nobr></td>
-          <td class="jd-linkcol">name</td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-      <tr class="alt-color api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          protected
-          
-          
-          DataType&lt;?&gt;</nobr></td>
-          <td class="jd-linkcol">returnType</td>
-          <td class="jd-descrcol" width="100%"></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#username">username</a></td>
+          <td class="jd-descrcol" width="100%">The username used to connect to the Mongo server
+</td>
       </tr>
       
     
       <tr class=" api apilevel-" >
           <td class="jd-typecol"><nobr>
-          protected
+          private
           
-          final
-          List&lt;DataType&lt;?&gt;&gt;</nobr></td>
-          <td class="jd-linkcol">sourceTypes</td>
-          <td class="jd-descrcol" width="100%"></td>
+          
+          <a href="../../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#writeConcern">writeConcern</a></td>
+          <td class="jd-descrcol" width="100%">The default concern to use to when writing to Mongo
+</td>
       </tr>
       
     
@@ -907,18 +755,6 @@ org.mule.transformer.AbstractTransformer
   </div>
 </div>
 </td></tr>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -956,7 +792,7 @@ org.mule.transformer.AbstractTransformer
             </nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/JsonToDbobjectTransformer.html#JsonToDbobjectTransformer()">JsonToDbobjectTransformer</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/MongoObjectStoreCapabilitiesAdapter.html#MongoObjectStoreCapabilitiesAdapter()">MongoObjectStoreCapabilitiesAdapter</a></span>()</nobr>
         
   </td></tr>
 
@@ -982,27 +818,15 @@ org.mule.transformer.AbstractTransformer
             
             
             
-            int</nobr>
+            boolean</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/JsonToDbobjectTransformer.html#getPriorityWeighting()">getPriorityWeighting</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/MongoObjectStoreCapabilitiesAdapter.html#isCapableOf(org.mule.api.Capability)">isCapableOf</a></span>(Capability capability)</nobr>
         
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/JsonToDbobjectTransformer.html#setPriorityWeighting(int)">setPriorityWeighting</a></span>(int weighting)</nobr>
-        
+        <div class="jd-descrdiv">Returns true if this module implements such capability
+ 
+</div>
+  
   </td></tr>
 
 
@@ -1010,31 +834,6 @@ org.mule.transformer.AbstractTransformer
 </table>
 
 
-
-
-<!-- ========== METHOD SUMMARY =========== -->
-<table id="promethods" class="jd-sumtable"><tr><th colspan="12">Protected Methods</th></tr>
-
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            Object</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/JsonToDbobjectTransformer.html#doTransform(java.lang.Object, java.lang.String)">doTransform</a></span>(Object src, String encoding)</nobr>
-        
-  </td></tr>
-
-
-
-</table>
 
 
 
@@ -1048,19 +847,19 @@ org.mule.transformer.AbstractTransformer
 
 <tr class="api apilevel-" >
 <td colspan="12">
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.transformer.AbstractTransformer" class="jd-expando-trigger closed"
-          ><img id="inherited-methods-org.mule.transformer.AbstractTransformer-trigger"
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.module.mongo.MongoObjectStore" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-org.mule.module.mongo.MongoObjectStore-trigger"
           src="../../../../../../assets/images/triangle-closed.png"
           class="jd-expando-trigger-img" /></a>
 From class
 
-  org.mule.transformer.AbstractTransformer
+  <a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html">org.mule.module.mongo.MongoObjectStore</a>
 
-<div id="inherited-methods-org.mule.transformer.AbstractTransformer">
-  <div id="inherited-methods-org.mule.transformer.AbstractTransformer-list"
+<div id="inherited-methods-org.mule.module.mongo.MongoObjectStore">
+  <div id="inherited-methods-org.mule.module.mongo.MongoObjectStore-list"
         class="jd-inheritedlinks">
   </div>
-  <div id="inherited-methods-org.mule.transformer.AbstractTransformer-summary" style="display: none;">
+  <div id="inherited-methods-org.mule.module.mongo.MongoObjectStore-summary" style="display: none;">
     <table class="jd-sumtable-expando">
     
 
@@ -1073,10 +872,42 @@ From class
             
             
             
-            Object</nobr>
+            List&lt;Serializable&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">checkReturnClass</span>(Object arg0)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#allKeys()">allKeys</a></span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            List&lt;Serializable&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#allKeys(java.lang.String)">allKeys</a></span>(String partitionName)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            List&lt;String&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#allPartitions()">allPartitions</a></span>()</nobr>
         
   </td></tr>
 
@@ -1092,7 +923,7 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">dispose</span>()</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#close()">close</a></span>()</nobr>
         
   </td></tr>
 
@@ -1100,15 +931,111 @@ From class
 	 
     <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
-            abstract
             
             
             
             
-            Object</nobr>
+            
+            void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">doTransform</span>(Object arg0, String arg1)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#close(java.lang.String)">close</a></span>(String partitionName)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            boolean</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#contains(java.io.Serializable, java.lang.String)">contains</a></span>(Serializable key, String partitionName)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            boolean</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#contains(java.io.Serializable)">contains</a></span>(Serializable key)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#disposePartition(java.lang.String)">disposePartition</a></span>(String partitionName)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#expire(int, int)">expire</a></span>(int entryTTL, int maxEntries)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#expire(int, int, java.lang.String)">expire</a></span>(int entryTTL, int ignored_maxEntries, String partitionName)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#getDatabase()">getDatabase</a></span>()</nobr>
         
   </td></tr>
 
@@ -1124,39 +1051,7 @@ From class
             String</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">generateTransformerName</span>()</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            final
-            
-            
-            Object</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">getAnnotation</span>(QName arg0)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            final
-            
-            
-            Map&lt;QName,&nbsp;Object&gt;</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">getAnnotations</span>()</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#getHost()">getHost</a></span>()</nobr>
         
   </td></tr>
 
@@ -1172,7 +1067,7 @@ From class
             String</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">getEncoding</span>()</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#getPassword()">getPassword</a></span>()</nobr>
         
   </td></tr>
 
@@ -1185,42 +1080,10 @@ From class
             
             
             
-            String</nobr>
+            int</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">getEncoding</span>(Object arg0)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            ImmutableEndpoint</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">getEndpoint</span>()</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            String</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">getMimeType</span>()</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#getPort()">getPort</a></span>()</nobr>
         
   </td></tr>
 
@@ -1236,7 +1099,7 @@ From class
             String</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">getName</span>()</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#getUsername()">getUsername</a></span>()</nobr>
         
   </td></tr>
 
@@ -1249,64 +1112,16 @@ From class
             
             
             
-            Class&lt;?&gt;</nobr>
+            <a href="../../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a></nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">getReturnClass</span>()</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#getWriteConcern()">getWriteConcern</a></span>()</nobr>
         
   </td></tr>
 
 
 	 
     <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            DataType&lt;?&gt;</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">getReturnDataType</span>()</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            List&lt;DataType&lt;?&gt;&gt;</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">getSourceDataTypes</span>()</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            List&lt;Class&lt;?&gt;&gt;</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">getSourceTypes</span>()</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1316,23 +1131,7 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">initialise</span>()</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            boolean</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">isAcceptNull</span>()</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#initialize()">initialize</a></span>()</nobr>
         
   </td></tr>
 
@@ -1348,103 +1147,7 @@ From class
             boolean</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">isAllowNullReturn</span>()</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            boolean</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">isConsumed</span>(Class&lt;?&gt; arg0)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            boolean</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">isIgnoreBadInput</span>()</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            boolean</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">isSourceDataTypeSupported</span>(DataType&lt;?&gt; arg0, boolean arg1)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            boolean</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">isSourceDataTypeSupported</span>(DataType&lt;?&gt; arg0)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            boolean</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">isSourceTypeSupported</span>(Class&lt;?&gt; arg0)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            boolean</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">isSourceTypeSupported</span>(Class&lt;MuleMessage&gt; arg0, boolean arg1)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#isPersistent()">isPersistent</a></span>()</nobr>
         
   </td></tr>
 
@@ -1460,7 +1163,7 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">onNotification</span>(ServerNotification arg0)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#open(java.lang.String)">open</a></span>(String partitionName)</nobr>
         
   </td></tr>
 
@@ -1476,7 +1179,7 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">onNotification</span>(MuleContextNotification arg0)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#open()">open</a></span>()</nobr>
         
   </td></tr>
 
@@ -1489,10 +1192,10 @@ From class
             
             
             
-            MuleEvent</nobr>
+            Serializable</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">process</span>(MuleEvent arg0)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#remove(java.io.Serializable, java.lang.String)">remove</a></span>(Serializable key, String partitionName)</nobr>
         
   </td></tr>
 
@@ -1505,10 +1208,10 @@ From class
             
             
             
-            void</nobr>
+            Serializable</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">registerSourceType</span>(DataType&lt;?&gt; arg0)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#remove(java.io.Serializable)">remove</a></span>(Serializable key)</nobr>
         
   </td></tr>
 
@@ -1521,10 +1224,10 @@ From class
             
             
             
-            void</nobr>
+            Serializable</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">registerSourceType</span>(Class&lt;?&gt; arg0)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#retrieve(java.io.Serializable)">retrieve</a></span>(Serializable key)</nobr>
         
   </td></tr>
 
@@ -1537,42 +1240,10 @@ From class
             
             
             
-            void</nobr>
+            Serializable</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">setAllowNullReturn</span>(boolean arg0)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            synchronized
-            final
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">setAnnotations</span>(Map&lt;QName,&nbsp;Object&gt; arg0)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">setEncoding</span>(String arg0)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#retrieve(java.io.Serializable, java.lang.String)">retrieve</a></span>(Serializable key, String partitionName)</nobr>
         
   </td></tr>
 
@@ -1588,7 +1259,7 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">setEndpoint</span>(ImmutableEndpoint arg0)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#setDatabase(java.lang.String)">setDatabase</a></span>(String database)</nobr>
         
   </td></tr>
 
@@ -1604,7 +1275,7 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">setIgnoreBadInput</span>(boolean arg0)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#setHost(java.lang.String)">setHost</a></span>(String host)</nobr>
         
   </td></tr>
 
@@ -1620,7 +1291,7 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">setMimeType</span>(String arg0)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#setPassword(java.lang.String)">setPassword</a></span>(String password)</nobr>
         
   </td></tr>
 
@@ -1636,7 +1307,7 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">setMuleContext</span>(MuleContext arg0)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#setPort(int)">setPort</a></span>(int port)</nobr>
         
   </td></tr>
 
@@ -1652,7 +1323,7 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">setName</span>(String arg0)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#setUsername(java.lang.String)">setUsername</a></span>(String username)</nobr>
         
   </td></tr>
 
@@ -1668,7 +1339,7 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">setReturnClass</span>(Class&lt;?&gt; arg0)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#setWriteConcern(org.mule.module.mongo.api.WriteConcern)">setWriteConcern</a></span>(<a href="../../../../../../java/org/mule/module/mongo/api/WriteConcern.html">WriteConcern</a> writeConcern)</nobr>
         
   </td></tr>
 
@@ -1684,71 +1355,7 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">setReturnDataType</span>(DataType&lt;?&gt; arg0)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            String</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">toString</span>()</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            final
-            
-            
-            Object</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">transform</span>(Object arg0)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            Object</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">transform</span>(Object arg0, String arg1)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">unregisterSourceType</span>(DataType&lt;?&gt; arg0)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#store(java.io.Serializable, java.io.Serializable)">store</a></span>(Serializable key, Serializable value)</nobr>
         
   </td></tr>
 
@@ -1764,7 +1371,7 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">unregisterSourceType</span>(Class&lt;?&gt; arg0)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/MongoObjectStore.html#store(java.io.Serializable, java.io.Serializable, java.lang.String)">store</a></span>(Serializable key, Serializable value, String partitionName)</nobr>
         
   </td></tr>
 
@@ -1980,19 +1587,19 @@ From class
 
 <tr class="api apilevel-" >
 <td colspan="12">
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.api.AnnotatedObject" class="jd-expando-trigger closed"
-          ><img id="inherited-methods-org.mule.api.AnnotatedObject-trigger"
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.api.Capabilities" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-org.mule.api.Capabilities-trigger"
           src="../../../../../../assets/images/triangle-closed.png"
           class="jd-expando-trigger-img" /></a>
 From interface
 
-  org.mule.api.AnnotatedObject
+  org.mule.api.Capabilities
 
-<div id="inherited-methods-org.mule.api.AnnotatedObject">
-  <div id="inherited-methods-org.mule.api.AnnotatedObject-list"
+<div id="inherited-methods-org.mule.api.Capabilities">
+  <div id="inherited-methods-org.mule.api.Capabilities-list"
         class="jd-inheritedlinks">
   </div>
-  <div id="inherited-methods-org.mule.api.AnnotatedObject-summary" style="display: none;">
+  <div id="inherited-methods-org.mule.api.Capabilities-summary" style="display: none;">
     <table class="jd-sumtable-expando">
     
 
@@ -2005,42 +1612,10 @@ From interface
             
             
             
-            Object</nobr>
+            boolean</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">getAnnotation</span>(QName arg0)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            abstract
-            
-            
-            
-            
-            Map&lt;QName,&nbsp;Object&gt;</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">getAnnotations</span>()</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            abstract
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">setAnnotations</span>(Map&lt;QName,&nbsp;Object&gt; arg0)</nobr>
+        <span class="sympad">isCapableOf</span>(Capability arg0)</nobr>
         
   </td></tr>
 
@@ -2054,19 +1629,19 @@ From interface
 
 <tr class="api apilevel-" >
 <td colspan="12">
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.api.NameableObject" class="jd-expando-trigger closed"
-          ><img id="inherited-methods-org.mule.api.NameableObject-trigger"
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.api.store.ExpirableObjectStore" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-org.mule.api.store.ExpirableObjectStore-trigger"
           src="../../../../../../assets/images/triangle-closed.png"
           class="jd-expando-trigger-img" /></a>
 From interface
 
-  org.mule.api.NameableObject
+  org.mule.api.store.ExpirableObjectStore
 
-<div id="inherited-methods-org.mule.api.NameableObject">
-  <div id="inherited-methods-org.mule.api.NameableObject-list"
+<div id="inherited-methods-org.mule.api.store.ExpirableObjectStore">
+  <div id="inherited-methods-org.mule.api.store.ExpirableObjectStore-list"
         class="jd-inheritedlinks">
   </div>
-  <div id="inherited-methods-org.mule.api.NameableObject-summary" style="display: none;">
+  <div id="inherited-methods-org.mule.api.store.ExpirableObjectStore-summary" style="display: none;">
     <table class="jd-sumtable-expando">
     
 
@@ -2082,7 +1657,7 @@ From interface
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">setName</span>(String arg0)</nobr>
+        <span class="sympad">expire</span>(int arg0, int arg1)</nobr>
         
   </td></tr>
 
@@ -2096,19 +1671,19 @@ From interface
 
 <tr class="api apilevel-" >
 <td colspan="12">
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.api.NamedObject" class="jd-expando-trigger closed"
-          ><img id="inherited-methods-org.mule.api.NamedObject-trigger"
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.api.store.ListableObjectStore" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-org.mule.api.store.ListableObjectStore-trigger"
           src="../../../../../../assets/images/triangle-closed.png"
           class="jd-expando-trigger-img" /></a>
 From interface
 
-  org.mule.api.NamedObject
+  org.mule.api.store.ListableObjectStore
 
-<div id="inherited-methods-org.mule.api.NamedObject">
-  <div id="inherited-methods-org.mule.api.NamedObject-list"
+<div id="inherited-methods-org.mule.api.store.ListableObjectStore">
+  <div id="inherited-methods-org.mule.api.store.ListableObjectStore-list"
         class="jd-inheritedlinks">
   </div>
-  <div id="inherited-methods-org.mule.api.NamedObject-summary" style="display: none;">
+  <div id="inherited-methods-org.mule.api.store.ListableObjectStore-summary" style="display: none;">
     <table class="jd-sumtable-expando">
     
 
@@ -2121,264 +1696,10 @@ From interface
             
             
             
-            String</nobr>
+            List&lt;Serializable&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">getName</span>()</nobr>
-        
-  </td></tr>
-
-
-</table>
-  </div>
-</div>
-</td></tr>
-
-
-
-<tr class="api apilevel-" >
-<td colspan="12">
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.api.context.MuleContextAware" class="jd-expando-trigger closed"
-          ><img id="inherited-methods-org.mule.api.context.MuleContextAware-trigger"
-          src="../../../../../../assets/images/triangle-closed.png"
-          class="jd-expando-trigger-img" /></a>
-From interface
-
-  org.mule.api.context.MuleContextAware
-
-<div id="inherited-methods-org.mule.api.context.MuleContextAware">
-  <div id="inherited-methods-org.mule.api.context.MuleContextAware-list"
-        class="jd-inheritedlinks">
-  </div>
-  <div id="inherited-methods-org.mule.api.context.MuleContextAware-summary" style="display: none;">
-    <table class="jd-sumtable-expando">
-    
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            abstract
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">setMuleContext</span>(MuleContext arg0)</nobr>
-        
-  </td></tr>
-
-
-</table>
-  </div>
-</div>
-</td></tr>
-
-
-
-
-
-<tr class="api apilevel-" >
-<td colspan="12">
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.api.context.notification.ServerNotificationListener" class="jd-expando-trigger closed"
-          ><img id="inherited-methods-org.mule.api.context.notification.ServerNotificationListener-trigger"
-          src="../../../../../../assets/images/triangle-closed.png"
-          class="jd-expando-trigger-img" /></a>
-From interface
-
-  org.mule.api.context.notification.ServerNotificationListener
-
-<div id="inherited-methods-org.mule.api.context.notification.ServerNotificationListener">
-  <div id="inherited-methods-org.mule.api.context.notification.ServerNotificationListener-list"
-        class="jd-inheritedlinks">
-  </div>
-  <div id="inherited-methods-org.mule.api.context.notification.ServerNotificationListener-summary" style="display: none;">
-    <table class="jd-sumtable-expando">
-    
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            abstract
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">onNotification</span>(T arg0)</nobr>
-        
-  </td></tr>
-
-
-</table>
-  </div>
-</div>
-</td></tr>
-
-
-
-<tr class="api apilevel-" >
-<td colspan="12">
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.api.lifecycle.Disposable" class="jd-expando-trigger closed"
-          ><img id="inherited-methods-org.mule.api.lifecycle.Disposable-trigger"
-          src="../../../../../../assets/images/triangle-closed.png"
-          class="jd-expando-trigger-img" /></a>
-From interface
-
-  org.mule.api.lifecycle.Disposable
-
-<div id="inherited-methods-org.mule.api.lifecycle.Disposable">
-  <div id="inherited-methods-org.mule.api.lifecycle.Disposable-list"
-        class="jd-inheritedlinks">
-  </div>
-  <div id="inherited-methods-org.mule.api.lifecycle.Disposable-summary" style="display: none;">
-    <table class="jd-sumtable-expando">
-    
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            abstract
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">dispose</span>()</nobr>
-        
-  </td></tr>
-
-
-</table>
-  </div>
-</div>
-</td></tr>
-
-
-
-<tr class="api apilevel-" >
-<td colspan="12">
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.api.lifecycle.Initialisable" class="jd-expando-trigger closed"
-          ><img id="inherited-methods-org.mule.api.lifecycle.Initialisable-trigger"
-          src="../../../../../../assets/images/triangle-closed.png"
-          class="jd-expando-trigger-img" /></a>
-From interface
-
-  org.mule.api.lifecycle.Initialisable
-
-<div id="inherited-methods-org.mule.api.lifecycle.Initialisable">
-  <div id="inherited-methods-org.mule.api.lifecycle.Initialisable-list"
-        class="jd-inheritedlinks">
-  </div>
-  <div id="inherited-methods-org.mule.api.lifecycle.Initialisable-summary" style="display: none;">
-    <table class="jd-sumtable-expando">
-    
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            abstract
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">initialise</span>()</nobr>
-        
-  </td></tr>
-
-
-</table>
-  </div>
-</div>
-</td></tr>
-
-
-
-<tr class="api apilevel-" >
-<td colspan="12">
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.api.processor.MessageProcessor" class="jd-expando-trigger closed"
-          ><img id="inherited-methods-org.mule.api.processor.MessageProcessor-trigger"
-          src="../../../../../../assets/images/triangle-closed.png"
-          class="jd-expando-trigger-img" /></a>
-From interface
-
-  org.mule.api.processor.MessageProcessor
-
-<div id="inherited-methods-org.mule.api.processor.MessageProcessor">
-  <div id="inherited-methods-org.mule.api.processor.MessageProcessor-list"
-        class="jd-inheritedlinks">
-  </div>
-  <div id="inherited-methods-org.mule.api.processor.MessageProcessor-summary" style="display: none;">
-    <table class="jd-sumtable-expando">
-    
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            abstract
-            
-            
-            
-            
-            MuleEvent</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">process</span>(MuleEvent arg0)</nobr>
-        
-  </td></tr>
-
-
-</table>
-  </div>
-</div>
-</td></tr>
-
-
-
-<tr class="api apilevel-" >
-<td colspan="12">
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.api.transformer.DiscoverableTransformer" class="jd-expando-trigger closed"
-          ><img id="inherited-methods-org.mule.api.transformer.DiscoverableTransformer-trigger"
-          src="../../../../../../assets/images/triangle-closed.png"
-          class="jd-expando-trigger-img" /></a>
-From interface
-
-  org.mule.api.transformer.DiscoverableTransformer
-
-<div id="inherited-methods-org.mule.api.transformer.DiscoverableTransformer">
-  <div id="inherited-methods-org.mule.api.transformer.DiscoverableTransformer-list"
-        class="jd-inheritedlinks">
-  </div>
-  <div id="inherited-methods-org.mule.api.transformer.DiscoverableTransformer-summary" style="display: none;">
-    <table class="jd-sumtable-expando">
-    
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            abstract
-            
-            
-            
-            
-            int</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">getPriorityWeighting</span>()</nobr>
+        <span class="sympad">allKeys</span>()</nobr>
         
   </td></tr>
 
@@ -2394,7 +1715,23 @@ From interface
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">setPriorityWeighting</span>(int arg0)</nobr>
+        <span class="sympad">close</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">open</span>()</nobr>
         
   </td></tr>
 
@@ -2408,19 +1745,19 @@ From interface
 
 <tr class="api apilevel-" >
 <td colspan="12">
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.api.transformer.Transformer" class="jd-expando-trigger closed"
-          ><img id="inherited-methods-org.mule.api.transformer.Transformer-trigger"
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.api.store.ObjectStore" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-org.mule.api.store.ObjectStore-trigger"
           src="../../../../../../assets/images/triangle-closed.png"
           class="jd-expando-trigger-img" /></a>
 From interface
 
-  org.mule.api.transformer.Transformer
+  org.mule.api.store.ObjectStore
 
-<div id="inherited-methods-org.mule.api.transformer.Transformer">
-  <div id="inherited-methods-org.mule.api.transformer.Transformer-list"
+<div id="inherited-methods-org.mule.api.store.ObjectStore">
+  <div id="inherited-methods-org.mule.api.store.ObjectStore-list"
         class="jd-inheritedlinks">
   </div>
-  <div id="inherited-methods-org.mule.api.transformer.Transformer-summary" style="display: none;">
+  <div id="inherited-methods-org.mule.api.store.ObjectStore-summary" style="display: none;">
     <table class="jd-sumtable-expando">
     
 
@@ -2433,106 +1770,10 @@ From interface
             
             
             
-            String</nobr>
+            boolean</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">getEncoding</span>()</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            abstract
-            
-            
-            
-            
-            ImmutableEndpoint</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">getEndpoint</span>()</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            abstract
-            
-            
-            
-            
-            String</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">getMimeType</span>()</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            abstract
-            
-            
-            
-            
-            Class&lt;?&gt;</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">getReturnClass</span>()</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            abstract
-            
-            
-            
-            
-            DataType&lt;?&gt;</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">getReturnDataType</span>()</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            abstract
-            
-            
-            
-            
-            List&lt;DataType&lt;?&gt;&gt;</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">getSourceDataTypes</span>()</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            abstract
-            
-            
-            
-            
-            List&lt;Class&lt;?&gt;&gt;</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">getSourceTypes</span>()</nobr>
+        <span class="sympad">contains</span>(Serializable arg0)</nobr>
         
   </td></tr>
 
@@ -2548,7 +1789,7 @@ From interface
             boolean</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">isAcceptNull</span>()</nobr>
+        <span class="sympad">isPersistent</span>()</nobr>
         
   </td></tr>
 
@@ -2561,10 +1802,10 @@ From interface
             
             
             
-            boolean</nobr>
+            T</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">isIgnoreBadInput</span>()</nobr>
+        <span class="sympad">remove</span>(Serializable arg0)</nobr>
         
   </td></tr>
 
@@ -2577,42 +1818,10 @@ From interface
             
             
             
-            boolean</nobr>
+            T</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">isSourceDataTypeSupported</span>(DataType&lt;?&gt; arg0)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            abstract
-            
-            
-            
-            
-            boolean</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">isSourceTypeSupported</span>(Class&lt;?&gt; arg0)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            abstract
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">setReturnClass</span>(Class&lt;?&gt; arg0)</nobr>
+        <span class="sympad">retrieve</span>(Serializable arg0)</nobr>
         
   </td></tr>
 
@@ -2628,39 +1837,7 @@ From interface
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">setReturnDataType</span>(DataType&lt;?&gt; arg0)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            abstract
-            
-            
-            
-            
-            Object</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">transform</span>(Object arg0)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            abstract
-            
-            
-            
-            
-            Object</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">transform</span>(Object arg0, String arg1)</nobr>
+        <span class="sympad">store</span>(Serializable arg0, T arg1)</nobr>
         
   </td></tr>
 
@@ -2674,19 +1851,19 @@ From interface
 
 <tr class="api apilevel-" >
 <td colspan="12">
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.endpoint.EndpointAware" class="jd-expando-trigger closed"
-          ><img id="inherited-methods-org.mule.endpoint.EndpointAware-trigger"
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.api.store.PartitionableExpirableObjectStore" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-org.mule.api.store.PartitionableExpirableObjectStore-trigger"
           src="../../../../../../assets/images/triangle-closed.png"
           class="jd-expando-trigger-img" /></a>
 From interface
 
-  org.mule.endpoint.EndpointAware
+  org.mule.api.store.PartitionableExpirableObjectStore
 
-<div id="inherited-methods-org.mule.endpoint.EndpointAware">
-  <div id="inherited-methods-org.mule.endpoint.EndpointAware-list"
+<div id="inherited-methods-org.mule.api.store.PartitionableExpirableObjectStore">
+  <div id="inherited-methods-org.mule.api.store.PartitionableExpirableObjectStore-list"
         class="jd-inheritedlinks">
   </div>
-  <div id="inherited-methods-org.mule.endpoint.EndpointAware-summary" style="display: none;">
+  <div id="inherited-methods-org.mule.api.store.PartitionableExpirableObjectStore-summary" style="display: none;">
     <table class="jd-sumtable-expando">
     
 
@@ -2702,7 +1879,177 @@ From interface
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">setEndpoint</span>(ImmutableEndpoint arg0)</nobr>
+        <span class="sympad">expire</span>(int arg0, int arg1, String arg2)</nobr>
+        
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.api.store.PartitionableObjectStore" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-org.mule.api.store.PartitionableObjectStore-trigger"
+          src="../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>
+From interface
+
+  org.mule.api.store.PartitionableObjectStore
+
+<div id="inherited-methods-org.mule.api.store.PartitionableObjectStore">
+  <div id="inherited-methods-org.mule.api.store.PartitionableObjectStore-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-org.mule.api.store.PartitionableObjectStore-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            List&lt;Serializable&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">allKeys</span>(String arg0)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            List&lt;String&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">allPartitions</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">close</span>(String arg0)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            boolean</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">contains</span>(Serializable arg0, String arg1)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">disposePartition</span>(String arg0)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">open</span>(String arg0)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            T</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">remove</span>(Serializable arg0, String arg1)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            T</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">retrieve</span>(Serializable arg0, String arg1)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">store</span>(Serializable arg0, T arg1, String arg2)</nobr>
         
   </td></tr>
 
@@ -2739,43 +2086,6 @@ From interface
 <!-- Fields -->
 
 
-<!-- ========= FIELD DETAIL ======== -->
-<h2>Fields</h2>
-
-
-
-
-<A NAME="weighting"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        private 
-         
-         
-        int
-      </span>
-        weighting
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-    </div>
-</div>
-
-
-
-
 <!-- Public ctors -->
 
 
@@ -2784,7 +2094,7 @@ From interface
 
 
 
-<A NAME="JsonToDbobjectTransformer()"></A>
+<A NAME="MongoObjectStoreCapabilitiesAdapter()"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2796,7 +2106,7 @@ From interface
          
         
       </span>
-      <span class="sympad">JsonToDbobjectTransformer</span>
+      <span class="sympad">MongoObjectStoreCapabilitiesAdapter</span>
       <span class="normal">()</span>
     </h4>
       <div class="api-level">
@@ -2830,7 +2140,7 @@ From interface
 
 
 
-<A NAME="getPriorityWeighting()"></A>
+<A NAME="isCapableOf(org.mule.api.Capability)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2840,10 +2150,10 @@ From interface
          
          
          
-        int
+        boolean
       </span>
-      <span class="sympad">getPriorityWeighting</span>
-      <span class="normal">()</span>
+      <span class="sympad">isCapableOf</span>
+      <span class="normal">(Capability capability)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -2855,43 +2165,14 @@ From interface
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    </div>
-</div>
-
-
-<A NAME="setPriorityWeighting(int)"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">setPriorityWeighting</span>
-      <span class="normal">(int weighting)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Returns true if this module implements such capability
+ 
+</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
-          <th>weighting</td>
+          <th>capability</td>
           <td></td>
         </tr>
       </table>
@@ -2905,64 +2186,6 @@ From interface
 
 
 <!-- ========= METHOD DETAIL ======== -->
-
-<h2>Protected Methods</h2>
-
-
-
-<A NAME="doTransform(java.lang.Object, java.lang.String)"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        protected 
-         
-         
-         
-         
-        Object
-      </span>
-      <span class="sympad">doTransform</span>
-      <span class="normal">(Object src, String encoding)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>src</td>
-          <td></td>
-        </tr>
-        <tr>
-          <th>encoding</td>
-          <td></td>
-        </tr>
-      </table>
-  </div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Throws</h5>
-      <table class="jd-tagtable">  
-        <tr>
-            <th>TransformerException</td>
-            <td></td>
-        </tr>
-      </table>
-  </div>
-
-    </div>
-</div>
-
-
 
 
 
