@@ -29,7 +29,6 @@ import org.junit.Test;
 public class MongoAuthenticationTestDriver
 {
     private MongoCloudConnector connector;
-    private MongoSession session;
 
     /**
      * Setups an athenticated connector
@@ -41,13 +40,13 @@ public class MongoAuthenticationTestDriver
         connector.setDatabase("mongo-connector-test");
         connector.setHost("127.0.0.1");
         connector.setPort(27017);
-        session = connector.createSession("foobar", "1234");
+        connector.createSession("foobar", "1234");
     }
 
     @Test
     public void createCollection() throws Exception
     {
-        assertNotNull(connector.listCollections(session));
+        assertNotNull(connector.listCollections());
     }
 
 }

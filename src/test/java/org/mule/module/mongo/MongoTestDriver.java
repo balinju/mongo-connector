@@ -49,7 +49,6 @@ public class MongoTestDriver
     private static final String MAIN_COLLECTION = "aCollection";
     private static final String ANOTHER_COLLECTION = "anotherCollection";
     private MongoCloudConnector connector;
-    private MongoSession session;
 
     /**
      * Tests methods in this test class assume that there is always a collection
@@ -64,8 +63,8 @@ public class MongoTestDriver
         connector.setDatabase("mongo-connector-test");
         connector.setHost("127.0.0.1");
         connector.setPort(27017);
-        session = connector.createSession("user", "pass");
-        connector.createCollection(session, MAIN_COLLECTION, false, 100, 1000);
+        connector.createSession("user", "pass");
+        connector.createCollection(MAIN_COLLECTION, false, 100, 1000);
     }
 
     /**
@@ -74,8 +73,8 @@ public class MongoTestDriver
     @After
     public void tearDown()
     {
-        connector.dropCollection(session, MAIN_COLLECTION);
-        connector.dropCollection(session, ANOTHER_COLLECTION);
+        connector.dropCollection(MAIN_COLLECTION);
+        connector.dropCollection(ANOTHER_COLLECTION);
     }
 
     /**
@@ -86,11 +85,11 @@ public class MongoTestDriver
     @Test
     public void createCollection() throws Exception
     {
-        int originalSize = connector.listCollections(session).size();
-        connector.createCollection(session, ANOTHER_COLLECTION, false, 100, 1000);
-        assertTrue(connector.existsCollection(session, ANOTHER_COLLECTION));
-        assertTrue(connector.listCollections(session).contains(ANOTHER_COLLECTION));
-        assertEquals(originalSize + 1, connector.listCollections(session).size());
+        int originalSize = connector.listCollections().size();
+        connector.createCollection(ANOTHER_COLLECTION, false, 100, 1000);
+        assertTrue(connector.existsCollection(ANOTHER_COLLECTION));
+        assertTrue(connector.listCollections().contains(ANOTHER_COLLECTION));
+        assertEquals(originalSize + 1, connector.listCollections().size());
     }
 
     /**
@@ -99,7 +98,7 @@ public class MongoTestDriver
     @Test(expected = MongoException.class)
     public void createCollectionAlreadyExists() throws Exception
     {
-        connector.createCollection(session, MAIN_COLLECTION, false, 100, 1000);
+        connector.createCollection(MAIN_COLLECTION, false, 100, 1000);
     }
 
     /**
@@ -110,14 +109,14 @@ public class MongoTestDriver
     @Test
     public void dropCollection() throws Exception
     {
-        int originalSize = connector.listCollections(session).size();
+        int originalSize = connector.listCollections().size();
 
-        connector.dropCollection(session, MAIN_COLLECTION);
+        connector.dropCollection(MAIN_COLLECTION);
 
-        assertFalse(connector.existsCollection(session, MAIN_COLLECTION));
-        assertFalse(connector.listCollections(session).contains(MAIN_COLLECTION));
+        assertFalse(connector.existsCollection(MAIN_COLLECTION));
+        assertFalse(connector.listCollections().contains(MAIN_COLLECTION));
 
-        assertEquals(originalSize - 1, connector.listCollections(session).size());
+        assertEquals(originalSize - 1, connector.listCollections().size());
     }
 
     /**
@@ -126,7 +125,7 @@ public class MongoTestDriver
     @Test
     public void dropCollectionInexistent() throws Exception
     {
-        connector.dropCollection(session, ANOTHER_COLLECTION);
+        connector.dropCollection(ANOTHER_COLLECTION);
     }
 
     /**
@@ -138,9 +137,9 @@ public class MongoTestDriver
     public void dropCollectionWithElements() throws Exception
     {
         BasicDBObject o = new BasicDBObject();
-        connector.insertObject(session, MAIN_COLLECTION, o, WriteConcern.NORMAL);
-        connector.dropCollection(session, MAIN_COLLECTION);
-        assertFalse(connector.existsCollection(session, MAIN_COLLECTION));
+        connector.insertObject(MAIN_COLLECTION, o, WriteConcern.NORMAL);
+        connector.dropCollection(MAIN_COLLECTION);
+        assertFalse(connector.existsCollection(MAIN_COLLECTION));
     }
 
     /**
@@ -150,10 +149,10 @@ public class MongoTestDriver
     @Test
     public void createObject() throws Exception
     {
-        connector.insertObject(session, MAIN_COLLECTION, acmeEmployee(), WriteConcern.NORMAL);
+        connector.insertObject(MAIN_COLLECTION, acmeEmployee(), WriteConcern.NORMAL);
 
-        assertEquals(1, connector.countObjects(session, MAIN_COLLECTION, acmeQuery()));
-        DBObject employee = connector.findOneObject(session, MAIN_COLLECTION, acmeQuery(),
+        assertEquals(1, connector.countObjects(MAIN_COLLECTION, acmeQuery()));
+        DBObject employee = connector.findOneObject(MAIN_COLLECTION, acmeQuery(),
             Arrays.asList("name"));
         assertNotNull(employee);
         assertEquals("John", employee.get("name"));
@@ -166,7 +165,7 @@ public class MongoTestDriver
     @Test(expected = MongoException.class)
     public void findOneObjectNotExists() throws Exception
     {
-        connector.findOneObject(session, MAIN_COLLECTION, acmeQuery(), null);
+        connector.findOneObject(MAIN_COLLECTION, acmeQuery(), null);
     }
 
     /**
@@ -176,11 +175,11 @@ public class MongoTestDriver
     @Test
     public void removeObject() throws Exception
     {
-        connector.insertObject(session, MAIN_COLLECTION, acmeEmployee(), WriteConcern.NORMAL);
+        connector.insertObject(MAIN_COLLECTION, acmeEmployee(), WriteConcern.NORMAL);
 
         BasicDBObject query = acmeQuery();
-        connector.removeObjects(session, MAIN_COLLECTION, query, WriteConcern.DATABASE_DEFAULT);
-        assertEquals(0, connector.countObjects(session, MAIN_COLLECTION, query));
+        connector.removeObjects(MAIN_COLLECTION, query, WriteConcern.DATABASE_DEFAULT);
+        assertEquals(0, connector.countObjects(MAIN_COLLECTION, query));
     }
 
     /**
@@ -194,14 +193,14 @@ public class MongoTestDriver
         insertInTestDb(new BasicDBObject("x", 60));
         insertInTestDb(new BasicDBObject("x", 60));
         insertInTestDb(new BasicDBObject("x", 70));
-        assertEquals(4, connector.countObjects(session, MAIN_COLLECTION, null));
-        assertEquals(2, connector.countObjects(session, MAIN_COLLECTION, new BasicDBObject("x", 60)));
-        assertEquals(0, connector.countObjects(session, MAIN_COLLECTION, new BasicDBObject("x", 36)));
+        assertEquals(4, connector.countObjects(MAIN_COLLECTION, null));
+        assertEquals(2, connector.countObjects(MAIN_COLLECTION, new BasicDBObject("x", 60)));
+        assertEquals(0, connector.countObjects(MAIN_COLLECTION, new BasicDBObject("x", 36)));
     }
 
     private void insertInTestDb(DBObject o)
     {
-        connector.insertObject(session, MAIN_COLLECTION, o, WriteConcern.DATABASE_DEFAULT);
+        connector.insertObject(MAIN_COLLECTION, o, WriteConcern.DATABASE_DEFAULT);
     }
 
     /**
@@ -253,7 +252,7 @@ public class MongoTestDriver
                 put("votes", 60);
             }
         });
-        Iterable<DBObject> results = connector.mapReduceObjects(session, MAIN_COLLECTION,
+        Iterable<DBObject> results = connector.mapReduceObjects(MAIN_COLLECTION,
             "function() { emit(this.candidate, this.votes) }",
             "function(key, values) { return values.reduce(function(a, e){ return a + e });  } ",
             outputCollection);
@@ -283,11 +282,11 @@ public class MongoTestDriver
         insertInTestDb(new BasicDBObject("x", 60));
         insertInTestDb(new BasicDBObject("x", 60));
         insertInTestDb(new BasicDBObject("x", 70));
-        connector.updateObjects(session, MAIN_COLLECTION,
+        connector.updateObjects(MAIN_COLLECTION,
             new BasicDBObject("x", new BasicDBObject("$gt", 55)), new BasicDBObject("$inc",
                 new BasicDBObject("x", 2)), false, true, WriteConcern.DATABASE_DEFAULT);
 
-        Iterator<DBObject> iter = connector.findObjects(session, MAIN_COLLECTION, null, null).iterator();
+        Iterator<DBObject> iter = connector.findObjects(MAIN_COLLECTION, null, null).iterator();
         assertEquals(50, iter.next().get("x"));
         assertEquals(62, iter.next().get("x"));
         assertEquals(62, iter.next().get("x"));
@@ -300,11 +299,11 @@ public class MongoTestDriver
         insertInTestDb(new BasicDBObject("x", 50));
         insertInTestDb(new BasicDBObject("x", 60));
         insertInTestDb(new BasicDBObject("x", 60));
-        connector.updateObjects(session, MAIN_COLLECTION,
+        connector.updateObjects(MAIN_COLLECTION,
             new BasicDBObject("x", new BasicDBObject("$gt", 55)), new BasicDBObject("$inc",
                 new BasicDBObject("x", 2)), false, false, WriteConcern.DATABASE_DEFAULT);
 
-        Iterator<DBObject> iter = connector.findObjects(session, MAIN_COLLECTION, null, null).iterator();
+        Iterator<DBObject> iter = connector.findObjects(MAIN_COLLECTION, null, null).iterator();
         assertEquals(50, iter.next().get("x"));
         assertEquals(62, iter.next().get("x"));
         assertEquals(60, iter.next().get("x"));
@@ -313,15 +312,15 @@ public class MongoTestDriver
     @Test
     public void createIndex() throws Exception
     {
-        assertEquals(1, connector.listIndices(session, MAIN_COLLECTION).size());
-        connector.createIndex(session, MAIN_COLLECTION, "aField", IndexOrder.DESC);
-        assertEquals(2, connector.listIndices(session, MAIN_COLLECTION).size());
+        assertEquals(1, connector.listIndices(MAIN_COLLECTION).size());
+        connector.createIndex(MAIN_COLLECTION, "aField", IndexOrder.DESC);
+        assertEquals(2, connector.listIndices(MAIN_COLLECTION).size());
     }
 
     @Test
     public void testCreateAndGetFile() throws Exception
     {
-        DBObject file = connector.createFileFromPayload(session,
+        DBObject file = connector.createFileFromPayload(
             new ByteArrayInputStream("hello world".getBytes()), "testFile.txt", "text/plain",
             new BasicDBObject("foo", "bar"));
         try
@@ -330,34 +329,34 @@ public class MongoTestDriver
             assertEquals("text/plain", file.get("contentType"));
             assertEquals("bar", ((DBObject) file.get("metadata")).get("foo"));
 
-            InputStream in = connector.getFileContent(session, filenameQuery("testFile.txt"));
+            InputStream in = connector.getFileContent(filenameQuery("testFile.txt"));
             assertEquals("hello world", new Scanner(in).nextLine());
         }
         finally
         {
-            connector.removeFiles(session, filenameQuery("testFile.txt"));
+            connector.removeFiles(filenameQuery("testFile.txt"));
         }
     }
 
     @Test
     public void testCreateAndListFile() throws Exception
     {
-        connector.createFileFromPayload(session, "hello world".getBytes(), "testFile.txt", null, null);
+        connector.createFileFromPayload("hello world".getBytes(), "testFile.txt", null, null);
         try
         {
-            Iterator<DBObject> iter = connector.listFiles(session, filenameQuery("testFile.txt")).iterator();
+            Iterator<DBObject> iter = connector.listFiles(filenameQuery("testFile.txt")).iterator();
             assertTrue(iter.hasNext());
             iter.next();
             assertFalse(iter.hasNext());
 
-            iter = connector.findFiles(session, filenameQuery("testFile.txt")).iterator();
+            iter = connector.findFiles(filenameQuery("testFile.txt")).iterator();
             assertTrue(iter.hasNext());
             iter.next();
             assertFalse(iter.hasNext());
         }
         finally
         {
-            connector.removeFiles(session, filenameQuery("testFile.txt"));
+            connector.removeFiles(filenameQuery("testFile.txt"));
         }
     }
 
