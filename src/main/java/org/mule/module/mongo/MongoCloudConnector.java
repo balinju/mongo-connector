@@ -23,11 +23,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import com.mongodb.DB;
-import com.mongodb.DBObject;
-import com.mongodb.Mongo;
-import com.mongodb.MongoException;
-import com.mongodb.util.JSON;
 import org.apache.commons.lang.Validate;
 import org.bson.types.BasicBSONList;
 import org.mule.api.ConnectionException;
@@ -49,26 +44,20 @@ import org.mule.module.mongo.api.MongoClientImpl;
 import org.mule.module.mongo.api.MongoCollection;
 import org.mule.module.mongo.api.WriteConcern;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.UnknownHostException;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-
-import static org.mule.module.mongo.api.DBObjects.from;
+import com.mongodb.DB;
+import com.mongodb.DBObject;
+import com.mongodb.Mongo;
+import com.mongodb.MongoException;
+import com.mongodb.util.JSON;
 
 /**
  * A Mongo Connector Facade
- *
+ * 
  * @author flbulgarelli
  */
 @Connector(name = "mongo", schemaVersion = "2.0")
-public class MongoCloudConnector {
+public class MongoCloudConnector
+{
 
     private static final String CAPPED_DEFAULT_VALUE = "false";
     private static final String WRITE_CONCERN_DEFAULT_VALUE = "DATABASE_DEFAULT";
@@ -101,11 +90,12 @@ public class MongoCloudConnector {
      * Lists names of collections available at this database
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:list-collections}
-     *
+     * 
      * @return the list of names of collections available at this database
      */
     @Processor
-    public Collection<String> listCollections() {
+    public Collection<String> listCollections()
+    {
         return this.client.listCollections();
     }
 
@@ -113,12 +103,13 @@ public class MongoCloudConnector {
      * Answers if a collection exists given its name
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:exists-collection}
-     *
+     * 
      * @param collection the name of the collection
      * @return if the collection exists
      */
     @Processor
-    public boolean existsCollection(String collection) {
+    public boolean existsCollection(String collection)
+    {
         return this.client.existsCollection(collection);
     }
 
@@ -127,11 +118,12 @@ public class MongoCloudConnector {
      * not exist, does nothing.
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:drop-collection}
-     *
+     * 
      * @param collection the name of the collection to drop
      */
     @Processor
-    public void dropCollection(String collection) {
+    public void dropCollection(String collection)
+    {
         this.client.dropCollection(collection);
     }
 
@@ -140,18 +132,19 @@ public class MongoCloudConnector {
      * will be thrown.
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:create-collection}
-     *
+     * 
      * @param collection the name of the collection to create
-     * @param capped     if the collection will be capped
+     * @param capped if the collection will be capped
      * @param maxObjects the maximum number of documents the new collection is able
-     *                   to contain
-     * @param size       the maximum size of the new collection
+     *            to contain
+     * @param size the maximum size of the new collection
      */
     @Processor
     public void createCollection(String collection,
                                  @Optional @Default(CAPPED_DEFAULT_VALUE) boolean capped,
                                  @Optional Integer maxObjects,
-                                 @Optional Integer size) {
+                                 @Optional Integer size)
+    {
         this.client.createCollection(collection, capped, maxObjects, size);
     }
 
@@ -159,15 +152,16 @@ public class MongoCloudConnector {
      * Inserts an object in a collection, setting its id if necessary.
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:insert-object}
-     *
-     * @param collection   the name of the collection where to insert the given object
-     * @param dbObject     a {@link DBObject} instance.
+     * 
+     * @param collection the name of the collection where to insert the given object
+     * @param dbObject a {@link DBObject} instance.
      * @param writeConcern the optional write concern of insertion
      */
     @Processor
     public void insertObject(String collection,
                              DBObject dbObject,
-                             @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern) {
+                             @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
+    {
         this.client.insertObject(collection, dbObject, writeConcern);
     }
 
@@ -177,17 +171,19 @@ public class MongoCloudConnector {
      * A shallow conversion into DBObject is performed - that is, no conversion is
      * performed to its values.
      * <p/>
-     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:insert-object-from-map}
-     *
-     * @param collection        the name of the collection where to insert the given object
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample
+     * mongo:insert-object-from-map}
+     * 
+     * @param collection the name of the collection where to insert the given object
      * @param elementAttributes alternative way of specifying the element as a
-     *                          literal Map inside a Mule Flow
-     * @param writeConcern      the optional write concern of insertion
+     *            literal Map inside a Mule Flow
+     * @param writeConcern the optional write concern of insertion
      */
     @Processor
     public void insertObjectFromMap(String collection,
                                     @Optional Map<String, String> elementAttributes,
-                                    @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern) {
+                                    @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
+    {
         this.client.insertObject(collection, from(elementAttributes), writeConcern);
     }
 
@@ -197,15 +193,15 @@ public class MongoCloudConnector {
      * documents matching it will be updated.
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:update-objects}
-     *
-     * @param collection   the name of the collection to update
-     * @param query        the {@link DBObject} query object used to detect the element to
-     *                     update.
-     * @param element      the {@link DBObject} mandatory object that will replace that
-     *                     one which matches the query.
-     * @param upsert       if the database should create the element if it does not exist
-     * @param multi        if all or just the first object matching the query will be
-     *                     updated
+     * 
+     * @param collection the name of the collection to update
+     * @param query the {@link DBObject} query object used to detect the element to
+     *            update.
+     * @param element the {@link DBObject} mandatory object that will replace that
+     *            one which matches the query.
+     * @param upsert if the database should create the element if it does not exist
+     * @param multi if all or just the first object matching the query will be
+     *            updated
      * @param writeConcern the write concern used to update
      */
     @Processor
@@ -214,7 +210,8 @@ public class MongoCloudConnector {
                               DBObject element,
                               @Optional @Default(CAPPED_DEFAULT_VALUE) boolean upsert,
                               @Optional @Default("true") boolean multi,
-                              @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern) {
+                              @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
+    {
         this.client.updateObjects(collection, query, element, upsert, multi, writeConcern);
     }
 
@@ -223,16 +220,17 @@ public class MongoCloudConnector {
      * false, only the first document matching it will be updated. Otherwise, all the
      * documents matching it will be updated.
      * <p/>
-     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:update-objects-using-map}
-     *
-     * @param collection        the name of the collection to update
-     * @param queryAttributes   the query object used to detect the element to update.
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample
+     * mongo:update-objects-using-map}
+     * 
+     * @param collection the name of the collection to update
+     * @param queryAttributes the query object used to detect the element to update.
      * @param elementAttributes the mandatory object that will replace that one which
-     *                          matches the query.
-     * @param upsert            if the database should create the element if it does not exist
-     * @param multi             if all or just the first object matching the query will be
-     *                          updated
-     * @param writeConcern      the write concern used to update
+     *            matches the query.
+     * @param upsert if the database should create the element if it does not exist
+     * @param multi if all or just the first object matching the query will be
+     *            updated
+     * @param writeConcern the write concern used to update
      */
     @Processor
     public void updateObjectsUsingMap(String collection,
@@ -240,40 +238,44 @@ public class MongoCloudConnector {
                                       Map<String, String> elementAttributes,
                                       @Optional @Default(CAPPED_DEFAULT_VALUE) boolean upsert,
                                       @Optional @Default("true") boolean multi,
-                                      @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern) {
-        this.client.updateObjects(collection, from(queryAttributes), from(elementAttributes), upsert,
-                multi, writeConcern);
+                                      @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
+    {
+        this.client.updateObjects(collection, from(queryAttributes), from(elementAttributes), upsert, multi,
+            writeConcern);
     }
 
     /**
      * Inserts or updates an object based on its object _id.
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:save-object}
-     *
-     * @param collection   the collection where to insert the object
-     * @param element      the mandatory {@link DBObject} object to insert.
+     * 
+     * @param collection the collection where to insert the object
+     * @param element the mandatory {@link DBObject} object to insert.
      * @param writeConcern the write concern used to persist the object
      */
     @Processor
     public void saveObject(String collection,
                            DBObject element,
-                           @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern) {
+                           @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
+    {
         this.client.saveObject(collection, from(element), writeConcern);
     }
 
     /**
      * Inserts or updates an object based on its object _id.
      * <p/>
-     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:save-object-from-map}
-     *
-     * @param collection        the collection where to insert the object
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample
+     * mongo:save-object-from-map}
+     * 
+     * @param collection the collection where to insert the object
      * @param elementAttributes the mandatory object to insert.
-     * @param writeConcern      the write concern used to persist the object
+     * @param writeConcern the write concern used to persist the object
      */
     @Processor
     public void saveObjectFromMap(String collection,
                                   Map<String, String> elementAttributes,
-                                  @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern) {
+                                  @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
+    {
         this.client.saveObject(collection, from(elementAttributes), writeConcern);
     }
 
@@ -284,16 +286,17 @@ public class MongoCloudConnector {
      * indices again
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:remove-objects}
-     *
-     * @param collection   the collection whose elements will be removed
-     * @param query        the optional {@link DBObject} query object. Objects that match it
-     *                     will be removed.
+     * 
+     * @param collection the collection whose elements will be removed
+     * @param query the optional {@link DBObject} query object. Objects that match it
+     *            will be removed.
      * @param writeConcern the write concern used to remove the object
      */
     @Processor
     public void removeObjects(String collection,
                               DBObject query,
-                              @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern) {
+                              @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
+    {
         this.client.removeObjects(collection, query, writeConcern);
     }
 
@@ -303,17 +306,19 @@ public class MongoCloudConnector {
      * normally less performant that dropping the collection and creating it and its
      * indices again
      * <p/>
-     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:remove-using-query-map}
-     *
-     * @param collection      the collection whose elements will be removed
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample
+     * mongo:remove-using-query-map}
+     * 
+     * @param collection the collection whose elements will be removed
      * @param queryAttributes the query object. Objects that match it will be
-     *                        removed.
-     * @param writeConcern    the write concern used to remove the object
+     *            removed.
+     * @param writeConcern the write concern used to remove the object
      */
     @Processor
     public void removeUsingQueryMap(String collection,
                                     Map<String, String> queryAttributes,
-                                    @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern) {
+                                    @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
+    {
         this.client.removeObjects(collection, from(queryAttributes), writeConcern);
     }
 
@@ -329,15 +334,15 @@ public class MongoCloudConnector {
      * please consult MongoDB documentation for writing them.
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:map-reduce-objects}
-     *
-     * @param collection       the name of the collection to map and reduce
-     * @param mapFunction      a JavaScript encoded mapping function
-     * @param reduceFunction   a JavaScript encoded reducing function
+     * 
+     * @param collection the name of the collection to map and reduce
+     * @param mapFunction a JavaScript encoded mapping function
+     * @param reduceFunction a JavaScript encoded reducing function
      * @param outputCollection the name of the output collection to write the
-     *                         results, replacing previous collection if existed, mandatory when
-     *                         results may be larger than 16MB. If outputCollection is
-     *                         unspecified, the computation is performed in-memory and not
-     *                         persisted.
+     *            results, replacing previous collection if existed, mandatory when
+     *            results may be larger than 16MB. If outputCollection is
+     *            unspecified, the computation is performed in-memory and not
+     *            persisted.
      * @return an iterable that retrieves the resulting collection of
      *         {@link DBObject}
      */
@@ -345,9 +350,9 @@ public class MongoCloudConnector {
     public Iterable<DBObject> mapReduceObjects(String collection,
                                                String mapFunction,
                                                String reduceFunction,
-                                               @Optional String outputCollection) {
-        return this.client
-                .mapReduceObjects(collection, mapFunction, reduceFunction, outputCollection);
+                                               @Optional String outputCollection)
+    {
+        return this.client.mapReduceObjects(collection, mapFunction, reduceFunction, outputCollection);
     }
 
     /**
@@ -355,15 +360,16 @@ public class MongoCloudConnector {
      * passed, returns the number of elements in the collection
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:count-objects}
-     *
+     * 
      * @param collection the target collection
-     * @param query      the optional {@link DBObject} query for counting objects. Only
-     *                   objects matching it will be counted. If unspecified, all objects
-     *                   are counted.
+     * @param query the optional {@link DBObject} query for counting objects. Only
+     *            objects matching it will be counted. If unspecified, all objects
+     *            are counted.
      * @return the amount of objects that matches the query
      */
     @Processor
-    public long countObjects(String collection, @Optional DBObject query) {
+    public long countObjects(String collection, @Optional DBObject query)
+    {
         return this.client.countObjects(collection, query);
     }
 
@@ -371,17 +377,18 @@ public class MongoCloudConnector {
      * Counts the number of objects that match the given query. If no query is
      * passed, returns the number of elements in the collection
      * <p/>
-     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:count-objects-using-query-map}
-     *
-     * @param collection      the target collection
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample
+     * mongo:count-objects-using-query-map}
+     * 
+     * @param collection the target collection
      * @param queryAttributes the optional query for counting objects. Only objects
-     *                        matching it will be counted. If unspecified, all objects are
-     *                        counted.
+     *            matching it will be counted. If unspecified, all objects are
+     *            counted.
      * @return the amount of objects that matches the query
      */
     @Processor
-    public long countObjectsUsingQueryMap(String collection,
-                                          @Optional Map<String, String> queryAttributes) {
+    public long countObjectsUsingQueryMap(String collection, @Optional Map<String, String> queryAttributes)
+    {
         return this.client.countObjects(collection, from(queryAttributes));
     }
 
@@ -391,17 +398,18 @@ public class MongoCloudConnector {
      * fields are retrieved.
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-objects}
-     *
+     * 
      * @param collection the target collection
-     * @param query      the optional {@link DBObject} query object. If unspecified, all
-     *                   documents are returned.
-     * @param fields     alternative way of passing fields as a literal List
+     * @param query the optional {@link DBObject} query object. If unspecified, all
+     *            documents are returned.
+     * @param fields alternative way of passing fields as a literal List
      * @return an iterable of {@link DBObject}
      */
     @Processor
     public Iterable<DBObject> findObjects(String collection,
                                           @Optional DBObject query,
-                                          @Optional List<String> fields) {
+                                          @Optional List<String> fields)
+    {
         return this.client.findObjects(collection, query, fields);
     }
 
@@ -410,18 +418,20 @@ public class MongoCloudConnector {
      * objects of the collection are retrieved. If no fields object is specified, all
      * fields are retrieved.
      * <p/>
-     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-objects-using-query-map}
-     *
-     * @param collection      the target collection
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample
+     * mongo:find-objects-using-query-map}
+     * 
+     * @param collection the target collection
      * @param queryAttributes the optional query object. If unspecified, all
-     *                        documents are returned.
-     * @param fields          alternative way of passing fields as a literal List
+     *            documents are returned.
+     * @param fields alternative way of passing fields as a literal List
      * @return an iterable of {@link DBObject}
      */
     @Processor
     public Iterable<DBObject> findObjectsUsingQueryMap(String collection,
                                                        @Optional Map<String, String> queryAttributes,
-                                                       @Optional List<String> fields) {
+                                                       @Optional List<String> fields)
+    {
         return this.client.findObjects(collection, from(queryAttributes), fields);
     }
 
@@ -430,17 +440,16 @@ public class MongoCloudConnector {
      * {@link MongoException} if no one matches the given query
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-one-object}
-     *
+     * 
      * @param collection the target collection
-     * @param query      the mandatory {@link DBObject} query object that the returned
-     *                   object matches.
-     * @param fields     alternative way of passing fields as a literal List
+     * @param query the mandatory {@link DBObject} query object that the returned
+     *            object matches.
+     * @param fields alternative way of passing fields as a literal List
      * @return a non-null {@link DBObject} that matches the query.
      */
     @Processor
-    public DBObject findOneObject(String collection,
-                                  DBObject query,
-                                  @Optional List<String> fields) {
+    public DBObject findOneObject(String collection, DBObject query, @Optional List<String> fields)
+    {
         return this.client.findOneObject(collection, query, fields);
 
     }
@@ -449,18 +458,20 @@ public class MongoCloudConnector {
      * Finds the first object that matches a given query. Throws a
      * {@link MongoException} if no one matches the given query
      * <p/>
-     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-one-object-using-query-map}
-     *
-     * @param collection      the target collection
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample
+     * mongo:find-one-object-using-query-map}
+     * 
+     * @param collection the target collection
      * @param queryAttributes the mandatory query object that the returned object
-     *                        matches.
-     * @param fields          alternative way of passing fields as a literal List
+     *            matches.
+     * @param fields alternative way of passing fields as a literal List
      * @return a non-null {@link DBObject} that matches the query.
      */
     @Processor
     public DBObject findOneObjectUsingQueryMap(String collection,
                                                Map<String, String> queryAttributes,
-                                               @Optional List<String> fields) {
+                                               @Optional List<String> fields)
+    {
         return this.client.findOneObject(collection, from(queryAttributes), fields);
 
     }
@@ -469,15 +480,14 @@ public class MongoCloudConnector {
      * Creates a new index
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:create-index}
-     *
+     * 
      * @param collection the name of the collection where the index will be created
-     * @param field      the name of the field which will be indexed
-     * @param order      the indexing order
+     * @param field the name of the field which will be indexed
+     * @param order the indexing order
      */
     @Processor
-    public void createIndex(String collection,
-                            String field,
-                            @Optional @Default("ASC") IndexOrder order) {
+    public void createIndex(String collection, String field, @Optional @Default("ASC") IndexOrder order)
+    {
         this.client.createIndex(collection, field, order);
     }
 
@@ -485,12 +495,13 @@ public class MongoCloudConnector {
      * Drops an existing index
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:drop-index}
-     *
+     * 
      * @param collection the name of the collection where the index is
-     * @param index      the name of the index to drop
+     * @param index the name of the index to drop
      */
     @Processor
-    public void dropIndex(String collection, String index) {
+    public void dropIndex(String collection, String index)
+    {
         this.client.dropIndex(collection, index);
     }
 
@@ -498,12 +509,13 @@ public class MongoCloudConnector {
      * List existent indices in a collection
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:list-indices}
-     *
+     * 
      * @param collection the name of the collection
      * @return a collection of {@link DBObject} with indices information
      */
     @Processor
-    public Collection<DBObject> listIndices(String collection) {
+    public Collection<DBObject> listIndices(String collection)
+    {
         return this.client.listIndices(collection);
     }
 
@@ -511,13 +523,14 @@ public class MongoCloudConnector {
      * Creates a new GridFSFile in the database, saving the given content, filename,
      * contentType, and extraData, and answers it.
      * <p/>
-     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:create-file-from-payload}
-     *
-     * @param payload     the mandatory content of the new gridfs file. It may be a
-     *                    java.io.File, a byte[] or an InputStream.
-     * @param filename    the mandatory name of new file.
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample
+     * mongo:create-file-from-payload}
+     * 
+     * @param payload the mandatory content of the new gridfs file. It may be a
+     *            java.io.File, a byte[] or an InputStream.
+     * @param filename the mandatory name of new file.
      * @param contentType the optional content type of the new file
-     * @param metadata    the optional {@link DBObject} metadata of the new content type
+     * @param metadata the optional {@link DBObject} metadata of the new content type
      * @return the new GridFSFile {@link DBObject}
      * @throws IOException
      */
@@ -525,23 +538,31 @@ public class MongoCloudConnector {
     public DBObject createFileFromPayload(@Payload Object payload,
                                           String filename,
                                           @Optional String contentType,
-                                          @Optional DBObject metadata) throws IOException {
+                                          @Optional DBObject metadata) throws IOException
+    {
         InputStream stream = toStream(payload);
-        try {
+        try
+        {
             return this.client.createFile(stream, filename, contentType, metadata);
-        } finally {
+        }
+        finally
+        {
             stream.close();
         }
     }
 
-    private InputStream toStream(Object content) throws FileNotFoundException {
-        if (content instanceof InputStream) {
+    private InputStream toStream(Object content) throws FileNotFoundException
+    {
+        if (content instanceof InputStream)
+        {
             return (InputStream) content;
         }
-        if (content instanceof byte[]) {
+        if (content instanceof byte[])
+        {
             return new ByteArrayInputStream((byte[]) content);
         }
-        if (content instanceof File) {
+        if (content instanceof File)
+        {
             return new FileInputStream((File) content);
         }
         throw new IllegalArgumentException("Content " + content + " is not supported");
@@ -551,25 +572,28 @@ public class MongoCloudConnector {
      * Lists all the files that match the given query
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-files}
-     *
+     * 
      * @param query a {@link DBObject} query the optional query
      * @return a {@link DBObject} files iterable
      */
     @Processor
-    public Iterable<DBObject> findFiles(@Optional DBObject query) {
+    public Iterable<DBObject> findFiles(@Optional DBObject query)
+    {
         return this.client.findFiles(from(query));
     }
 
     /**
      * Lists all the files that match the given query
      * <p/>
-     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-files-using-query-map}
-     *
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample
+     * mongo:find-files-using-query-map}
+     * 
      * @param queryAttributes the optional query attributes
      * @return a {@link DBObject} files iterable
      */
     @Processor
-    public Iterable<DBObject> findFilesUsingQueryMap(@Optional Map<String, String> queryAttributes) {
+    public Iterable<DBObject> findFilesUsingQueryMap(@Optional Map<String, String> queryAttributes)
+    {
         return this.client.findFiles(from(queryAttributes));
     }
 
@@ -578,12 +602,13 @@ public class MongoCloudConnector {
      * a MongoException is thrown.
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-one-file}
-     *
+     * 
      * @param query the {@link DBObject} mandatory query
      * @return a {@link DBObject}
      */
     @Processor
-    public DBObject findOneFile(DBObject query) {
+    public DBObject findOneFile(DBObject query)
+    {
         return this.client.findOneFile(from(query));
     }
 
@@ -591,13 +616,15 @@ public class MongoCloudConnector {
      * Answers the first file that matches the given query. If no object matches it,
      * a MongoException is thrown.
      * <p/>
-     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:find-one-file-using-query-map}
-     *
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample
+     * mongo:find-one-file-using-query-map}
+     * 
      * @param queryAttributes the mandatory query
      * @return a {@link DBObject}
      */
     @Processor
-    public DBObject findOneFileUsingQueryMap(Map<String, String> queryAttributes) {
+    public DBObject findOneFileUsingQueryMap(Map<String, String> queryAttributes)
+    {
         return this.client.findOneFile(from(queryAttributes));
     }
 
@@ -606,12 +633,13 @@ public class MongoCloudConnector {
      * given query. If no object matches it, a MongoException is thrown.
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:get-file-content}
-     *
+     * 
      * @param query the {@link DBObject} mandatory query
      * @return an InputStream to the file contents
      */
     @Processor
-    public InputStream getFileContent(DBObject query) {
+    public InputStream getFileContent(DBObject query)
+    {
         return this.client.getFileContent(from(query));
     }
 
@@ -619,13 +647,15 @@ public class MongoCloudConnector {
      * Answers an inputstream to the contents of the first file that matches the
      * given queryAttributes. If no object matches it, a MongoException is thrown.
      * <p/>
-     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:get-file-content-using-query-map}
-     *
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample
+     * mongo:get-file-content-using-query-map}
+     * 
      * @param queryAttributes the mandatory query attributes
      * @return an InputStream to the file contents
      */
     @Processor
-    public InputStream getFileContentUsingQueryMap(Map<String, String> queryAttributes) {
+    public InputStream getFileContentUsingQueryMap(Map<String, String> queryAttributes)
+    {
         return this.client.getFileContent(from(queryAttributes));
     }
 
@@ -634,12 +664,13 @@ public class MongoCloudConnector {
      * no query is specified, all files are listed.
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:list-files}
-     *
+     * 
      * @param query the {@link DBObject} optional query
      * @return an iterable of {@link DBObject}
      */
     @Processor
-    public Iterable<DBObject> listFiles(@Optional DBObject query) {
+    public Iterable<DBObject> listFiles(@Optional DBObject query)
+    {
         return this.client.listFiles(from(query));
     }
 
@@ -647,13 +678,15 @@ public class MongoCloudConnector {
      * Lists all the files that match the given query, sorting them by filename. If
      * no query is specified, all files are listed.
      * <p/>
-     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:list-files-using-query-map}
-     *
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample
+     * mongo:list-files-using-query-map}
+     * 
      * @param queryAttributes the optional query
      * @return an iterable of {@link DBObject}
      */
     @Processor
-    public Iterable<DBObject> listFilesUsingQueryMap(@Optional Map<String, String> queryAttributes) {
+    public Iterable<DBObject> listFilesUsingQueryMap(@Optional Map<String, String> queryAttributes)
+    {
         return this.client.listFiles(from(queryAttributes));
     }
 
@@ -662,11 +695,12 @@ public class MongoCloudConnector {
      * all files are removed
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:remove-files}
-     *
+     * 
      * @param query the {@link DBObject} optional query
      */
     @Processor
-    public void removeFiles(@Optional DBObject query) {
+    public void removeFiles(@Optional DBObject query)
+    {
         this.client.removeFiles(from(query));
     }
 
@@ -674,12 +708,14 @@ public class MongoCloudConnector {
      * Removes all the files that match the given query. If no query is specified,
      * all files are removed
      * <p/>
-     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:remove-files-using-query-map}
-     *
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample
+     * mongo:remove-files-using-query-map}
+     * 
      * @param queryAttributes the optional query
      */
     @Processor
-    public void removeFilesUsingQueryMap(@Optional Map<String, String> queryAttributes) {
+    public void removeFilesUsingQueryMap(@Optional Map<String, String> queryAttributes)
+    {
         this.client.removeFiles(from(queryAttributes));
     }
 
@@ -687,12 +723,13 @@ public class MongoCloudConnector {
      * Convert JSON to DBObject.
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:jsonToDbobject}
-     *
+     * 
      * @param input the input for this transformer
      * @return the converted {@link DBObject}
      */
     @Transformer(sourceTypes = {String.class})
-    public static DBObject jsonToDbobject(Object input) {
+    public static DBObject jsonToDbobject(Object input)
+    {
         return (DBObject) JSON.parse((String) input);
     }
 
@@ -700,12 +737,13 @@ public class MongoCloudConnector {
      * Convert DBObject to Json.
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:dbobjectToJson}
-     *
+     * 
      * @param input the input for this transformer
      * @return the converted string representation
      */
     @Transformer(sourceTypes = {DBObject.class})
-    public static String dbobjectToJson(Object input) {
+    public static String dbobjectToJson(Object input)
+    {
         return JSON.serialize(input);
     }
 
@@ -713,43 +751,50 @@ public class MongoCloudConnector {
      * Convert a BasicBSONList into Json.
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:bsonListToJson}
-     *
+     * 
      * @param input the input for this transformer
      * @return the converted string representation
      */
     @Transformer(sourceTypes = {BasicBSONList.class})
-    public static String bsonListToJson(Object input) {
+    public static String bsonListToJson(Object input)
+    {
         return JSON.serialize(input);
     }
 
     /**
      * Convert a BasicBSONList into Json.
      * <p/>
-     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:mongoCollectionToJson}
-     *
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample
+     * mongo:mongoCollectionToJson}
+     * 
      * @param input the input for this transformer
      * @return the converted string representation
      */
     @Transformer(sourceTypes = {MongoCollection.class})
-    public static String mongoCollectionToJson(Object input) {
+    public static String mongoCollectionToJson(Object input)
+    {
         return JSON.serialize(input);
     }
 
     /**
      * Method invoked when a {@link MongoSession} needs to be created.
-     *
+     * 
      * @param username the username to use in case authentication is required
      * @param password the password to use in case authentication is required, null
-     *                 if no authentication is desired
+     *            if no authentication is desired
      * @return the newly created {@link MongoSession}
      * @throws Exception
      */
     @Connect
-    public void connect(@ConnectionKey String username, String password) throws ConnectionException {
+    public void connect(@ConnectionKey String username, String password) throws ConnectionException
+    {
         DB db = null;
-        try {
+        try
+        {
             db = getDatabase(new Mongo(host, port), username, password);
-        } catch (UnknownHostException e) {
+        }
+        catch (UnknownHostException e)
+        {
             throw new ConnectionException(ConnectionExceptionCode.UNKNOWN_HOST, null, e.getMessage());
         }
         this.client = new MongoClientImpl(db);
@@ -759,44 +804,54 @@ public class MongoCloudConnector {
      * Method invoked when the {@link MongoSession} is to be destroyed.
      */
     @Disconnect
-    public void disconnect() {
+    public void disconnect()
+    {
         this.client = null;
     }
 
-    private DB getDatabase(Mongo mongo, String username, String password) {
+    private DB getDatabase(Mongo mongo, String username, String password)
+    {
         DB db = mongo.getDB(database);
-        if (password != null) {
+        if (password != null)
+        {
             Validate.notNull(username, "Username must not be null if password is set");
             db.authenticate(username, password.toCharArray());
         }
         return db;
     }
 
-    protected MongoClient adaptClient(MongoClient client) {
+    protected MongoClient adaptClient(MongoClient client)
+    {
         return MongoClientAdaptor.adapt(client);
     }
 
-    public String getDatabase() {
+    public String getDatabase()
+    {
         return database;
     }
 
-    public void setDatabase(String database) {
+    public void setDatabase(String database)
+    {
         this.database = database;
     }
 
-    public String getHost() {
+    public String getHost()
+    {
         return host;
     }
 
-    public void setHost(String host) {
+    public void setHost(String host)
+    {
         this.host = host;
     }
 
-    public int getPort() {
+    public int getPort()
+    {
         return port;
     }
 
-    public void setPort(int port) {
+    public void setPort(int port)
+    {
         this.port = port;
     }
 }
