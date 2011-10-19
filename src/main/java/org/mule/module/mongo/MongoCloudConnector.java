@@ -21,6 +21,8 @@ import com.mongodb.MongoException;
 import com.mongodb.util.JSON;
 import org.apache.commons.lang.Validate;
 import org.bson.types.BasicBSONList;
+import org.mule.api.ConnectionException;
+import org.mule.api.ConnectionExceptionCode;
 import org.mule.api.annotations.Configurable;
 import org.mule.api.annotations.Connect;
 import org.mule.api.annotations.Connector;
@@ -44,6 +46,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.UnknownHostException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -732,17 +735,22 @@ public class MongoCloudConnector {
      * @throws Exception
      */
     @Connect
-    public MongoSession createSession(@ConnectionKey String username, String password) throws Exception {
-        DB db = getDatabase(new Mongo(host, port), username, password);
-        return new MongoSession(username, new MongoClientImpl(db));
+    public void connect(@ConnectionKey String username, String password) throws ConnectionException {
+        DB db = null;
+        try {
+            db = getDatabase(new Mongo(host, port), username, password);
+        } catch (UnknownHostException e) {
+            throw new ConnectionException(ConnectionExceptionCode.UNKNOWN_HOST, null, e.getMessage());
+        }
+        this.client = new MongoClientImpl(db);
     }
 
     /**
      * Method invoked when the {@link MongoSession} is to be destroyed.
      */
     @Disconnect
-    public void destroySession() {
-        // nothing to do here
+    public void disconnect() {
+        this.client = null;
     }
 
     private DB getDatabase(Mongo mongo, String username, String password) {

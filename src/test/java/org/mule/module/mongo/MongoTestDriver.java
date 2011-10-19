@@ -63,7 +63,7 @@ public class MongoTestDriver
         connector.setDatabase("mongo-connector-test");
         connector.setHost("127.0.0.1");
         connector.setPort(27017);
-        connector.createSession("user", "pass");
+        connector.connect("user", "pass");
         connector.createCollection(MAIN_COLLECTION, false, 100, 1000);
     }
 
