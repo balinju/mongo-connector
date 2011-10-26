@@ -96,7 +96,7 @@ public class MongoCloudConnector
     @Processor
     public Collection<String> listCollections()
     {
-        return this.client.listCollections();
+        return client.listCollections();
     }
 
     /**
@@ -110,7 +110,7 @@ public class MongoCloudConnector
     @Processor
     public boolean existsCollection(String collection)
     {
-        return this.client.existsCollection(collection);
+        return client.existsCollection(collection);
     }
 
     /**
@@ -124,7 +124,7 @@ public class MongoCloudConnector
     @Processor
     public void dropCollection(String collection)
     {
-        this.client.dropCollection(collection);
+        client.dropCollection(collection);
     }
 
     /**
@@ -145,24 +145,25 @@ public class MongoCloudConnector
                                  @Optional Integer maxObjects,
                                  @Optional Integer size)
     {
-        this.client.createCollection(collection, capped, maxObjects, size);
+        client.createCollection(collection, capped, maxObjects, size);
     }
 
     /**
      * Inserts an object in a collection, setting its id if necessary.
      * <p/>
      * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:insert-object}
-     * 
+     *
      * @param collection the name of the collection where to insert the given object
      * @param dbObject a {@link DBObject} instance.
      * @param writeConcern the optional write concern of insertion
+     * @return the id that was just insterted
      */
     @Processor
-    public void insertObject(String collection,
-                             DBObject dbObject,
-                             @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
+    public String insertObject(String collection,
+                               DBObject dbObject,
+                               @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
     {
-        this.client.insertObject(collection, dbObject, writeConcern);
+        return client.insertObject(collection, dbObject, writeConcern);
     }
 
     /**
@@ -174,17 +175,19 @@ public class MongoCloudConnector
      * {@sample.xml ../../../doc/mongo-connector.xml.sample
      * mongo:insert-object-from-map}
      * 
+     *
      * @param collection the name of the collection where to insert the given object
      * @param elementAttributes alternative way of specifying the element as a
      *            literal Map inside a Mule Flow
      * @param writeConcern the optional write concern of insertion
+     * @return the id that was just insterted
      */
     @Processor
-    public void insertObjectFromMap(String collection,
-                                    @Optional Map<String, String> elementAttributes,
-                                    @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
+    public String insertObjectFromMap(String collection,
+                                      @Optional Map<String, String> elementAttributes,
+                                      @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
     {
-        this.client.insertObject(collection, from(elementAttributes), writeConcern);
+        return client.insertObject(collection, from(elementAttributes), writeConcern);
     }
 
     /**
@@ -212,7 +215,7 @@ public class MongoCloudConnector
                               @Optional @Default("true") boolean multi,
                               @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
     {
-        this.client.updateObjects(collection, query, element, upsert, multi, writeConcern);
+        client.updateObjects(collection, query, element, upsert, multi, writeConcern);
     }
 
     /**
@@ -240,7 +243,7 @@ public class MongoCloudConnector
                                       @Optional @Default("true") boolean multi,
                                       @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
     {
-        this.client.updateObjects(collection, from(queryAttributes), from(elementAttributes), upsert, multi,
+        client.updateObjects(collection, from(queryAttributes), from(elementAttributes), upsert, multi,
             writeConcern);
     }
 
@@ -258,7 +261,7 @@ public class MongoCloudConnector
                            DBObject element,
                            @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
     {
-        this.client.saveObject(collection, from(element), writeConcern);
+        client.saveObject(collection, from(element), writeConcern);
     }
 
     /**
@@ -276,7 +279,7 @@ public class MongoCloudConnector
                                   Map<String, String> elementAttributes,
                                   @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
     {
-        this.client.saveObject(collection, from(elementAttributes), writeConcern);
+        client.saveObject(collection, from(elementAttributes), writeConcern);
     }
 
     /**
@@ -297,7 +300,7 @@ public class MongoCloudConnector
                               DBObject query,
                               @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
     {
-        this.client.removeObjects(collection, query, writeConcern);
+        client.removeObjects(collection, query, writeConcern);
     }
 
     /**
@@ -319,7 +322,7 @@ public class MongoCloudConnector
                                     Map<String, String> queryAttributes,
                                     @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
     {
-        this.client.removeObjects(collection, from(queryAttributes), writeConcern);
+        client.removeObjects(collection, from(queryAttributes), writeConcern);
     }
 
     /**
@@ -352,7 +355,7 @@ public class MongoCloudConnector
                                                String reduceFunction,
                                                @Optional String outputCollection)
     {
-        return this.client.mapReduceObjects(collection, mapFunction, reduceFunction, outputCollection);
+        return client.mapReduceObjects(collection, mapFunction, reduceFunction, outputCollection);
     }
 
     /**
@@ -370,7 +373,7 @@ public class MongoCloudConnector
     @Processor
     public long countObjects(String collection, @Optional DBObject query)
     {
-        return this.client.countObjects(collection, query);
+        return client.countObjects(collection, query);
     }
 
     /**
@@ -389,7 +392,7 @@ public class MongoCloudConnector
     @Processor
     public long countObjectsUsingQueryMap(String collection, @Optional Map<String, String> queryAttributes)
     {
-        return this.client.countObjects(collection, from(queryAttributes));
+        return client.countObjects(collection, from(queryAttributes));
     }
 
     /**
@@ -410,7 +413,7 @@ public class MongoCloudConnector
                                           @Optional DBObject query,
                                           @Optional List<String> fields)
     {
-        return this.client.findObjects(collection, query, fields);
+        return client.findObjects(collection, query, fields);
     }
 
     /**
@@ -432,7 +435,7 @@ public class MongoCloudConnector
                                                        @Optional Map<String, String> queryAttributes,
                                                        @Optional List<String> fields)
     {
-        return this.client.findObjects(collection, from(queryAttributes), fields);
+        return client.findObjects(collection, from(queryAttributes), fields);
     }
 
     /**
@@ -450,7 +453,7 @@ public class MongoCloudConnector
     @Processor
     public DBObject findOneObject(String collection, DBObject query, @Optional List<String> fields)
     {
-        return this.client.findOneObject(collection, query, fields);
+        return client.findOneObject(collection, query, fields);
 
     }
 
@@ -472,7 +475,7 @@ public class MongoCloudConnector
                                                Map<String, String> queryAttributes,
                                                @Optional List<String> fields)
     {
-        return this.client.findOneObject(collection, from(queryAttributes), fields);
+        return client.findOneObject(collection, from(queryAttributes), fields);
 
     }
 
@@ -488,7 +491,7 @@ public class MongoCloudConnector
     @Processor
     public void createIndex(String collection, String field, @Optional @Default("ASC") IndexOrder order)
     {
-        this.client.createIndex(collection, field, order);
+        client.createIndex(collection, field, order);
     }
 
     /**
@@ -502,7 +505,7 @@ public class MongoCloudConnector
     @Processor
     public void dropIndex(String collection, String index)
     {
-        this.client.dropIndex(collection, index);
+        client.dropIndex(collection, index);
     }
 
     /**
@@ -516,7 +519,7 @@ public class MongoCloudConnector
     @Processor
     public Collection<DBObject> listIndices(String collection)
     {
-        return this.client.listIndices(collection);
+        return client.listIndices(collection);
     }
 
     /**
@@ -543,7 +546,7 @@ public class MongoCloudConnector
         InputStream stream = toStream(payload);
         try
         {
-            return this.client.createFile(stream, filename, contentType, metadata);
+            return client.createFile(stream, filename, contentType, metadata);
         }
         finally
         {
@@ -579,7 +582,7 @@ public class MongoCloudConnector
     @Processor
     public Iterable<DBObject> findFiles(@Optional DBObject query)
     {
-        return this.client.findFiles(from(query));
+        return client.findFiles(from(query));
     }
 
     /**
@@ -594,7 +597,7 @@ public class MongoCloudConnector
     @Processor
     public Iterable<DBObject> findFilesUsingQueryMap(@Optional Map<String, String> queryAttributes)
     {
-        return this.client.findFiles(from(queryAttributes));
+        return client.findFiles(from(queryAttributes));
     }
 
     /**
@@ -609,7 +612,7 @@ public class MongoCloudConnector
     @Processor
     public DBObject findOneFile(DBObject query)
     {
-        return this.client.findOneFile(from(query));
+        return client.findOneFile(from(query));
     }
 
     /**
@@ -625,7 +628,7 @@ public class MongoCloudConnector
     @Processor
     public DBObject findOneFileUsingQueryMap(Map<String, String> queryAttributes)
     {
-        return this.client.findOneFile(from(queryAttributes));
+        return client.findOneFile(from(queryAttributes));
     }
 
     /**
@@ -640,7 +643,7 @@ public class MongoCloudConnector
     @Processor
     public InputStream getFileContent(DBObject query)
     {
-        return this.client.getFileContent(from(query));
+        return client.getFileContent(from(query));
     }
 
     /**
@@ -656,7 +659,7 @@ public class MongoCloudConnector
     @Processor
     public InputStream getFileContentUsingQueryMap(Map<String, String> queryAttributes)
     {
-        return this.client.getFileContent(from(queryAttributes));
+        return client.getFileContent(from(queryAttributes));
     }
 
     /**
@@ -671,7 +674,7 @@ public class MongoCloudConnector
     @Processor
     public Iterable<DBObject> listFiles(@Optional DBObject query)
     {
-        return this.client.listFiles(from(query));
+        return client.listFiles(from(query));
     }
 
     /**
@@ -687,7 +690,7 @@ public class MongoCloudConnector
     @Processor
     public Iterable<DBObject> listFilesUsingQueryMap(@Optional Map<String, String> queryAttributes)
     {
-        return this.client.listFiles(from(queryAttributes));
+        return client.listFiles(from(queryAttributes));
     }
 
     /**
@@ -701,7 +704,7 @@ public class MongoCloudConnector
     @Processor
     public void removeFiles(@Optional DBObject query)
     {
-        this.client.removeFiles(from(query));
+        client.removeFiles(from(query));
     }
 
     /**
@@ -716,7 +719,7 @@ public class MongoCloudConnector
     @Processor
     public void removeFilesUsingQueryMap(@Optional Map<String, String> queryAttributes)
     {
-        this.client.removeFiles(from(queryAttributes));
+        client.removeFiles(from(queryAttributes));
     }
 
     /**
@@ -774,6 +777,23 @@ public class MongoCloudConnector
     public static String mongoCollectionToJson(Object input)
     {
         return JSON.serialize(input);
+    }
+
+    /**
+     * Convert a DBObject into Map.
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample
+     * mongo:dbObjectToMap}
+     *
+     *
+     * @param input the input for this transformer
+     * @return the converted Map representation
+     */
+    @Transformer(sourceTypes = {DBObject.class})
+    @SuppressWarnings("unchecked")
+    public static Map dbObjectToMap(Object input)
+    {
+        return ((DBObject) input).toMap();
     }
 
     /**
