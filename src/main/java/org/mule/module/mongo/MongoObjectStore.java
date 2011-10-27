@@ -239,7 +239,7 @@ public class MongoObjectStore implements PartitionableExpirableObjectStore<Seria
         dbObject.put(TIMESTAMP_FIELD, System.currentTimeMillis());
         dbObject.put(KEY_FIELD, keyAsBytes);
         dbObject.put(VALUE_FIELD, SerializationUtils.serialize(value));
-        mongoClient.insertObject(collection, dbObject, getWriteConcern());
+        mongoClient.updateObjects(collection, query, dbObject, true, false, getWriteConcern());
     }
 
     public Serializable retrieve(Serializable key, String partitionName) throws ObjectStoreException
