@@ -28,7 +28,6 @@ import org.mule.api.annotations.Configurable;
 import org.mule.api.annotations.Module;
 import org.mule.api.annotations.param.Default;
 import org.mule.api.annotations.param.Optional;
-import org.mule.api.store.ObjectAlreadyExistsException;
 import org.mule.api.store.ObjectDoesNotExistException;
 import org.mule.api.store.ObjectStoreException;
 import org.mule.api.store.PartitionableExpirableObjectStore;
@@ -229,11 +228,6 @@ public class MongoObjectStore implements PartitionableExpirableObjectStore<Seria
         byte[] keyAsBytes = SerializationUtils.serialize(key);
         ObjectId objectId = getObjectIdFromKey(keyAsBytes);
         DBObject query = getQueryForObjectId(objectId);
-        if (mongoClient.findObjects(collection, query, null).iterator().hasNext())
-        {
-            throw new ObjectAlreadyExistsException();
-        }
-
         DBObject dbObject = new BasicDBObject();
         dbObject.put(ID_FIELD, objectId);
         dbObject.put(TIMESTAMP_FIELD, System.currentTimeMillis());
