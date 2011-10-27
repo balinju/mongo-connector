@@ -23,12 +23,7 @@ import org.apache.commons.lang.Validate;
 import org.bson.types.BasicBSONList;
 import org.mule.api.ConnectionException;
 import org.mule.api.ConnectionExceptionCode;
-import org.mule.api.annotations.Configurable;
-import org.mule.api.annotations.Connect;
-import org.mule.api.annotations.Connector;
-import org.mule.api.annotations.Disconnect;
-import org.mule.api.annotations.Processor;
-import org.mule.api.annotations.Transformer;
+import org.mule.api.annotations.*;
 import org.mule.api.annotations.param.ConnectionKey;
 import org.mule.api.annotations.param.Default;
 import org.mule.api.annotations.param.Optional;
@@ -751,6 +746,16 @@ public class MongoCloudConnector {
     @Disconnect
     public void disconnect() {
         this.client = null;
+    }
+    
+    @ValidateConnection
+    public boolean isConnected() {
+        return this.client != null;
+    }
+    
+    @ConnectionIdentifier
+    public String connectionId() {
+        return "unknown";
     }
 
     private DB getDatabase(Mongo mongo, String username, String password) {
