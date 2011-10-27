@@ -1,7 +1,10 @@
 Mule Mongo Cloud Connector
 ==========================
 
-Mule Cloud connector to mongo
+Provides [MongoDB](http://mongodb.org) connectivity:
+
+- As a *Cloud Connector*, allowing Mule flows to interact with MongoDB,
+- As an *ObjectStore* for Mule components that require persistence (via the [ObjectStore API](http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/store/ObjectStore.html)).
 
 Installation
 ------------
@@ -496,58 +499,31 @@ all files are removed
 |query|the optional query|yes||
 
 
+Object Store
+------------
 
+The Mongo Object Store must be configured specifically in order to use it:
 
+    <mule xmlns="http://www.mulesoft.org/schema/mule/core"
+          ...
+          xmlns:mos="http://www.mulesoft.org/schema/mule/mongo-object-store"
+          xsi:schemaLocation="
+              http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.2/mule.xsd
+              ... ">
 
+        <mos:config name="mongoObjectStore"
+                    host="localhost"
+                    port="27017"
+                    database="mule-object-store"
+                    writeConcern="SAFE"
+                    username="${mongodb.username}"
+                    password="${mongodb.password}" />
+        ...    
 
+It can then be used directly, for example as the backing store of a PubSubHubbub hub:
 
+    <pubsubhubbub:config objectStore-ref="mongoObjectStore" />
+    
+> Mule object stores are stored as MongoDB collections named mule.objectstore.{ospn}, where ospn is the object store partition name (or _default if none has been specified). Stored keys and values are stored as Java-serialized bytes within each object whose ID is a hash of the key. A timestamp is also stored in order to support TTL expiration.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        

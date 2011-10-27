@@ -228,3 +228,7 @@
 <!-- BEGIN_INCLUDE(mongo:mongoCollectionToJson) -->
         <mongo:mongo-collection-to-json />
 <!-- END_INCLUDE(mongo:mongoCollectionToJson) -->
+
+<!-- BEGIN_INCLUDE(mongo:dbObjectToMap) -->
+        <mongo:db-object-to-map />
+<!-- END_INCLUDE(mongo:dbObjectToMap) -->

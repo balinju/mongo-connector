@@ -246,7 +246,7 @@
         <mongo:bson-list-to-json />
     </flow>
 
-    <flow name="mongoCollectionToJson">
-        <mongo:mongo-collection-to-json />
+    <flow name="dbObjectToMap">
+        <mongo:db-object-to-map />
     </flow>
 </mule>
