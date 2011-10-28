@@ -224,7 +224,7 @@
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/MapReduceObjectsMessageProcessor.html">MapReduceObjectsMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorCapabilitiesAdapter.html">MongoCloudConnectorCapabilitiesAdapter</a></li>
           <li class="selected api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.html">MongoCloudConnectorConnectionManager</a></li>
-          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.ConnectionKey.html">MongoCloudConnectorConnectionManager.ConnectionKey</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.ConnectionParameters.html">MongoCloudConnectorConnectionManager.ConnectionParameters</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorLifecycleAdapter.html">MongoCloudConnectorLifecycleAdapter</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.html">MongoCloudConnectorSessionManagerAdapter</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.SessionKey.html">MongoCloudConnectorSessionManagerAdapter.SessionKey</a></li>
@@ -473,7 +473,7 @@ Summary:
         
         
         class</nobr></td>
-      <td class="jd-linkcol"><a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.ConnectionKey.html">MongoCloudConnectorConnectionManager.ConnectionKey</a></td>
+      <td class="jd-linkcol"><a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.ConnectionParameters.html">MongoCloudConnectorConnectionManager.ConnectionParameters</a></td>
       <td class="jd-descrcol" width="100%">&nbsp;</td>
     </tr>
     
@@ -608,6 +608,17 @@ org.mule.api.lifecycle.Initialisable
       <tr class=" api apilevel-" >
           <td class="jd-typecol"><nobr>
           private
+          static
+          
+          Logger</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.html#logger">logger</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
           
           
           MuleContext</nobr></td>
@@ -618,7 +629,7 @@ org.mule.api.lifecycle.Initialisable
       </tr>
       
     
-      <tr class="alt-color api apilevel-" >
+      <tr class=" api apilevel-" >
           <td class="jd-typecol"><nobr>
           private
           
@@ -629,7 +640,7 @@ org.mule.api.lifecycle.Initialisable
       </tr>
       
     
-      <tr class=" api apilevel-" >
+      <tr class="alt-color api apilevel-" >
           <td class="jd-typecol"><nobr>
           private
           
@@ -640,7 +651,7 @@ org.mule.api.lifecycle.Initialisable
       </tr>
       
     
-      <tr class="alt-color api apilevel-" >
+      <tr class=" api apilevel-" >
           <td class="jd-typecol"><nobr>
           private
           
@@ -705,7 +716,7 @@ org.mule.api.lifecycle.Initialisable
             <a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorLifecycleAdapter.html">MongoCloudConnectorLifecycleAdapter</a></nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.html#acquireConnection(org.mule.module.mongo.config.MongoCloudConnectorConnectionManager.ConnectionKey)">acquireConnection</a></span>(<a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.ConnectionKey.html">MongoCloudConnectorConnectionManager.ConnectionKey</a> key)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.html#acquireConnection(org.mule.module.mongo.config.MongoCloudConnectorConnectionManager.ConnectionParameters)">acquireConnection</a></span>(<a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.ConnectionParameters.html">MongoCloudConnectorConnectionManager.ConnectionParameters</a> key)</nobr>
         
   </td></tr>
 
@@ -721,7 +732,7 @@ org.mule.api.lifecycle.Initialisable
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.html#destroyConnection(org.mule.module.mongo.config.MongoCloudConnectorConnectionManager.ConnectionKey, org.mule.module.mongo.config.MongoCloudConnectorLifecycleAdapter)">destroyConnection</a></span>(<a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.ConnectionKey.html">MongoCloudConnectorConnectionManager.ConnectionKey</a> key, <a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorLifecycleAdapter.html">MongoCloudConnectorLifecycleAdapter</a> connection)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.html#destroyConnection(org.mule.module.mongo.config.MongoCloudConnectorConnectionManager.ConnectionParameters, org.mule.module.mongo.config.MongoCloudConnectorLifecycleAdapter)">destroyConnection</a></span>(<a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.ConnectionParameters.html">MongoCloudConnectorConnectionManager.ConnectionParameters</a> key, <a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorLifecycleAdapter.html">MongoCloudConnectorLifecycleAdapter</a> connection)</nobr>
         
   </td></tr>
 
@@ -893,7 +904,7 @@ org.mule.api.lifecycle.Initialisable
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.html#releaseConnection(org.mule.module.mongo.config.MongoCloudConnectorConnectionManager.ConnectionKey, org.mule.module.mongo.config.MongoCloudConnectorLifecycleAdapter)">releaseConnection</a></span>(<a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.ConnectionKey.html">MongoCloudConnectorConnectionManager.ConnectionKey</a> key, <a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorLifecycleAdapter.html">MongoCloudConnectorLifecycleAdapter</a> connection)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.html#releaseConnection(org.mule.module.mongo.config.MongoCloudConnectorConnectionManager.ConnectionParameters, org.mule.module.mongo.config.MongoCloudConnectorLifecycleAdapter)">releaseConnection</a></span>(<a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.ConnectionParameters.html">MongoCloudConnectorConnectionManager.ConnectionParameters</a> key, <a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorLifecycleAdapter.html">MongoCloudConnectorLifecycleAdapter</a> connection)</nobr>
         
   </td></tr>
 
@@ -1634,6 +1645,36 @@ From interface
 
 
 
+<A NAME="logger"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+        static 
+         
+        Logger
+      </span>
+        logger
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
 <A NAME="muleContext"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -1811,7 +1852,7 @@ From interface
 
 
 
-<A NAME="acquireConnection(org.mule.module.mongo.config.MongoCloudConnectorConnectionManager.ConnectionKey)"></A>
+<A NAME="acquireConnection(org.mule.module.mongo.config.MongoCloudConnectorConnectionManager.ConnectionParameters)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -1824,7 +1865,7 @@ From interface
         <a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorLifecycleAdapter.html">MongoCloudConnectorLifecycleAdapter</a>
       </span>
       <span class="sympad">acquireConnection</span>
-      <span class="normal">(<a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.ConnectionKey.html">MongoCloudConnectorConnectionManager.ConnectionKey</a> key)</span>
+      <span class="normal">(<a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.ConnectionParameters.html">MongoCloudConnectorConnectionManager.ConnectionParameters</a> key)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -1860,7 +1901,7 @@ From interface
 </div>
 
 
-<A NAME="destroyConnection(org.mule.module.mongo.config.MongoCloudConnectorConnectionManager.ConnectionKey, org.mule.module.mongo.config.MongoCloudConnectorLifecycleAdapter)"></A>
+<A NAME="destroyConnection(org.mule.module.mongo.config.MongoCloudConnectorConnectionManager.ConnectionParameters, org.mule.module.mongo.config.MongoCloudConnectorLifecycleAdapter)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -1873,7 +1914,7 @@ From interface
         void
       </span>
       <span class="sympad">destroyConnection</span>
-      <span class="normal">(<a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.ConnectionKey.html">MongoCloudConnectorConnectionManager.ConnectionKey</a> key, <a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorLifecycleAdapter.html">MongoCloudConnectorLifecycleAdapter</a> connection)</span>
+      <span class="normal">(<a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.ConnectionParameters.html">MongoCloudConnectorConnectionManager.ConnectionParameters</a> key, <a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorLifecycleAdapter.html">MongoCloudConnectorLifecycleAdapter</a> connection)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -2184,7 +2225,7 @@ From interface
 </div>
 
 
-<A NAME="releaseConnection(org.mule.module.mongo.config.MongoCloudConnectorConnectionManager.ConnectionKey, org.mule.module.mongo.config.MongoCloudConnectorLifecycleAdapter)"></A>
+<A NAME="releaseConnection(org.mule.module.mongo.config.MongoCloudConnectorConnectionManager.ConnectionParameters, org.mule.module.mongo.config.MongoCloudConnectorLifecycleAdapter)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2197,7 +2238,7 @@ From interface
         void
       </span>
       <span class="sympad">releaseConnection</span>
-      <span class="normal">(<a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.ConnectionKey.html">MongoCloudConnectorConnectionManager.ConnectionKey</a> key, <a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorLifecycleAdapter.html">MongoCloudConnectorLifecycleAdapter</a> connection)</span>
+      <span class="normal">(<a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.ConnectionParameters.html">MongoCloudConnectorConnectionManager.ConnectionParameters</a> key, <a href="../../../../../../java/org/mule/module/mongo/config/MongoCloudConnectorLifecycleAdapter.html">MongoCloudConnectorLifecycleAdapter</a> connection)</span>
     </h4>
       <div class="api-level">
         <div>

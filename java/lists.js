@@ -76,7 +76,7 @@ var DATA = [
       { id:74, label:"org.mule.module.mongo.config.MapReduceObjectsMessageProcessor", link:"java/org/mule/module/mongo/config/MapReduceObjectsMessageProcessor.html", type:"class" },
       { id:75, label:"org.mule.module.mongo.config.MongoCloudConnectorCapabilitiesAdapter", link:"java/org/mule/module/mongo/config/MongoCloudConnectorCapabilitiesAdapter.html", type:"class" },
       { id:76, label:"org.mule.module.mongo.config.MongoCloudConnectorConnectionManager", link:"java/org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.html", type:"class" },
-      { id:77, label:"org.mule.module.mongo.config.MongoCloudConnectorConnectionManager.ConnectionKey", link:"java/org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.ConnectionKey.html", type:"class" },
+      { id:77, label:"org.mule.module.mongo.config.MongoCloudConnectorConnectionManager.ConnectionParameters", link:"java/org/mule/module/mongo/config/MongoCloudConnectorConnectionManager.ConnectionParameters.html", type:"class" },
       { id:78, label:"org.mule.module.mongo.config.MongoCloudConnectorLifecycleAdapter", link:"java/org/mule/module/mongo/config/MongoCloudConnectorLifecycleAdapter.html", type:"class" },
       { id:79, label:"org.mule.module.mongo.config.MongoCloudConnectorSessionManagerAdapter", link:"java/org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.html", type:"class" },
       { id:80, label:"org.mule.module.mongo.config.MongoCloudConnectorSessionManagerAdapter.SessionKey", link:"java/org/mule/module/mongo/config/MongoCloudConnectorSessionManagerAdapter.SessionKey.html", type:"class" },
