@@ -1,5 +1,5 @@
 /**
- * Mule MongoDB Object Store
+ * Mule Mongo Connector
  *
  * Copyright (c) MuleSoft, Inc.  All rights reserved.  http://www.mulesoft.com
  *
