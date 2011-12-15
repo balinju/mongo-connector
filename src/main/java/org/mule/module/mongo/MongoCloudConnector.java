@@ -10,6 +10,7 @@
 
 package org.mule.module.mongo;
 
+import static org.mule.module.mongo.api.DBObjects.adapt;
 import static org.mule.module.mongo.api.DBObjects.from;
 
 import java.io.ByteArrayInputStream;
@@ -182,7 +183,7 @@ public class MongoCloudConnector
                                       @Optional Map<String, String> elementAttributes,
                                       @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
     {
-        return client.insertObject(collection, from(elementAttributes), writeConcern);
+        return client.insertObject(collection, (DBObject) adapt(elementAttributes), writeConcern);
     }
 
     /**
@@ -238,7 +239,7 @@ public class MongoCloudConnector
                                       @Optional @Default("true") boolean multi,
                                       @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
     {
-        client.updateObjects(collection, from(queryAttributes), from(elementAttributes), upsert, multi,
+        client.updateObjects(collection, (DBObject) adapt(queryAttributes), (DBObject) adapt(elementAttributes), upsert, multi,
             writeConcern);
     }
 
@@ -274,7 +275,7 @@ public class MongoCloudConnector
                                   Map<String, String> elementAttributes,
                                   @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
     {
-        client.saveObject(collection, from(elementAttributes), writeConcern);
+        client.saveObject(collection, (DBObject) adapt(elementAttributes), writeConcern);
     }
 
     /**
@@ -317,7 +318,7 @@ public class MongoCloudConnector
                                     Map<String, String> queryAttributes,
                                     @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
     {
-        client.removeObjects(collection, from(queryAttributes), writeConcern);
+        client.removeObjects(collection, (DBObject) adapt(queryAttributes), writeConcern);
     }
 
     /**
@@ -387,7 +388,7 @@ public class MongoCloudConnector
     @Processor
     public long countObjectsUsingQueryMap(String collection, @Optional Map<String, String> queryAttributes)
     {
-        return client.countObjects(collection, from(queryAttributes));
+        return client.countObjects(collection, (DBObject) adapt(queryAttributes));
     }
 
     /**
@@ -430,7 +431,7 @@ public class MongoCloudConnector
                                                        @Optional Map<String, String> queryAttributes,
                                                        @Optional List<String> fields)
     {
-        return client.findObjects(collection, from(queryAttributes), fields);
+        return client.findObjects(collection, (DBObject) adapt(queryAttributes), fields);
     }
 
     /**
@@ -470,7 +471,7 @@ public class MongoCloudConnector
                                                Map<String, String> queryAttributes,
                                                @Optional List<String> fields)
     {
-        return client.findOneObject(collection, from(queryAttributes), fields);
+        return client.findOneObject(collection, (DBObject) adapt(queryAttributes), fields);
 
     }
 
@@ -592,7 +593,7 @@ public class MongoCloudConnector
     @Processor
     public Iterable<DBObject> findFilesUsingQueryMap(@Optional Map<String, String> queryAttributes)
     {
-        return client.findFiles(from(queryAttributes));
+        return client.findFiles((DBObject) adapt(queryAttributes));
     }
 
     /**
@@ -623,7 +624,7 @@ public class MongoCloudConnector
     @Processor
     public DBObject findOneFileUsingQueryMap(Map<String, String> queryAttributes)
     {
-        return client.findOneFile(from(queryAttributes));
+        return client.findOneFile((DBObject) adapt(queryAttributes));
     }
 
     /**
@@ -654,7 +655,7 @@ public class MongoCloudConnector
     @Processor
     public InputStream getFileContentUsingQueryMap(Map<String, String> queryAttributes)
     {
-        return client.getFileContent(from(queryAttributes));
+        return client.getFileContent((DBObject) adapt(queryAttributes));
     }
 
     /**
@@ -685,7 +686,7 @@ public class MongoCloudConnector
     @Processor
     public Iterable<DBObject> listFilesUsingQueryMap(@Optional Map<String, String> queryAttributes)
     {
-        return client.listFiles(from(queryAttributes));
+        return client.listFiles((DBObject) adapt(queryAttributes));
     }
 
     /**
@@ -714,7 +715,7 @@ public class MongoCloudConnector
     @Processor
     public void removeFilesUsingQueryMap(@Optional Map<String, String> queryAttributes)
     {
-        client.removeFiles(from(queryAttributes));
+        client.removeFiles((DBObject) adapt(queryAttributes));
     }
 
     /**
