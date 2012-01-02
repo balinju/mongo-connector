@@ -45,8 +45,8 @@
 
     <repositories>
         <repository>
-            <id>muleforge-releases</id>
-            <name>MuleForge Releases Repository</name>
+            <id>mulesoft-releases</id>
+            <name>MuleSoft Releases Repository</name>
             <url>http://repository.mulesoft.org/releases/</url>
             <layout>default</layout>
         </repository>
