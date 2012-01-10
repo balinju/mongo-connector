@@ -10,7 +10,35 @@
 
 package org.mule.module.mongo;
 
-import static org.mule.module.mongo.api.DBObjects.from;
+import com.mongodb.DB;
+import com.mongodb.DBObject;
+import com.mongodb.Mongo;
+import com.mongodb.MongoException;
+import com.mongodb.util.JSON;
+import org.apache.commons.lang.Validate;
+import org.bson.types.BasicBSONList;
+import org.mule.api.ConnectionException;
+import org.mule.api.ConnectionExceptionCode;
+import org.mule.api.annotations.Configurable;
+import org.mule.api.annotations.Connect;
+import org.mule.api.annotations.ConnectionIdentifier;
+import org.mule.api.annotations.Connector;
+import org.mule.api.annotations.Disconnect;
+import org.mule.api.annotations.Processor;
+import org.mule.api.annotations.Transformer;
+import org.mule.api.annotations.ValidateConnection;
+import org.mule.api.annotations.display.Password;
+import org.mule.api.annotations.display.Placement;
+import org.mule.api.annotations.param.ConnectionKey;
+import org.mule.api.annotations.param.Default;
+import org.mule.api.annotations.param.Optional;
+import org.mule.api.annotations.param.Payload;
+import org.mule.module.mongo.api.IndexOrder;
+import org.mule.module.mongo.api.MongoClient;
+import org.mule.module.mongo.api.MongoClientAdaptor;
+import org.mule.module.mongo.api.MongoClientImpl;
+import org.mule.module.mongo.api.MongoCollection;
+import org.mule.module.mongo.api.WriteConcern;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -23,28 +51,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang.Validate;
-import org.bson.types.BasicBSONList;
-import org.mule.api.ConnectionException;
-import org.mule.api.ConnectionExceptionCode;
-import org.mule.api.annotations.*;
-import org.mule.api.annotations.param.ConnectionKey;
-import org.mule.api.annotations.param.Default;
-import org.mule.api.annotations.param.Optional;
-import org.mule.api.annotations.param.Payload;
-import org.mule.api.annotations.studio.Display;
-import org.mule.module.mongo.api.IndexOrder;
-import org.mule.module.mongo.api.MongoClient;
-import org.mule.module.mongo.api.MongoClientAdaptor;
-import org.mule.module.mongo.api.MongoClientImpl;
-import org.mule.module.mongo.api.MongoCollection;
-import org.mule.module.mongo.api.WriteConcern;
-
-import com.mongodb.DB;
-import com.mongodb.DBObject;
-import com.mongodb.Mongo;
-import com.mongodb.MongoException;
-import com.mongodb.util.JSON;
+import static org.mule.module.mongo.api.DBObjects.from;
 
 /**
  * MongoDB is an open source, high-performance, schema-free, document-oriented database that manages collections of
@@ -52,8 +59,7 @@ import com.mongodb.util.JSON;
  * 
  * @author MuleSoft, inc.
  */
-@Connector(name = "mongo", schemaVersion = "2.0")
-@Display(caption = "Mongo DB")
+@Connector(name = "mongo", schemaVersion = "2.0", friendlyName = "Mongo DB")
 public class MongoCloudConnector
 {
 
@@ -182,7 +188,7 @@ public class MongoCloudConnector
      */
     @Processor
     public String insertObjectFromMap(String collection,
-                                      @Display(inputGroup = "Element Attributes") @Optional Map<String, String> elementAttributes,
+                                      @Placement(group = "Element Attributes") @Optional Map<String, String> elementAttributes,
                                       @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
     {
         return client.insertObject(collection, from(elementAttributes), writeConcern);
@@ -235,8 +241,8 @@ public class MongoCloudConnector
      */
     @Processor
     public void updateObjectsUsingMap(String collection,
-                                      @Display(inputGroup = "Query Attributes") Map<String, String> queryAttributes,
-                                      @Display(inputGroup = "Element Attributes") Map<String, String> elementAttributes,
+                                      @Placement(group = "Query Attributes") Map<String, String> queryAttributes,
+                                      @Placement(group = "Element Attributes") Map<String, String> elementAttributes,
                                       @Optional @Default(CAPPED_DEFAULT_VALUE) boolean upsert,
                                       @Optional @Default("true") boolean multi,
                                       @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
@@ -274,7 +280,7 @@ public class MongoCloudConnector
      */
     @Processor
     public void saveObjectFromMap(String collection,
-                                  @Display(inputGroup = "Element Attributes") Map<String, String> elementAttributes,
+                                  @Placement(group = "Element Attributes") Map<String, String> elementAttributes,
                                   @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
     {
         client.saveObject(collection, from(elementAttributes), writeConcern);
@@ -317,7 +323,7 @@ public class MongoCloudConnector
      */
     @Processor
     public void removeUsingQueryMap(String collection,
-                                    @Display(inputGroup = "Query Attributes") Map<String, String> queryAttributes,
+                                    @Placement(group = "Query Attributes") Map<String, String> queryAttributes,
                                     @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
     {
         client.removeObjects(collection, from(queryAttributes), writeConcern);
@@ -388,7 +394,7 @@ public class MongoCloudConnector
      * @return the amount of objects that matches the query
      */
     @Processor
-    public long countObjectsUsingQueryMap(String collection, @Display(inputGroup = "Query Attributes") @Optional Map<String, String> queryAttributes)
+    public long countObjectsUsingQueryMap(String collection, @Placement(group = "Query Attributes") @Optional Map<String, String> queryAttributes)
     {
         return client.countObjects(collection, from(queryAttributes));
     }
@@ -409,7 +415,7 @@ public class MongoCloudConnector
     @Processor
     public Iterable<DBObject> findObjects(String collection,
                                           @Optional DBObject query,
-                                          @Display(inputGroup = "Fields") @Optional List<String> fields)
+                                          @Placement(group = "Fields") @Optional List<String> fields)
     {
         return client.findObjects(collection, query, fields);
     }
@@ -430,8 +436,8 @@ public class MongoCloudConnector
      */
     @Processor
     public Iterable<DBObject> findObjectsUsingQueryMap(String collection,
-                                                       @Display(inputGroup = "Query Attributes") @Optional Map<String, String> queryAttributes,
-                                                       @Display(inputGroup = "Fields") @Optional List<String> fields)
+                                                       @Placement(group = "Query Attributes") @Optional Map<String, String> queryAttributes,
+                                                       @Placement(group = "Fields") @Optional List<String> fields)
     {
         return client.findObjects(collection, from(queryAttributes), fields);
     }
@@ -451,7 +457,7 @@ public class MongoCloudConnector
     @Processor
     public DBObject findOneObject(String collection,
                                   DBObject query,
-                                  @Display(inputGroup = "Fields") @Optional List<String> fields)
+                                  @Placement(group = "Fields") @Optional List<String> fields)
     {
         return client.findOneObject(collection, query, fields);
 
@@ -472,8 +478,8 @@ public class MongoCloudConnector
      */
     @Processor
     public DBObject findOneObjectUsingQueryMap(String collection,
-                                               @Display(inputGroup = "Query Attributes") Map<String, String> queryAttributes,
-                                               @Display(inputGroup = "Fields") @Optional List<String> fields)
+                                               @Placement(group = "Query Attributes") Map<String, String> queryAttributes,
+                                               @Placement(group = "Fields") @Optional List<String> fields)
     {
         return client.findOneObject(collection, from(queryAttributes), fields);
 
@@ -595,7 +601,7 @@ public class MongoCloudConnector
      * @return a {@link DBObject} files iterable
      */
     @Processor
-    public Iterable<DBObject> findFilesUsingQueryMap(@Display(inputGroup = "Query Attributes") @Optional Map<String, String> queryAttributes)
+    public Iterable<DBObject> findFilesUsingQueryMap(@Placement(group = "Query Attributes") @Optional Map<String, String> queryAttributes)
     {
         return client.findFiles(from(queryAttributes));
     }
@@ -626,7 +632,7 @@ public class MongoCloudConnector
      * @return a {@link DBObject}
      */
     @Processor
-    public DBObject findOneFileUsingQueryMap(@Display(inputGroup = "Query Attributes") Map<String, String> queryAttributes)
+    public DBObject findOneFileUsingQueryMap(@Placement(group = "Query Attributes") Map<String, String> queryAttributes)
     {
         return client.findOneFile(from(queryAttributes));
     }
@@ -657,7 +663,7 @@ public class MongoCloudConnector
      * @return an InputStream to the file contents
      */
     @Processor
-    public InputStream getFileContentUsingQueryMap(@Display(inputGroup = "Query Attributes") Map<String, String> queryAttributes)
+    public InputStream getFileContentUsingQueryMap(@Placement(group = "Query Attributes") Map<String, String> queryAttributes)
     {
         return client.getFileContent(from(queryAttributes));
     }
@@ -688,7 +694,7 @@ public class MongoCloudConnector
      * @return an iterable of {@link DBObject}
      */
     @Processor
-    public Iterable<DBObject> listFilesUsingQueryMap(@Display(inputGroup = "Query Attributes") @Optional Map<String, String> queryAttributes)
+    public Iterable<DBObject> listFilesUsingQueryMap(@Placement(group = "Query Attributes") @Optional Map<String, String> queryAttributes)
     {
         return client.listFiles(from(queryAttributes));
     }
@@ -717,7 +723,7 @@ public class MongoCloudConnector
      * @param queryAttributes the optional query
      */
     @Processor
-    public void removeFilesUsingQueryMap(@Display(inputGroup = "Query Attributes") @Optional Map<String, String> queryAttributes)
+    public void removeFilesUsingQueryMap(@Placement(group = "Query Attributes") @Optional Map<String, String> queryAttributes)
     {
         client.removeFiles(from(queryAttributes));
     }
@@ -806,7 +812,7 @@ public class MongoCloudConnector
      * @throws Exception
      */
     @Connect
-    public void connect(@ConnectionKey String username, @Display(type = Display.Type.PASSWORD) String password) throws ConnectionException
+    public void connect(@ConnectionKey String username, @Password String password) throws ConnectionException
     {
         DB db = null;
         try
