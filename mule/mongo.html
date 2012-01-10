@@ -111,15 +111,19 @@
       <span id="masthead-title">Mule Mongo Connector</span>
     
     <ul id="header-tabs" class="mule">
+    
     	<li id="guide"><a href="../guide/install.html">
 	    	<span class="en">Install Guide</span>
     	</a></li>
+    
     	<li id="java"><a href="../java/packages.html">
-	    	<span class="en">Java API</span>
+	    	<span class="en">Java API Reference</span>
     	</a></li>
+    
     	<li id="mule"><a href="../mule/modules.html">
-	    	<span class="en">Mule API</span>
+	    	<span class="en">Mule API Reference</span>
     	</a></li>
+    
     </ul>
     </div>
     <div id="headerRight">
@@ -223,7 +227,7 @@ Summary:
 
 
 <h2>Module Overview</h2>
-<p>A Mongo Connector Facade<br/></p>
+<p>A Mongo Connector Facade</p>
 
 
 </div><!-- jd-descr -->
@@ -776,14 +780,14 @@ resolution.</p>
     
       <tr class=" api apilevel-" >
           <td class="jd-linkcol"><nobr>username</nobr></td>
-          <td class="jd-descrcol" width="100%">The username to use in case authentication is required<br/></td>
+          <td class="jd-descrcol" width="100%">The username to use in case authentication is required</td>
       </tr>
       
     
       <tr class="alt-color api apilevel-" >
           <td class="jd-linkcol"><nobr>password</nobr></td>
           <td class="jd-descrcol" width="100%">The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
+            if no authentication is desired</td>
       </tr>
       
     
@@ -795,6 +799,8 @@ attribute on each operation.</p>
 <pre>
     ... retryMax="3"/&gt;
 </pre>
+
+
 
 
 
@@ -823,21 +829,23 @@ attribute on each operation.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Counts the number of objects that match the given query. If no query is
  passed, returns the number of elements in the collection
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:count-objects collection="myCollection" query-ref="dbObject"/&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:count-objects collection="myCollection" query-ref="dbObject"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The target collection<br/></td>
+                    <td class="jd-descrcol" width="100%">The target collection</td>
                 </tr>
                 
                 
@@ -846,14 +854,35 @@ attribute on each operation.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>query</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The optional <br/>DBObject query for counting objects. Only
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The optional DBObject query for counting objects. Only
             objects matching it will be counted. If unspecified, all objects
-            are counted.<br/></td>
+            are counted.</td>
                 </tr>
                 
                 
           
           
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
+                </tr>
+                
+            
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
+                </tr>
+                
+            
+          
+          
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
             <tr class=" api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
@@ -861,28 +890,12 @@ attribute on each operation.</p>
             </tr>
             
           
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
@@ -895,8 +908,10 @@ attribute on each operation.</p>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
       <ul class="nolist"><li>the amount of objects that matches the query
-<br/></li></ul>
+</li></ul>
   </div>
+    
+  
 
     </div>
 </div>
@@ -918,7 +933,7 @@ attribute on each operation.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Counts the number of objects that match the given query. If no query is
  passed, returns the number of elements in the collection
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:count-objects-using-query-map collection="myCollection"&gt;
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:count-objects-using-query-map collection="myCollection"&gt;
     &lt;mongo:query-attributes&gt;
         &lt;mongo:query-attribute key="foo"&gt;bar&lt;/mongo:query-attribute&gt;
         &lt;mongo:query-attribute key="foo"&gt;bar&lt;/mongo:query-attribute&gt;
@@ -927,66 +942,69 @@ attribute on each operation.</p>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The target collection<br/></td>
+                    <td class="jd-descrcol" width="100%">The target collection</td>
                 </tr>
                 
                 
           
                 
+          
+          
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
                 <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>queryAttributes</nobr></td>
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The optional query for counting objects. Only objects
-            matching it will be counted. If unspecified, all objects are
-            counted.<br/></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
                 </tr>
                 
+            
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
+                </tr>
                 
+            
           
           
-            <tr class=" api apilevel-" >
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
+            <tr class="alt-color api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
                 <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify how many times this operation can be retried automatically</td>
             </tr>
             
           
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
           
+            
+            <tr><th colspan="12"><nobr>&lt;mongo:queryAttributes&gt;</nobr></br><span style="font-weight: normal;"><i>Optional.&nbsp;</i>The optional query for counting objects. Only objects
+            matching it will be counted. If unspecified, all objects are
+            counted.</span></th></tr>
+            
             
           
       </table>
@@ -995,8 +1013,10 @@ attribute on each operation.</p>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
       <ul class="nolist"><li>the amount of objects that matches the query
-<br/></li></ul>
+</li></ul>
   </div>
+    
+  
 
     </div>
 </div>
@@ -1018,21 +1038,23 @@ attribute on each operation.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Creates a new collection. If the collection already exists, a MongoException
  will be thrown.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:create-collection collection="aCollection" capped="true"/&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:create-collection collection="aCollection" capped="true"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The name of the collection to create<br/></td>
+                    <td class="jd-descrcol" width="100%">The name of the collection to create</td>
                 </tr>
                 
                 
@@ -1041,7 +1063,7 @@ attribute on each operation.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>capped</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>If the collection will be capped<br/></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>If the collection will be capped</td>
                 </tr>
                 
                 
@@ -1051,7 +1073,7 @@ attribute on each operation.</p>
                     <td class="jd-linkcol"><nobr>maxObjects</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The maximum number of documents the new collection is able
-            to contain<br/></td>
+            to contain</td>
                 </tr>
                 
                 
@@ -1061,12 +1083,33 @@ attribute on each operation.</p>
                     <td class="jd-linkcol"><nobr>size</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The maximum size of the new collection
-<br/></td>
+</td>
                 </tr>
                 
                 
           
           
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
+                </tr>
+                
+            
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
+                </tr>
+                
+            
+          
+          
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
             <tr class=" api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
@@ -1074,28 +1117,12 @@ attribute on each operation.</p>
             </tr>
             
           
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
@@ -1108,6 +1135,8 @@ attribute on each operation.</p>
           
       </table>
   </div>
+  
+    
   
 
     </div>
@@ -1130,14 +1159,16 @@ attribute on each operation.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Creates a new GridFSFile in the database, saving the given content, filename,
  contentType, and extraData, and answers it.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:create-file-from-payload filename="#[variable:filename]" metadata-ref="myDbObject"/&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:create-file-from-payload filename="#[variable:filename]" metadata-ref="myDbObject"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
@@ -1145,7 +1176,7 @@ attribute on each operation.</p>
                     <td class="jd-linkcol"><nobr>payload</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">The mandatory content of the new gridfs file. It may be a
-            java.io.File, a byte[] or an InputStream.<br/></td>
+            java.io.File, a byte[] or an InputStream.</td>
                 </tr>
                 
                 
@@ -1154,7 +1185,7 @@ attribute on each operation.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>filename</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The mandatory name of new file.<br/></td>
+                    <td class="jd-descrcol" width="100%">The mandatory name of new file.</td>
                 </tr>
                 
                 
@@ -1163,7 +1194,7 @@ attribute on each operation.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>contentType</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The optional content type of the new file<br/></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The optional content type of the new file</td>
                 </tr>
                 
                 
@@ -1172,12 +1203,33 @@ attribute on each operation.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>metadata</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The optional <br/>DBObject metadata of the new content type<br/></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The optional DBObject metadata of the new content type</td>
                 </tr>
                 
                 
           
           
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
+                </tr>
+                
+            
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
+                </tr>
+                
+            
+          
+          
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
             <tr class=" api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
@@ -1185,28 +1237,12 @@ attribute on each operation.</p>
             </tr>
             
           
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
@@ -1222,8 +1258,10 @@ attribute on each operation.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>the new GridFSFile <br/>DBObject</li></ul>
+      <ul class="nolist"><li>the new GridFSFile DBObject</li></ul>
   </div>
+    
+  
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Exception Payload</h5>
       <table class="jd-tagtable">
@@ -1253,21 +1291,23 @@ attribute on each operation.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Creates a new index
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:create-index collection="myCollection" field="myField" order="DESC"/&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:create-index collection="myCollection" field="myField" order="DESC"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The name of the collection where the index will be created<br/></td>
+                    <td class="jd-descrcol" width="100%">The name of the collection where the index will be created</td>
                 </tr>
                 
                 
@@ -1276,7 +1316,7 @@ attribute on each operation.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>field</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The name of the field which will be indexed<br/></td>
+                    <td class="jd-descrcol" width="100%">The name of the field which will be indexed</td>
                 </tr>
                 
                 
@@ -1286,12 +1326,33 @@ attribute on each operation.</p>
                     <td class="jd-linkcol"><nobr>order</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The indexing order
-<br/></td>
+</td>
                 </tr>
                 
                 
           
           
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
+                </tr>
+                
+            
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
+                </tr>
+                
+            
+          
+          
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
             <tr class="alt-color api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
@@ -1299,28 +1360,12 @@ attribute on each operation.</p>
             </tr>
             
           
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
@@ -1331,6 +1376,8 @@ attribute on each operation.</p>
           
       </table>
   </div>
+  
+    
   
 
     </div>
@@ -1353,14 +1400,16 @@ attribute on each operation.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Deletes a collection and all the objects it contains. If the collection does
  not exist, does nothing.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:drop-collection collection="aCollection"/&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:drop-collection collection="aCollection"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
@@ -1368,12 +1417,33 @@ attribute on each operation.</p>
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">The name of the collection to drop
-<br/></td>
+</td>
                 </tr>
                 
                 
           
           
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
+                </tr>
+                
+            
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
+                </tr>
+                
+            
+          
+          
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
             <tr class="alt-color api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
@@ -1381,34 +1451,20 @@ attribute on each operation.</p>
             </tr>
             
           
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
           
       </table>
   </div>
+  
+    
   
 
     </div>
@@ -1430,21 +1486,23 @@ attribute on each operation.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Drops an existing index
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:drop-index collection="myCollection" index="myIndex"/&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:drop-index collection="myCollection" index="myIndex"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The name of the collection where the index is<br/></td>
+                    <td class="jd-descrcol" width="100%">The name of the collection where the index is</td>
                 </tr>
                 
                 
@@ -1454,12 +1512,33 @@ attribute on each operation.</p>
                     <td class="jd-linkcol"><nobr>index</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">The name of the index to drop
-<br/></td>
+</td>
                 </tr>
                 
                 
           
           
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
+                </tr>
+                
+            
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
+                </tr>
+                
+            
+          
+          
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
             <tr class=" api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
@@ -1467,28 +1546,12 @@ attribute on each operation.</p>
             </tr>
             
           
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
@@ -1497,6 +1560,8 @@ attribute on each operation.</p>
           
       </table>
   </div>
+  
+    
   
 
     </div>
@@ -1518,26 +1583,49 @@ attribute on each operation.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Answers if a collection exists given its name
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:exists-collection collection="aColllection"/&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:exists-collection collection="aColllection"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The name of the collection<br/></td>
+                    <td class="jd-descrcol" width="100%">The name of the collection</td>
                 </tr>
                 
                 
           
           
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
+                </tr>
+                
+            
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
+                </tr>
+                
+            
+          
+          
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
             <tr class="alt-color api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
@@ -1545,28 +1633,12 @@ attribute on each operation.</p>
             </tr>
             
           
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
@@ -1577,8 +1649,10 @@ attribute on each operation.</p>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
       <ul class="nolist"><li>if the collection exists
-<br/></li></ul>
+</li></ul>
   </div>
+    
+  
 
     </div>
 </div>
@@ -1599,26 +1673,49 @@ attribute on each operation.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Lists all the files that match the given query
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:find-files query-ref="myDbObject" /&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:find-files query-ref="myDbObject" /&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>query</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>A <br/>DBObject query the optional query<br/></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>A DBObject query the optional query</td>
                 </tr>
                 
                 
           
           
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
+                </tr>
+                
+            
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
+                </tr>
+                
+            
+          
+          
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
             <tr class="alt-color api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
@@ -1626,28 +1723,12 @@ attribute on each operation.</p>
             </tr>
             
           
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
@@ -1657,9 +1738,11 @@ attribute on each operation.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>a <br/>DBObject files iterable
-<br/></li></ul>
+      <ul class="nolist"><li>a DBObject files iterable
+</li></ul>
   </div>
+    
+  
 
     </div>
 </div>
@@ -1680,7 +1763,7 @@ attribute on each operation.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Lists all the files that match the given query
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:find-files-using-query-map&gt;
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:find-files-using-query-map&gt;
     &lt;mongo:query-attributes&gt;
         &lt;mongo:query-attribute key="foo"&gt;bar&lt;/mongo:query-attribute&gt;
         &lt;mongo:query-attribute key="foos"&gt;bars&lt;/mongo:query-attribute&gt;
@@ -1689,53 +1772,56 @@ attribute on each operation.</p>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
+          
+          
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
                 <tr class=" api apilevel-" >
-                    <td class="jd-linkcol"><nobr>queryAttributes</nobr></td>
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The optional query attributes<br/></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
                 </tr>
                 
+            
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
+                </tr>
                 
+            
           
           
-            <tr class="alt-color api apilevel-" >
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
+            <tr class=" api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
                 <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify how many times this operation can be retried automatically</td>
             </tr>
             
           
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
+            
+            <tr><th colspan="12"><nobr>&lt;mongo:queryAttributes&gt;</nobr></br><span style="font-weight: normal;"><i>Optional.&nbsp;</i>The optional query attributes</span></th></tr>
+            
             
           
       </table>
@@ -1743,9 +1829,11 @@ attribute on each operation.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>a <br/>DBObject files iterable
-<br/></li></ul>
+      <ul class="nolist"><li>a DBObject files iterable
+</li></ul>
   </div>
+    
+  
 
     </div>
 </div>
@@ -1768,7 +1856,7 @@ attribute on each operation.</p>
  objects of the collection are retrieved. If no fields object is specified, all
  fields are retrieved.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:find-objects collection="myCollection" query-ref="dbObject"&gt;
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:find-objects collection="myCollection" query-ref="dbObject"&gt;
     &lt;mongo:fields&gt;
         &lt;mongo:field&gt;field1&lt;/mongo:field&gt;
         &lt;mongo:field&gt;field2&lt;/mongo:field&gt;
@@ -1777,17 +1865,19 @@ attribute on each operation.</p>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The target collection<br/></td>
+                    <td class="jd-descrcol" width="100%">The target collection</td>
                 </tr>
                 
                 
@@ -1796,57 +1886,58 @@ attribute on each operation.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>query</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The optional <br/>DBObject query object. If unspecified, all
-            documents are returned.<br/></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The optional DBObject query object. If unspecified, all
+            documents are returned.</td>
                 </tr>
                 
                 
           
                 
+          
+          
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
                 <tr class=" api apilevel-" >
-                    <td class="jd-linkcol"><nobr>fields</nobr></td>
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Alternative way of passing fields as a literal List<br/></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
                 </tr>
                 
+            
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
+                </tr>
                 
+            
           
           
-            <tr class="alt-color api apilevel-" >
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
+            <tr class=" api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
                 <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify how many times this operation can be retried automatically</td>
             </tr>
             
           
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
           
             
           
+            
+            <tr><th colspan="12"><nobr>&lt;mongo:fields&gt;</nobr></br><span style="font-weight: normal;"><i>Optional.&nbsp;</i>Alternative way of passing fields as a literal List</span></th></tr>
+            
             
           
       </table>
@@ -1854,9 +1945,11 @@ attribute on each operation.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>an iterable of <br/>DBObject
-<br/></li></ul>
+      <ul class="nolist"><li>an iterable of DBObject
+</li></ul>
   </div>
+    
+  
 
     </div>
 </div>
@@ -1879,7 +1972,7 @@ attribute on each operation.</p>
  objects of the collection are retrieved. If no fields object is specified, all
  fields are retrieved.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:find-objects-using-query-map collection="myCollection"&gt;
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:find-objects-using-query-map collection="myCollection"&gt;
      &lt;mongo:fields&gt;
          &lt;mongo:field&gt;field1&lt;/mongo:field&gt;
          &lt;mongo:field&gt;field2&lt;/mongo:field&gt;
@@ -1888,41 +1981,49 @@ attribute on each operation.</p>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The target collection<br/></td>
+                    <td class="jd-descrcol" width="100%">The target collection</td>
                 </tr>
                 
                 
           
                 
+          
+                
+          
+          
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
                 <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>queryAttributes</nobr></td>
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The optional query object. If unspecified, all
-            documents are returned.<br/></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
                 </tr>
                 
-                
-          
-                
+            
                 <tr class=" api apilevel-" >
-                    <td class="jd-linkcol"><nobr>fields</nobr></td>
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Alternative way of passing fields as a literal List<br/></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
                 </tr>
                 
-                
+            
           
           
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
             <tr class="alt-color api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
@@ -1930,34 +2031,25 @@ attribute on each operation.</p>
             </tr>
             
           
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
           
             
+            <tr><th colspan="12"><nobr>&lt;mongo:queryAttributes&gt;</nobr></br><span style="font-weight: normal;"><i>Optional.&nbsp;</i>The optional query object. If unspecified, all
+            documents are returned.</span></th></tr>
+            
+            
           
+            
+            <tr><th colspan="12"><nobr>&lt;mongo:fields&gt;</nobr></br><span style="font-weight: normal;"><i>Optional.&nbsp;</i>Alternative way of passing fields as a literal List</span></th></tr>
+            
             
           
       </table>
@@ -1965,9 +2057,11 @@ attribute on each operation.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>an iterable of <br/>DBObject
-<br/></li></ul>
+      <ul class="nolist"><li>an iterable of DBObject
+</li></ul>
   </div>
+    
+  
 
     </div>
 </div>
@@ -1989,26 +2083,49 @@ attribute on each operation.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Answers the first file that matches the given query. If no object matches it,
  a MongoException is thrown.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:find-one-file query-ref="myDbObject" /&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:find-one-file query-ref="myDbObject" /&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>query</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The <br/>DBObject mandatory query<br/></td>
+                    <td class="jd-descrcol" width="100%">The DBObject mandatory query</td>
                 </tr>
                 
                 
           
           
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
+                </tr>
+                
+            
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
+                </tr>
+                
+            
+          
+          
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
             <tr class="alt-color api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
@@ -2016,28 +2133,12 @@ attribute on each operation.</p>
             </tr>
             
           
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
@@ -2047,9 +2148,11 @@ attribute on each operation.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>a <br/>DBObject
-<br/></li></ul>
+      <ul class="nolist"><li>a DBObject
+</li></ul>
   </div>
+    
+  
 
     </div>
 </div>
@@ -2071,7 +2174,7 @@ attribute on each operation.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Answers the first file that matches the given query. If no object matches it,
  a MongoException is thrown.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:find-one-file-using-query-map&gt;
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:find-one-file-using-query-map&gt;
     &lt;mongo:query-attributes&gt;
         &lt;mongo:query-attribute key="foo"&gt;bar&lt;/mongo:query-attribute&gt;
         &lt;mongo:query-attribute key="foos"&gt;bars&lt;/mongo:query-attribute&gt;
@@ -2080,53 +2183,56 @@ attribute on each operation.</p>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
+          
+          
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
                 <tr class=" api apilevel-" >
-                    <td class="jd-linkcol"><nobr>queryAttributes</nobr></td>
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The mandatory query<br/></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
                 </tr>
                 
+            
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
+                </tr>
                 
+            
           
           
-            <tr class="alt-color api apilevel-" >
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
+            <tr class=" api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
                 <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify how many times this operation can be retried automatically</td>
             </tr>
             
           
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
+            
+            <tr><th colspan="12"><nobr>&lt;mongo:queryAttributes&gt;</nobr></br><span style="font-weight: normal;">The mandatory query</span></th></tr>
+            
             
           
       </table>
@@ -2134,9 +2240,11 @@ attribute on each operation.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>a <br/>DBObject
-<br/></li></ul>
+      <ul class="nolist"><li>a DBObject
+</li></ul>
   </div>
+    
+  
 
     </div>
 </div>
@@ -2156,9 +2264,9 @@ attribute on each operation.</p>
     <div class="jd-details-descr">
       
   <div class="jd-tagdata jd-tagdescr"><p>Finds the first object that matches a given query. Throws a
- <br/>MongoException if no one matches the given query
+ MongoException if no one matches the given query
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:find-one-object collection="myCollection" query-ref="dbObject"&gt;
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:find-one-object collection="myCollection" query-ref="dbObject"&gt;
     &lt;mongo:fields&gt;
         &lt;mongo:field&gt;field1&lt;/mongo:field&gt;
         &lt;mongo:field&gt;field2&lt;/mongo:field&gt;
@@ -2167,17 +2275,19 @@ attribute on each operation.</p>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The target collection<br/></td>
+                    <td class="jd-descrcol" width="100%">The target collection</td>
                 </tr>
                 
                 
@@ -2186,57 +2296,58 @@ attribute on each operation.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>query</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The mandatory <br/>DBObject query object that the returned
-            object matches.<br/></td>
+                    <td class="jd-descrcol" width="100%">The mandatory DBObject query object that the returned
+            object matches.</td>
                 </tr>
                 
                 
           
                 
+          
+          
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
                 <tr class=" api apilevel-" >
-                    <td class="jd-linkcol"><nobr>fields</nobr></td>
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Alternative way of passing fields as a literal List<br/></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
                 </tr>
                 
+            
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
+                </tr>
                 
+            
           
           
-            <tr class="alt-color api apilevel-" >
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
+            <tr class=" api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
                 <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify how many times this operation can be retried automatically</td>
             </tr>
             
           
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
           
             
           
+            
+            <tr><th colspan="12"><nobr>&lt;mongo:fields&gt;</nobr></br><span style="font-weight: normal;"><i>Optional.&nbsp;</i>Alternative way of passing fields as a literal List</span></th></tr>
+            
             
           
       </table>
@@ -2244,9 +2355,11 @@ attribute on each operation.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>a non-null <br/>DBObject that matches the query.
-<br/></li></ul>
+      <ul class="nolist"><li>a non-null DBObject that matches the query.
+</li></ul>
   </div>
+    
+  
 
     </div>
 </div>
@@ -2266,9 +2379,9 @@ attribute on each operation.</p>
     <div class="jd-details-descr">
       
   <div class="jd-tagdata jd-tagdescr"><p>Finds the first object that matches a given query. Throws a
- <br/>MongoException if no one matches the given query
+ MongoException if no one matches the given query
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:find-one-object-using-query-map collection="myCollection"&gt;
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:find-one-object-using-query-map collection="myCollection"&gt;
     &lt;mongo:query-attributes&gt;
         &lt;mongo:query-attribute key="foo"&gt;bar&lt;/mongo:query-attribute&gt;
         &lt;mongo:query-attribute key="foo"&gt;bar&lt;/mongo:query-attribute&gt;
@@ -2277,41 +2390,49 @@ attribute on each operation.</p>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The target collection<br/></td>
+                    <td class="jd-descrcol" width="100%">The target collection</td>
                 </tr>
                 
                 
           
                 
+          
+                
+          
+          
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
                 <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>queryAttributes</nobr></td>
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The mandatory query object that the returned object
-            matches.<br/></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
                 </tr>
                 
-                
-          
-                
+            
                 <tr class=" api apilevel-" >
-                    <td class="jd-linkcol"><nobr>fields</nobr></td>
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Alternative way of passing fields as a literal List<br/></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
                 </tr>
                 
-                
+            
           
           
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
             <tr class="alt-color api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
@@ -2319,34 +2440,25 @@ attribute on each operation.</p>
             </tr>
             
           
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
           
             
+            <tr><th colspan="12"><nobr>&lt;mongo:queryAttributes&gt;</nobr></br><span style="font-weight: normal;">The mandatory query object that the returned object
+            matches.</span></th></tr>
+            
+            
           
+            
+            <tr><th colspan="12"><nobr>&lt;mongo:fields&gt;</nobr></br><span style="font-weight: normal;"><i>Optional.&nbsp;</i>Alternative way of passing fields as a literal List</span></th></tr>
+            
             
           
       </table>
@@ -2354,9 +2466,11 @@ attribute on each operation.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>a non-null <br/>DBObject that matches the query.
-<br/></li></ul>
+      <ul class="nolist"><li>a non-null DBObject that matches the query.
+</li></ul>
   </div>
+    
+  
 
     </div>
 </div>
@@ -2378,26 +2492,49 @@ attribute on each operation.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Answers an inputstream to the contents of the first file that matches the
  given query. If no object matches it, a MongoException is thrown.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:get-file-content query-ref="myDbObject" /&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:get-file-content query-ref="myDbObject" /&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>query</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The <br/>DBObject mandatory query<br/></td>
+                    <td class="jd-descrcol" width="100%">The DBObject mandatory query</td>
                 </tr>
                 
                 
           
           
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
+                </tr>
+                
+            
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
+                </tr>
+                
+            
+          
+          
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
             <tr class="alt-color api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
@@ -2405,28 +2542,12 @@ attribute on each operation.</p>
             </tr>
             
           
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
@@ -2437,8 +2558,10 @@ attribute on each operation.</p>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
       <ul class="nolist"><li>an InputStream to the file contents
-<br/></li></ul>
+</li></ul>
   </div>
+    
+  
 
     </div>
 </div>
@@ -2460,7 +2583,7 @@ attribute on each operation.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Answers an inputstream to the contents of the first file that matches the
  given queryAttributes. If no object matches it, a MongoException is thrown.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:get-file-content-using-query-map&gt;
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:get-file-content-using-query-map&gt;
     &lt;mongo:query-attributes&gt;
         &lt;mongo:query-attribute key="foo"&gt;bar&lt;/mongo:query-attribute&gt;
         &lt;mongo:query-attribute key="foos"&gt;bars&lt;/mongo:query-attribute&gt;
@@ -2469,53 +2592,56 @@ attribute on each operation.</p>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
+          
+          
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
                 <tr class=" api apilevel-" >
-                    <td class="jd-linkcol"><nobr>queryAttributes</nobr></td>
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The mandatory query attributes<br/></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
                 </tr>
                 
+            
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
+                </tr>
                 
+            
           
           
-            <tr class="alt-color api apilevel-" >
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
+            <tr class=" api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
                 <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify how many times this operation can be retried automatically</td>
             </tr>
             
           
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
+            
+            <tr><th colspan="12"><nobr>&lt;mongo:queryAttributes&gt;</nobr></br><span style="font-weight: normal;">The mandatory query attributes</span></th></tr>
+            
             
           
       </table>
@@ -2524,8 +2650,10 @@ attribute on each operation.</p>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
       <ul class="nolist"><li>an InputStream to the file contents
-<br/></li></ul>
+</li></ul>
   </div>
+    
+  
 
     </div>
 </div>
@@ -2546,21 +2674,23 @@ attribute on each operation.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Inserts an object in a collection, setting its id if necessary.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:insert-object collection="Employees" dbObject-ref="dbObject" writeConcern="SAFE"/&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:insert-object collection="Employees" dbObject-ref="dbObject" writeConcern="SAFE"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The name of the collection where to insert the given object<br/></td>
+                    <td class="jd-descrcol" width="100%">The name of the collection where to insert the given object</td>
                 </tr>
                 
                 
@@ -2569,7 +2699,7 @@ attribute on each operation.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>dbObject</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">A <br/>DBObject instance.<br/></td>
+                    <td class="jd-descrcol" width="100%">A DBObject instance.</td>
                 </tr>
                 
                 
@@ -2578,12 +2708,33 @@ attribute on each operation.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>writeConcern</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The optional write concern of insertion<br/></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The optional write concern of insertion</td>
                 </tr>
                 
                 
           
           
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
+                </tr>
+                
+            
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
+                </tr>
+                
+            
+          
+          
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
             <tr class="alt-color api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
@@ -2591,28 +2742,12 @@ attribute on each operation.</p>
             </tr>
             
           
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
@@ -2627,8 +2762,10 @@ attribute on each operation.</p>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
       <ul class="nolist"><li>the id that was just insterted
-<br/></li></ul>
+</li></ul>
   </div>
+    
+  
 
     </div>
 </div>
@@ -2652,7 +2789,7 @@ attribute on each operation.</p>
  A shallow conversion into DBObject is performed - that is, no conversion is
  performed to its values.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:insert-object-from-map collection="Employees" writeConcern="SAFE"&gt;
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:insert-object-from-map collection="Employees" writeConcern="SAFE"&gt;
     &lt;mongo:element-attributes&gt;
         &lt;mongo:element-attribute key="foo"&gt;bar&lt;/mongo:element-attribute&gt;
         &lt;mongo:element-attribute key="foobar"&gt;baz&lt;/mongo:element-attribute&gt;
@@ -2661,74 +2798,77 @@ attribute on each operation.</p>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The name of the collection where to insert the given object<br/></td>
+                    <td class="jd-descrcol" width="100%">The name of the collection where to insert the given object</td>
                 </tr>
                 
+                
+          
                 
           
                 
                 <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>elementAttributes</nobr></td>
-                    <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Alternative way of specifying the element as a
-            literal Map inside a Mule Flow<br/></td>
-                </tr>
-                
-                
-          
-                
-                <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>writeConcern</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The optional write concern of insertion<br/></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The optional write concern of insertion</td>
                 </tr>
                 
                 
           
           
-            <tr class="alt-color api apilevel-" >
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
+                </tr>
+                
+            
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
+                </tr>
+                
+            
+          
+          
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
+            <tr class=" api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
                 <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify how many times this operation can be retried automatically</td>
             </tr>
             
           
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
           
+            
+            <tr><th colspan="12"><nobr>&lt;mongo:elementAttributes&gt;</nobr></br><span style="font-weight: normal;"><i>Optional.&nbsp;</i>Alternative way of specifying the element as a
+            literal Map inside a Mule Flow</span></th></tr>
+            
             
           
             
@@ -2739,8 +2879,10 @@ attribute on each operation.</p>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
       <ul class="nolist"><li>the id that was just insterted
-<br/></li></ul>
+</li></ul>
   </div>
+    
+  
 
     </div>
 </div>
@@ -2761,17 +2903,40 @@ attribute on each operation.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Lists names of collections available at this database
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:list-collections/&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:list-collections/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
           
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
+                </tr>
+                
+            
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
+                </tr>
+                
+            
+          
+          
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
             <tr class=" api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
@@ -2779,28 +2944,12 @@ attribute on each operation.</p>
             </tr>
             
           
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
       </table>
@@ -2809,8 +2958,10 @@ attribute on each operation.</p>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
       <ul class="nolist"><li>the list of names of collections available at this database
-<br/></li></ul>
+</li></ul>
   </div>
+    
+  
 
     </div>
 </div>
@@ -2832,26 +2983,49 @@ attribute on each operation.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Lists all the files that match the given query, sorting them by filename. If
  no query is specified, all files are listed.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:list-files query-ref="myDbObject"/&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:list-files query-ref="myDbObject"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>query</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The <br/>DBObject optional query<br/></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The DBObject optional query</td>
                 </tr>
                 
                 
           
           
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
+                </tr>
+                
+            
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
+                </tr>
+                
+            
+          
+          
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
             <tr class="alt-color api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
@@ -2859,28 +3033,12 @@ attribute on each operation.</p>
             </tr>
             
           
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
@@ -2890,9 +3048,11 @@ attribute on each operation.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>an iterable of <br/>DBObject
-<br/></li></ul>
+      <ul class="nolist"><li>an iterable of DBObject
+</li></ul>
   </div>
+    
+  
 
     </div>
 </div>
@@ -2914,7 +3074,7 @@ attribute on each operation.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Lists all the files that match the given query, sorting them by filename. If
  no query is specified, all files are listed.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:list-files-using-query-map&gt;
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:list-files-using-query-map&gt;
     &lt;mongo:query-attributes&gt;
         &lt;mongo:query-attribute key="foo"&gt;foobaz&lt;/mongo:query-attribute&gt;
         &lt;mongo:query-attribute key="foobar"&gt;foobaz&lt;/mongo:query-attribute&gt;
@@ -2923,53 +3083,56 @@ attribute on each operation.</p>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
+          
+          
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
                 <tr class=" api apilevel-" >
-                    <td class="jd-linkcol"><nobr>queryAttributes</nobr></td>
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The optional query<br/></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
                 </tr>
                 
+            
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
+                </tr>
                 
+            
           
           
-            <tr class="alt-color api apilevel-" >
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
+            <tr class=" api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
                 <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify how many times this operation can be retried automatically</td>
             </tr>
             
           
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
+            
+            <tr><th colspan="12"><nobr>&lt;mongo:queryAttributes&gt;</nobr></br><span style="font-weight: normal;"><i>Optional.&nbsp;</i>The optional query</span></th></tr>
+            
             
           
       </table>
@@ -2977,9 +3140,11 @@ attribute on each operation.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>an iterable of <br/>DBObject
-<br/></li></ul>
+      <ul class="nolist"><li>an iterable of DBObject
+</li></ul>
   </div>
+    
+  
 
     </div>
 </div>
@@ -3000,26 +3165,49 @@ attribute on each operation.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>List existent indices in a collection
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:list-indices collection="myCollection"/&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:list-indices collection="myCollection"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The name of the collection<br/></td>
+                    <td class="jd-descrcol" width="100%">The name of the collection</td>
                 </tr>
                 
                 
           
           
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
+                </tr>
+                
+            
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
+                </tr>
+                
+            
+          
+          
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
             <tr class="alt-color api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
@@ -3027,28 +3215,12 @@ attribute on each operation.</p>
             </tr>
             
           
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
@@ -3058,9 +3230,11 @@ attribute on each operation.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>a collection of <br/>DBObject with indices information
-<br/></li></ul>
+      <ul class="nolist"><li>a collection of DBObject with indices information
+</li></ul>
   </div>
+    
+  
 
     </div>
 </div>
@@ -3089,21 +3263,23 @@ attribute on each operation.</p>
  Note that the correct way of writing those functions may not be obvious;
  please consult MongoDB documentation for writing them.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:map-reduce-objects collection="myCollection" mapFunction="myMapFunction" reduceFunction="myReduceFunction"/&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:map-reduce-objects collection="myCollection" mapFunction="myMapFunction" reduceFunction="myReduceFunction"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The name of the collection to map and reduce<br/></td>
+                    <td class="jd-descrcol" width="100%">The name of the collection to map and reduce</td>
                 </tr>
                 
                 
@@ -3112,7 +3288,7 @@ attribute on each operation.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>mapFunction</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">A JavaScript encoded mapping function<br/></td>
+                    <td class="jd-descrcol" width="100%">A JavaScript encoded mapping function</td>
                 </tr>
                 
                 
@@ -3121,7 +3297,7 @@ attribute on each operation.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>reduceFunction</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">A JavaScript encoded reducing function<br/></td>
+                    <td class="jd-descrcol" width="100%">A JavaScript encoded reducing function</td>
                 </tr>
                 
                 
@@ -3134,12 +3310,33 @@ attribute on each operation.</p>
             results, replacing previous collection if existed, mandatory when
             results may be larger than 16MB. If outputCollection is
             unspecified, the computation is performed in-memory and not
-            persisted.<br/></td>
+            persisted.</td>
                 </tr>
                 
                 
           
           
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
+                </tr>
+                
+            
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
+                </tr>
+                
+            
+          
+          
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
             <tr class=" api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
@@ -3147,28 +3344,12 @@ attribute on each operation.</p>
             </tr>
             
           
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
@@ -3185,9 +3366,11 @@ attribute on each operation.</p>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
       <ul class="nolist"><li>an iterable that retrieves the resulting collection of
-         <br/>DBObject
-<br/></li></ul>
+         DBObject
+</li></ul>
   </div>
+    
+  
 
     </div>
 </div>
@@ -3209,27 +3392,50 @@ attribute on each operation.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Removes all the files that match the given query. If no query is specified,
  all files are removed
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:remove-files query-ref="myDbObject"/&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:remove-files query-ref="myDbObject"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>query</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The <br/>DBObject optional query
-<br/></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The DBObject optional query
+</td>
                 </tr>
                 
                 
           
           
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
+                </tr>
+                
+            
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
+                </tr>
+                
+            
+          
+          
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
             <tr class="alt-color api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
@@ -3237,34 +3443,20 @@ attribute on each operation.</p>
             </tr>
             
           
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
           
       </table>
   </div>
+  
+    
   
 
     </div>
@@ -3287,7 +3479,7 @@ attribute on each operation.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Removes all the files that match the given query. If no query is specified,
  all files are removed
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:remove-files-using-query-map&gt;
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:remove-files-using-query-map&gt;
     &lt;mongo:query-attributes&gt;
         &lt;mongo:query-attribute key="foo"&gt;foobaz&lt;/mongo:query-attribute&gt;
         &lt;mongo:query-attribute key="foobar"&gt;foobaz&lt;/mongo:query-attribute&gt;
@@ -3296,58 +3488,63 @@ attribute on each operation.</p>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
+          
+          
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
                 <tr class=" api apilevel-" >
-                    <td class="jd-linkcol"><nobr>queryAttributes</nobr></td>
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The optional query
-<br/></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
                 </tr>
                 
+            
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
+                </tr>
                 
+            
           
           
-            <tr class="alt-color api apilevel-" >
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
+            <tr class=" api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
                 <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify how many times this operation can be retried automatically</td>
             </tr>
             
           
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
+            
+            <tr><th colspan="12"><nobr>&lt;mongo:queryAttributes&gt;</nobr></br><span style="font-weight: normal;"><i>Optional.&nbsp;</i>The optional query
+</span></th></tr>
+            
             
           
       </table>
   </div>
+  
+    
   
 
     </div>
@@ -3372,21 +3569,23 @@ attribute on each operation.</p>
  normally less performant that dropping the collection and creating it and its
  indices again
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:remove-objects collection="myCollection" query-ref="dbObject"/&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:remove-objects collection="myCollection" query-ref="dbObject"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The collection whose elements will be removed<br/></td>
+                    <td class="jd-descrcol" width="100%">The collection whose elements will be removed</td>
                 </tr>
                 
                 
@@ -3395,8 +3594,8 @@ attribute on each operation.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>query</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The optional <br/>DBObject query object. Objects that match it
-            will be removed.<br/></td>
+                    <td class="jd-descrcol" width="100%">The optional DBObject query object. Objects that match it
+            will be removed.</td>
                 </tr>
                 
                 
@@ -3406,12 +3605,33 @@ attribute on each operation.</p>
                     <td class="jd-linkcol"><nobr>writeConcern</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The write concern used to remove the object
-<br/></td>
+</td>
                 </tr>
                 
                 
           
           
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
+                </tr>
+                
+            
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
+                </tr>
+                
+            
+          
+          
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
             <tr class="alt-color api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
@@ -3419,28 +3639,12 @@ attribute on each operation.</p>
             </tr>
             
           
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
@@ -3451,6 +3655,8 @@ attribute on each operation.</p>
           
       </table>
   </div>
+  
+    
   
 
     </div>
@@ -3475,7 +3681,7 @@ attribute on each operation.</p>
  normally less performant that dropping the collection and creating it and its
  indices again
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:remove-using-query-map collection="myCollection"&gt;
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:remove-using-query-map collection="myCollection"&gt;
     &lt;mongo:query-attributes&gt;
         &lt;mongo:query-attribute key="foo"&gt;bar&lt;/mongo:query-attribute&gt;
         &lt;mongo:query-attribute key="foobar"&gt;baz&lt;/mongo:query-attribute&gt;
@@ -3484,81 +3690,86 @@ attribute on each operation.</p>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The collection whose elements will be removed<br/></td>
+                    <td class="jd-descrcol" width="100%">The collection whose elements will be removed</td>
                 </tr>
                 
+                
+          
                 
           
                 
                 <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>queryAttributes</nobr></td>
-                    <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The query object. Objects that match it will be
-            removed.<br/></td>
-                </tr>
-                
-                
-          
-                
-                <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>writeConcern</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The write concern used to remove the object
-<br/></td>
+</td>
                 </tr>
                 
                 
           
           
-            <tr class="alt-color api apilevel-" >
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
+                </tr>
+                
+            
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
+                </tr>
+                
+            
+          
+          
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
+            <tr class=" api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
                 <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify how many times this operation can be retried automatically</td>
             </tr>
             
           
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
           
+            
+            <tr><th colspan="12"><nobr>&lt;mongo:queryAttributes&gt;</nobr></br><span style="font-weight: normal;">The query object. Objects that match it will be
+            removed.</span></th></tr>
+            
             
           
             
           
       </table>
   </div>
+  
+    
   
 
     </div>
@@ -3580,21 +3791,23 @@ attribute on each operation.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Inserts or updates an object based on its object _id.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:save-object collection="myCollection" element-ref="dbObject"/&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:save-object collection="myCollection" element-ref="dbObject"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The collection where to insert the object<br/></td>
+                    <td class="jd-descrcol" width="100%">The collection where to insert the object</td>
                 </tr>
                 
                 
@@ -3603,7 +3816,7 @@ attribute on each operation.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>element</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The mandatory <br/>DBObject object to insert.<br/></td>
+                    <td class="jd-descrcol" width="100%">The mandatory DBObject object to insert.</td>
                 </tr>
                 
                 
@@ -3613,12 +3826,33 @@ attribute on each operation.</p>
                     <td class="jd-linkcol"><nobr>writeConcern</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The write concern used to persist the object
-<br/></td>
+</td>
                 </tr>
                 
                 
           
           
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
+                </tr>
+                
+            
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
+                </tr>
+                
+            
+          
+          
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
             <tr class="alt-color api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
@@ -3626,28 +3860,12 @@ attribute on each operation.</p>
             </tr>
             
           
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
@@ -3658,6 +3876,8 @@ attribute on each operation.</p>
           
       </table>
   </div>
+  
+    
   
 
     </div>
@@ -3679,7 +3899,7 @@ attribute on each operation.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Inserts or updates an object based on its object _id.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:save-object-from-map collection="myCollection"&gt;
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:save-object-from-map collection="myCollection"&gt;
     &lt;mongo:element-attributes&gt;
         &lt;mongo:element-attribute key="foo"&gt;bar&lt;/mongo:element-attribute&gt;
         &lt;mongo:element-attribute key="foobar"&gt;baz&lt;/mongo:element-attribute&gt;
@@ -3688,80 +3908,85 @@ attribute on each operation.</p>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The collection where to insert the object<br/></td>
+                    <td class="jd-descrcol" width="100%">The collection where to insert the object</td>
                 </tr>
                 
+                
+          
                 
           
                 
                 <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>elementAttributes</nobr></td>
-                    <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The mandatory object to insert.<br/></td>
-                </tr>
-                
-                
-          
-                
-                <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>writeConcern</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The write concern used to persist the object
-<br/></td>
+</td>
                 </tr>
                 
                 
           
           
-            <tr class="alt-color api apilevel-" >
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
+                </tr>
+                
+            
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
+                </tr>
+                
+            
+          
+          
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
+            <tr class=" api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
                 <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify how many times this operation can be retried automatically</td>
             </tr>
             
           
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
           
+            
+            <tr><th colspan="12"><nobr>&lt;mongo:elementAttributes&gt;</nobr></br><span style="font-weight: normal;">The mandatory object to insert.</span></th></tr>
+            
             
           
             
           
       </table>
   </div>
+  
+    
   
 
     </div>
@@ -3785,21 +4010,23 @@ attribute on each operation.</p>
  false, only the first document matching it will be updated. Otherwise, all the
  documents matching it will be updated.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:update-objects collection="myCollection" query-ref="dbObject" element-ref="dbObject" upsert="true"/&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:update-objects collection="myCollection" query-ref="dbObject" element-ref="dbObject" upsert="true"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The name of the collection to update<br/></td>
+                    <td class="jd-descrcol" width="100%">The name of the collection to update</td>
                 </tr>
                 
                 
@@ -3808,8 +4035,8 @@ attribute on each operation.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>query</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The <br/>DBObject query object used to detect the element to
-            update.<br/></td>
+                    <td class="jd-descrcol" width="100%">The DBObject query object used to detect the element to
+            update.</td>
                 </tr>
                 
                 
@@ -3818,8 +4045,8 @@ attribute on each operation.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>element</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The <br/>DBObject mandatory object that will replace that
-            one which matches the query.<br/></td>
+                    <td class="jd-descrcol" width="100%">The DBObject mandatory object that will replace that
+            one which matches the query.</td>
                 </tr>
                 
                 
@@ -3828,7 +4055,7 @@ attribute on each operation.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>upsert</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>If the database should create the element if it does not exist<br/></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>If the database should create the element if it does not exist</td>
                 </tr>
                 
                 
@@ -3838,7 +4065,7 @@ attribute on each operation.</p>
                     <td class="jd-linkcol"><nobr>multi</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>If all or just the first object matching the query will be
-            updated<br/></td>
+            updated</td>
                 </tr>
                 
                 
@@ -3848,12 +4075,33 @@ attribute on each operation.</p>
                     <td class="jd-linkcol"><nobr>writeConcern</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The write concern used to update
-<br/></td>
+</td>
                 </tr>
                 
                 
           
           
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
+                </tr>
+                
+            
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
+                </tr>
+                
+            
+          
+          
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
             <tr class=" api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
@@ -3861,28 +4109,12 @@ attribute on each operation.</p>
             </tr>
             
           
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
@@ -3899,6 +4131,8 @@ attribute on each operation.</p>
           
       </table>
   </div>
+  
+    
   
 
     </div>
@@ -3922,7 +4156,7 @@ attribute on each operation.</p>
  false, only the first document matching it will be updated. Otherwise, all the
  documents matching it will be updated.
  <p/>
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:update-objects-using-map collection="myCollection" upsert="true"&gt;
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;mongo:update-objects-using-map collection="myCollection" upsert="true"&gt;
     &lt;mongo:query-attributes&gt;
         &lt;mongo:query-attribute key="foo"&gt;bar&lt;/mongo:query-attribute&gt;
         &lt;mongo:query-attribute key="foo"&gt;bar&lt;/mongo:query-attribute&gt;
@@ -3935,45 +4169,32 @@ attribute on each operation.</p>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>collection</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The name of the collection to update<br/></td>
+                    <td class="jd-descrcol" width="100%">The name of the collection to update</td>
                 </tr>
                 
                 
           
                 
-                <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>queryAttributes</nobr></td>
-                    <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The query object used to detect the element to update.<br/></td>
-                </tr>
-                
-                
           
-                
-                <tr class=" api apilevel-" >
-                    <td class="jd-linkcol"><nobr>elementAttributes</nobr></td>
-                    <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The mandatory object that will replace that one which
-            matches the query.<br/></td>
-                </tr>
-                
                 
           
                 
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>upsert</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>If the database should create the element if it does not exist<br/></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>If the database should create the element if it does not exist</td>
                 </tr>
                 
                 
@@ -3983,7 +4204,7 @@ attribute on each operation.</p>
                     <td class="jd-linkcol"><nobr>multi</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>If all or just the first object matching the query will be
-            updated<br/></td>
+            updated</td>
                 </tr>
                 
                 
@@ -3993,12 +4214,33 @@ attribute on each operation.</p>
                     <td class="jd-linkcol"><nobr>writeConcern</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The write concern used to update
-<br/></td>
+</td>
                 </tr>
                 
                 
           
           
+          <tr><th colspan="12">Connection Parameters<br/><span style="font-weight: 200;">This are only required if you didn't specified them at the configuration element. They are also useful for overriding the values of the configurations or even if you need to extract them from the Mule message since they support expression evaluation.</span></th></tr>
+            
+                <tr class=" api apilevel-" >
+                    <td class="jd-linkcol"><nobr>username</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required</td>
+                </tr>
+                
+            
+                <tr class="alt-color api apilevel-" >
+                    <td class="jd-linkcol"><nobr>password</nobr></td>
+                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
+            if no authentication is desired</td>
+                </tr>
+                
+            
+          
+          
+          
+            <tr><th colspan="12">Retry and Reconnect<br/><span style="font-weight: 200;">This message processor supports automatic retry and reconnect. If the API call fail for a known error then the API will be automatically retried. This does not happen on every type of error, only a few that has been selected and are known to be recoverable from.</span></th></tr>
             <tr class=" api apilevel-" >
                 <td class="jd-linkcol"><nobr>retryMax</nobr></td>
                 <td class="jd-descrcol">1</td>
@@ -4006,34 +4248,25 @@ attribute on each operation.</p>
             </tr>
             
           
-        
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>username</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The username to use in case authentication is required<br/></td>
-            </tr>
-        
-        
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>password</nobr></td>
-                <td class="jd-descrcol"></td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The password to use in case authentication is required, null
-            if no authentication is desired<br/></td>
-            </tr>
-        
-        
-      </table>
+          
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
           
             
+            <tr><th colspan="12"><nobr>&lt;mongo:queryAttributes&gt;</nobr></br><span style="font-weight: normal;">The query object used to detect the element to update.</span></th></tr>
+            
+            
           
+            
+            <tr><th colspan="12"><nobr>&lt;mongo:elementAttributes&gt;</nobr></br><span style="font-weight: normal;">The mandatory object that will replace that one which
+            matches the query.</span></th></tr>
+            
             
           
             
@@ -4044,6 +4277,8 @@ attribute on each operation.</p>
           
       </table>
   </div>
+  
+    
   
 
     </div>
