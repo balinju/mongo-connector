@@ -14,6 +14,7 @@
 
 package org.mule.module.mongo.config;
 
+import com.mongodb.BasicDBObject;
 import org.mule.construct.Flow;
 import org.mule.tck.FunctionalTestCase;
 
@@ -32,7 +33,7 @@ public class MongoNamespaceHandlerTestCase extends FunctionalTestCase
 
     public void testSendMessageToFlow() throws Exception
     {
-        lookupFlowConstruct("CreateCollection");
+        lookupFlowConstruct("InsertObject").process(getTestEvent(new BasicDBObject()));
     }
 
     private Flow lookupFlowConstruct(String name)
