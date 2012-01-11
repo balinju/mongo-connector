@@ -738,7 +738,7 @@ public class MongoCloudConnector
      * @return the converted {@link DBObject}
      */
     @Transformer(sourceTypes = {String.class})
-    public static DBObject jsonToDbobject(Object input)
+    public static DBObject jsonToDbobject(String input)
     {
         return (DBObject) JSON.parse((String) input);
     }
@@ -752,7 +752,7 @@ public class MongoCloudConnector
      * @return the converted string representation
      */
     @Transformer(sourceTypes = {DBObject.class})
-    public static String dbobjectToJson(Object input)
+    public static String dbobjectToJson(DBObject input)
     {
         return JSON.serialize(input);
     }
@@ -766,7 +766,7 @@ public class MongoCloudConnector
      * @return the converted string representation
      */
     @Transformer(sourceTypes = {BasicBSONList.class})
-    public static String bsonListToJson(Object input)
+    public static String bsonListToJson(BasicBSONList input)
     {
         return JSON.serialize(input);
     }
@@ -781,7 +781,7 @@ public class MongoCloudConnector
      * @return the converted string representation
      */
     @Transformer(sourceTypes = {MongoCollection.class})
-    public static String mongoCollectionToJson(Object input)
+    public static String mongoCollectionToJson(MongoCollection input)
     {
         return JSON.serialize(input);
     }
@@ -796,9 +796,9 @@ public class MongoCloudConnector
      * @param input the input for this transformer
      * @return the converted Map representation
      */
-    @Transformer(sourceTypes = {DBObject.class})
-    @SuppressWarnings("unchecked")
-    public static Map dbObjectToMap(Object input)
+    @SuppressWarnings("rawtypes")
+	@Transformer(sourceTypes = {DBObject.class})
+    public static Map dbObjectToMap(DBObject input)
     {
         return ((DBObject) input).toMap();
     }
