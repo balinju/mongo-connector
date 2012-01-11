@@ -53,6 +53,8 @@ import java.util.Map;
 
 import static org.mule.module.mongo.api.DBObjects.adapt;
 import static org.mule.module.mongo.api.DBObjects.from;
+import static org.mule.module.mongo.api.DBObjects.fromFunction;
+import static org.mule.module.mongo.api.DBObjects.fromCommand;
 
 /**
  * MongoDB is an open source, high-performance, schema-free, document-oriented database that manages collections of
@@ -222,6 +224,33 @@ public class MongoCloudConnector
     {
         client.updateObjects(collection, query, element, upsert, multi, writeConcern);
     }
+    
+    /**
+     * Updates objects that matches the given query. If parameter multi is set to
+     * false, only the first document matching it will be updated. Otherwise, all the
+     * documents matching it will be updated.
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:update-objects-using-query-map}
+     * 
+     * @param collection the name of the collection to update
+     * @param queryAttributes the query object used to detect the element to update.
+     * @param element the {@link DBObject} mandatory object that will replace that
+     *            one which matches the query.
+     * @param upsert if the database should create the element if it does not exist
+     * @param multi if all or just the first object matching the query will be
+     *            updated
+     * @param writeConcern the write concern used to update
+     */
+    @Processor
+    public void updateObjectsUsingQueryMap(String collection,
+    						  Map<String, Object> queryAttributes,
+                              DBObject element,
+                              @Optional @Default(CAPPED_DEFAULT_VALUE) boolean upsert,
+                              @Optional @Default("true") boolean multi,
+                              @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
+    {
+        client.updateObjects(collection, (DBObject) adapt(queryAttributes), element, upsert, multi, writeConcern);
+    }
 
     /**
      * Updates objects that matches the given query. If parameter multi is set to
@@ -250,6 +279,68 @@ public class MongoCloudConnector
     {
         client.updateObjects(collection, (DBObject) adapt(queryAttributes), (DBObject) adapt(elementAttributes), upsert, multi,
             writeConcern);
+    }
+    
+    /**
+     * Update objects using a mongo function
+     * 
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:update-objects-by-function}
+     * 
+     * @param collection the name of the collection to update
+     * @param function the function used to execute the update
+     * @param query the {@link DBObject} query object used to detect the element to
+     *            update.
+     * @param element the {@link DBObject} mandatory object that will replace that
+     *            one which matches the query.
+     * @param upsert if the database should create the element if it does not exist
+     * @param multi if all or just the first object matching the query will be
+     *            updated
+     * @param writeConcern the write concern used to update
+     * 
+     */
+    @Processor
+    public void updateObjectsByFunction(String collection,
+				    		  String function,
+				    		  DBObject query,	
+                              DBObject element,
+                              @Optional @Default(CAPPED_DEFAULT_VALUE) boolean upsert,
+                              @Optional @Default(value="true")  boolean multi,
+                              @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
+    {
+    	DBObject functionDbObject = fromFunction(function, element);
+    	
+        client.updateObjects(collection, query, functionDbObject, upsert, multi, writeConcern);
+    }
+    
+    /**
+     * Update objects using a mongo function
+     * 
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:update-objects-by-function-using-map}
+     * 
+     * @param collection the name of the collection to update
+     * @param function the function used to execute the update
+     * @param queryAttributes the query object used to detect the element to update.
+     * @param elementAttributes the mandatory object that will replace that one which
+     *            matches the query.
+     * @param upsert if the database should create the element if it does not exist
+     * @param multi if all or just the first object matching the query will be
+     *            updated
+     * @param writeConcern the write concern used to update
+     */
+    @Processor
+    public void updateObjectsByFunctionUsingMap(String collection,
+                              String function,
+                              Map<String, Object> queryAttributes,
+                              Map<String, Object> elementAttributes,
+                              @Optional @Default(CAPPED_DEFAULT_VALUE) boolean upsert,
+                              @Optional @Default(value="true")  boolean multi,
+                              @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
+    {
+    	DBObject functionDbObject = fromFunction(function, (DBObject) adapt(elementAttributes));
+    	
+        client.updateObjects(collection, (DBObject) adapt(queryAttributes), functionDbObject, upsert, multi, writeConcern);
     }
 
     /**
@@ -727,6 +818,24 @@ public class MongoCloudConnector
     public void removeFilesUsingQueryMap(@Placement(group = "Query Attributes") @Optional Map<String, Object> queryAttributes)
     {
         client.removeFiles((DBObject) adapt(queryAttributes));
+    }
+    
+    /**
+     * Executes a command on the database
+     * 
+     * <p/>
+     * {@sample.xml ../../../doc/mongo-connector.xml.sample mongo:remove-files}
+     * 
+     * @param commandName The command to execute on the database
+     * @param commandValue The value for the command
+     * @return The result of the command
+     */
+    @Processor
+    public DBObject executeCommand(String commandName, @Optional String commandValue)
+    {
+    	DBObject dbObject = fromCommand(commandName, commandValue);
+    	 
+    	return client.executeComamnd(dbObject);
     }
 
     /**

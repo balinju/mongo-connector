@@ -223,6 +223,11 @@ public class MongoClientImpl implements MongoClient
     {
         getGridFs().remove(query);
     }
+    
+    public DBObject executeComamnd(DBObject command)
+    {
+    	return openSession().command(command);
+    }
 
     protected GridFS getGridFs()
     {

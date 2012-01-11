@@ -58,6 +58,26 @@ public final class DBObjects
         }
         throw new IllegalArgumentException("Unsupported object type " + o);
     }
+    
+    public static DBObject fromFunction(String function, DBObject dbObject)
+    {
+    	return new BasicDBObject(function, dbObject);
+    }
+    
+    public static DBObject fromCommand(String commandName, String commandValue)
+    {
+    	DBObject dbObject;
+    	if (commandValue == null)
+    	{
+    		dbObject = new BasicDBObject(commandName, 1);
+    	}
+    	else
+    	{
+    		dbObject = new BasicDBObject(commandName, commandValue);
+    	}
+    	
+    	return dbObject;
+    }
 
     @SuppressWarnings("unchecked")
     public static Object adapt(Object o)

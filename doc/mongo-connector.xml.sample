@@ -122,6 +122,15 @@
         </mongo:find-one-object-using-query-map>
 <!-- END_INCLUDE(mongo:find-one-object-using-query-map) -->
 
+<!-- BEGIN_INCLUDE(mongo:update-objects-using-query-map) -->
+        <mongo:update-objects-using-query-map collection="myCollection" upsert="true" element-ref="dbObject">
+            <mongo:query-attributes>
+                <mongo:query-attribute key="foo">bar</mongo:query-attribute>
+                <mongo:query-attribute key="foo">bar</mongo:query-attribute>
+            </mongo:query-attributes>
+        </mongo:update-objects-using-query-map>
+<!-- END_INCLUDE(mongo:update-objects-using-query-map) -->
+
 <!-- BEGIN_INCLUDE(mongo:update-objects-using-map) -->
         <mongo:update-objects-using-map collection="myCollection" upsert="true">
             <mongo:query-attributes>
@@ -134,6 +143,24 @@
             </mongo:element-attributes>
         </mongo:update-objects-using-map>
 <!-- END_INCLUDE(mongo:update-objects-using-map) -->
+
+<!-- BEGIN_INCLUDE(mongo:update-objects-by-function) -->
+        <mongo:update-objects-by-function collection="myCollection" upsert="true" element-ref="elementObject" query-ref="queryObject" function="$set">
+        </mongo:update-objects-by-function>
+<!-- END_INCLUDE(mongo:update-objects-by-function) -->
+
+<!-- BEGIN_INCLUDE(mongo:update-objects-by-function-using-map) -->
+        <mongo:update-objects-by-function-using-map collection="myCollection" upsert="true" function="$set">
+            <mongo:query-attributes>
+                <mongo:query-attribute key="foo">bar</mongo:query-attribute>
+                <mongo:query-attribute key="foo">bar</mongo:query-attribute>
+            </mongo:query-attributes>
+            <mongo:element-attributes>
+                <mongo:element-attribute key="foo">bar</mongo:element-attribute>
+                <mongo:element-attribute key="foobar">baz</mongo:element-attribute>
+            </mongo:element-attributes>
+        </mongo:update-objects-by-function-using-map>
+<!-- END_INCLUDE(mongo:update-objects-by-function-using-map) -->
 
 <!-- BEGIN_INCLUDE(mongo:insert-from-map) -->
         <mongo:insert-from-map collection="Employees" writeConcern="SAFE">

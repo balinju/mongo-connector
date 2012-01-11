@@ -75,5 +75,7 @@ public interface MongoClient
     Iterable<DBObject> listFiles(DBObject query);
 
     void removeFiles(DBObject query);
+    
+    DBObject executeComamnd(DBObject command);
 
 }
