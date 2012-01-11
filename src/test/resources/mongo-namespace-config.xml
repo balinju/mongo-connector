@@ -24,7 +24,7 @@
                           http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.2/mule.xsd
                           http://www.mulesoft.org/schema/mule/mongo http://www.mulesoft.org/schema/mule/mongo/2.0/mule-mongo.xsd">
 
-    <mongo:config/>
+    <mongo:config username="fede" password="123" />
 
     <spring:bean id="myDbObject" class="com.mongodb.BasicDBObject"/>
 
@@ -45,7 +45,7 @@
     </flow>
 
     <flow name="InsertObject">
-        <mongo:insert-object collection="Employees" writeConcern="SAFE" dbObject-ref="myDbObject"/>
+        <mongo:insert-object collection="Employees" writeConcern="SAFE" dbObject-ref="#[payload]"/>
     </flow>
 
 
