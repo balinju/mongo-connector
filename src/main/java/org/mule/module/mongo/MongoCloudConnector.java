@@ -156,7 +156,7 @@ public class MongoCloudConnector
      */
     @Processor
     public String insertObject(String collection,
-                               DBObject dbObject,
+                               @Optional @Default("#[payload]") DBObject dbObject,
                                @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
     {
         return client.insertObject(collection, dbObject, writeConcern);
@@ -206,7 +206,7 @@ public class MongoCloudConnector
     @Processor
     public void updateObjects(String collection,
                               DBObject query,
-                              DBObject element,
+                              @Optional @Default("#[payload]") DBObject element,
                               @Optional @Default(CAPPED_DEFAULT_VALUE) boolean upsert,
                               @Optional @Default("true") boolean multi,
                               @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
@@ -254,7 +254,7 @@ public class MongoCloudConnector
      */
     @Processor
     public void saveObject(String collection,
-                           DBObject element,
+                           @Optional @Default("#[payload]") DBObject element,
                            @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
     {
         client.saveObject(collection, from(element), writeConcern);
@@ -293,7 +293,7 @@ public class MongoCloudConnector
      */
     @Processor
     public void removeObjects(String collection,
-                              DBObject query,
+                              @Optional @Default("#[payload]") DBObject query,
                               @Optional @Default(WRITE_CONCERN_DEFAULT_VALUE) WriteConcern writeConcern)
     {
         client.removeObjects(collection, query, writeConcern);
@@ -367,7 +367,7 @@ public class MongoCloudConnector
      * @return the amount of objects that matches the query
      */
     @Processor
-    public long countObjects(String collection, @Optional DBObject query)
+    public long countObjects(String collection, @Optional @Default("#[payload]") DBObject query)
     {
         return client.countObjects(collection, query);
     }
@@ -406,7 +406,7 @@ public class MongoCloudConnector
      */
     @Processor
     public Iterable<DBObject> findObjects(String collection,
-                                          @Optional DBObject query,
+                                          @Optional @Default("#[payload]") DBObject query,
                                           @Optional List<String> fields)
     {
         return client.findObjects(collection, query, fields);
@@ -447,7 +447,7 @@ public class MongoCloudConnector
      * @return a non-null {@link DBObject} that matches the query.
      */
     @Processor
-    public DBObject findOneObject(String collection, DBObject query, @Optional List<String> fields)
+    public DBObject findOneObject(String collection, @Optional @Default("#[payload]") DBObject query, @Optional List<String> fields)
     {
         return client.findOneObject(collection, query, fields);
 
@@ -576,7 +576,7 @@ public class MongoCloudConnector
      * @return a {@link DBObject} files iterable
      */
     @Processor
-    public Iterable<DBObject> findFiles(@Optional DBObject query)
+    public Iterable<DBObject> findFiles(@Optional @Default("#[payload]")  DBObject query)
     {
         return client.findFiles(from(query));
     }
@@ -637,7 +637,7 @@ public class MongoCloudConnector
      * @return an InputStream to the file contents
      */
     @Processor
-    public InputStream getFileContent(DBObject query)
+    public InputStream getFileContent(@Optional @Default("#[payload]") DBObject query)
     {
         return client.getFileContent(from(query));
     }
@@ -668,7 +668,7 @@ public class MongoCloudConnector
      * @return an iterable of {@link DBObject}
      */
     @Processor
-    public Iterable<DBObject> listFiles(@Optional DBObject query)
+    public Iterable<DBObject> listFiles(@Optional @Default("#[payload]") DBObject query)
     {
         return client.listFiles(from(query));
     }
@@ -698,7 +698,7 @@ public class MongoCloudConnector
      * @param query the {@link DBObject} optional query
      */
     @Processor
-    public void removeFiles(@Optional DBObject query)
+    public void removeFiles(@Optional @Default("#[payload]")  DBObject query)
     {
         client.removeFiles(from(query));
     }
