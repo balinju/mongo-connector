@@ -131,7 +131,32 @@
             </mongo:element-attributes>
         </mongo:update-objects-using-map>
     </flow>
+    
+    <flow name="UpdateObjectsUsingQueryMap">
+    	<mongo:update-objects-using-query-map collection="#[map-payload:aCollectionName]" upsert="true" element-ref="#[map-payload:element]">
+    		<mongo:query-attributes>
+                <mongo:query-attribute key="foo">foobaz</mongo:query-attribute>
+                <mongo:query-attribute key="foobar">foobaz</mongo:query-attribute>
+            </mongo:query-attributes>
+    	</mongo:update-objects-using-query-map>
+    </flow>
 
+	<flow name="UpdateObjectsByFunction">
+		<mongo:update-objects-by-function collection="#[map-payload:aCollectionName]" upsert="true" query-ref="#[map-payload:query]" element-ref="#[map-payload:element]" multi="false" function="$set" />
+	</flow>
+	
+	<flow name="UpdateObjectsByFunctionUsingMap">
+		<mongo:update-objects-by-function-using-map collection="#[map-payload:aCollectionName]" upsert="true" multi="false" function="$set">
+			<mongo:query-attributes>
+                <mongo:query-attribute key="foo">foobaz</mongo:query-attribute>
+                <mongo:query-attribute key="foobar">foobaz</mongo:query-attribute>
+            </mongo:query-attributes>
+			<mongo:element-attributes>
+                <mongo:element-attribute key="foo">bar</mongo:element-attribute>
+                <mongo:element-attribute key="foobar">baz</mongo:element-attribute>
+            </mongo:element-attributes>
+		</mongo:update-objects-by-function-using-map>
+	</flow>
 
     <flow name="InsertObjectAsMap">
         <mongo:insert-object-from-map collection="Employees" writeConcern="SAFE">
@@ -237,6 +262,8 @@
             </mongo:query-attributes>
         </mongo:remove-using-query-map>
     </flow>
+    
+    
 
     <flow name="jsonToDbobject">
         <mongo:json-to-dbobject />
